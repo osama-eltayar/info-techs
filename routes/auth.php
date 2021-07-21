@@ -30,4 +30,5 @@ Route::group(['middleware'=>['guest']], function () {
 });
 Route::group(['middleware'=>['auth']], function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('auth/reset-password', [ResetPasswordController::class, 'passwordResetForAuthUser'])->name('auth-reset-password');
 });
