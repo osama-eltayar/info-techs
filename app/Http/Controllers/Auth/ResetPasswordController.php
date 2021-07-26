@@ -12,10 +12,9 @@ class ResetPasswordController extends Controller
 
     public function passwordReset(Request $request)
     {
-        $request->validate([
-                               'token'    => 'required',
-                               'email'    => ['required', 'email', 'exists:users,email'],
-                               'password' => ['required', 'confirmed'],
+        $request->validate(['token'    => 'required',
+                            'email'    => ['required', 'email', 'exists:users,email'],
+                            'password' => ['required', 'confirmed'],
                            ]);
 
         $credentials = $request->only('email', 'password', 'password_confirmation', 'token');
@@ -38,9 +37,8 @@ class ResetPasswordController extends Controller
 
     public function passwordResetForAuthUser(Request $request)
     {
-        $request->validate([
-                               'old_password' => 'current_password',
-                               'password'     => ['required', 'confirmed',]
+        $request->validate(['old_password' => 'current_password',
+                            'password'     => ['required', 'confirmed',]
                            ]);
         auth()->user()->update(['password' => $request->password]);
         return redirect()->route('login');

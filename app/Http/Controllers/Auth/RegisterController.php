@@ -17,9 +17,8 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $registerRequest)
     {
-
+        $user = User::create($registerRequest->validated())->assignRole(User::USER);
+        auth()->login($user);
+        return redirect(route('courses.index'));
     }
-
-
-
 }
