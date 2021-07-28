@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -22,13 +23,15 @@ Route::group(['middleware'=>['guest']], function () {
     Route::get('login', [LoginController::class, 'show'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('login');
 
-    Route::post('forget-password', [ResetPasswordController::class, 'sendResetLink'])->name('password.forget');
+    Route::post('forget-password', [ForgetPasswordController::class, 'sendResetLink'])->name('password.forget');
+    Route::get('forget-password', [ForgetPasswordController::class, 'show']) ;
+    Route::post('reset-password', [ResetPasswordController::class, 'passwordReset'])->name('password.reset');
     Route::get('reset-password', [ResetPasswordController::class, 'show']);
-    Route::post('reset-password', [ResetPasswordController::class, 'passwordReset'])->name('reset-password');
-    Route::get('forget-password', [ForgetPasswordController::class, 'show']);
 
 });
 Route::group(['middleware'=>['auth']], function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-    Route::post('auth/reset-password', [ResetPasswordController::class, 'passwordResetForAuthUser'])->name('auth-reset-password');
+    Route::get('reset-password', [ResetPasswordController::class, 'show']);
+    Route::post('auth/reset-password', [ResetPasswordController::class,'passwordResetForAuthUser'])->name('auth.password.reset');
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
 });

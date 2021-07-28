@@ -11,16 +11,16 @@
         <!-- Start Nav Links-->
         <section class="nav-links">
             <div class="container">
-                <a href="#">Home page</a>
+                <a href="{{route('courses.index')}}">Home page</a>
                 <span>|</span>
-                <a href="#">Forgot password</a>
+                <a href="{{route('password.forget')}}">Forgot password</a>
             </div>
         </section>
 
         <!-- Start Form -->
         <section class="form-section">
             <div class="form-content">
-                <form action="" method="post">
+                <form action="{{route('password.forget')}}" method="post">
                     @csrf
                     <div class="title">
                         <i class="fa-solid fa-lock-keyhole"></i> Forgot password
@@ -30,14 +30,14 @@
                         <span class="top-message">* All fields are mandatory</span>
                         <label for="email">Email  <span>*</span></label>
                         <div class="input-icon">
-                            <input type="email" name="email" class="form-control">
+                            <input type="email" id="email" name="email" class="form-control">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                     </div>
 
 
 
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
 
                 </form>
             </div>
