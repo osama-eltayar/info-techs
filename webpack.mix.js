@@ -11,7 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix
+    .js('resources/js/app.js', 'public/js')
+    .scripts(['resources/assets/js/common/uicreep-minify.js',
+              'resources/assets/js/common/script.js',
+    ], 'public/js/common.min.js')
+    .styles(['resources/assets/css/'], 'public/css/main.css')
+    .copy(['resources/assets/media/'], 'public/media')
+    .copy(['resources/assets/webfonts/'], 'public/webfonts')
+    .copy(['resources/assets/fonts/'], 'public/fonts')
+    .sourceMaps();

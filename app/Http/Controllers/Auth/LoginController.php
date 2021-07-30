@@ -26,18 +26,17 @@ class LoginController extends Controller
             return redirect(route('home'));
         }
 
-        return back()->withErrors([
-                                      'email' => 'The provided credentials do not match our records.',
-                                  ])->withInput(['email' => $credentials['email']]);
+        return back()
+            ->withErrors(['email' => 'The provided credentials do not match our records.'])
+            ->withInput(['email' => $credentials['email']]);
 
     }
 
 
     private function validateLogin($request)
     {
-        $request->validate([
-                               'email'    => ['required', 'email'],
-                               'password' => ['required', 'min:6', 'string']
+        $request->validate(['email'    => ['required', 'email'],
+                            'password' => ['required', 'min:6', 'string']
                            ]);
     }
 
