@@ -11,4 +11,9 @@ class CourseController extends Controller
     {
         return view('user.courses.index');
     }
+
+    public function show()
+    {
+
+    }
 }
