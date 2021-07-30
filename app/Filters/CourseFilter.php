@@ -29,32 +29,27 @@ class CourseFilter extends Filter
 
     public function filterWithCme( $with_cme )
     {
-        if ( $with_cme )
-            $this->query->where('cme_count', '>', 0);
+        $this->query->where('cme_count', '>', 0);
     }
 
     public function filterFree( $free )
     {
-        if ( $free )
-            $this->query->where('price', 0);
+        $this->query->where('price', 0);
     }
 
-    public function filterPastEvents($past_events)
+    public function filterPastEvents( $past_events )
     {
-        if($past_events)
-            $this->query->whereDate('end_date','<',now());
+        $this->query->whereDate('end_date', '<', now());
     }
 
-    public function filterUpcomingEvents($past_events)
+    public function filterUpcomingEvents( $past_events )
     {
-        if($past_events)
-            $this->query->whereDate('start_date','>',now());
+        $this->query->whereDate('start_date', '>', now());
     }
 
-    public function filterMySpeciality($my_speciality)
+    public function filterMySpeciality( $my_speciality )
     {
-        if($my_speciality)
-            $this->filterSpeciality(Auth::user()->profile->speciality_id);
+        $this->filterSpeciality(Auth::user()->profile->speciality_id);
     }
 
 }

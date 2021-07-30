@@ -22,7 +22,7 @@ $(function () {
 function searchCourses() {
     const filters = []
     $('.filter-checkbox:checked').each(function (){
-        filters.push({name : $(this).attr('name') , value : true})
+        filters.push({name : $(this).attr('name') , value : 1})
     })
     const formElement = $('#courses-search-form')
     const action = formElement.attr('action')
