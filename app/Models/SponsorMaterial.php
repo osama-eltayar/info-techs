@@ -4,19 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 /**
- * @method static self create(array $data)
+ * @method static self create( array $data )
  */
-class Speciality extends Model
+class SponsorMaterial extends Model
 {
     use HasFactory;
 
     /**
-    * The attributes that are mass assignable.
-    * @var array
-    */
-    protected $fillable = [
-    ];
+     * The attributes that are mass assignable.
+     * @var array
+     */
+    protected $fillable
+        = [
+            'name',
+            'path',
+            'mime_type',
+            'sponsor_id'
+        ];
 
     //########################################### Constants ################################################
 
@@ -31,9 +37,7 @@ class Speciality extends Model
 
 
     //########################################### Relations ################################################
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class,'course_specialities');
-    }
+
+
 }
 

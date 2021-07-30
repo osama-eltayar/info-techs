@@ -1,6 +1,6 @@
-(function($) {
+(function ($) {
     'use strict';
-    jQuery(document).ready(function($){
+    jQuery(document).ready(function ($) {
         // aside dropdown
 
         function asideDropdown() {
@@ -10,18 +10,18 @@
             if (!dropdown.length) return;
 
             var trigger = $('.dropdown-trigger');
-            var	close = $('.aside-dropdown__close');
+            var close = $('.aside-dropdown__close');
 
-            trigger.on('click', function(){
+            trigger.on('click', function () {
                 dropdown.toggleClass('aside-dropdown--active');
             });
 
-            close.on('click', function(){
+            close.on('click', function () {
                 dropdown.removeClass('aside-dropdown--active');
             });
 
-            $(document).on('click', function(event) {
-                if ( $(event.target).closest('.dropdown-trigger, .aside-dropdown__inner').length) return;
+            $(document).on('click', function (event) {
+                if ($(event.target).closest('.dropdown-trigger, .aside-dropdown__inner').length) return;
                 dropdown.removeClass('aside-dropdown--active');
                 event.stopPropagation();
             });
@@ -34,31 +34,32 @@
         $('.banner-slide .owl-carousel').owlCarousel({
             // loop:true,
             // autoplay:true,
-            autoplayTimeout:3000,
+            autoplayTimeout: 3000,
             autoplaySpeed: 1000,
-            smartSpeed:1500,
+            smartSpeed: 1500,
             lazyLoad: true,
-            items:1,
-            nav:true,
-            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+            items: 1,
+            nav: true,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
         });
 
         $('.slide .owl-carousel').owlCarousel({
             // loop:true,
             // autoplay:true,
-            autoplayTimeout:3000,
+            autoplayTimeout: 3000,
             autoplaySpeed: 1000,
-            smartSpeed:1500,
+            smartSpeed: 1500,
             lazyLoad: true,
-            items:1,
-            nav:false,
-            dots:true
+            items: 1,
+            nav: false,
+            dots: true
         });
 
-        $(".info").on("click", function() {
+        $(document).on("click", ".info", function () {
+            $('.card-content').removeClass('show-info')
             $(this).parent().parent().toggleClass('show-info')
         });
-        $(".close-card").on("click", function() {
+        $(document).on("click", ".close-card", function () {
             $(this).parent().parent().toggleClass('show-info')
         })
 
@@ -80,6 +81,11 @@
     });
 
 }(jQuery));
+
+function updateQueryString(newQueryString){
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + newQueryString;
+    window.history.pushState({path: newUrl}, '', newUrl);
+}
 
 
 

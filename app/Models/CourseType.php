@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static self create(array $data)
  */
-class Speciality extends Model
+class CourseType extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,7 @@ class Speciality extends Model
     * @var array
     */
     protected $fillable = [
+        'name'
     ];
 
     //########################################### Constants ################################################
@@ -31,9 +32,7 @@ class Speciality extends Model
 
 
     //########################################### Relations ################################################
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class,'course_specialities');
-    }
+
+
 }
 

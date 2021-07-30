@@ -16,6 +16,8 @@ mix
     .scripts(['resources/assets/js/common/uicreep-minify.js',
               'resources/assets/js/common/script.js',
     ], 'public/js/common.min.js')
+    .scripts('resources/assets/js/courses/common.js','public/js/courses/common.min.js')
+    .scripts('resources/assets/js/courses/list.js','public/js/courses/list.min.js')
     .styles(['resources/assets/css/'], 'public/css/main.css')
     .copy(['resources/assets/media/'], 'public/media')
     .copy(['resources/assets/webfonts/'], 'public/webfonts')
