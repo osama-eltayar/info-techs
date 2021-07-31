@@ -4,19 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 /**
- * @method static self create(array $data)
+ * @method static self create( array $data )
  */
-class Speciality extends Model
+class CourseDiscount extends Model
 {
     use HasFactory;
 
     /**
-    * The attributes that are mass assignable.
-    * @var array
-    */
-    protected $fillable = [
-    ];
+     * The attributes that are mass assignable.
+     * @var array
+     */
+    protected $fillable
+        = [
+            'course_id',
+            'price',
+            'date',
+        ];
 
     //########################################### Constants ################################################
 
@@ -31,9 +36,11 @@ class Speciality extends Model
 
 
     //########################################### Relations ################################################
-    public function courses()
+
+    public function course()
     {
-        return $this->belongsToMany(Course::class,'course_specialities');
+        return $this->belongsTo(Course::class);
     }
+
 }
 
