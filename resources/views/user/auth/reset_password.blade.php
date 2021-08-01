@@ -21,7 +21,7 @@
         <!-- Start Form -->
         <section class="form-section">
             <div class="form-content">
-                <form action="{{auth()->check() ?  route('auth.password.reset') : route('password.reset') }}" method="post">
+                <form action="{{auth()->check() ?  route('auth.password.reset') : route('password.reset') }}" method="post" id="reset-password-form">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -43,6 +43,9 @@
                         <div class="input-icon">
                             <input type="password" id="oldpassword" name="old_password" class="form-control">
                             <i class="fa-solid fa-lock-keyhole"></i>
+                            @error('old_password')
+                            <label  class="error" >{{$message}}</label>
+                            @enderror
                         </div>
                     </div>
                     @endauth
@@ -56,7 +59,11 @@
                         <div class="input-icon">
                             <input type="password" id="newpassword" name="password" class="form-control">
                             <i class="fa-solid fa-lock-keyhole"></i>
+                            @error('password')
+                            <label  class="error" >{{$message}}</label>
+                            @enderror
                         </div>
+
                     </div>
 
                     <div class="form-group">
@@ -64,7 +71,11 @@
                         <div class="input-icon">
                             <input type="password" id="retypepassword" name="password_confirmation" class="form-control">
                             <i class="fa-solid fa-lock-keyhole"></i>
+                            @error('password_confirmation')
+                            <label  class="error" >{{$message}}</label>
+                            @enderror
                         </div>
+
                     </div>
 
                     <button type="submit" class="btn btn-primary">Reset</button>
@@ -78,5 +89,5 @@
         </div>
 @endsection
 @section('script')
-
+    <script src="/js/auth/reset-password.min.js"></script>
 @endsection
