@@ -22,6 +22,10 @@ mix
         'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/login.js',
     ], 'public/js/auth/login.min.js')
+    .js([
+        'resources/assets/js/auth/common.js',
+        'resources/assets/js/auth/register.js',
+    ], 'public/js/auth/register.min.js')
     .styles(['resources/assets/css/'], 'public/css/main.css')
     .copy(['resources/assets/media/'], 'public/media')
     .copy(['resources/assets/webfonts/'], 'public/webfonts')

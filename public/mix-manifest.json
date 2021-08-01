@@ -3,6 +3,7 @@
     "/js/courses/common.min.js": "/js/courses/common.min.js",
     "/js/courses/list.min.js": "/js/courses/list.min.js",
     "/js/auth/login.min.js": "/js/auth/login.min.js",
+    "/js/auth/register.min.js": "/js/auth/register.min.js",
     "/js/common.min.js": "/js/common.min.js",
     "/css/main.css": "/css/main.css",
     "/webfonts/fa-brands-400.eot": "/webfonts/fa-brands-400.eot",
