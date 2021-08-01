@@ -10,6 +10,21 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
+mix.webpackConfig({
+    plugins: [
+        new BrowserSyncPlugin({
+            files: [
+                'app/**/*',
+                'public/**/*',
+                'resources/views/**/*',
+                'resources/**/*',
+                'routes/**/*'
+            ]
+        })
+    ]
+});
 
 mix
     .js('resources/js/app.js', 'public/js')
@@ -42,4 +57,4 @@ mix
     .copy(['resources/assets/media/'], 'public/media')
     .copy(['resources/assets/webfonts/'], 'public/webfonts')
     .copy(['resources/assets/fonts/'], 'public/fonts')
-    .sourceMaps();
+    .sourceMaps().disableNotifications();
