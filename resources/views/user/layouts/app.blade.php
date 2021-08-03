@@ -34,11 +34,13 @@
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Join our team</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get in touch</span></a></li>
                 </ul>
-                <div class="header-aus">
-                    <a href="{{route('register')}}">Create new account  </a>
-                    <span>|</span>
-                    <a href="{{route('login')}}">Login</a>
-                </div>
+                @guest()
+                    <div class="header-aus">
+                        <a href="{{route('register')}}">Create new account  </a>
+                        <span>|</span>
+                        <a href="{{route('login')}}">Login</a>
+                    </div>
+                @endguest
             </div>
 
 
@@ -74,20 +76,42 @@
                     <!-- main menu end-->
                 </div>
                 <div class="col-auto  right-header">
-                    <div class="header-aus">
-                        <a href="{{route('register')}}">Create new account  </a>
-                        <span>|</span>
-                        <a href="{{route('login')}}">Login</a>
-                    </div>
-                    <div class="nav-action">
-                        <a href="" class="cart-link">
-                            <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0
-                        </a>
+                    @auth()
+                        <div class="user-dropdown">
+                            <div class="dropdown">
+                                <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span>Welcome, {{auth()->user()->name}} </span>
+                                    <img src="{{asset('')}}media/images/user1.png" alt="user">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-circle-user"></i> Update my profile <span class="status">Not updated</span></a>
+                                    <a class="dropdown-item" href="{{route('password.reset')}}"><i class="fa-solid fa-lock-keyhole"></i> Change my password</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days"></i> My events</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-action">
+                            <a href="" class="cart-link">
+                                <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0
+                            </a>
 
-                        <a href="" class="cart-link">
-                            <i class="fa-solid fa-circle-heart"></i> <span>My Favorites</span> 0
-                        </a>
-                    </div>
+                            <a href="" class="cart-link">
+                                <i class="fa-solid fa-circle-heart"></i> <span>My Favorites</span> 0
+                            </a>
+                        </div>
+                    @endauth
+                    @guest()
+                            <div class="header-aus">
+                                <a href="{{route('register')}}">Create new account  </a>
+                                <span>|</span>
+                                <a href="{{route('login')}}">Login</a>
+                            </div>
+                    @endguest
+
+
                 </div>
             </div>
         </div>
@@ -139,7 +163,7 @@
     </footer>
 </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="{{asset('js/common.min.js')}}"></script>
 
 

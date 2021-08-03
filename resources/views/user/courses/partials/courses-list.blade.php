@@ -23,7 +23,7 @@
                         <i class="fa-solid fa-calendar-day"></i> <b>Date:</b> {{$course->formatted_start_date}}
                     </div>
 
-                    <a href="#" class="btn btn-light">More details</a>
+                    <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
                     <p class="view">200 views</p>
                     <div class="text-center">
                         <button type="button" class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i> Add

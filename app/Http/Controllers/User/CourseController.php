@@ -37,8 +37,10 @@ class CourseController extends Controller
         return view('user.courses.index', compact('courses', 'courseTypes', 'specialities'));
     }
 
-    public function show()
+    public function show(Course $course)
     {
+        $course->load('discounts', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization');
 
+        return view('user.courses.show',compact('course'));
     }
 }
