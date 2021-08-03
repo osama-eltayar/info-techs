@@ -43,5 +43,10 @@ class Speaker extends Model
         return $this->belongsToMany(Course::class,'course_speakers');
     }
 
+    public function speciality()
+    {
+        return $this->belongsTo(Speciality::class);
+    }
+
 }
 
