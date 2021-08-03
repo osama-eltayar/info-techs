@@ -20,7 +20,7 @@
         <!-- Start Form -->
         <section class="form-section">
             <div class="form-content">
-                <form action="{{route('password.forget')}}" method="post">
+                <form action="{{route('password.forget')}}" method="post" id="forget-password-form">
                     @csrf
                     <div class="title">
                         <i class="fa-solid fa-lock-keyhole"></i> Forgot password
@@ -32,6 +32,9 @@
                         <div class="input-icon">
                             <input type="email" id="email" name="email" class="form-control">
                             <i class="fa-solid fa-envelope"></i>
+                            @error('email')
+                            <label  class="error" >{{$message}}</label>
+                            @enderror
                         </div>
                     </div>
 
@@ -48,5 +51,5 @@
         </div>
 @endsection
 @section('script')
-
+    <script src="/js/auth/forget-password.min.js"></script>
 @endsection

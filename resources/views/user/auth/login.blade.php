@@ -19,7 +19,7 @@
         <!-- Start Form -->
         <section class="form-section">
             <div class="form-content">
-                <form action="{{route('login')}}" method="post">
+                <form action="{{route('login')}}" method="post" id="login-form">
                     @csrf
                     <div class="title">
                         <i class="fa-solid fa-user-plus"></i> Login to my account
@@ -32,6 +32,9 @@
                             <input type="email" id="email" name="email" class="form-control">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
+                        @error('email')
+                        <label  class="error" >{{$message}}</label>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -40,6 +43,9 @@
                             <input type="password" id="password" name="password" class="form-control">
                             <i class="fa-solid fa-lock-keyhole"></i>
                         </div>
+                        @error('password')
+                        <label  class="error" >{{$message}}</label>
+                        @enderror
                     </div>
 
 
@@ -58,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Login</button>
 
                 </form>
@@ -70,5 +77,5 @@
 
 @endsection
 @section('script')
-
+    <script src="/js/auth/login.min.js"></script>
 @endsection
