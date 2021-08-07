@@ -6,6 +6,7 @@
     "/js/auth/register.min.js": "/js/auth/register.min.js",
     "/js/auth/reset-password.min.js": "/js/auth/reset-password.min.js",
     "/js/auth/forget-password.min.js": "/js/auth/forget-password.min.js",
+    "/js/profile/edit.min.js": "/js/profile/edit.min.js",
     "/js/common.min.js": "/js/common.min.js",
     "/css/main.css": "/css/main.css",
     "/webfonts/fa-brands-400.eot": "/webfonts/fa-brands-400.eot",

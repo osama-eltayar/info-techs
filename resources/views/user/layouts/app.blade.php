@@ -56,7 +56,7 @@
                         <div class="dropdown-trigger__item"></div>
                     </div>
                     <div class="header-logo">
-                        <a class="header-logo__link" href="index.html">
+                        <a class="header-logo__link" href="{{route('courses.index')}}">
                             <img class="header-logo__img" src="{{asset('media/images/logomain.png')}}" alt="logo"/>
                         </a>
                     </div>
@@ -89,10 +89,13 @@
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days"></i> My events</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                                    <a class="dropdown-item" href="#" onclick="$('#logout-form').submit()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
+                        <form action="{{route('logout')}}" id="logout-form" method="post">
+                            @csrf
+                        </form>
                         <div class="nav-action">
                             <a href="" class="cart-link">
                                 <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0

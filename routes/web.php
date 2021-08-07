@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/','courses');
 
 Route::resource('courses', CourseController::class )->only('index','show');
 Route::get('profile/edit', [ProfileController::class,'edit'] )->name('profile.edit')->middleware('auth');
