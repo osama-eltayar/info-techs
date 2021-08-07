@@ -168,6 +168,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="{{asset('js/common.min.js')}}"></script>
+<script src="{{asset('js/layouts.min.js')}}"></script>
 
 
 @yield('script')

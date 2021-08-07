@@ -12,7 +12,6 @@ class CourseController extends Controller
 {
     public function index( Request $request )
     {
-
         $filterData = $request->only(
             'type',
             'speciality',
@@ -24,9 +23,11 @@ class CourseController extends Controller
             'favorites',
             'my_speciality'
         );
-        $courses    = Course::filter($filterData)
-                            ->with('speakers', 'sponsors','organization')
-                            ->get();
+        $courses = Course::filter($filterData)
+                         ->with('speakers', 'sponsors', 'organization')
+                         ->withExists('favouriteAuthUser')
+                         ->get();
+
 
         if ( $request->ajax() )
             return view('user.courses.partials.courses-list', compact('courses'));

@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/layouts.min.js": "/js/layouts.min.js",
     "/js/courses/common.min.js": "/js/courses/common.min.js",
     "/js/courses/list.min.js": "/js/courses/list.min.js",
     "/js/auth/login.min.js": "/js/auth/login.min.js",
