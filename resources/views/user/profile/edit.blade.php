@@ -22,7 +22,7 @@
     <!-- Start Form -->
     <section class="form-section">
         <div class="form-content box-lg">
-            <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('profile.update')}}" method="post" id="profile-form" enctype="multipart/form-data">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -45,6 +45,7 @@
                             <label for="title">Title <span>*</span></label>
                             <div class="input-icon">
                                 <select name="profile[title]" id="title" class="form-control">
+                                    <option value="" >Title</option>
                                     @foreach($titles as $title)
                                         <option
                                             value="{{$title->name}}" {{$profile->title == $title->name ? 'selected' : NULL}} >{{$title->name}}</option>
@@ -96,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-12 {{$profile->saudi_council ?: 'd-none' }}">
+                    <div class="col-md-6 col-12 {{$profile->saudi_council ?: 'd-none' }}" id="saudi-council-input">
                         <div class="form-group ">
                             <label for="SCR">Saudi council number (SCR)</label>
                             <div class="input-icon">
@@ -120,6 +121,7 @@
                             <label for="speciality">Speciality <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[speciality_id]" id="speciality" class="form-control">
+                                    <option value="" >Speciality</option>
                                     @foreach($specialities as $speciality)
                                         <option
                                             value="{{$speciality->id}}" {{$profile->speciality_id == $speciality->id ? 'selected' : NULL }}>{{$speciality->name}}</option>
@@ -195,22 +197,5 @@
     </div>
 @endsection
 @section('script')
-    <script>
-        function readURL(input)
-        {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#imageUpload").change(function () {
-            readURL(this);
-        });
-    </script>
+    <script src="{{asset('js/profile/edit.min.js')}}" ></script>
 @endsection
