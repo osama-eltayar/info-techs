@@ -16,26 +16,26 @@ mix
     .scripts(['resources/assets/js/common/uicreep-minify.js',
               'resources/assets/js/common/script.js',
     ], 'public/js/common.min.js')
+    .js('resources/assets/js/layouts/common.js','public/js/layouts.min.js')
     //#############################  courses  ##################################
     .js('resources/assets/js/courses/common.js','public/js/courses/common.min.js')
     .js('resources/assets/js/courses/list.js','public/js/courses/list.min.js')
     //#############################  Authentication  ##################################
     .js([
-        'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/login.js',
     ], 'public/js/auth/login.min.js')
     .js([
-        'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/register.js',
     ], 'public/js/auth/register.min.js')
     .js([
-        'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/reset-password.js',
     ], 'public/js/auth/reset-password.min.js')
     .js([
-        'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/forget-password.js',
     ], 'public/js/auth/forget-password.min.js')
+    .js([
+        'resources/assets/js/profile/edit.js',
+    ], 'public/js/profile/edit.min.js')
 
     //#############################  assets  ##################################
     .styles(['resources/assets/css/'], 'public/css/main.css')

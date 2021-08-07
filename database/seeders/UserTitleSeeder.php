@@ -16,7 +16,7 @@ class UserTitleSeeder extends Seeder
     {
         for($i=1 ; $i<5 ; $i++)
         {
-            UserTitle::create(['name' => 'title' . $i]);
+            UserTitle::firstOrCreate(['name' => 'title' . $i]);
         }
     }
 }

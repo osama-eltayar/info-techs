@@ -15,7 +15,7 @@ class OrganizationSeeder extends Seeder
     public function run()
     {
         for ( $i = 1; $i <= 5; $i++ )
-            Organization::create([
+            Organization::firstOrCreate([
                 'name' => "Organization $i",
                 'logo' => '/organizations/logo.png'
             ]);

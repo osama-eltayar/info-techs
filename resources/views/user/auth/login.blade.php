@@ -43,9 +43,6 @@
                             <input type="password" id="password" name="password" class="form-control">
                             <i class="fa-solid fa-lock-keyhole"></i>
                         </div>
-                        @error('password')
-                        <label  class="error" >{{$message}}</label>
-                        @enderror
                     </div>
 
 

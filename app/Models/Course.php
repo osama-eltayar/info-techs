@@ -146,5 +146,11 @@ class Course extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function favouriteAuthUser()
+    {
+        return $this->belongsToMany(User::class,'user_favourite_courses')
+                    ->where('users.id',auth()->id());
+    }
+
 }
 

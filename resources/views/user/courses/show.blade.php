@@ -198,5 +198,5 @@ s
         </section>
 @endsection
 @section('script')
-
+    <script src="/js/courses/common.min.js"></script>
 @endsection

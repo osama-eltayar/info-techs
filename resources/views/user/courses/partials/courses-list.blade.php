@@ -10,7 +10,9 @@
                 </div>
                 <div class="img-card">
                     <img src="/media/images/product.png" alt="product">
-                    <button type="button" class="fav"><i class="fa-solid fa-heart"></i></button>
+                    @auth()
+                        <button data-action="{{route('courses.favourite',$course->id)}}" type="button" class="fav {{$course->favourite_auth_user_exists ? 'active-red' : null}}"><i class="fa-solid fa-heart "></i></button>
+                    @endauth
                     <span class="info"><i class="fa-solid fa-circle-info"></i></span>
                 </div>
                 <div class="card-info">

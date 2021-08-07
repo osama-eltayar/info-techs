@@ -17,6 +17,10 @@ $(function () {
     $('#clear-filters-btn').on('click',function (){
         clearFilters()
     })
+
+    $(document).on('click','.fav',function (){
+        toggleFavouriteCourse($(this))
+    });
 })
 
 function searchCourses() {
@@ -55,5 +59,22 @@ function getQueryString(data){
 function clearFilters(){
     $('.filter-checkbox').prop('checked',false)
     searchCourses();
+}
+
+function toggleFavouriteCourse(element)
+{
+    element.toggleClass('active-red')
+    let url = element.attr('data-action');
+    $.ajax({
+        url : url,
+        type: 'post',
+    })
+     .done(res => {
+     })
+     .fail(res => {
+         element.toggleClass('active-red')
+     })
+     .always(() => {
+     })
 }
 
