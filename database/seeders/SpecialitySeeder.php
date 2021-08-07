@@ -16,7 +16,7 @@ class SpecialitySeeder extends Seeder
     {
         for($i=1 ; $i<5 ; $i++)
         {
-            Speciality::create(['name' => 'speciality' . $i]);
+            Speciality::firstOrCreate(['name' => 'speciality' . $i]);
         }
     }
 }

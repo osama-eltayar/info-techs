@@ -36,6 +36,10 @@ mix
         'resources/assets/js/auth/common.js',
         'resources/assets/js/auth/forget-password.js',
     ], 'public/js/auth/forget-password.min.js')
+    .js([
+        'resources/assets/js/auth/common.js',
+        'resources/assets/js/profile/edit.js',
+    ], 'public/js/profile/edit.min.js')
 
     //#############################  assets  ##################################
     .styles(['resources/assets/css/'], 'public/css/main.css')
