@@ -97,7 +97,7 @@
                             @csrf
                         </form>
                         <div class="nav-action">
-                            <a href="" class="cart-link">
+                            <a href="{{route('shopping-cart.index')}}" class="cart-link">
                                 <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0
                             </a>
 

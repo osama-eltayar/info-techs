@@ -3,7 +3,7 @@
 </div>
 <div class="row row-cards">
     @foreach($courses as $course)
-        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 single-course" data-course-id="{{$course->id}}">
             <div class="card-content {{$course->type_class_name}}">
                 <div class="card-status">
                     {{$course->type_string}}
@@ -28,7 +28,7 @@
                     <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
                     <p class="view">200 views</p>
                     <div class="text-center">
-                        <button type="button" class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i> Add
+                        <button type="button" data-action="{{route('shopping-cart.store')}}" class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i> Add
                             to cart
                         </button>
                     </div>

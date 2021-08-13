@@ -21,6 +21,10 @@ $(function () {
     $(document).on('click','.fav',function (){
         toggleFavouriteCourse($(this))
     });
+
+    $(document).on('click','.add-cart',function (){
+        addToShoppingCart($(this))
+    })
 })
 
 function searchCourses() {
@@ -78,3 +82,26 @@ function toggleFavouriteCourse(element)
      })
 }
 
+function addToShoppingCart(element)
+{
+    element.attr('disabled', true)
+    let url = element.attr('data-action');
+    let courseId = element.closest('.single-course').attr('data-course-id');
+    let data = {
+        'course_id': courseId
+    };
+
+    $.ajax({
+        url,
+        type: 'post',
+        data,
+    })
+     .done(res => {
+     })
+     .fail(res => {
+         element.attr('disabled', false)
+     })
+     .always(() => {
+     })
+
+}

@@ -20,6 +20,8 @@ mix
     //#############################  courses  ##################################
     .js('resources/assets/js/courses/common.js','public/js/courses/common.min.js')
     .js('resources/assets/js/courses/list.js','public/js/courses/list.min.js')
+    //#############################  shopping cart  ##################################
+    .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
     //#############################  Authentication  ##################################
     .js([
         'resources/assets/js/auth/login.js',
