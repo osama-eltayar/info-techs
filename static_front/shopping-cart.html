@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Infotechs</title>  
+    <!-- Bootstrap -->
+    <link href="ui/stylesheet/main.css" rel="stylesheet">
+    <link href="ui/stylesheet/custom.css" rel="stylesheet">
+   <link rel="icon" href="ui/media/element/fav.png" type="image/x-icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]--> 
+</head>
+ 
+<body>
+    <div class="page-wrapper">
+        <!-- Start Header-->
+        <!-- aside dropdown start-->
+			<div class="aside-dropdown">
+				<div class="aside-dropdown__inner"><span class="aside-dropdown__close">
+					<i class="far fa-times"></i></span>
+					<div class="aside-dropdown__item d-lg-none d-block">
+						<ul class="aside-menu">							
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="index.html"><span>Home</span></a></li>
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get to know us</span></a></li>
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Services</span></a></li>
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span> Our events</span></a></li>
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Join our team</span></a></li>
+                            <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get in touch</span></a></li>
+						</ul>
+                        <div class="header-aus">
+                            <a href="register.html">Create new account  </a>
+                            <span>|</span>
+                            <a href="login.html">Login</a>
+                        </div>
+					</div>
+					
+					
+				</div>
+			</div>
+			<!-- aside dropdown end-->
+			<!-- header start-->
+			<header class="header header--front">
+				<div class="container-fluid">
+					<div class="row no-gutters justify-content-between">
+						<div class="col-auto d-flex align-items-center left-header">
+							<div class="dropdown-trigger d-none">
+								<div class="dropdown-trigger__item"></div>
+							</div>
+							<div class="header-logo"><a class="header-logo__link" href="index.html"><img class="header-logo__img" src="ui/media/images/logomain.png" alt="logo"/></a></div>
+						</div>
+						<div class="col-auto d-flex align-items-center">
+                            <!-- main menu start-->
+							<nav>
+								<ul class="main-menu">
+                                    <li class="main-menu__item"><a class="main-menu__link active" href="#"><span>Home</span></a></li>
+                                    <li class="main-menu__item"><a class="main-menu__link" href="#"><span> Get to know us </span></a></li>
+                                    <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Services</span></a></li>
+                                    <li class="main-menu__item"><a class="main-menu__link" href="#"><span>  Our events </span></a></li>
+                                    <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Join our team</span></a></li>
+                                    <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Get in touch</span></a></li>
+								</ul>
+							</nav>
+							<!-- main menu end-->
+						</div>
+						<div class="col-auto  right-header">
+                            <div class="header-aus">
+                                <a href="register.html">Create new account  </a>
+                                <span>|</span>
+                                <a href="login.html">Login</a>
+                            </div>
+							<div class="nav-action">
+                                <a href="my-cart.html" class="cart-link">
+                                    <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0
+                                </a>
+
+                                <a href="my-cart.html" class="cart-link">
+                                    <i class="fa-solid fa-circle-heart"></i> <span>My Favorites</span> 0
+                                </a>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</header>
+            <!-- header end-->
+        <!-- header end-->
+        <main class="main">
+            <div class="shopping-cart">
+                <div class="container-fluid">
+                    <form class="row">
+                        <div class="col-12">
+                            <h1>Shopping cart</h1>
+                        </div>
+    
+                        <div class="col-lg-4 col-md-5 col-12">
+                            <!-- Start Form -->
+                            <section class="form-section">
+                                <div class="form-content">                                        
+                                    <h3>Billing information</h3>
+                                    <div class="form-group">
+                                        <label for="fullname">Full name</label>
+                                        <input type="text" name="fullname" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <input type="text" name="country" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" name="address" class="form-control">
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                        <label class="custom-control-label" for="customCheck">
+                                            Same data in card information
+                                        </label>
+                                        </div>
+
+                                        <h3>Card Information</h3>
+                                        <div class="form-group">
+                                            <label for="cardname">Card Holder name</label>
+                                            <input type="text" name="cardname" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="card-number">Card number</label>
+                                            <input type="text" name="card-number" class="form-control">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="expiration-date">Expiration date</label>
+                                                    <input type="text" name="expiration-date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="CVV">CVV</label>
+                                                    <input type="text" name="CVV" class="form-control">
+                                                </div>
+                                                <div class="text-right">
+                                                    <img src="ui/media/images/icons.png" alt="icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-12">
+                            <section class="form-section">
+                                <div class="form-content">
+                                    <h3>Shopping card details</h3>
+                                    <div class="item-header">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p>Iteam</p>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <p>Price</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-card">
+                                        <div class="num">1-</div>
+                                        <div class="img">
+                                            <img src="ui/media/images/prod.png" alt="product">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-status">On Demand</div>
+                                            <p>2021 Saidian Egyptian orthodontic Annual meeting KSA for EOS members</p>
+                                        </div>
+                                        <div class="last-side">
+                                            <div class="product-price">20$</div>
+                                            <div class="action">
+                                                <button type="button" class="btn"><i class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-card">
+                                        <div class="num">1-</div>
+                                        <div class="img">
+                                            <img src="ui/media/images/prod.png" alt="product">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-status">On Demand</div>
+                                            <p>2021 Saidian Egyptian orthodontic Annual meeting KSA for EOS members</p>
+                                        </div>
+                                        <div class="last-side">
+                                            <div class="product-price">20$</div>
+                                            <div class="action">
+                                                <button type="button" class="btn"><i class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 offset-lg-6 col-12">
+                                            <div class="shopping-details">
+                                                <div class="form-group">
+                                                    <label for="">Sub Total</label>
+                                                    <p> $50</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="copouns">Copouns</label>
+                                                    <div class="copoun">
+                                                        <input type="text" name="copouns" class="form-control">
+                                                        <button type="button" class="btn btn-default">Apply</button>
+                                                        <span class="message faild"><i class="fa-solid fa-circle-xmark"></i> Not available </span>
+                                                        <span class="message success"><i class="fa-solid fa-circle-check"></i> Done</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Taxes</label>
+                                                    <p> $50</p>
+                                                </div>
+                                                <div class="form-group total">
+                                                    <label for="">Total</label>
+                                                    <p> $50</p>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                                    <label class="custom-control-label" for="customCheck">
+                                                        I agree to pay this invoice
+                                                    </label>
+                                                </div>
+                                                <button type="button" class="btn btn-success">Check out</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </main>   
+
+        <!-- Start Footer -->
+        <footer>
+            <div class="container-fluid">
+                <div class="row no-gutters justify-content-between">
+                    <div class="col-auto d-flex align-items-center">
+                        <img src="ui/media/images/logomain.png" alt="logo">
+                    </div>
+                    <div class="col-auto text-center hidden-small">
+                        <p>This platform is copy rights @2021 by infotechs.org</p>
+                        <div class="social">
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-auto d-flex align-items-center form-col-footer">
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Subscribe to our newsletter">
+                                <button type="button" class="btn btn-default">Apply</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-auto text-center hidden-large">
+                        <p>This platform is copy rights @2021 by infotechs.org</p>
+                        <div class="social">
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Modal -->
+        
+    </div>
+    </div>
+    
+    
+    <script src="ui/javascript/uicreep-minify.js"></script>
+    <script src="ui/javascript/script.js"></script>
+    <script>
+    
+    </script> 
+</body>
+
+</html>

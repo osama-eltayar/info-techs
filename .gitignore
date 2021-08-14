@@ -13,3 +13,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/public/css
+/public/fonts
+/public/js
+/public/media
+/public/webfonts
+/infotechs_database.txt
