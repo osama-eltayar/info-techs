@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\ShoppingCartController;
 use App\Http\Controllers\User\UserFavouriteCourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,9 @@ Route::group([
         Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('favourite-courses/{course}', UserFavouriteCourseController::class)->name('courses.favourite');
+
+        Route::resource('shopping-cart', ShoppingCartController::class)->only('index','store','destroy');
+        Route::get('shopping-cart-details', ShoppingCartDetailsController::class)->name('shopping-cart.details');
     });
 
 
