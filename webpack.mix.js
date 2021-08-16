@@ -18,8 +18,8 @@ mix
     ], 'public/js/common.min.js')
     .js('resources/assets/js/layouts/common.js','public/js/layouts.min.js')
     //#############################  courses  ##################################
-    .js('resources/assets/js/courses/common.js','public/js/courses/common.min.js')
-    .js('resources/assets/js/courses/list.js','public/js/courses/list.min.js')
+    .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/list.js'],'public/js/courses/list.min.js')
+    .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/video-player.js'],'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
     .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
     //#############################  Authentication  ##################################

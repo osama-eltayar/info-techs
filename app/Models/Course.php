@@ -152,5 +152,13 @@ class Course extends Model
                     ->where('users.id',auth()->id());
     }
 
-}
+    public function registeredUsers()
+    {
+        return $this->belongsToMany(User::class,'user_registered_course')->withTimestamps();
+    }
 
+    public function videos()
+    {
+        return $this->hasMany(CourseVideo::class);
+    }
+}
