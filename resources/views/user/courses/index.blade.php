@@ -133,6 +133,5 @@
         </section>
 @endsection
 @section('script')
-    <script src="/js/courses/common.min.js"></script>
     <script src="/js/courses/list.min.js"></script>
 @endsection

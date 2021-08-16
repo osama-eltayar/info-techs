@@ -39,22 +39,18 @@
                                 <div class="course-titles">
                                     <h4>Course titles</h4>
                                     <ul class="list-unstyled">
-                                        <li class="bold">
-                                            <p>01: Introduction  <span>02:00 min</span>
-                                            </p>
-                                            <a href="#">
-                                                <i class="fa-solid fa-circle-play"></i> Free
-                                            </a>
-                                        </li>
-                                        <li class="bold">
-                                            <p>02: About orthodontics  <span>02:00 min</span>
-                                            </p>
-                                            <a href="#">
-                                                <i class="fa-solid fa-circle-play"></i> Free
-                                            </a>
-                                        </li>
-                                        <li>03: Take you advantage system  02:00 min</li>
-                                        <li>04: why you choose us 02:55 min</li>
+                                        @foreach($course->videos as $video)
+                                            <li class="bold">
+                                                <p>{{$loop->iteration}}: {{$video->name}}  <span>{{$video->duration}}:00 min</span>
+                                                </p>
+                                                @if($video->is_free || $course->registered_users_exists)
+                                                <a href="{{$video->url}}" class="open-video">
+                                                    <i class="fa-solid fa-circle-play"></i>{{$video->is_free ? 'Free' : 'paid'}}
+                                                </a>
+                                                @endif
+                                            </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <div class="box-info">
@@ -196,7 +192,26 @@ s
                 </div>
             </div>
         </section>
+
+
+@endsection
+@section('modals')
+    <div class="modal fade survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <video width="100%" height="100%" controls>
+                        <source src="" id="mp4-video" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
-    <script src="/js/courses/common.min.js"></script>
+    <script src="/js/courses/show.min.js"></script>
 @endsection

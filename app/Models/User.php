@@ -79,5 +79,9 @@ class User extends Authenticatable implements MustVerifyEmail
                     ->withTimestamps();
     }
 
+    public function registeredCourses()
+    {
+        return $this->belongsToMany(Course::class,'user_registered_course')->withTimestamps();
+    }
 
 }
