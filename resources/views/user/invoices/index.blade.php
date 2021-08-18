@@ -86,7 +86,7 @@
                             <td>{{$invoice->course->title}}</td>
                             <td>{{$invoice->paid_at}}</td>
                             <td>SAR {{$invoice->price}} </td>
-                            <td><a href="#"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
+                            <td><a href="{{route('invoices.print',$invoice->transaction->id)}}"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
                         </tr>
                         @endforeach
                         </tbody>
