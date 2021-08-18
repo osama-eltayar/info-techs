@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\InvoiceController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ShoppingCartController;
@@ -32,6 +33,9 @@ Route::group([
 
         Route::resource('shopping-cart', ShoppingCartController::class)->only('index','store','destroy');
         Route::get('shopping-cart-details', ShoppingCartDetailsController::class)->name('shopping-cart.details');
+
+        Route::resource('invoices', InvoiceController::class)->only('index');
+        Route::get('invoices/{invoice}',[InvoiceController::class,'print'])->name('invoices.print');
     });
 
 
