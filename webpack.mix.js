@@ -22,6 +22,8 @@ mix
     .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/video-player.js'],'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
     .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
+    //#############################  invoices  ##################################
+    .js('resources/assets/js/invoices/list.js','public/js/invoices/list.min.js')
     //#############################  Authentication  ##################################
     .js([
         'resources/assets/js/auth/login.js',

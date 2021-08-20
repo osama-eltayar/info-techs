@@ -4,6 +4,7 @@
     "/js/courses/list.min.js": "/js/courses/list.min.js",
     "/js/courses/show.min.js": "/js/courses/show.min.js",
     "/js/shopping-cart.min.js": "/js/shopping-cart.min.js",
+    "/js/invoices/list.min.js": "/js/invoices/list.min.js",
     "/js/auth/login.min.js": "/js/auth/login.min.js",
     "/js/auth/register.min.js": "/js/auth/register.min.js",
     "/js/auth/reset-password.min.js": "/js/auth/reset-password.min.js",
