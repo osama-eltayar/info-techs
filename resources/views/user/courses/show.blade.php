@@ -65,10 +65,10 @@
                                                 start time :
                                                 <span>{{$session->start_at}}</span>
                                             </p>
-                                            <button data-url="{{route('course-sessions.show',$session->id)}}"
+                                            <a data-url="{{route('course-sessions.show',$session->id)}}"
                                                     class="join-meeting" data-available_at="{{$session->start_at}}">
                                                 <i class="fa-solid fa-circle-play"></i>join
-                                            </button>
+                                            </a>
                                         </li>
                                     @endforeach
 
@@ -228,7 +228,7 @@
 
 @endsection
 @section('modals')
-    <div class="modal  survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal  fade survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg  modal-dialog-centered">
             <div class="modal-content">
@@ -241,10 +241,10 @@
                         Your browser does not support the video tag.
                     </video>
 
-                    <button id="btn-close-iframe" class="hide" >close iframe</button>
+{{--                    <button id="btn-close-iframe" class="hide" >close iframe</button>--}}
 
-                    <iframe src="" id="meeting-iframe" class="hide"
-                            style="width: 100%; height: 100%;"></iframe>
+{{--                    <iframe src="" id="meeting-iframe" class="hide" width="100%" height="100%"--}}
+{{--                            ></iframe>--}}
                 </div>
             </div>
         </div>
