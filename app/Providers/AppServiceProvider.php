@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\User\Session\SessionServiceInterface;
+use App\Services\User\Session\Zoom\ZoomMeetingService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(SessionServiceInterface::class,ZoomMeetingService::class);
     }
 }
