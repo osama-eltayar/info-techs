@@ -1,5 +1,6 @@
 $(function () {
-    $('.join-meeting').on('click', function () {
+    $('.join-meeting').on('click', function (e) {
+        e.preventDefault()
         const courseSessionUrl = $(this).attr('data-url')
         getJoinMeetingUrl(courseSessionUrl).done(function (res){
             joinMeeting(res.join_meeting_url)
