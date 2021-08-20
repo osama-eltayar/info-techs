@@ -5,6 +5,7 @@ namespace App\Models;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @method static self create( array $data )
@@ -155,6 +156,11 @@ class Course extends Model
     public function registeredUsers()
     {
         return $this->belongsToMany(User::class,'user_registered_course')->withTimestamps();
+    }
+
+    public function registeredAuthUser()
+    {
+        return $this->registeredUsers()->where('users.id',Auth::user()->id);
     }
 
     public function videos()

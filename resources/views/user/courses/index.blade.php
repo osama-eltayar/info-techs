@@ -36,9 +36,10 @@
                         </ul>
                         <div class="filter">
                             <div class="left-side-text">Filter by:</div>
+                            <input type="checkbox" class=" filter-checkbox"  name="my_events" {{request()->my_events ? 'checked' : ''}} style="display: none">
                             <div class="select-side">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck" name="my_favorites" {{request()->my_favorites ? 'checked' : ''}} >
+                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck" name="favorites" {{request()->my_favorites ? 'checked' : ''}} >
                                     <label class="custom-control-label" for="customCheck">
                                         My Favorites
                                     </label>

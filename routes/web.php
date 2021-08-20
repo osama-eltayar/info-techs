@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\InvoiceController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
@@ -34,6 +35,7 @@ Route::group([
         Route::resource('shopping-cart', ShoppingCartController::class)->only('index', 'store', 'destroy');
         Route::get('shopping-cart-details', ShoppingCartDetailsController::class)->name('shopping-cart.details');
 
+        Route::get('payment/callback',[ PaymentController::class, 'callback'])->name('payment.callback');
         Route::resource('invoices', InvoiceController::class)->only('index');
         Route::get('invoices/{transaction}', [ InvoiceController::class, 'print' ])->name('invoices.print');
     });

@@ -68,7 +68,7 @@
                             <li class="main-menu__item"><a class="main-menu__link active" href="#"><span>Home</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span> Get to know us </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Services</span></a></li>
-                            <li class="main-menu__item"><a class="main-menu__link" href="#"><span>  Our events </span></a></li>
+                            <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  Our events </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Join our team</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Get in touch</span></a></li>
                         </ul>
