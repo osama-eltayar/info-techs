@@ -19,7 +19,11 @@ mix
     .js('resources/assets/js/layouts/common.js','public/js/layouts.min.js')
     //#############################  courses  ##################################
     .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/list.js'],'public/js/courses/list.min.js')
-    .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/video-player.js'],'public/js/courses/show.min.js')
+    .js([
+        'resources/assets/js/courses/common.js',
+        'resources/assets/js/courses/video-player.js',
+        'resources/assets/js/courses/show.js'
+    ],'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
     .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
     //#############################  Authentication  ##################################
@@ -38,6 +42,8 @@ mix
     .js([
         'resources/assets/js/profile/edit.js',
     ], 'public/js/profile/edit.min.js')
+
+    .copyDirectory(['resources/assets/js/zoom'],'public/js/zoom')
 
     //#############################  assets  ##################################
     .styles(['resources/assets/css/'], 'public/css/main.css')

@@ -161,4 +161,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseVideo::class);
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(CourseSession::class);
+    }
 }

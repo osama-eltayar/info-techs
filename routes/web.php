@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\CourseSessionController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ShoppingCartController;
@@ -37,3 +38,8 @@ Route::group([
 
 //*** debug route only
 Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+
+//Route::view('course-sessions','user.course-sessions.zoom-meetings');
+Route::view('course-sessions/leave','user.course-sessions.leave')->name('course-sessions.leave');
+Route::get('course-sessions/{course_session}',[ CourseSessionController::class, 'show'])->name('course-sessions.show');
+Route::get('course-sessions/{course_session}/join',[ CourseSessionController::class, 'joinMeeting'])->name('course-sessions.join-meeting');
