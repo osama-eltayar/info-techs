@@ -228,7 +228,7 @@
 
 @endsection
 @section('modals')
-    <div class="modal fade survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal  survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg  modal-dialog-centered">
             <div class="modal-content">

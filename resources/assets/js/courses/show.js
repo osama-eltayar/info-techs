@@ -7,7 +7,7 @@ $(function () {
     })
 
     $('#btn-close-iframe').on('click',function (){
-        $('#meeting-iframe').hide()
+        $('#meeting-iframe').addClass('hide')
        $('#meeting-iframe').attr('src','')
         $('#video-modal').modal('hide')
 
@@ -32,6 +32,6 @@ function getJoinMeetingUrl(url) {
 function joinMeeting(url) {
     $('video').hide()
     $('#meeting-iframe').attr('src',url)
-    $('#meeting-iframe').show()
+    $('#meeting-iframe').removeClass('hide')
     $('#video-modal').modal('show')
 }
