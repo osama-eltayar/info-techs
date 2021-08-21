@@ -103,6 +103,16 @@ class Course extends Model
         return $this->to->format('h:i a');
     }
 
+    public function isLive()
+    {
+        return now()->between($this->start_date,$this->end_date);
+    }
+
+    public function isEnded()
+    {
+        return now()->gt($this->end_date);
+    }
+
     //########################################### Mutators #################################################
 
 

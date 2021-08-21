@@ -115,13 +115,11 @@ s
                         <div class="top-pos">
                             <div class="course-right-info">
                                 <h2>Organized by</h2>
-                                <div class="right-logo">
-                                    <img src={{$course->organization->logo_url}}" alt="icon">
-                                </div>
+                                <div class="right-logo"><img src="{{$course->organization->logo_url}}" alt="icon"></div>
                                 <div class="slide">
                                     <div class="owl-carousel">
                                         <div class="item">
-                                            <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" class="image-content video-trigger" style="background-image: url('/media/images/pro3-1.png');">
+                                            <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" class="image-content video-trigger" style="background-image: url('/media/images/close-up-video-camera-filming-young-smiling-male-blogger.png');">
                                                 <i class="fa-solid fa-circle-play"></i>
                                             </a>
                                         </div>
@@ -132,60 +130,16 @@ s
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-success" type="button">Live now</button>
-                                <div class="message not-register"><i class="fa-solid fa-circle-check"></i> You are not registered in this course</div>
-                                <div class="icon price">
-                                    <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b> <span> $10 </span>
-                                    <div class="scissors">
-                                        <i class="fa-solid fa-scissors"></i> this price is valid Before 25/5/2021
-                                        <strong>Price: <b>$30</b></strong>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled list-info">
-                                    <li>
-                                        <h3>Event date and time</h3>
-                                        <p>yes</p>
-                                    </li>
-                                    <li>
-                                        <h3>Specialities</h3>
-                                        <p>Monday 25 june 2021 (03:00 pm - 05:00 pm) - <span>Open</span>
-                                    <li>
-                                        <h3>Speciality</h3>
-                                        <p>Orthodontics - Medical - Social</p>
-                                    </li>
-                                    <li>
-                                        <h3>Accreditation number (CME's)</h3>
-                                        <p>3</p>
-                                    </li>
-                                    <li>
-                                        <h3>Available seats</h3>
-                                        <p>20</p>
-                                    </li>
-                                    <li>
-                                        <h3>Certification Availability</h3>
-                                        <p>70% attendance</p>
-                                    </li>
-                                    <li>
-                                        <h3>Certification Availability</h3>
-                                        <p>70% attendance</p>
-                                    </li>
-                                    <li>
-                                        <h3>Payment Method</h3>
-                                        <img src="/media/images/pay.png" alt="pay">
-                                        <img src="/media/images/mastercard.png" alt="mastercard">
-                                        <img src="/media/images/visa.png" alt="visa">
-                                    </li>
-                                </ul>
-
-                                <div class="footer-card">
-                                    <a class="btn-calender"><i class="fa-solid fa-calendar-check"></i> Add to callender</a>
-                                    <div class="icon-mail">
-                                        <a href="#"><img src="/media/images/icon-emd-share-google-t1.png" alt="icon"></a>
-                                        <a href="#"><img src="/media/images/icon-emd-share-outlook-t1.png" alt="icon"></a>
-                                        <a href="#"><img src="/media/images/icon-emd-share-outlookcom-t1.png" alt="icon"></a>
-                                    </div>
-
-                                </div>
+                                @if($course->isLive())
+                                    @includeWhen($course->registered_users_exists, 'user.courses.partials.course_info.live-registered')
+                                    @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.live')
+                                @elseif($course->isEnded())
+                                    @includeWhen($course->registered_users_exists, 'user.courses.partials.course_info.ended-registered')
+                                    @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.ended')
+                                @else
+                                    @includeWhen($course->registered_users_exists, 'user.courses.partials.course_info.count-down-registered')
+                                    @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.count-down')
+                                @endif
                             </div>
                         </div>
                     </div>
