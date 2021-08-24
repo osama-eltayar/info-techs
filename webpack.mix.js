@@ -53,4 +53,5 @@ mix
     .copy(['resources/assets/webfonts/'], 'public/webfonts')
     .copy(['resources/assets/fonts/'], 'public/fonts')
     .copyDirectory(['resources/assets/css/zoom'],'public/css/zoom')
+    .copy(['resources/css/rtl.css'], 'public/css/rtl.css')
     .sourceMaps();
