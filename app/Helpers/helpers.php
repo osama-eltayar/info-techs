@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 if ( !function_exists('getAttributeStringByReflection') ) {
     function getAttributeStringByReflection( $reflectorClass, $property )
@@ -25,9 +26,15 @@ if ( !function_exists('parseSessionDuration') ) {
         $parsedDurationString = '';
         if ( floor($duration / 60) > 0 )
             $parsedDurationString .= floor($duration / 60) . ' hours ';
-        if (  $duration % 60 > 0 )
+        if ( $duration % 60 > 0 )
             $parsedDurationString .= $duration % 60 . ' min ';
         return $parsedDurationString;
+    }
+}
+if ( !function_exists('getLocalizeAttribute') ) {
+    function getLocalizeAttribute( $propertyName )
+    {
+        return $propertyName . '_' . LaravelLocalization::getCurrentLocale();
     }
 }
 

@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /**
  * @method static self create( array $data )
  */
-class City extends Model
+class Person extends Model
 {
     use HasFactory;
 
@@ -19,9 +18,10 @@ class City extends Model
      */
     protected $fillable
         = [
-            "name_en",
-            "name_ar",
-            "country_id",
+            'name_ar',
+            'name_en',
+            'title',
+            'speciality_id'
         ];
 
     //########################################### Constants ################################################
@@ -41,6 +41,10 @@ class City extends Model
 
 
     //########################################### Relations ################################################
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_people');
+    }
 
 
 }

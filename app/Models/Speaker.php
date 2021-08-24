@@ -18,9 +18,11 @@ class Speaker extends Model
      */
     protected $fillable
         = [
-            'name',
+            'name_ar',
+            'name_en',
             'image',
-            'title',
+            'title_ar',
+            'title_en',
             'speciality_id',
         ];
 
@@ -28,6 +30,16 @@ class Speaker extends Model
 
 
     //########################################### Accessors ################################################
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->{getLocalizeAttribute('title')};
+    }
 
 
     //########################################### Mutators #################################################

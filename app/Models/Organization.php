@@ -18,7 +18,8 @@ class Organization extends Model
     * @var array
     */
     protected $fillable = [
-        'name',
+        'name_ar',
+        'name_en',
         'logo'
     ];
 
@@ -30,6 +31,11 @@ class Organization extends Model
     public function getLogoUrlAttribute()
     {
         return $this->getFileUrl($this->logo);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
     }
 
 

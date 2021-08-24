@@ -15,7 +15,8 @@ class CreateUserTitlesTable extends Migration
     {
         Schema::create('user_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_ar');
             $table->timestamps();
         });
     }

@@ -17,7 +17,8 @@ class CourseVideo extends Model
     * @var array
     */
     protected $fillable = [
-        'name',
+        'name_ar',
+        'name_en',
         'path',
         'mime_type',
         'size',
@@ -32,6 +33,11 @@ class CourseVideo extends Model
     public function getUrlAttribute()
     {
         return $this->getFileUrl($this->path);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
     }
 
 
