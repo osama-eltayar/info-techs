@@ -15,14 +15,16 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->unsignedDouble('price')->default(0);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->time('from');
             $table->time('to');
             $table->unsignedInteger('hours_count');
-            $table->text('description');
+            $table->text('description_en');
+            $table->text('description_ar');
             $table->unsignedInteger('cme_count')->nullable();
             $table->unsignedInteger('certificate')->default(0);
             $table->unsignedInteger('seats')->nullable();

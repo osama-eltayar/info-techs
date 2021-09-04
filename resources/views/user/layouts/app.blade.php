@@ -10,6 +10,9 @@
 @yield('header')
     <!-- Bootstrap -->
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    @if(LaravelLocalization::getCurrentLocale() == 'ar')
+        <link href="{{asset('css/rtl.css')}}" rel="stylesheet">
+    @endif
     <link rel="icon" href="{{asset('media/element/fav.png')}}" type="image/x-icon">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

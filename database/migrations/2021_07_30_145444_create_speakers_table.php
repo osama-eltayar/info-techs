@@ -15,9 +15,11 @@ class CreateSpeakersTable extends Migration
     {
         Schema::create('speakers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_ar');
             $table->string('image');
-            $table->string('title');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->unsignedBigInteger('speciality_id');
             $table->timestamps();
         });
