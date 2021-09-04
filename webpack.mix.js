@@ -25,6 +25,8 @@ mix
         'resources/assets/js/courses/show.js'
     ],'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
+    .js('resources/assets/js/certificates/list.js','public/js/certificates/list.min.js')
+    //#############################  shopping cart  ##################################
     .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
     //#############################  invoices  ##################################
     .js('resources/assets/js/invoices/list.js','public/js/invoices/list.min.js')

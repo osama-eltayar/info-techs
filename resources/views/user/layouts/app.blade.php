@@ -89,7 +89,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-circle-user"></i> Update my profile <span class="status">Not updated</span></a>
                                     <a class="dropdown-item" href="{{route('password.reset')}}"><i class="fa-solid fa-lock-keyhole"></i> Change my password</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
+                                    <a class="dropdown-item" href="{{route('certificates.index')}}"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
                                     <a class="dropdown-item" href="{{route('invoices.index')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days"></i> My events</a>
                                     <a class="dropdown-item" href="#" onclick="$('#logout-form').submit()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

@@ -184,4 +184,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseSession::class);
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(UserCertificate::class);
+    }
 }

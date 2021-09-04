@@ -14,11 +14,12 @@ class PaymentController extends Controller
 
     }
 
-    public function callback(Request $request)
+    public function callback( Request $request )
     {
 
         //todo validate payment is succeeded
-         Auth::user()->registeredCourses()->attach($request->course);
-         return response([],Response::HTTP_NO_CONTENT);
+        Auth::user()->registeredCourses()->attach($request->course);
+        Auth::user()->certificates()->create([ 'course_id' => $request->course ]);
+        return response([], Response::HTTP_NO_CONTENT);
     }
 }
