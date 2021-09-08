@@ -37,5 +37,10 @@ class ShoppingCart extends Pivot
         return $this->belongsTo(Course::class);
     }
 
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
+
 
 }

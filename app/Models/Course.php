@@ -5,6 +5,7 @@ namespace App\Models;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @method static self create( array $data )
@@ -20,9 +21,7 @@ class Course extends Model
      */
     protected $fillable
         = [
-            'title',
             'price',
-            'description',
             'cme_count',
             'certificate',
             'type_id',
@@ -32,7 +31,11 @@ class Course extends Model
             'from',
             'to',
             'organization_id',
-            'seats'
+            'seats',
+            'title_en',
+            'title_ar',
+            'description_en',
+            'description_ar',
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];
@@ -112,6 +115,16 @@ class Course extends Model
     {
         return now()->gt($this->end_date);
     }
+    
+    public function getTitleAttribute()
+    {
+        return $this->{getLocalizeAttribute('title')};
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->{getLocalizeAttribute('description')};
+    }
 
     //########################################### Mutators #################################################
 
@@ -133,7 +146,7 @@ class Course extends Model
 
     public function people()
     {
-        return $this->hasMany(CoursePerson::class);
+        return $this->belongsToMany(Person::class,'course_people');
     }
 
     public function speakers()
@@ -158,17 +171,27 @@ class Course extends Model
 
     public function favouriteAuthUser()
     {
-        return $this->belongsToMany(User::class,'user_favourite_courses')
-                    ->where('users.id',auth()->id());
+        return $this->belongsToMany(User::class, 'user_favourite_courses')
+                    ->where('users.id', auth()->id());
     }
 
     public function registeredUsers()
     {
-        return $this->belongsToMany(User::class,'user_registered_course')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_registered_course')->withTimestamps();
+    }
+
+    public function registeredAuthUser()
+    {
+        return $this->registeredUsers()->where('users.id', Auth::user()->id);
     }
 
     public function videos()
     {
         return $this->hasMany(CourseVideo::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(CourseSession::class);
     }
 }

@@ -1,3 +1,7 @@
 .active-red{
     color: red !important;
 }
+
+.hide{
+    display: none;
+}

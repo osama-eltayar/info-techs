@@ -21,11 +21,13 @@ class CourseController extends Controller
             'past_events',
             'upcoming_events',
             'favorites',
-            'my_speciality'
+            'my_speciality',
+            'my_events'
         );
         $courses = Course::filter($filterData)
                          ->with('speakers', 'sponsors', 'organization')
                          ->withExists('favouriteAuthUser')
+                         ->withExists('registeredAuthUser')
                          ->get();
 
 

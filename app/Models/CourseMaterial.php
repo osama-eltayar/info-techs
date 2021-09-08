@@ -18,7 +18,8 @@ class CourseMaterial extends Model
      */
     protected $fillable
         = [
-            'name',
+            'name_ar',
+            'name_en',
             'path',
             'mime_type',
             'course_id',
@@ -28,6 +29,10 @@ class CourseMaterial extends Model
 
 
     //########################################### Accessors ################################################
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
 
 
     //########################################### Mutators #################################################

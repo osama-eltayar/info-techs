@@ -4,12 +4,16 @@
     "/js/courses/list.min.js": "/js/courses/list.min.js",
     "/js/courses/show.min.js": "/js/courses/show.min.js",
     "/js/shopping-cart.min.js": "/js/shopping-cart.min.js",
+    "/js/invoices/list.min.js": "/js/invoices/list.min.js",
     "/js/auth/login.min.js": "/js/auth/login.min.js",
     "/js/auth/register.min.js": "/js/auth/register.min.js",
     "/js/auth/reset-password.min.js": "/js/auth/reset-password.min.js",
     "/js/auth/forget-password.min.js": "/js/auth/forget-password.min.js",
     "/js/profile/edit.min.js": "/js/profile/edit.min.js",
     "/js/common.min.js": "/js/common.min.js",
+    "/js/zoom/meeting.js": "/js/zoom/meeting.js",
+    "/js/zoom/tool.js": "/js/zoom/tool.js",
+    "/js/zoom/vconsole.min.js": "/js/zoom/vconsole.min.js",
     "/css/main.css": "/css/main.css",
     "/webfonts/fa-brands-400.eot": "/webfonts/fa-brands-400.eot",
     "/webfonts/fa-brands-400.svg": "/webfonts/fa-brands-400.svg",
@@ -67,5 +71,6 @@
     "/fonts/ROBOTOCONDENSED-REGULAR.otf": "/fonts/ROBOTOCONDENSED-REGULAR.otf",
     "/fonts/ROBOTOCONDENSED-REGULAR.svg": "/fonts/ROBOTOCONDENSED-REGULAR.svg",
     "/fonts/ROBOTOCONDENSED-REGULAR.TTF": "/fonts/ROBOTOCONDENSED-REGULAR.TTF",
-    "/fonts/ROBOTOCONDENSED-REGULAR.woff": "/fonts/ROBOTOCONDENSED-REGULAR.woff"
+    "/fonts/ROBOTOCONDENSED-REGULAR.woff": "/fonts/ROBOTOCONDENSED-REGULAR.woff",
+    "/css/rtl.css": "/css/rtl.css"
 }

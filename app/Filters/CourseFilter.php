@@ -51,5 +51,16 @@ class CourseFilter extends Filter
     {
         $this->filterSpeciality(Auth::user()->profile->speciality_id);
     }
+    public function filterFavorites()
+    {
+        $this->query->whereIn('id',Auth::user()->favouriteCourses()->pluck('courses.id'));
+    }
+
+    public function filterMyEvents()
+    {
+        $this->query->whereHas('registeredUsers',function ($q){
+            return $q->where('users.id',Auth::user()->id);
+        });
+    }
 
 }

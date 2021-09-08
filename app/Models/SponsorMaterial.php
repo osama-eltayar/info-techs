@@ -18,7 +18,8 @@ class SponsorMaterial extends Model
      */
     protected $fillable
         = [
-            'name',
+            'name_ar',
+            'name_en',
             'path',
             'mime_type',
             'sponsor_id'
@@ -28,6 +29,11 @@ class SponsorMaterial extends Model
 
 
     //########################################### Accessors ################################################
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
 
 
     //########################################### Mutators #################################################

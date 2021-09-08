@@ -10,6 +10,9 @@
 @yield('header')
     <!-- Bootstrap -->
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    @if(LaravelLocalization::getCurrentLocale() == 'ar')
+        <link href="{{asset('css/rtl.css')}}" rel="stylesheet">
+    @endif
     <link rel="icon" href="{{asset('media/element/fav.png')}}" type="image/x-icon">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -68,7 +71,7 @@
                             <li class="main-menu__item"><a class="main-menu__link active" href="#"><span>Home</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span> Get to know us </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Services</span></a></li>
-                            <li class="main-menu__item"><a class="main-menu__link" href="#"><span>  Our events </span></a></li>
+                            <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  Our events </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Join our team</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Get in touch</span></a></li>
                         </ul>
@@ -87,7 +90,7 @@
                                     <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-circle-user"></i> Update my profile <span class="status">Not updated</span></a>
                                     <a class="dropdown-item" href="{{route('password.reset')}}"><i class="fa-solid fa-lock-keyhole"></i> Change my password</a>
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+                                    <a class="dropdown-item" href="{{route('invoices.index')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days"></i> My events</a>
                                     <a class="dropdown-item" href="#" onclick="$('#logout-form').submit()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                 </div>

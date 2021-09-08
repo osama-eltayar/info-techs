@@ -16,12 +16,19 @@ class UserTitle extends Model
     * @var array
     */
     protected $fillable = [
+        'name_ar',
+        'name_en',
     ];
 
     //########################################### Constants ################################################
 
 
     //########################################### Accessors ################################################
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
 
 
     //########################################### Mutators #################################################
