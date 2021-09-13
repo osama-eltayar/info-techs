@@ -1,6 +1,7 @@
 @extends('user.layouts.app')
 @section('header')
     <title></title>
+    <link href="{{asset('css/vendor/select2.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 
@@ -111,7 +112,7 @@
                             <label for="country">Country <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[country_id]" id="country" class="form-control">
-                                    <option value="1" selected>Saudi Arabia</option>
+                                    <option value="{{$profile->country->id}}" selected>{{$profile->country->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -134,8 +135,8 @@
                         <div class="form-group">
                             <label for="city">City <span>*</span> </label>
                             <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control">
-                                    <option value="1">Jeddah</option>
+                                <select name="profile[city_id]" class="form-control" id="city" {{ !$profile->country->id? 'disabled' : '' }}>
+                                    <option value="{{$profile->city->id}}" selected>{{$profile->city->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -197,5 +198,6 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{asset('js/vendor/select2.min.js')}}"></script>
     <script src="{{asset('js/profile/edit.min.js')}}" ></script>
 @endsection

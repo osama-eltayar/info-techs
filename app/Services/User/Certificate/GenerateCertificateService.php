@@ -24,7 +24,7 @@ class GenerateCertificateService
 
     private function generateCertificateImage( $data )
     {
-        $image = Image::make(Storage::path(self::$certificateSampleStoragePath));
+        $image = Image::make(Storage::path($data[ 'certificate' ]->course->certificate_image));
 
         $image->text($data[ 'user' ]->name, 550, 350, function ( $font ) {
             $font->file(public_path(self::$fontFilePath));

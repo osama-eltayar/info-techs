@@ -36,6 +36,7 @@ class Course extends Model
             'title_ar',
             'description_en',
             'description_ar',
+            'certificate_image'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];
@@ -172,7 +173,7 @@ class Course extends Model
 
     public function registeredAuthUser()
     {
-        return $this->registeredUsers()->where('users.id', Auth::user()->id);
+        return $this->registeredUsers()->where('users.id', auth()->id());
     }
 
     public function videos()

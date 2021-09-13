@@ -73,5 +73,7 @@
     "/fonts/ROBOTOCONDENSED-REGULAR.svg": "/fonts/ROBOTOCONDENSED-REGULAR.svg",
     "/fonts/ROBOTOCONDENSED-REGULAR.TTF": "/fonts/ROBOTOCONDENSED-REGULAR.TTF",
     "/fonts/ROBOTOCONDENSED-REGULAR.woff": "/fonts/ROBOTOCONDENSED-REGULAR.woff",
-    "/css/rtl.css": "/css/rtl.css"
+    "/css/rtl.css": "/css/rtl.css",
+    "/js/vendor/select2.min.js": "/js/vendor/select2.min.js",
+    "/css/vendor/select2.min.css": "/css/vendor/select2.min.css"
 }
