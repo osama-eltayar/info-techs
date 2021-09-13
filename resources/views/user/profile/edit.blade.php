@@ -92,8 +92,13 @@
                             <div class="input-icon vaild">
                                 <input type="email" name="email" class="form-control" disabled
                                        value="{{auth()->user()->email}}">
-                                <span class="vaild-label">Verified</span>
-                                <span class="message">you cannot change your e-mail</span>
+                                @if(auth()->user()->hasVerifiedEmail())
+                                    <span class="vaild-label">Verified</span>
+                                @else
+                                    <span class="vaild-label bg-danger">Not Verified</span>
+                                    <button type="button" onclick="$('#verification-form').submit()">Resend Verification Email</button>
+                                @endif
+                                    <span class="message">you cannot change your e-mail</span>
                             </div>
                         </div>
                     </div>
@@ -189,6 +194,9 @@
 
                 <button type="submit" class="btn btn-primary">Update my information</button>
 
+            </form>
+            <form action="{{route('verification.resend')}}" method="POST" id="verification-form">
+                @csrf
             </form>
         </div>
     </section>

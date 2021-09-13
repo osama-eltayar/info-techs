@@ -101,11 +101,20 @@
                         </form>
                         <div class="nav-action">
                             <a href="{{route('shopping-cart.index')}}" class="cart-link">
-                                <i class="fa-solid fa-cart-flatbed"></i> <span>My Cart</span> 0
+                                <i class="fa-solid fa-cart-flatbed"></i>
+                                <span>My Cart</span>
+                                <span id="cart-courses-count">
+                                    {{$cart_courses_count}}
+                                </span>
                             </a>
 
                             <a href="" class="cart-link">
-                                <i class="fa-solid fa-circle-heart"></i> <span>My Favorites</span> 0
+                                <i class="fa-solid fa-circle-heart"></i>
+                                <span>My Favorites</span>
+                                <span id="favourite-courses-count">
+                                    {{$favourite_courses_count}}
+                                </span>
+
                             </a>
                         </div>
                     @endauth
