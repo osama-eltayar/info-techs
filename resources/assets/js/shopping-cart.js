@@ -3,6 +3,10 @@ $(function () {
         removeFromShoppingCart($(this))
     });
 
+    $(document).on('click','.checkout-btn',function (){
+        checkout($(this));
+    })
+
 
 })
 
@@ -32,6 +36,25 @@ function removeFromShoppingCart(element)
 function reloadInvoice()
 {
     $("#invoice").load("/shopping-cart-details");
+}
+
+function checkout(element)
+{
+    element.attr('disabled',false)
+    let url = element.attr('data-url')
+    $.ajax({
+        url,
+        type: 'post',
+    })
+     .done(res => {
+         $('#payment-form').html(res)
+
+     })
+     .fail(res => {
+         element.attr('disabled', false)
+     })
+     .always(() => {
+     })
 }
 
 

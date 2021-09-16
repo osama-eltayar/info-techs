@@ -28,21 +28,17 @@
                     <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
                     <p class="view">200 views</p>
                     <div class="text-center">
-                            @if(!$course->registered_auth_user_exists )
-                                <button type="button"
-                                        data-action="{{route('shopping-cart.store')}}"
-                                        class="btn btn-default add-cart"
-                                        {{ (Auth::check() && !auth()->user()->hasVerifiedEmail()) ? "disabled" : '' }}
-                                >
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    Add
-                                    to cart
-                                </button>
-                            @else
-                                <button type="button"  class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i>
-                                   View
-                                </button>
-                            @endif
+                        @if(!$course->registered_auth_user_exists)
+                            <button type="button" data-action="{{route('shopping-cart.store')}}" class="btn btn-default add-cart">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                Add
+                                to cart
+                            </button>
+                        @else
+                            <button type="button"  class="btn btn-default " onclick="window.location.href = '{{route('courses.show',$course->id)}}'"><i class="fa-solid fa-cart-plus"></i>
+                               View
+                            </button>
+                        @endif
                     </div>
                 </div>
 

@@ -38,6 +38,7 @@ Route::group([
         Route::get('shopping-cart-details', ShoppingCartDetailsController::class)->name('shopping-cart.details');
 
         Route::get('payment/callback',[ PaymentController::class, 'callback'])->name('payment.callback');
+        Route::post('payment/checkout',[ PaymentController::class, 'checkout'])->name('payment.checkout');
         Route::resource('invoices', InvoiceController::class)->only('index');
         Route::get('invoices/{transaction}', [ InvoiceController::class, 'print' ])->name('invoices.print');
 
