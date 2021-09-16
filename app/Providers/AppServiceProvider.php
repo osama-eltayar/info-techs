@@ -6,6 +6,7 @@ use App\Payment\HyperpayService;
 use App\Payment\PaymentServiceInterface;
 use App\Services\User\Session\SessionServiceInterface;
 use App\Services\User\Session\Zoom\ZoomMeetingService;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,5 +30,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(SessionServiceInterface::class,ZoomMeetingService::class);
         $this->app->bind(PaymentServiceInterface::class,HyperpayService::class);
+        if($this->app->environment('local'))
+        {
+            Artisan::call('config:clear');
+            Artisan::call('cache:clear');
+            Artisan::call('view:clear');
+            Artisan::call('route:clear');
+        }
     }
 }

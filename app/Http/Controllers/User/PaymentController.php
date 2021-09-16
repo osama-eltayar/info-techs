@@ -28,6 +28,7 @@ class PaymentController extends Controller
         abort(400,Arr::get($response,'result.description'));
     }
 
+
     public function callback(PaymentServiceInterface $paymentService,ShoppingCartService $shoppingCartService)
     {
         $response = $paymentService->callback(request()->all());
@@ -41,7 +42,6 @@ class PaymentController extends Controller
                 Auth::user()->registeredCourses()->attach($courseIds);
             }
         }
-
         return redirect(route('courses.index'));
     }
 }

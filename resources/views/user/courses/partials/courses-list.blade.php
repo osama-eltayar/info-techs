@@ -28,7 +28,6 @@
                     <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
                     <p class="view">200 views</p>
                     <div class="text-center">
-
                         @if(!$course->registered_auth_user_exists)
                             <button type="button" data-action="{{route('shopping-cart.store')}}" class="btn btn-default add-cart">
                                 <i class="fa-solid fa-cart-plus"></i>

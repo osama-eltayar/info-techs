@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -12,6 +13,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class City extends Model
 {
     use HasFactory;
+    use HasFilter;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +21,7 @@ class City extends Model
      */
     protected $fillable
         = [
-            "name_en",
-            "name_ar",
+            'name',
             "country_id",
         ];
 
@@ -28,10 +29,7 @@ class City extends Model
 
 
     //########################################### Accessors ################################################
-    public function getNameAttribute()
-    {
-        return $this->{getLocalizeAttribute('name')};
-    }
+
 
 
     //########################################### Mutators #################################################

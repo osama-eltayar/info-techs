@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Country;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class CountrySeeder extends Seeder
 {
@@ -14,14 +15,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i<5; $i++)
-        {
-            $country = Country::query()->firstOrCreate(['name'=>'country '.$i]);
-            for ($x = 1; $x<4; $x++)
-            {
-                $country->cities()->firstOrCreate(['name' =>'city '.$i.'-'.$x]);
-            }
-        }
-
+        $ds = DIRECTORY_SEPARATOR;
+        $file = File::get(database_path('seeders') . $ds . 'sql' . $ds . 'countries.sql' );
+        \DB::statement($file);
     }
 }

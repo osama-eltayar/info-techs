@@ -7,6 +7,7 @@ use App\Http\Controllers\User\CourseSessionController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ShoppingCartController;
+use App\Http\Controllers\User\UserCertificateController;
 use App\Http\Controllers\User\UserFavouriteCourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,10 @@ Route::group([
         Route::post('payment/checkout',[ PaymentController::class, 'checkout'])->name('payment.checkout');
         Route::resource('invoices', InvoiceController::class)->only('index');
         Route::get('invoices/{transaction}', [ InvoiceController::class, 'print' ])->name('invoices.print');
+
+        Route::resource('certificates', UserCertificateController::class)->only('index');
+        Route::post('certificates/{certificate}/print', [UserCertificateController::class,'print'])->name('certificates.print');
+        Route::post('certificates/{certificate}/send', [UserCertificateController::class,'send'])->name('certificates.send');
     });
 
 

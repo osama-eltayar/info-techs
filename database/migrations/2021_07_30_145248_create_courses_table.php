@@ -28,6 +28,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('cme_count')->nullable();
             $table->unsignedInteger('certificate')->default(0);
             $table->unsignedInteger('seats')->nullable();
+            $table->string('certificate_image')->nullable();
             $table->unsignedInteger('type_id');
             $table->unsignedBigInteger('organization_id');
             $table->timestamps();

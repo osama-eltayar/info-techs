@@ -36,6 +36,7 @@ class Course extends Model
             'title_ar',
             'description_en',
             'description_ar',
+            'certificate_image'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];
@@ -193,5 +194,10 @@ class Course extends Model
     public function sessions()
     {
         return $this->hasMany(CourseSession::class);
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(UserCertificate::class);
     }
 }

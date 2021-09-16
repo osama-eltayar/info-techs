@@ -15,12 +15,14 @@ class CourseSeeder extends Seeder
     public function run()
     {
         Course::firstOrCreate([
-            'title'           => 'online event',
+            'title_en'           => 'online event',
+            'title_ar'           => 'اونلاين ايفنت',
             'price'           => '10.00',
             'start_date'      => '2021-7-30 6:00',
             'end_date'        => '2021-7-31 6:00',
             'hours_count'     => '5',
-            'description'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_en'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_ar'     => 'وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستري',
             'cme_count'       => '3',
             'certificate'     => '0',
             'type_id'         => '1',
@@ -30,12 +32,14 @@ class CourseSeeder extends Seeder
         ]);
 
         Course::firstOrCreate([
-            'title'           => 'online course',
+            'title_en'           => 'online course',
+            'title_ar'           => 'اونلاين كورس',
             'price'           => '10.00',
             'start_date'      => '2021-9-30 6:00',
             'end_date'        => '2021-10-1 6:00',
             'hours_count'     => '5',
-            'description'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_en'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_ar'     => 'وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستري',
             'cme_count'       => '3',
             'certificate'     => '0',
             'type_id'         => '2',
@@ -45,12 +49,14 @@ class CourseSeeder extends Seeder
         ]);
 
         Course::firstOrCreate([
-            'title'           => 'recorded',
+            'title_en'           => 'recorded',
+            'title_ar'           => 'مسجل',
             'price'           => '10.00',
             'start_date'      => '2021-9-30 6:00',
             'end_date'        => '2021-10-1 6:00',
             'hours_count'     => '5',
-            'description'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_en'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_ar'     => 'وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستري',
             'cme_count'       => '1',
             'certificate'     => '1',
             'type_id'         => '3',
@@ -60,12 +66,14 @@ class CourseSeeder extends Seeder
         ]);
 
         Course::firstOrCreate([
-            'title'           => 'physical',
+            'title_en'           => 'physical',
+            'title_ar'           => 'مادي',
             'price'           => '0',
             'start_date'      => '2021-9-30 6:00',
             'end_date'        => '2021-10-1 6:00',
             'hours_count'     => '5',
-            'description'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_en'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_ar'     => 'وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستري',
             'cme_count'       => '2',
             'certificate'     => '0',
             'type_id'         => '4',
@@ -76,12 +84,14 @@ class CourseSeeder extends Seeder
         ]);
 
         Course::firstOrCreate([
-            'title'           => 'hybrid',
+            'title_en'           => 'hybrid',
+            'title_ar'           => 'مزدوج',
             'price'           => '10.00',
             'start_date'      => '2021-9-30 6:00',
             'end_date'        => '2021-10-1 6:00',
             'hours_count'     => '5',
-            'description'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_en'     => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            'description_ar'     => 'وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستري',
             'cme_count'       => '2',
             'certificate'     => '0',
             'type_id'         => '5',
