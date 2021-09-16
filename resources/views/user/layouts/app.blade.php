@@ -36,6 +36,14 @@
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span> Our events</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Join our team</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get in touch</span></a></li>
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        @continue(LaravelLocalization::getCurrentLocale() == $localeCode)
+                        <li class="aside-menu__item">
+                            <a rel="alternate" hreflang="{{ $localeCode }}" class="aside-menu__link" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                {{ $properties['native'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
                 @guest()
                     <div class="header-aus">
@@ -74,6 +82,14 @@
                             <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  Our events </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Join our team</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Get in touch</span></a></li>
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                @continue(LaravelLocalization::getCurrentLocale() == $localeCode)
+                                <li class="main-menu__item">
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" class="main-menu__link" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </nav>
                     <!-- main menu end-->
