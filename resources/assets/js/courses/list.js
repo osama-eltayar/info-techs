@@ -74,6 +74,10 @@ function toggleFavouriteCourse(element)
         type: 'post',
     })
      .done(res => {
+         if(element.hasClass('active-red'))
+             $('#favourite-courses-count').text( +$('#favourite-courses-count').text() + 1 )
+         else
+             $('#favourite-courses-count').text( +$('#favourite-courses-count').text() - 1 )
      })
      .fail(res => {
          element.toggleClass('active-red')
@@ -97,9 +101,11 @@ function addToShoppingCart(element)
         data,
     })
      .done(res => {
+         $('#cart-courses-count').text( +$('#cart-courses-count').text() + 1 )
      })
      .fail(res => {
          element.attr('disabled', false)
+
      })
      .always(() => {
      })

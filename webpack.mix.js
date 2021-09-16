@@ -25,6 +25,8 @@ mix
         'resources/assets/js/courses/show.js'
     ],'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
+    .js('resources/assets/js/certificates/list.js','public/js/certificates/list.min.js')
+    //#############################  shopping cart  ##################################
     .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
     //#############################  invoices  ##################################
     .js('resources/assets/js/invoices/list.js','public/js/invoices/list.min.js')
@@ -54,4 +56,6 @@ mix
     .copy(['resources/assets/fonts/'], 'public/fonts')
     .copyDirectory(['resources/assets/css/zoom'],'public/css/zoom')
     .copy(['resources/css/rtl.css'], 'public/css/rtl.css')
+    .copy(['resources/assets/js/vendor'],'public/js/vendor')
+    .copy(['resources/assets/css/vendor'],'public/css/vendor')
     .sourceMaps();

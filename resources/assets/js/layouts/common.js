@@ -4,5 +4,13 @@ require('jquery-validation')
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    error  :function (res) {
+        if (res.status == 401)
+           redirect('/login')
     }
 });
+
+function redirect(url) {
+    window.location.href = url;
+}

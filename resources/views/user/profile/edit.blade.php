@@ -1,6 +1,7 @@
 @extends('user.layouts.app')
 @section('header')
     <title></title>
+    <link href="{{asset('css/vendor/select2.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 
@@ -91,8 +92,13 @@
                             <div class="input-icon vaild">
                                 <input type="email" name="email" class="form-control" disabled
                                        value="{{auth()->user()->email}}">
-                                <span class="vaild-label">Verified</span>
-                                <span class="message">you cannot change your e-mail</span>
+                                @if(auth()->user()->hasVerifiedEmail())
+                                    <span class="vaild-label">Verified</span>
+                                @else
+                                    <span class="vaild-label bg-danger">Not Verified</span>
+                                    <button type="button" onclick="$('#verification-form').submit()">Resend Verification Email</button>
+                                @endif
+                                    <span class="message">you cannot change your e-mail</span>
                             </div>
                         </div>
                     </div>
@@ -111,7 +117,7 @@
                             <label for="country">Country <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[country_id]" id="country" class="form-control">
-                                    <option value="1" selected>Saudi Arabia</option>
+                                    <option value="{{$profile->country->id}}" selected>{{$profile->country->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -134,8 +140,8 @@
                         <div class="form-group">
                             <label for="city">City <span>*</span> </label>
                             <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control">
-                                    <option value="1">Jeddah</option>
+                                <select name="profile[city_id]" class="form-control" id="city" {{ !$profile->country->id? 'disabled' : '' }}>
+                                    <option value="{{$profile->city->id}}" selected>{{$profile->city->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -189,6 +195,9 @@
                 <button type="submit" class="btn btn-primary">Update my information</button>
 
             </form>
+            <form action="{{route('verification.resend')}}" method="POST" id="verification-form">
+                @csrf
+            </form>
         </div>
     </section>
 
@@ -197,5 +206,6 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{asset('js/vendor/select2.min.js')}}"></script>
     <script src="{{asset('js/profile/edit.min.js')}}" ></script>
 @endsection

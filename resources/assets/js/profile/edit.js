@@ -1,3 +1,4 @@
+let countryId;
 function readURL(input)
 {
     if (input.files && input.files[0]) {
@@ -13,6 +14,9 @@ function readURL(input)
 
 
 $(function () {
+     countryId = $('#country').val();
+     initCountrySelector()
+     initCitySelector()
     $("#imageUpload").change(function () {
         readURL(this);
     });
@@ -53,4 +57,55 @@ $(function () {
     $('#saudi-council-check').on('change',function (){
        $('#saudi-council-input').toggleClass('d-none');
     });
+
+    $('#country').on('select2:select',function (){
+        countryId = $(this).val();
+        $('#city').val('').trigger('change')
+        $('#city').prop('disabled',false)
+    })
 })
+
+function initCountrySelector(){
+    $('#country').select2({
+        placeholder: "Country",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/countries`;
+            },
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function initCitySelector(){
+    $('#city').select2({
+        placeholder: "City",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/cities?country=${countryId}`;
+            },
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function mapSelect2Data(data) {
+    var data2 = [];
+    data.data.forEach(function (item) {
+        data2.push({
+            id: item.id,
+            text: item.name
+        })
+    });
+    return {
+        results: data2
+    };
+}
