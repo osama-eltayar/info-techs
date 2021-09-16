@@ -28,6 +28,6 @@
                 I agree to pay this invoice
             </label>
         </div>
-        <button type="button" class="btn btn-success">Check out</button>
+        <button type="button" data-url="{{route('payment.checkout')}}" class="btn btn-success checkout-btn">Check out</button>
     </div>
 </div>

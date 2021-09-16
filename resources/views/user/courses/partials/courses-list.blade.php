@@ -36,7 +36,7 @@
                                 to cart
                             </button>
                         @else
-                            <button type="button"  class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i>
+                            <button type="button"  class="btn btn-default " onclick="window.location.href = '{{route('courses.show',$course->id)}}'"><i class="fa-solid fa-cart-plus"></i>
                                View
                             </button>
                         @endif

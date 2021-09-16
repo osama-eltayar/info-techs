@@ -115,7 +115,7 @@ class Course extends Model
     {
         return now()->gt($this->end_date);
     }
-    
+
     public function getTitleAttribute()
     {
         return $this->{getLocalizeAttribute('title')};
@@ -182,7 +182,7 @@ class Course extends Model
 
     public function registeredAuthUser()
     {
-        return $this->registeredUsers()->where('users.id', Auth::user()->id);
+        return $this->registeredUsers()->where('users.id', auth()->id());
     }
 
     public function videos()

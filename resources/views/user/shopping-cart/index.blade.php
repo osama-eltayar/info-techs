@@ -6,64 +6,18 @@
 @section('content')
         <div class="shopping-cart">
             <div class="container-fluid">
-                <form class="row">
+                <div class="row">
                     <div class="col-12">
                         <h1>Shopping cart</h1>
                     </div>
 
                     <div class="col-lg-4 col-md-5 col-12">
                         <!-- Start Form -->
-                        <section class="form-section">
+                        <section class="form-section" >
                             <div class="form-content">
-                                <h3>Billing information</h3>
-                                <div class="form-group">
-                                    <label for="fullname">Full name</label>
-                                    <input type="text" name="fullname" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <input type="text" name="country" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" name="address" class="form-control">
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">
-                                        Same data in card information
-                                    </label>
-                                </div>
-
                                 <h3>Card Information</h3>
-                                <div class="form-group">
-                                    <label for="cardname">Card Holder name</label>
-                                    <input type="text" name="cardname" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card-number">Card number</label>
-                                    <input type="text" name="card-number" class="form-control">
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-6">
-                                        <div class="form-group">
-                                            <label for="expiration-date">Expiration date</label>
-                                            <input type="text" name="expiration-date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-6">
-                                        <div class="form-group">
-                                            <label for="CVV">CVV</label>
-                                            <input type="text" name="CVV" class="form-control">
-                                        </div>
-                                        <div class="text-right">
-                                            <img src="{{asset('')}}media/images/icons.png" alt="icon">
-                                        </div>
-                                    </div>
+                                <div id="payment-form">
+
                                 </div>
                             </div>
                         </section>
@@ -107,7 +61,7 @@
                             </div>
                         </section>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 @endsection
