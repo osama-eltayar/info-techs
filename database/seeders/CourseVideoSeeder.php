@@ -16,7 +16,8 @@ class CourseVideoSeeder extends Seeder
     {
         Course::find(3)->videos()->createMany([
                                                   [
-                                                      'name'      => 'video 1',
+                                                      'name_en'      => 'video 1',
+                                                      'name_ar'      => 'الفيديو 1',
                                                       'path'      => 'courses/3/videos/video1.mp4',
                                                       'mime_type' => 'mp4',
                                                       'size'      => 25,
@@ -24,7 +25,8 @@ class CourseVideoSeeder extends Seeder
                                                       'is_free'      => true,
                                                   ],
                                                   [
-                                                      'name'      => 'video 2',
+                                                      'name_en'      => 'video 2',
+                                                      'name_ar'      => 'الفيديو 2',
                                                       'path'      => 'courses/3/videos/video2.mp4',
                                                       'mime_type' => 'mp4',
                                                       'size'      => 25,

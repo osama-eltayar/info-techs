@@ -15,19 +15,24 @@ class CourseTypeSeeder extends Seeder
     public function run()
     {
         CourseType::firstOrcreate([
-            'name' => 'Online Event'
+            'name_en' => 'Online Event',
+            'name_ar' => 'Online Event'
         ]);
         CourseType::firstOrcreate([
-            'name' => 'Online Course'
+            'name_en' => 'Online Course',
+            'name_ar' => 'Online Course'
         ]);
         CourseType::firstOrcreate([
-            'name' => 'Recorded'
+            'name_en' => 'Recorded',
+            'name_ar' => 'Recorded'
         ]);
         CourseType::firstOrcreate([
-            'name' => 'Physical'
+            'name_en' => 'Physical',
+            'name_ar' => 'Physical'
         ]);
         CourseType::firstOrcreate([
-            'name' => 'Hybrid'
+            'name_en' => 'Hybrid',
+            'name_ar' => 'Hybrid'
         ]);
     }
 }

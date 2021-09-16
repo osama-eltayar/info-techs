@@ -9,15 +9,15 @@ class OrganizationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
      * @return void
      */
     public function run()
     {
-        for ( $i = 1; $i <= 5; $i++ )
+        for ($i = 1; $i <= 5; $i++)
             Organization::firstOrCreate([
-                'name' => "Organization $i",
-                'logo' => '/organizations/logo.png'
-            ]);
+                                            'name_en' => 'organization ' . $i,
+                                            'name_ar' => 'منظمه ' . $i,
+                                            'logo'    => '/organizations/logo.png'
+                                        ]);
     }
 }
