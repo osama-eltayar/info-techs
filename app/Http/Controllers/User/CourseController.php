@@ -42,7 +42,18 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
-        $course->load('discounts', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization','videos');
+        $course->load(['discounts',
+                       'materials',
+                       'people',
+                       'speakers',
+                       'specialities',
+                       'sponsors',
+                       'organization',
+                       'videos.trackers' => function ($query) {
+                           return $query->forUser(auth()->id());
+                       }
+                      ]);
+
         $course->loadExists([
                                 'registeredUsers' => function ($query) {
                                     return $query->where('users.id', auth()->id());

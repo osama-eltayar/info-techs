@@ -46,7 +46,9 @@
                                         <span>{{$video->duration}}:00 min</span>
                                     </p>
                                     @if($video->is_free || $course->registered_users_exists)
-                                    <a href="{{$video->url}}" class="open-video">
+                                    <a href="{{$video->url}}" class="open-video"
+                                       data-duration="{{$video->duration}}" data-videoId="{{$video->id}}"
+                                       data-startPoint="{{optional($video->trackers->first())->check_point}}">
                                         <i class="fa-solid fa-circle-play"></i>{{$video->is_free ? 'Free' : 'paid'}}
                                     </a>
                                     @endif
@@ -185,7 +187,7 @@
 
 @endsection
 @section('modals')
-<div class="modal  fade survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg  modal-dialog-centered">
         <div class="modal-content">
@@ -209,5 +211,8 @@
 @endsection
 
 @section('script')
+    <script>
+     var courseId = "{{$course->id}}"
+    </script>
 <script src="/js/courses/show.min.js"></script>
 @endsection
