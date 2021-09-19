@@ -170,9 +170,9 @@
                                 @foreach($course->sponsors as $sponsor)
                                     <li class="type1 col-lg-3 col-md-6 col-12">
                                         <div class="type">GOLD</div>
-                                        <a href="#">
+                                        <a  href="#" data-toggle="modal" data-target="#sponsor{{$sponsor->id}}">
                                             <i class="fa-solid fa-crown"></i>
-                                            <img src="{{$sponsor->logo_url}}" alt="logo">
+                                            <img src="{{$sponsor->logo_url}}" style="max-width:100%; max-height:100%;" alt="logo">
                                         </a>
                                     </li>
                                 @endforeach
@@ -209,6 +209,21 @@
         </div>
     </div>
 </div>
+@foreach($course->sponsors as $sponsor)
+    <div class="modal  survey-modal" id="sponsor{{$sponsor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg  modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3>sponsor</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection
 
 @section('script')
