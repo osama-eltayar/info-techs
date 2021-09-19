@@ -2,57 +2,53 @@
 
 namespace App\Models;
 
-use App\Traits\HasFiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @method static self create(array $data)
  */
-class CourseVideo extends Model
+class UserVideoTracker extends Model
 {
-    use HasFactory, HasFiles;
+    use HasFactory;
 
     /**
     * The attributes that are mass assignable.
     * @var array
     */
     protected $fillable = [
-        'name_ar',
-        'name_en',
-        'path',
-        'mime_type',
-        'size',
-        'duration',
-        'is_free',
+        'user_id', 'course_id', 'trackable_id', 'trackable_type', 'time_progress', 'check_point'
     ];
 
     //########################################### Constants ################################################
 
 
     //########################################### Accessors ################################################
-    public function getUrlAttribute()
-    {
-        return $this->getFileUrl($this->path);
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->{getLocalizeAttribute('name')};
-    }
 
 
     //########################################### Mutators #################################################
 
 
     //########################################### Scopes ###################################################
-
-
-    //########################################### Relations ################################################
-    public function trackers()
+    public function scopeForUser($query,$userId)
     {
-        return $this->morphMany(UserVideoTracker::class,'trackable');
+        return $query->where('user_id',$userId);
     }
 
 
+    //########################################### Relations ################################################
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function trackable()
+    {
+        return $this->morphTo();
+    }
 }
 

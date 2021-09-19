@@ -96,7 +96,7 @@
                                     <span class="vaild-label">Verified</span>
                                 @else
                                     <span class="vaild-label bg-danger">Not Verified</span>
-                                    <button type="button" onclick="$('#verification-form').submit()">Resend Verification Email</button>
+                                    <button type="button" class="message" onclick="$('#verification-form').submit()">Resend Verification Email</button>
                                 @endif
                                     <span class="message">you cannot change your e-mail</span>
                             </div>
@@ -117,7 +117,7 @@
                             <label for="country">Country <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[country_id]" id="country" class="form-control">
-                                    <option value="{{$profile->country->id}}" selected>{{$profile->country->name}}</option>
+                                    <option value="{{$profile->country_id}}" selected>{{optional($profile->country)->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -140,8 +140,8 @@
                         <div class="form-group">
                             <label for="city">City <span>*</span> </label>
                             <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control" id="city" {{ !$profile->country->id? 'disabled' : '' }}>
-                                    <option value="{{$profile->city->id}}" selected>{{$profile->city->name}}</option>
+                                <select name="profile[city_id]" class="form-control" id="city" {{ !$profile->country_id? 'disabled' : '' }}>
+                                    <option value="{{$profile->city_id}}" selected>{{optional($profile->city)->name}}</option>
                                 </select>
                             </div>
                         </div>

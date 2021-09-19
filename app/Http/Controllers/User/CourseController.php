@@ -42,9 +42,20 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
-        $course->load('activeDiscount', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization','videos');
-        $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
+        $course->load(['activeDiscount',
+                       'materials',
+                       'people',
+                       'speakers',
+                       'specialities',
+                       'sponsors',
+                       'organization',
+                       'videos.trackers' => function ($query) {
+                           return $query->forUser(auth()->id());
+                       }
+                      ]);
 
+       $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
+      
         return view('user.courses.show',compact('course'));
     }
 }

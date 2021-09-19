@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\CourseVideoTrackerController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\InvoiceController;
 use App\Http\Controllers\User\CourseSessionController;
@@ -45,7 +46,8 @@ Route::group([
         Route::resource('certificates', UserCertificateController::class)->only('index');
         Route::post('certificates/{certificate}/print', [UserCertificateController::class,'print'])->name('certificates.print');
         Route::post('certificates/{certificate}/send', [UserCertificateController::class,'send'])->name('certificates.send');
-
+        Route::put('courses/videos/tracker', [CourseVideoTrackerController::class,'update']);
+  
         //*** debug route only
         Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 

@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CourseSeeder::class);
         $this->call(CourseTypeSeeder::class);
         $this->call(OrganizationSeeder::class);
-//        $this->call(CountrySeeder::class);
         $this->call(CourseVideoSeeder::class);
+//        $this->call(CountrySeeder::class);
+//        $this->call(CitySeeder::class);
     }
 }
