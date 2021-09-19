@@ -88,7 +88,6 @@
                                 </p>
                             </div>
                             @endforeach
-                            s
                         </div>
 
                         <div class="box-info">
