@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
             if ( Auth::check() )
                 $view->with([
                     'favourite_courses_count' => Auth::user()->favouriteCourses()->count(),
-                    'cart_courses_count'      => Auth::user()->shoppingCart()->count()
+                    'cart_courses_count'      => Auth::user()->shoppingCart()->whereNull('paid_at')->count()
                 ]);
 
         });

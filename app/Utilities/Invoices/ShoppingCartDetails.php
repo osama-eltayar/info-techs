@@ -10,11 +10,11 @@ class ShoppingCartDetails
     private int $total = 0;
     private int $subTotal = 0;
     private int $taxes = 0;
-    private Collection $courses;
+    private Collection $items;
 
-    public function __construct(Collection $courses)
+    public function __construct(Collection $items)
     {
-        $this->courses = $courses;
+        $this->items = $items;
 
         $this->calculateSubTotal();
         $this->calculateTotal();
@@ -30,7 +30,7 @@ class ShoppingCartDetails
 
     private function calculateSubTotal()
     {
-        $this->subTotal = $this->courses->sum('price');
+        $this->subTotal = $this->items->sum('price');
     }
 
     private function calculateTotal()

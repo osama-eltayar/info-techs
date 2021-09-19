@@ -47,7 +47,7 @@
                                             <p>{{$item->course->title}}</p>
                                         </div>
                                         <div class="last-side">
-                                            <div class="product-price">{{$item->course->price}}$</div>
+                                            <div class="product-price">{{$item->price}}$</div>
                                             <div class="action">
                                                 <button type="button" data-action="{{route('shopping-cart.destroy',$item->id)}}" class="btn remove-item"><i class="fa-solid fa-trash"></i></button>
                                             </div>

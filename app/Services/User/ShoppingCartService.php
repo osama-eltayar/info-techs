@@ -37,6 +37,8 @@ class ShoppingCartService
         ShoppingCart::whereNull('paid_at')
                     ->forUser(auth()->id())
                     ->update(['transaction_id' => $transaction->id]);
+
+        $this->fillPrices($transaction->id);
     }
 
     public function complete($originalTransactionId,$transactionId)
@@ -51,14 +53,31 @@ class ShoppingCartService
 
     private function getDetails()
     {
-        return new ShoppingCartDetails($this->items->pluck('course'));
+        return new ShoppingCartDetails($this->items);
     }
 
     private function getItems()
     {
-        return ShoppingCart::with('course')
-                           ->whereNull('paid_at')
-                           ->forUser(auth()->id())
-                           ->get();
+        $soppingCartItems = ShoppingCart::with('course.activeDiscount')
+                                        ->whereNull('paid_at')
+                                        ->forUser(auth()->id())
+                                        ->get();
+
+        $soppingCartItems->map(function ($item){
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->price ;
+        });
+        return $soppingCartItems ;
+    }
+
+    private function fillPrices($transactionId)
+    {
+        $items = ShoppingCart::with('course.activeDiscount')
+                    ->where('transaction_id' , $transactionId)
+                    ->get();
+
+        $items->each(function ($item){
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->price ;
+            $item->update();
+        });
     }
 }
