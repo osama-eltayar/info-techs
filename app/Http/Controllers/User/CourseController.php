@@ -28,8 +28,8 @@ class CourseController extends Controller
                          ->with('speakers', 'sponsors', 'organization')
                          ->withExists('favouriteAuthUser')
                          ->withExists('registeredAuthUser')
+                         ->withExists('shoppingCartAuthUser')
                          ->get();
-
 
         if ( $request->ajax() )
             return view('user.courses.partials.courses-list', compact('courses'));
@@ -42,12 +42,8 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
-        $course->load('discounts', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization','videos');
-        $course->loadExists([
-                                'registeredUsers' => function ($query) {
-                                    return $query->where('users.id', auth()->id());
-                                }
-                            ]);
+        $course->load('activeDiscount', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization','videos');
+        $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
 
         return view('user.courses.show',compact('course'));
     }

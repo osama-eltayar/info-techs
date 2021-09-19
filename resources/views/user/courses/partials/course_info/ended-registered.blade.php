@@ -5,7 +5,7 @@
 <ul class="list-unstyled list-info">
     <li>
         <h3>Event date and time</h3>
-        <p>Monday 25 june 2021 (03:00 pm - 05:00 pm) - <span>Open</span></p>
+        <p>{{$course->start_date}}</p>
     </li>
     <li>
         <h3>Speciality</h3>

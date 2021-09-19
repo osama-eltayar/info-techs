@@ -45,13 +45,15 @@ Route::group([
         Route::resource('certificates', UserCertificateController::class)->only('index');
         Route::post('certificates/{certificate}/print', [UserCertificateController::class,'print'])->name('certificates.print');
         Route::post('certificates/{certificate}/send', [UserCertificateController::class,'send'])->name('certificates.send');
+
+        //*** debug route only
+        Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+
+        //Route::view('course-sessions','user.course-sessions.zoom-meetings');
+        Route::view('course-sessions/leave','user.course-sessions.leave')->name('course-sessions.leave');
+        Route::get('course-sessions/{course_session}',[ CourseSessionController::class, 'show'])->name('course-sessions.show');
+        Route::get('course-sessions/{course_session}/join',[ CourseSessionController::class, 'joinMeeting'])->name('course-sessions.join-meeting');
+
     });
 
 
-//*** debug route only
-Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
-
-//Route::view('course-sessions','user.course-sessions.zoom-meetings');
-Route::view('course-sessions/leave','user.course-sessions.leave')->name('course-sessions.leave');
-Route::get('course-sessions/{course_session}',[ CourseSessionController::class, 'show'])->name('course-sessions.show');
-Route::get('course-sessions/{course_session}/join',[ CourseSessionController::class, 'joinMeeting'])->name('course-sessions.join-meeting');

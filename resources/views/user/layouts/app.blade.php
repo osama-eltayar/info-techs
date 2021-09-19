@@ -30,7 +30,7 @@
 					<i class="far fa-times"></i></span>
             <div class="aside-dropdown__item d-lg-none d-block">
                 <ul class="aside-menu">
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="index.html"><span>Home</span></a></li>
+                    <li class="aside-menu__item"><a class="aside-menu__link" href="{{route('courses.index')}}"><span>Home</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get to know us</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Services</span></a></li>
                     <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span> Our events</span></a></li>
@@ -76,7 +76,7 @@
                     <!-- main menu start-->
                     <nav>
                         <ul class="main-menu">
-                            <li class="main-menu__item"><a class="main-menu__link active" href="#"><span>Home</span></a></li>
+                            <li class="main-menu__item"><a class="main-menu__link active" href="{{route('courses.index')}}"><span>Home</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span> Get to know us </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Services</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  Our events </span></a></li>
@@ -124,7 +124,7 @@
                                 </span>
                             </a>
 
-                            <a href="" class="cart-link">
+                            <a href="{{route('courses.index',['favorites'=>1])}}" class="cart-link">
                                 <i class="fa-solid fa-circle-heart"></i>
                                 <span>My Favorites</span>
                                 <span id="favourite-courses-count">

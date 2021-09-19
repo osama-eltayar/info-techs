@@ -1,4 +1,4 @@
-<button class="btn btn-success" type="button">Count Down</button>
+<button class="btn btn-success" type="button">{{$course->start_date->diffForHumans()}}</button>
 <div class="message "><i class="fa-solid fa-circle-check"></i>You are already registered in this event</div>
 <div class="printer text-center">
     <button type="button" class="btn-printer"><i class="fa-solid fa-print"></i> Print Badge</button>
@@ -6,7 +6,7 @@
 <ul class="list-unstyled list-info">
     <li>
         <h3>Event date and time</h3>
-        <p>Monday 25 june 2021 (03:00 pm - 05:00 pm) - <span>Open</span></p>
+        <p>{{$course->start_date}}</p>
     </li>
     <li>
         <h3>Speciality</h3>
