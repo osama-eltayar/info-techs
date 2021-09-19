@@ -140,6 +140,13 @@ class Course extends Model
         return $this->hasMany(CourseDiscount::class);
     }
 
+    public function activeDiscount()
+    {
+        return $this->hasOne(CourseDiscount::class)->where(function ($query){
+            $query->whereNull('date')->orWhere('date','>',now());
+        });
+    }
+
     public function materials()
     {
         return $this->hasMany(CourseMaterial::class);
@@ -184,6 +191,16 @@ class Course extends Model
     public function registeredAuthUser()
     {
         return $this->registeredUsers()->where('users.id', auth()->id());
+    }
+
+    public function shoppingCarts()
+    {
+        return $this->belongsToMany(User::class, ShoppingCart::class)->withTimestamps();
+    }
+
+    public function shoppingCartAuthUser()
+    {
+        return $this->shoppingCarts()->where('users.id', auth()->id());
     }
 
     public function videos()

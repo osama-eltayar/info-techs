@@ -14,6 +14,15 @@ $(function () {
 
 
     })
+
+    $('.add-to-cart').on('click',function (){
+       addToCart($(this).attr('data-courseId'), $(this).attr('data-action'))
+    });
+
+    $('.add-to-fav').on('click',function (){
+        console.log('fav')
+       addToFavourite($(this))
+    });
 })
 
 function getJoinMeetingUrl(url) {
@@ -35,4 +44,43 @@ function joinMeeting(url) {
     $('#meeting-iframe').attr('src',url)
     $('#meeting-iframe').removeClass('hide')
     $('#video-modal').modal('show')
+}
+
+function addToCart(courseId,url)
+{
+    let data = {
+        'course_id': courseId
+    };
+
+    $.ajax({
+        url,
+        type: 'post',
+        data,
+    })
+     .done(res => {
+         window.location.href = '/shopping-cart' ;
+     })
+     .fail(res => {
+         element.attr('disabled', false)
+
+     })
+     .always(() => {
+     })
+}
+function addToFavourite(element)
+{
+    let url = element.attr('data-action');
+    $.ajax({
+        url : url,
+        type: 'post',
+    })
+     .done(res => {
+         $('#favourite-courses-count').text( +$('#favourite-courses-count').text() + 1 )
+         element.remove()
+     })
+     .fail(res => {
+         element.toggleClass('active-red')
+     })
+     .always(() => {
+     })
 }

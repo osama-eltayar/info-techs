@@ -21,8 +21,10 @@
                         <a href="#"><i class="fa-brands fa-instagram-square"></i></a>
                         <a href="#"><i class="fa-brands fa-youtube"></i></a>
                     </div>
-                    <button class="btn btn-fave" type="button"> Add to favorite <i class="fa-solid fa-heart"></i>
-                    </button>
+                    @if(! $course->favourite_auth_user_exists)
+                        <button class="btn btn-fave add-to-fav" data-action="{{route('courses.favourite',$course->id)}}" type="button"> Add to favorite <i class="fa-solid fa-heart"></i>
+                        </button>
+                    @endif
                 </div>
                 <div class="card-content {{$course->type_class_name}}">
                     <div class="card-status">
@@ -122,48 +124,50 @@
 
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-12">
-                    <div class="top-pos">
-                        <div class="course-right-info">
-                            <h2>Organized by</h2>
-                            <div class="right-logo"><img src="{{$course->organization->logo_url}}" alt="icon"></div>
-                            <div class="slide">
-                                <div class="owl-carousel">
-                                    <div class="item">
-                                        <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                                            class="image-content video-trigger"
-                                            style="background-image: url('/media/images/close-up-video-camera-filming-young-smiling-male-blogger.png');">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </a>
-                                    </div>
-                                    <div class="item">
-                                        <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                                            class="image-content video-trigger"
-                                            style="background-image: url('/media/images/close-up-video-camera-filming-young-smiling-male-blogger.png');">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </a>
-                                    </div>
+
+            </div>
+            <div class="col-xl-3 col-lg-4 col-12">
+                <div class="top-pos">
+                    <div class="course-right-info">
+                        <h2>Organized by</h2>
+                        <div class="right-logo"><img src="{{$course->organization->logo_url}}" alt="icon"></div>
+                        <div class="slide">
+                            <div class="owl-carousel">
+                                <div class="item">
+                                    <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                       class="image-content video-trigger"
+                                       style="background-image: url('/media/images/close-up-video-camera-filming-young-smiling-male-blogger.png');">
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                       class="image-content video-trigger"
+                                       style="background-image: url('/media/images/close-up-video-camera-filming-young-smiling-male-blogger.png');">
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </a>
                                 </div>
                             </div>
-                            @if($course->isLive())
+                        </div>
+                        @if($course->isLive())
                             @includeWhen($course->registered_users_exists,
                             'user.courses.partials.course_info.live-registered')
                             @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.live')
-                            @elseif($course->isEnded())
+                        @elseif($course->isEnded())
                             @includeWhen($course->registered_users_exists,
                             'user.courses.partials.course_info.ended-registered')
                             @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.ended')
-                            @else
+                        @else
                             @includeWhen($course->registered_users_exists,
                             'user.courses.partials.course_info.count-down-registered')
                             @includeWhen(!$course->registered_users_exists,
                             'user.courses.partials.course_info.count-down')
-                            @endif
+                        @endif
 
-                            <div class="sponsor-row">
-                                <h2>Sponsors</h2>
-                                <ul class="list-unstyled row">
-                                    @foreach($course->sponsors as $sponsor)
+                        <div class="sponsor-row">
+                            <h2>Sponsors</h2>
+                            <ul class="list-unstyled row">
+                                @foreach($course->sponsors as $sponsor)
                                     <li class="type1 col-lg-3 col-md-6 col-12">
                                         <div class="type">GOLD</div>
                                         <a href="#">
@@ -171,9 +175,8 @@
                                             <img src="{{$sponsor->logo_url}}" alt="logo">
                                         </a>
                                     </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -185,7 +188,7 @@
 
 @endsection
 @section('modals')
-<div class="modal  fade survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal   survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg  modal-dialog-centered">
         <div class="modal-content">

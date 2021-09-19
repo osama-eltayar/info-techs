@@ -1,23 +1,34 @@
 
-<button class="btn btn-success" type="button">Register now</button>
+<button class="btn btn-success add-to-cart" data-action="{{route('shopping-cart.store')}}" data-courseId="{{$course->id}}" type="button">Register now</button>
 
 <div class="message not-register"><i class="fa-solid fa-circle-check"></i>You are not registered in this course</div>
 
-<div class="icon price">
-    <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b> <span> ${{$course->price}} </span>
-{{--    <del>$25</del>--}}
-{{--    <div class="scissors">--}}
-{{--        <i class="fa-solid fa-scissors"></i> this price is valid Before 25/5/2021--}}
-{{--        <strong>Price: <b>$30</b></strong>--}}
-{{--    </div>--}}
-</div>
+@if($course->activeDiscount)
+    @if($course->activeDiscount->date)
+        <div class="icon price">
+            <div class="scissors">
+                <i class="fa-solid fa-scissors"></i> this price is valid Before {{$course->activeDiscount->date}}
+                <strong>Price: <b>${{$course->activeDiscount->price}}</b></strong>
+            </div>
+        </div>
+    @else
+        <div class="icon price">
+            <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b> <span> ${{$course->activeDiscount->price}} </span>
+            <del>${{$course->price}}</del>
+        </div>
+    @endif
+@else
+    <div class="icon price">
+        <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b> <span> ${{$course->price}} </span>
+    </div>
+@endif
 
 
 
 <ul class="list-unstyled list-info">
     <li>
         <h3>Event date and time</h3>
-        <p>Monday 25 june 2021 (03:00 pm - 05:00 pm) - <span>Open</span></p>
+        <p>{{$course->start_date}}<span>Open</span></p>
     </li>
     <li>
         <h3>Speciality</h3>
