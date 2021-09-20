@@ -47,7 +47,7 @@
                                     <p>{{$loop->iteration}}: {{$video->name}}
                                         <span>{{$video->duration}}:00 min</span>
                                     </p>
-                                    @if($video->is_free || $course->registered_users_exists)
+                                    @if($video->is_free || $course->registered_auth_user_exists)
                                     <a href="{{$video->url}}" class="open-video"
                                        data-duration="{{$video->duration}}" data-videoId="{{$video->id}}"
                                        data-startPoint="{{optional($video->trackers->first())->check_point}}">

@@ -40,17 +40,31 @@ class CourseVideo extends Model
         return $this->{getLocalizeAttribute('name')};
     }
 
+    public function disk()
+    {
+        return 'video';
+    }
+
 
     //########################################### Mutators #################################################
 
 
     //########################################### Scopes ###################################################
+    public function scopeFree($query)
+    {
+        return $query->where('is_free',1);
+    }
 
 
     //########################################### Relations ################################################
     public function trackers()
     {
         return $this->morphMany(UserVideoTracker::class,'trackable');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 
 
