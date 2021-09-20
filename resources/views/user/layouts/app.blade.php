@@ -100,10 +100,15 @@
                             <div class="dropdown">
                                 <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>Welcome, {{auth()->user()->name}} </span>
-                                    <img src="{{asset('')}}media/images/user1.png" alt="user">
+                                    <img src="{{ optional(auth()->user()->profile)->image_url ??  asset('media/images/user1.png')}}" alt="user">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fa-solid fa-circle-user"></i> Update my profile <span class="status">Not updated</span></a>
+                                    <a class="dropdown-item" href="{{route('profile.edit')}}">
+                                        <i class="fa-solid fa-circle-user"></i> Update my profile
+                                        @if(! auth()->user()->profile)
+                                        <span class="status">Not updated</span>
+                                        @endif
+                                    </a>
                                     <a class="dropdown-item" href="{{route('password.reset')}}"><i class="fa-solid fa-lock-keyhole"></i> Change my password</a>
                                     <a class="dropdown-item" href="{{route('certificates.index')}}"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
                                     <a class="dropdown-item" href="{{route('invoices.index')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
