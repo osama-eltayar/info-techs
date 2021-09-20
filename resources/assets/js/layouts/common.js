@@ -14,3 +14,23 @@ $.ajaxSetup({
 function redirect(url) {
     window.location.href = url;
 }
+
+$(document).ready(function(){
+    $(document).ajaxStart(function(){
+        loading();
+    });
+
+    $(document).ajaxComplete(function (){
+        unLoading();
+    })
+})
+
+function loading()
+{
+    $('#loader-wrapper').show();
+}
+
+function unLoading()
+{
+    $('#loader-wrapper').hide();
+}

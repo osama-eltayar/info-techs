@@ -22,6 +22,11 @@
 </head>
 
 <body>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
 <div class="page-wrapper">
     <!-- Start Header-->
     <!-- aside dropdown start-->
