@@ -42,7 +42,7 @@
                     </div>
 
                     <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
-                    <p class="view">200 views</p>
+                    <p class="view">{{$course->views_count ?? 0}} views</p>
                     <div class="text-center">
                         @if($course->registered_auth_user_exists)
                             <button type="button" class="btn btn-default "

@@ -35,7 +35,7 @@
                         <h2>
                             {{$course->title}}
 
-                            <span class="view">200 views</span>
+                            <span class="view">{{$course->views_count ?? 0}} views</span>
                         </h2>
                         <h4>Description</h4>
                         <div>{!! $course->description !!}</div>
