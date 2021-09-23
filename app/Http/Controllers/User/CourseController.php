@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseType;
 use App\Models\Speciality;
+use App\Services\User\ViewCounterService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -29,6 +30,7 @@ class CourseController extends Controller
                          ->withExists('favouriteAuthUser')
                          ->withExists('registeredAuthUser')
                          ->withExists('shoppingCartAuthUser')
+                         ->withCount('views')
                          ->get();
 
         if ( $request->ajax() )
@@ -40,8 +42,10 @@ class CourseController extends Controller
         return view('user.courses.index', compact('courses', 'courseTypes', 'specialities'));
     }
 
-    public function show(Course $course)
+    public function show(Course $course,ViewCounterService $viewCounterService)
     {
+        $viewCounterService->execute($course,request()->ip(),auth()->id());
+
         $course->load(['activeDiscount',
                        'materials',
                        'people',
@@ -54,8 +58,10 @@ class CourseController extends Controller
                        }
                       ]);
 
+        $course->loadCount('views');
+
        $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
-      
+
         return view('user.courses.show',compact('course'));
     }
 }
