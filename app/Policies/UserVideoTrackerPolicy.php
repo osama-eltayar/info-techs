@@ -24,7 +24,7 @@ class UserVideoTrackerPolicy
     public function updateSessionTracker( User $user, $sessionId )
     {
         $session = CourseSession::find($sessionId);
-        if ( !$user->can('show',$session) )
+        if ( !$user->can('view',$session) )
             return $this->deny('not allowed to join this session');
         return true;
     }

@@ -69,10 +69,12 @@
                                         start time :
                                         <span>{{$session->start_at}}</span>
                                     </p>
-                                    <a data-url="{{route('course-sessions.show',$session->id)}}" class="join-meeting"
-                                        data-available_at="{{$session->start_at}}" data-id="{{$session->id}}">
-                                        <i class="fa-solid fa-circle-play"></i>join
-                                    </a>
+                                    @if($course->registered_users_exists)
+                                        <a data-url="{{route('course-sessions.show',$session->id)}}" class="join-meeting"
+                                            data-available_at="{{$session->start_at}}" data-id="{{$session->id}}">
+                                            <i class="fa-solid fa-circle-play"></i>join
+                                        </a>
+                                    @endif
                                 </li>
                                 @endforeach
 

@@ -10,12 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="origin-trial" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/css/vendor/toastr.min.css">
+
 
 </head>
 
 <body>
 <script src="{{asset('js/common.min.js')}}"></script>
 <script src="{{asset('js/layouts.min.js')}}"></script>
+<script src="/js/vendor/toastr.min.js"></script>
 <script src="/js/zoom/vendor/react.min.js"></script>
 <script src="/js/zoom/vendor/react-dom.min.js"></script>
 <script src="/js/zoom/vendor/redux.min.js"></script>
