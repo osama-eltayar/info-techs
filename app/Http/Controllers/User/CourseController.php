@@ -57,9 +57,6 @@ class CourseController extends Controller
                             return $query->forUser(auth()->id());
                         }
         ]);
-        $course->loadExists([ 'registeredUsers' => function ( $q ) {
-            $q->where('users.id',auth()->id());
-        } ]);
 
         $course->loadCount('views');
 
