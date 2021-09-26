@@ -35,23 +35,28 @@
             <i class="fa-solid fa-file-certificate"></i>
             <small><i class="fa-solid fa-magnifying-glass"></i></small>
         </div>
-
+        @if($course->auth_user_trackers_sum_check_point >= $course->successNeededMinutes())
         <p class="success-text">Congratulation You have enrolled
-            70% from the event</p>
+            {{$course->certificate}}% from the event</p>
+        @endif
 
         @if(! auth()->user()->profile()->exists())
             <p class="danger-text"><i class="fa-solid fa-triangle-exclamation"></i> Your personal information not
                 complete please update
                 your information tp print your certificate</p>
+        @elseif($course->auth_user_trackers_sum_check_point >= $course->successNeededMinutes())
+            <form action="" id="certificate-form" method="POST">
+                @csrf
+            </form>
+            <a href="{{route('certificates.print',$course->id)}}" class="btn btn-outline"><i class="fa-solid fa-print"></i> Print certificate</a>
+            <a href="{{route('certificates.send',$course->id)}}" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Send by mail</a>
         @else
-            <a href="#" class="btn btn-outline"><i class="fa-solid fa-print"></i> Print certificate</a>
-            <a href="#" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Send by mail</a>
             <div class="bottom-icon">
                 <span><i class="fa-solid fa-file-certificate"></i></span>
                 <p>Sorry You don't have the permission
                     to print your certificate
                     <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
-                            title="You done have the attenedance percentage">
+                            title="You done have the attendance percentage">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
                 </p>

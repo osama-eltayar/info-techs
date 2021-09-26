@@ -13,15 +13,21 @@ class InvoiceController extends Controller
     {
         $invoices = ShoppingCart::forUser(Auth::id())
                              ->with('transaction','course')
+                             ->whereNotNull('paid_at')
                              ->simplePaginate(5);
 
         return view('user.invoices.index',compact('invoices'));
     }
 
-    public function print(Transaction $transaction)
+    public function print($course)
     {
+        $shoppingCart = ShoppingCart::query()
+                                    ->forUser(Auth::id())
+                                    ->where('course_id', $course)
+                                    ->whereNotNull('paid_at')
+                                    ->first();
 
-        $pdf = \PDF::loadView('user.invoices.partials.invoice-template', compact('transaction'));
+        $pdf = \PDF::loadView('user.invoices.partials.invoice-template', compact('shoppingCart'));
         return $pdf->download('invoice.pdf');
     }
 }

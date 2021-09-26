@@ -74,7 +74,7 @@
                             <th scope="col">Event</th>
                             <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Date</th>
                             <th scope="col">Payment</th>
-                            <th scope="col"></th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -85,8 +85,8 @@
                             <td>{{$invoice->course->type_string}}</td>
                             <td>{{$invoice->course->title}}</td>
                             <td>{{$invoice->paid_at}}</td>
-                            <td>SAR {{$invoice->price}} </td>
-                            <td><a href="{{route('invoices.print',$invoice->transaction->id)}}"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
+                            <td>$ {{$invoice->price}} </td>
+                            <td><a href="{{route('invoices.print',$invoice->course_id)}}"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
                         </tr>
                         @endforeach
                         </tbody>

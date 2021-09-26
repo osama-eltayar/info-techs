@@ -39,6 +39,7 @@
                         </h2>
                         <h4>Description</h4>
                         <div>{!! $course->description !!}</div>
+                        @if(($course->isLive() || $course->isEnded()) && $course->videos->isNotEmpty())
                         <div class="course-titles">
                             <h4>Course titles</h4>
                             <ul class="list-unstyled">
@@ -59,6 +60,8 @@
 
                             </ul>
                         </div>
+                        @endif
+                        @if($course->isLive() && $course->sessions->isNotEmpty() )
                         <div class="course-titles">
                             <h4>Course Sessions</h4>
                             <ul class="list-unstyled">
@@ -80,12 +83,13 @@
 
                             </ul>
                         </div>
+                        @endif
                         <div class="box-info">
                             <div class="top-title">
                                 <i class="fa-solid fa-circle-microphone-lines"></i> Chair person
                             </div>
                             @foreach($course->people as $person)
-                            <div>
+                            <div class="d-block">
                                 <p>{{$person->title}} {{$person->name}} <span>({{$person->speciality}})</span>
                                 </p>
                             </div>
@@ -97,12 +101,14 @@
                                 <i class="fa-solid fa-person-simple"></i> Speakers
                             </div>
                             @foreach($course->speakers as $speaker)
-                            <div class="left-side-box">
-                                <img src="{{$speaker->image_url}}" alt="user">
-                            </div>
-                            <div class="right-side-box">
-                                <p>{{$speaker->title}} {{$speaker->name}}
-                                    <span>({{$speaker->speciality->name}})</span></p>
+                            <div class="d-block">
+                                <div class="left-side-box">
+                                    <img src="{{$speaker->image_url}}" alt="user">
+                                </div>
+                                <div class="right-side-box">
+                                    <p>{{$speaker->title}} {{$speaker->name}}
+                                        <span>({{$speaker->speciality->name}})</span></p>
+                                </div>
                             </div>
                             @endforeach
 
@@ -153,17 +159,17 @@
                             </div>
                         </div>
                         @if($course->isLive())
-                            @includeWhen($course->registered_users_exists,
+                            @includeWhen($course->registered_auth_user_exists,
                             'user.courses.partials.course_info.live-registered')
-                            @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.live')
+                            @includeWhen(!$course->registered_auth_user_exists, 'user.courses.partials.course_info.live')
                         @elseif($course->isEnded())
-                            @includeWhen($course->registered_users_exists,
+                            @includeWhen($course->registered_auth_user_exists,
                             'user.courses.partials.course_info.ended-registered')
-                            @includeWhen(!$course->registered_users_exists, 'user.courses.partials.course_info.ended')
+                            @includeWhen(!$course->registered_auth_user_exists, 'user.courses.partials.course_info.ended')
                         @else
-                            @includeWhen($course->registered_users_exists,
+                            @includeWhen($course->registered_auth_user_exists,
                             'user.courses.partials.course_info.count-down-registered')
-                            @includeWhen(!$course->registered_users_exists,
+                            @includeWhen(!$course->registered_auth_user_exists,
                             'user.courses.partials.course_info.count-down')
                         @endif
 
@@ -175,7 +181,7 @@
                                         <div class="type">GOLD</div>
                                         <a  href="#" data-toggle="modal" data-target="#sponsor{{$sponsor->id}}">
                                             <i class="fa-solid fa-crown"></i>
-                                            <img src="{{$sponsor->logo_url}}" style="max-width:100%; max-height:100%;" alt="logo">
+                                            <img src="{{$sponsor->logo_url}}" style="max-width:100px; max-height:100px;" alt="logo">
                                         </a>
                                     </li>
                                 @endforeach
@@ -200,7 +206,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <video width="100%" height="100%" controls>
+                <video width="100%" height="100%" controls >
                     <source src="" id="mp4-video" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

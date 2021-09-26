@@ -2,6 +2,9 @@
 
 namespace App\Services\User\Certificate;
 
+use App\Models\Course;
+use App\Models\User;
+use App\Models\UserCertificate;
 use App\Traits\HasFiles;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -13,49 +16,81 @@ class GenerateCertificateService
 
     public static string $certificateSampleStoragePath = 'certificates/certificate-sample.jpg';
     public static string $certificateSavingStoragePath = 'certificates/';
-    public static string $fontFilePath                 = 'fonts/ROBOTOCONDENSED-BOLD.TTF';
-    public static string $certificateFileTemplate      = 'user.certificates.partials.certificate-template';
+    public static string $fontFilePath = 'fonts/ROBOTOCONDENSED-BOLD.TTF';
+    public static string $certificateFileTemplate = 'user.certificates.partials.certificate-template';
 
-    public function handle( $data )
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * @var Course
+     */
+    private $course;
+
+    /**
+     * @param $data
+     * @return UserCertificate
+     */
+    public function handle($data)
     {
-        $imageName = $this->generateCertificateImage($data);
-        return $this->generateCertificateFile($data, $imageName);
+        ['course' => $this->course, 'user' => $this->user] = $data;
+
+        $certificate = UserCertificate::query()->firstOrCreate(['user_id' => $this->user->id, 'course_id' => $this->course->id]);
+
+        if (!$certificate->url) {
+            $imageName       = $this->generateCertificateImage();
+            $certificatePath = $this->generateCertificateFile($imageName);
+            $certificate->update(['path' => $certificatePath]);
+        }
+
+        return $certificate;
     }
 
-    private function generateCertificateImage( $data )
+    private function generateCertificateImage()
     {
-        $image = Image::make(Storage::path($data[ 'certificate' ]->course->certificate_image));
+        $image = Image::make(Storage::path($this->course->certificate_image));
 
-        $image->text($data[ 'user' ]->name, 550, 350, function ( $font ) {
-            $font->file(public_path(self::$fontFilePath));
-            $font->size(50);
-            $font->color('#434343');
-            $font->align('center');
-        });
-        Storage::makeDirectory(self::$certificateSavingStoragePath . $data[ 'user' ]->id);
-        $imageName = $this->getImageFileName($data[ 'user' ], $data[ 'certificate' ]);
+        $image->text($this->user->name, 550, 350,
+            function ($font) {
+                $font->file(public_path(self::$fontFilePath));
+                $font->size(50);
+                $font->color('#434343');
+                $font->align('center');
+            });
+        Storage::makeDirectory(self::$certificateSavingStoragePath . $this->user->id);
+        $imageName = $this->getImageFileName();
         $image->save(Storage::path($imageName));
         return $imageName;
     }
 
-    private function generateCertificateFile( $data, $imageName )
+    private function generateCertificateFile($imageName)
     {
-        $pdf             = \PDF::loadView(self::$certificateFileTemplate, [ 'imageUrl' => $this->getFileUrl($imageName) ]);
-        $certificateName = $this->getCertificateFileName($data[ 'user' ], $data[ 'certificate' ]);
-        $this->deleteFile($imageName);
+        $pdf             = \PDF::loadView(self::$certificateFileTemplate, ['imageUrl' => $this->getFileUrl($imageName)]);
+        $certificateName = $this->getCertificateFileName();
         $pdf->save(Storage::path($certificateName));
+        $this->deleteFile($imageName);
 
         return $certificateName;
     }
 
-    private function getImageFileName( $user, $certificate )
+    private function getImageFileName()
     {
-        return self::$certificateSavingStoragePath . $user->id . '/' . Str::kebab($certificate->course->title_en) . '.jpg';
+        return self::$certificateSavingStoragePath .
+               $this->user->id .
+               '/' .
+               Str::kebab($this->course->title_en) .
+               '.jpeg';
     }
 
-    private function getCertificateFileName( $user, $certificate )
+    private function getCertificateFileName()
     {
-        return self::$certificateSavingStoragePath . $user->id . '/' . Str::kebab($certificate->course->title_en) . '.pdf';
+        return self::$certificateSavingStoragePath .
+               $this->user->id .
+               '/' .
+               Str::kebab($this->course->title_en) .
+               '.pdf';
     }
 
 }

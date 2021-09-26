@@ -79,22 +79,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($certificates as $certificate)
+                    @foreach($courses as $course)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$certificate->formatted_available_at}}</td>
-                        <td>{{$certificate->course->title}}</td>
-                        <td>{{$certificate->course->type_string}} </td>
-                        <td>{{$certificate->course->cme_count}}</td>
+                        <td>{{$course->start_date}}</td>
+                        <td>{{$course->title}}</td>
+                        <td>{{$course->type_string}} </td>
+                        <td>{{$course->cme_count}}</td>
 
-                        @if($certificate->available_at)
-                            <td><span class="status status-success">70% Ready</span> </td>
-                            <td><a href="{{route('certificates.send',$certificate->id)}}" class="send-certificate-btn">Send by email</a></td>
-                            <td><a href="{{route('certificates.print',$certificate->id)}}" class="print-certificate-btn"> Print</a></td>
+                        @if($course->auth_user_trackers_sum_check_point >= $course->successNeededMinutes())
+                            <td><span class="status status-success">{{$course->certificate}}% Ready</span> </td>
+                            <td><a href="{{route('certificates.send',$course->id)}}"  class="send-certificate-btn">Send by email</a></td>
+                            <td><a href="{{route('certificates.print',$course->id)}}" class="print-certificate-btn"> Print</a></td>
                         @else
-                            <td><span class="status status-danger">70% Not completed</span> </td>
+                            <td><span class="status status-danger">{{$course->certificate}}% Not completed</span> </td>
                             <td><span class="not-available">Certificate not available</span></td>
-                            <td><button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="You done have the attenedance percentage">
+                            <td><button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="You done have the attendance percentage">
                                     <i class="fa-solid fa-circle-info"></i>
                                 </button></td>
                         @endif
@@ -106,23 +106,23 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-right">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item page-number"><a class="page-link" href="#">page 1 of 1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+{{--            <div class="text-right">--}}
+{{--                <nav aria-label="Page navigation example">--}}
+{{--                    <ul class="pagination">--}}
+{{--                        <li class="page-item">--}}
+{{--                            <a class="page-link" href="#" aria-label="Previous">--}}
+{{--                                <i class="fa-solid fa-chevron-left"></i>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="page-item page-number"><a class="page-link" href="#">page 1 of 1</a></li>--}}
+{{--                        <li class="page-item">--}}
+{{--                            <a class="page-link" href="#" aria-label="Next">--}}
+{{--                                <i class="fa-solid fa-chevron-right"></i>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </nav>--}}
+{{--            </div>--}}
         </div>
     </section>
 
