@@ -11,6 +11,7 @@ class CourseSessionController extends Controller
 {
     public function show(CourseSession $courseSession,SessionServiceInterface $sessionService)
     {
+        $this->authorize('view',$courseSession);
         $joinMeetingUrl = $sessionService->getJoinMeetingUrl($courseSession);
         return response([
            'join_meeting_url' =>  $joinMeetingUrl,

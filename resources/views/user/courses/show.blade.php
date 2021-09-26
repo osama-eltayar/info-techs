@@ -69,10 +69,12 @@
                                         start time :
                                         <span>{{$session->start_at}}</span>
                                     </p>
-                                    <a data-url="{{route('course-sessions.show',$session->id)}}" class="join-meeting"
-                                        data-available_at="{{$session->start_at}}">
-                                        <i class="fa-solid fa-circle-play"></i>join
-                                    </a>
+                                    @if($course->registered_auth_user_exists)
+                                        <a data-url="{{route('course-sessions.show',$session->id)}}" class="join-meeting"
+                                            data-available_at="{{$session->start_at}}" data-id="{{$session->id}}">
+                                            <i class="fa-solid fa-circle-play"></i>join
+                                        </a>
+                                    @endif
                                 </li>
                                 @endforeach
 
@@ -203,10 +205,10 @@
                     Your browser does not support the video tag.
                 </video>
 
-                {{--                    <button id="btn-close-iframe" class="hide" >close iframe</button>--}}
+                                    <button id="btn-close-iframe" class="hide" >close iframe</button>
 
-                {{--                    <iframe src="" id="meeting-iframe" class="hide" width="100%" height="100%"--}}
-                {{--                            ></iframe>--}}
+                                    <iframe src="" id="meeting-iframe" class="hide" width="100%" height="500px"
+                                            ></iframe>
             </div>
         </div>
     </div>

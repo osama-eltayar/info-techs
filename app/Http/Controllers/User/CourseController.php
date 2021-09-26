@@ -25,13 +25,13 @@ class CourseController extends Controller
             'my_speciality',
             'my_events'
         );
-        $courses = Course::filter($filterData)
-                         ->with('speakers', 'sponsors', 'organization')
-                         ->withExists('favouriteAuthUser')
-                         ->withExists('registeredAuthUser')
-                         ->withExists('shoppingCartAuthUser')
-                         ->withCount('views')
-                         ->get();
+        $courses    = Course::filter($filterData)
+                            ->with('speakers', 'sponsors', 'organization')
+                            ->withExists('favouriteAuthUser')
+                            ->withExists('registeredAuthUser')
+                            ->withExists('shoppingCartAuthUser')
+                            ->withCount('views')
+                            ->get();
 
         if ( $request->ajax() )
             return view('user.courses.partials.courses-list', compact('courses'));
@@ -42,26 +42,26 @@ class CourseController extends Controller
         return view('user.courses.index', compact('courses', 'courseTypes', 'specialities'));
     }
 
-    public function show(Course $course,ViewCounterService $viewCounterService)
+    public function show( Course $course, ViewCounterService $viewCounterService )
     {
-        $viewCounterService->execute($course,request()->ip(),auth()->id());
+        $viewCounterService->execute($course, request()->ip(), auth()->id());
 
-        $course->load(['activeDiscount',
-                       'materials',
-                       'people',
-                       'speakers',
-                       'specialities',
-                       'sponsors',
-                       'organization',
-                       'videos.trackers' => function ($query) {
-                           return $query->forUser(auth()->id());
-                       }
-                      ]);
+        $course->load([ 'activeDiscount',
+                        'materials',
+                        'people',
+                        'speakers',
+                        'specialities',
+                        'sponsors',
+                        'organization',
+                        'videos.trackers' => function ( $query ) {
+                            return $query->forUser(auth()->id());
+                        }
+        ]);
 
         $course->loadCount('views');
 
-       $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
+        $course->loadExists([ 'favouriteAuthUser', 'registeredAuthUser' ]);
 
-        return view('user.courses.show',compact('course'));
+        return view('user.courses.show', compact('course'));
     }
 }

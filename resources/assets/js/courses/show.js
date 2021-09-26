@@ -2,26 +2,31 @@ $(function () {
     $('.join-meeting').on('click', function (e) {
         e.preventDefault()
         const courseSessionUrl = $(this).attr('data-url')
-        getJoinMeetingUrl(courseSessionUrl).done(function (res){
+        // sessionId = $(this).attr('data-id')
+        getJoinMeetingUrl(courseSessionUrl).done(function (res) {
             joinMeeting(res.join_meeting_url)
         })
     })
 
-    $('#btn-close-iframe').on('click',function (){
+    $('#btn-close-iframe').on('click', function () {
         $('#meeting-iframe').addClass('hide')
-       $('#meeting-iframe').attr('src','')
+        $('#meeting-iframe').attr('src', '')
         $('#video-modal').modal('hide')
 
 
     })
 
-    $('.add-to-cart').on('click',function (){
-       addToCart($(this).attr('data-courseId'), $(this).attr('data-action'))
+    $(document).on('click','.close',function (){
+        $('#btn-close-iframe').click()
+    })
+
+    $('.add-to-cart').on('click', function () {
+        addToCart($(this).attr('data-courseId'), $(this).attr('data-action'))
     });
 
-    $('.add-to-fav').on('click',function (){
+    $('.add-to-fav').on('click', function () {
         console.log('fav')
-       addToFavourite($(this))
+        addToFavourite($(this))
     });
 })
 
@@ -41,13 +46,12 @@ function getJoinMeetingUrl(url) {
 
 function joinMeeting(url) {
     $('video').hide()
-    $('#meeting-iframe').attr('src',url)
+    $('#meeting-iframe').attr('src', url)
     $('#meeting-iframe').removeClass('hide')
     $('#video-modal').modal('show')
 }
 
-function addToCart(courseId,url)
-{
+function addToCart(courseId, url) {
     let data = {
         'course_id': courseId
     };
@@ -57,30 +61,33 @@ function addToCart(courseId,url)
         type: 'post',
         data,
     })
-     .done(res => {
-         window.location.href = '/shopping-cart' ;
-     })
-     .fail(res => {
-         element.attr('disabled', false)
+        .done(res => {
+            window.location.href = '/shopping-cart';
+        })
+        .fail(res => {
+            element.attr('disabled', false)
 
-     })
-     .always(() => {
-     })
+        })
+        .always(() => {
+        })
 }
-function addToFavourite(element)
-{
+
+function addToFavourite(element) {
     let url = element.attr('data-action');
     $.ajax({
-        url : url,
+        url: url,
         type: 'post',
     })
-     .done(res => {
-         $('#favourite-courses-count').text( +$('#favourite-courses-count').text() + 1 )
-         element.remove()
-     })
-     .fail(res => {
-         element.toggleClass('active-red')
-     })
-     .always(() => {
-     })
+        .done(res => {
+            $('#favourite-courses-count').text(+$('#favourite-courses-count').text() + 1)
+            element.remove()
+        })
+        .fail(res => {
+            element.toggleClass('active-red')
+        })
+        .always(() => {
+        })
 }
+
+
+
