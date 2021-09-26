@@ -1,8 +1,13 @@
 <button class="btn btn-success" type="button">{{$course->start_date->diffForHumans()}}</button>
 <div class="message "><i class="fa-solid fa-circle-check"></i>You are already registered in this event</div>
-<div class="printer text-center">
-    <button type="button" class="btn-printer"><i class="fa-solid fa-print"></i> Print Badge</button>
-</div>
+@if($course->isHybrid() || $course->isPhysical())
+    <div class="printer text-center">
+        <button type="button" class="btn-printer"
+                onclick="window.location.href = '{{route('invoices.print',$course->id)}}'"><i class="fa-solid fa-print"></i>
+            Print Badge
+        </button>
+    </div>
+@endif
 <ul class="list-unstyled list-info">
     <li>
         <h3>Event date and time</h3>

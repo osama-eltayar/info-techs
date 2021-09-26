@@ -127,6 +127,11 @@ class Course extends Model
         return $this->{getLocalizeAttribute('description')};
     }
 
+    public function successNeededMinutes()
+    {
+        return round(($this->certificate / 100) * $this->duration )  ;
+    }
+
     //########################################### Mutators #################################################
 
 
@@ -221,5 +226,15 @@ class Course extends Model
     public function views()
     {
         return $this->hasMany(CourseView::class);
+    }
+
+    public function trackers()
+    {
+        return $this->hasMany(UserVideoTracker::class);
+    }
+
+    public function authUserTrackers()
+    {
+        return $this->hasMany(UserVideoTracker::class)->where('user_id',\auth()->id());
     }
 }

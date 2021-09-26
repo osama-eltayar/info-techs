@@ -41,13 +41,13 @@ Route::group([
         Route::get('payment/callback',[ PaymentController::class, 'callback'])->name('payment.callback');
         Route::post('payment/checkout',[ PaymentController::class, 'checkout'])->name('payment.checkout');
         Route::resource('invoices', InvoiceController::class)->only('index');
-        Route::get('invoices/{transaction}', [ InvoiceController::class, 'print' ])->name('invoices.print');
+        Route::get('invoices/{course}', [ InvoiceController::class, 'print' ])->name('invoices.print');
 
         Route::resource('certificates', UserCertificateController::class)->only('index');
-        Route::post('certificates/{certificate}/print', [UserCertificateController::class,'print'])->name('certificates.print');
-        Route::post('certificates/{certificate}/send', [UserCertificateController::class,'send'])->name('certificates.send');
+        Route::post('courses/{course}/certificate/print', [UserCertificateController::class,'print'])->name('certificates.print');
+        Route::post('courses/{course}/certificate/send', [UserCertificateController::class,'send'])->name('certificates.send');
         Route::put('courses/videos/tracker', [CourseVideoTrackerController::class,'update']);
-  
+
         //*** debug route only
         Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 

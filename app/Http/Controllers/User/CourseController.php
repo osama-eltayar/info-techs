@@ -59,8 +59,8 @@ class CourseController extends Controller
                       ]);
 
         $course->loadCount('views');
-
-       $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
+        $course->loadExists(['favouriteAuthUser','registeredAuthUser']);
+        $course->loadSum('authUserTrackers','check_point');
 
         return view('user.courses.show',compact('course'));
     }
