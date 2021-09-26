@@ -236,6 +236,10 @@
 @endforeach
 @endsection
 
+<div class="modal " id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+</div>
+
 @section('script')
     <script>
      var courseId = "{{$course->id}}"

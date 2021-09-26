@@ -74,9 +74,8 @@
     "/fonts/ROBOTOCONDENSED-REGULAR.TTF": "/fonts/ROBOTOCONDENSED-REGULAR.TTF",
     "/fonts/ROBOTOCONDENSED-REGULAR.woff": "/fonts/ROBOTOCONDENSED-REGULAR.woff",
     "/css/rtl.css": "/css/rtl.css",
-    "/js/vendor/jquery.min.js": "/js/vendor/jquery.min.js",
     "/js/vendor/select2.min.js": "/js/vendor/select2.min.js",
-    "/js/vendor/toaster.min.js": "/js/vendor/toaster.min.js",
+    "/js/vendor/toastr.min.js": "/js/vendor/toastr.min.js",
     "/css/vendor/select2.min.css": "/css/vendor/select2.min.css",
     "/css/vendor/toastr.min.css": "/css/vendor/toastr.min.css"
 }
