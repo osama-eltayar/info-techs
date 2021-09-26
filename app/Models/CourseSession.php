@@ -62,6 +62,11 @@ class CourseSession extends Model
         return $this->belongsTo(Course::class);
     }
 
+    public function trackers()
+    {
+        return $this->morphMany(UserVideoTracker::class,'trackable');
+    }
+
 
 }
 

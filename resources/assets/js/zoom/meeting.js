@@ -41,13 +41,13 @@ function websdkready() {
     signature: tmpArgs.signature || "",
     china: tmpArgs.china === "1",
   };
-    console.log(meetingConfig)
+    // console.log(meetingConfig)
 
   // a tool use debug mobile device
   if (testTool.isMobileDevice()) {
     vConsole = new VConsole();
   }
-  console.log(JSON.stringify(ZoomMtg.checkSystemRequirements()));
+  // console.log(JSON.stringify(ZoomMtg.checkSystemRequirements()));
 
   // it's option if you want to change the WebSDK dependency link resources. setZoomJSLib must be run at first
   // ZoomMtg.setZoomJSLib("https://source.zoom.us/1.9.7/lib", "/av"); // CDN version defaul
@@ -62,8 +62,8 @@ function websdkready() {
       disableCORP: !window.crossOriginIsolated, // default true
       // disablePreview: false, // default false
       success: function () {
-        console.log(meetingConfig);
-        console.log("signature", signature);
+        // console.log(meetingConfig);
+        // console.log("signature", signature);
         ZoomMtg.i18n.load(meetingConfig.lang);
         ZoomMtg.i18n.reload(meetingConfig.lang);
         ZoomMtg.join({
@@ -79,7 +79,11 @@ function websdkready() {
             ZoomMtg.getAttendeeslist({});
             ZoomMtg.getCurrentUser({
               success: function (res) {
-                console.log("success getCurrentUser", res.result.currentUser);
+                // console.log("success getCurrentUser", res.result.currentUser);
+                console.log("success getCurrentUser");
+                  updateSessionTracker()
+                  startSessionInterval()
+                  startSessionTracker()
               },
             });
           },
@@ -112,3 +116,36 @@ function websdkready() {
 
   beginJoin(meetingConfig.signature);
 };
+
+
+let sessionTimerInterval,sessionTrackerInterval, sessionTimer = 0;
+
+function updateSessionTracker() {
+    const data = {
+        trackable_id: sessionId,
+        check_point: sessionTimer
+    }
+    $.ajax({
+        url: courseSessionTrackerUrl,
+        type: 'PUT',
+        cache: false,
+        data: data
+    })
+}
+
+
+function startSessionInterval() {
+    sessionTimerInterval = setInterval(function () {
+        sessionTimer++;
+    }, 1000)
+}
+
+function startSessionTracker() {
+    // console.log("startSessionTracker")
+    sessionTrackerInterval = setInterval(function () {
+        sessionTimer /= 60
+        updateSessionTracker()
+        sessionTimer = 0
+    }, 300000) // 5 min
+}
+

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\CourseSessionTrackerController;
 use App\Http\Controllers\User\CourseVideoTrackerController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\InvoiceController;
@@ -47,6 +48,8 @@ Route::group([
         Route::post('courses/{course}/certificate/print', [UserCertificateController::class,'print'])->name('certificates.print');
         Route::post('courses/{course}/certificate/send', [UserCertificateController::class,'send'])->name('certificates.send');
         Route::put('courses/videos/tracker', [CourseVideoTrackerController::class,'update']);
+        Route::put('courses/sessions/tracker', [ CourseSessionTrackerController::class, 'update'])->name('courses.sessions.tracker.update');
+
 
         //*** debug route only
         Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
