@@ -197,7 +197,9 @@
 
 @endsection
 @section('modals')
+<div class="modal " id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+</div>
 <div class="modal survey-modal modal-xl" id="video-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg  modal-dialog-centered">
@@ -235,6 +237,8 @@
     </div>
 @endforeach
 @endsection
+
+
 
 @section('script')
     <script>

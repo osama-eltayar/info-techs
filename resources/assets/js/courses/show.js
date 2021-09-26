@@ -39,6 +39,12 @@ $(function () {
         e.preventDefault()
         sendEmailRequest($(this).attr('href'))
     });
+
+    $(document).on('click','#attendance-report',function (e){
+        console.log('clicked')
+        e.preventDefault();
+        getAttendanceReport($(this).attr('href'))
+    })
 })
 
 function getJoinMeetingUrl(url) {
@@ -115,3 +121,17 @@ function sendEmailRequest(url)
             })
 }
 
+function getAttendanceReport(url)
+{
+    $.ajax({
+        url: url ,
+        type: 'get',
+    })
+            .done(res => {
+                $('#reportModal').html(res).modal('show')
+            })
+            .fail(res => {
+            })
+            .always(() => {
+            })
+}

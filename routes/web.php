@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AttendanceReportController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\CourseSessionTrackerController;
 use App\Http\Controllers\User\CourseVideoTrackerController;
@@ -49,8 +50,7 @@ Route::group([
         Route::post('courses/{course}/certificate/send', [UserCertificateController::class,'send'])->name('certificates.send');
         Route::put('courses/videos/tracker', [CourseVideoTrackerController::class,'update']);
         Route::put('courses/sessions/tracker', [ CourseSessionTrackerController::class, 'update'])->name('courses.sessions.tracker.update');
-
-
+        Route::get('courses/{course}/attendance-report',[AttendanceReportController::class,'index'])->name('attendance-report');
         //*** debug route only
         Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 

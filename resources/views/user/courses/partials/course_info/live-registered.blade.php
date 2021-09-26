@@ -34,7 +34,7 @@
 
     <li>
         <h3>Attendance report</h3>
-        <p>Generate report</p>
+        <a href="{{route('attendance-report',$course->id)}}" id="attendance-report">Generate report</a>
     </li>
     <li class="congratulation-li">
         <h3>Congratulation you have finished this course</h3>
