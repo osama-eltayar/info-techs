@@ -13,10 +13,7 @@ const mix = require('laravel-mix');
 
 mix
     .js('resources/js/app.js', 'public/js')
-    .scripts(['resources/assets/js/common/jquery.min.js',
-              'resources/assets/js/common/bootstrap.bundle.min.js',
-              'resources/assets/js/common/fancybox.min.js',
-              'resources/assets/js/common/owl.carousel.min.js',
+    .scripts([
               'resources/assets/js/common/script.js',
     ], 'public/js/common.min.js')
     .js('resources/assets/js/layouts/common.js','public/js/layouts.min.js')

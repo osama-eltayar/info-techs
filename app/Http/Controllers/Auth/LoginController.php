@@ -12,6 +12,7 @@ class LoginController extends Controller
 
     public function show()
     {
+        session()->put('url.intended', url()->previous()) ;
         return view('user.auth.login');
     }
 
@@ -19,11 +20,11 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
         $credentials = $request->only('email', 'password');
+        $previousRoute = session()->pull('url.intended', '/') ;
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect(route('courses.index'));
+            return redirect($previousRoute);
         }
 
         return back()
