@@ -208,6 +208,13 @@
 </div>
 
 @yield('modals')
+
+
+
+<script src="{{asset('js/common/jquery.min.js')}}"></script>
+<script src="{{asset('js/common/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('js/common/fancybox.min.js')}}"></script>
+<script src="{{asset('js/common/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/common.min.js')}}"></script>
 <script src="{{asset('js/layouts.min.js')}}"></script>
 <script src="/js/vendor/toastr.min.js"></script>
