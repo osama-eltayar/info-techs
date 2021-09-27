@@ -45,7 +45,7 @@ trait HasFiles
     public function getDownloadUrl( $path )
     {
         if ( $path )
-            return Storage::download($path);
+            return Storage::disk($this->disk())->download($path);
         return null;
     }
 

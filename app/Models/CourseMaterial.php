@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class CourseMaterial extends Model
 {
     use HasFactory;
+    use HasFiles;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +34,11 @@ class CourseMaterial extends Model
     public function getNameAttribute()
     {
         return $this->{getLocalizeAttribute('name')};
+    }
+
+    public function getDownloadUrlAttribute()
+    {
+        return $this->getFileUrl($this->path);
     }
 
 
