@@ -46,6 +46,11 @@ class Person extends Model
         return $this->belongsToMany(Course::class, 'course_people');
     }
 
+    public function speciality()
+    {
+        return $this->belongsTo(Speciality::class);
+    }
+
 
 }
 

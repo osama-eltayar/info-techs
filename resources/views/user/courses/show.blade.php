@@ -84,19 +84,19 @@
                             </ul>
                         </div>
                         @endif
-                        <div class="box-info">
+                        <div class="box-info ">
                             <div class="top-title">
                                 <i class="fa-solid fa-circle-microphone-lines"></i> Chair person
                             </div>
                             @foreach($course->people as $person)
                             <div class="d-block">
-                                <p>{{$person->title}} {{$person->name}} <span>({{$person->speciality}})</span>
+                                <p>{{$person->title}} {{$person->name}} <span>({{$person->speciality->name}})</span>
                                 </p>
                             </div>
                             @endforeach
                         </div>
 
-                        <div class="box-info">
+                        <div class="box-info d-block">
                             <div class="top-title">
                                 <i class="fa-solid fa-person-simple"></i> Speakers
                             </div>
@@ -124,7 +124,7 @@
                                     <p><i class="fa-solid fa-files"></i> {{$material->name}}
                                         .{{$material->mime_type}} <small>1 MB</small></p>
                                 </div>
-                                <div class="col-6"><a href="{{$material->download_url}}"><i
+                                <div class="col-6"><a href="{{$material->download_url}}" download><i
                                             class="fa-solid fa-angles-down"></i> download</a></div>
                             </div>
                             @endforeach
@@ -133,7 +133,20 @@
 
                     </div>
                 </div>
-
+                <div class="sponsor-row">
+                    <h2>Sponsors</h2>
+                    <ul class="list-unstyled row">
+                        @foreach($course->sponsors as $sponsor)
+                            <li class="type1 col-lg-3 col-md-6 col-12">
+                                <div class="type">GOLD</div>
+                                <a  href="#" data-toggle="modal" data-target="#sponsor{{$sponsor->id}}">
+                                    <i class="fa-solid fa-crown"></i>
+                                    <img src="{{$sponsor->logo_url}}" style="max-width:100px; max-height:100px;" alt="logo">
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-12">
                 <div class="top-pos">
@@ -172,21 +185,6 @@
                             @includeWhen(!$course->registered_auth_user_exists,
                             'user.courses.partials.course_info.count-down')
                         @endif
-
-                        <div class="sponsor-row">
-                            <h2>Sponsors</h2>
-                            <ul class="list-unstyled row">
-                                @foreach($course->sponsors as $sponsor)
-                                    <li class="type1 col-lg-3 col-md-6 col-12">
-                                        <div class="type">GOLD</div>
-                                        <a  href="#" data-toggle="modal" data-target="#sponsor{{$sponsor->id}}">
-                                            <i class="fa-solid fa-crown"></i>
-                                            <img src="{{$sponsor->logo_url}}" style="max-width:100px; max-height:100px;" alt="logo">
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

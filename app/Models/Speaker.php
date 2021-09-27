@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Speaker extends Model
 {
     use HasFactory;
+    use HasFiles;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +41,11 @@ class Speaker extends Model
     public function getTitleAttribute()
     {
         return $this->{getLocalizeAttribute('title')};
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->getFileUrl($this->image);
     }
 
 
