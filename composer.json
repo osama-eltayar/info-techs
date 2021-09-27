@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.6",
         "laravel/framework": "^8.40",
+        "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
         "mcamara/laravel-localization": "^1.6",
         "mohamedgaber-intake40/filter-quent": "^1.0",
