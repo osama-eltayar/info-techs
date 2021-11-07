@@ -64,7 +64,7 @@ class ShoppingCartService
                                         ->get();
 
         $soppingCartItems->map(function ($item){
-            $item->price = optional($item->course->activeDiscount)->price ?? $item->price ;
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price ;
         });
         return $soppingCartItems ;
     }
@@ -76,7 +76,7 @@ class ShoppingCartService
                     ->get();
 
         $items->each(function ($item){
-            $item->price = optional($item->course->activeDiscount)->price ?? $item->price ;
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price ;
             $item->update();
         });
     }

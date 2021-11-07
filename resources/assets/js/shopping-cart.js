@@ -45,10 +45,11 @@ function checkout(element)
     $.ajax({
         url,
         type: 'post',
+        cache:true
     })
      .done(res => {
+         $.ajaxSetup({cache:true});
          $('#payment-form').html(res)
-
      })
      .fail(res => {
          element.attr('disabled', false)

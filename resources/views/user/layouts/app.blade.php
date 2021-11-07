@@ -39,11 +39,11 @@
             <div class="aside-dropdown__item d-lg-none d-block">
                 <ul class="aside-menu">
                     <li class="aside-menu__item"><a class="aside-menu__link" href="{{route('courses.index')}}"><span>Home</span></a></li>
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get to know us</span></a></li>
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Services</span></a></li>
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span> Our events</span></a></li>
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Join our team</span></a></li>
-                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get in touch</span></a></li>
+                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>My Cart</span></a></li>
+{{--                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Services</span></a></li>--}}
+                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span> My events</span></a></li>
+{{--                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Join our team</span></a></li>--}}
+{{--                    <li class="aside-menu__item"><a class="aside-menu__link" href="#"><span>Get in touch</span></a></li>--}}
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                         @continue(LaravelLocalization::getCurrentLocale() == $localeCode)
                         <li class="aside-menu__item">
@@ -107,7 +107,7 @@
                         <div class="user-dropdown">
                             <div class="dropdown">
                                 <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span>Welcome, {{auth()->user()->name}} </span>
+                                    <span>Welcome, {{auth()->user()->first_name}} </span>
                                     <img src="{{ optional(auth()->user()->profile)->image_url ??  asset('media/images/user1.png')}}" alt="user">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -120,7 +120,7 @@
                                     <a class="dropdown-item" href="{{route('password.reset')}}"><i class="fa-solid fa-lock-keyhole"></i> Change my password</a>
                                     <a class="dropdown-item" href="{{route('certificates.index')}}"><i class="fa-solid fa-file-certificate"></i> My certificates</a>
                                     <a class="dropdown-item" href="{{route('invoices.index')}}"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days"></i> My events</a>
+                                    <a class="dropdown-item" href="{{route('courses.index',['my_events'=> 1])}}"><i class="fa-solid fa-calendar-days"></i> My events</a>
                                     <a class="dropdown-item" href="#" onclick="$('#logout-form').submit()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                 </div>
                             </div>
@@ -143,7 +143,6 @@
                                 <span id="favourite-courses-count">
                                     {{$favourite_courses_count}}
                                 </span>
-
                             </a>
                         </div>
                     @endauth
@@ -174,7 +173,8 @@
                     <img src="{{asset('media/images/logomain.png')}}" alt="logo">
                 </div>
                 <div class="col-auto text-center hidden-small">
-                    <p>This platform is copy rights @2021 by infotechs.org</p>
+                    <p>Copyright ©2021 Infotechs. All rights reserved. Privacy policy
+                        Terms and conditions</p>
                     <div class="social">
                         <a href="#"><i class="fa-brands fa-facebook"></i></a>
                         <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -212,6 +212,8 @@
 
 
 <script src="{{asset('js/common/jquery.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{asset('js/common/additional-methods.min.js')}}"></script>
 <script src="{{asset('js/common/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/common/fancybox.min.js')}}"></script>
 <script src="{{asset('js/common/owl.carousel.min.js')}}"></script>

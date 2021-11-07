@@ -213,7 +213,7 @@
 
                                     <button id="btn-close-iframe" class="hide" >close iframe</button>
 
-                                    <iframe src="" id="meeting-iframe" class="hide" width="100%" height="500px"
+                                    <iframe src="" id="meeting-iframe" class="hide embed-responsive-item" width="100%" height="600px"
                                             ></iframe>
             </div>
         </div>
@@ -243,4 +243,32 @@
      var courseId = "{{$course->id}}"
     </script>
 <script src="/js/courses/show.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '.print-certificate-btn', function (e) {
+                e.preventDefault();
+                $('#certificate-form').attr('action', $(this).attr('href'))
+                $('#certificate-form').submit();
+            })
+
+            $(document).on('click','.send-certificate-btn',function (e){
+                e.preventDefault()
+                sendEmailRequest($(this).attr('href'))
+            });
+        })
+
+        function sendEmailRequest(url)
+        {
+            return $.ajax({
+                url: url ,
+                type: 'post',
+            })
+                    .done(res => {
+                    })
+                    .fail(res => {
+                    })
+                    .always(() => {
+                    })
+        }
+    </script>
 @endsection

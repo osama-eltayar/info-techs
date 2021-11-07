@@ -22,7 +22,7 @@ class ShoppingCartController extends Controller
     {
         $course = Course::find($request->course_id);
 
-        if ($course->price == 0 || optional($course->activeDiscount)->price == 0)
+        if ($course->price === 0 || optional($course->activeDiscount)->price === 0)
             auth()->user()->registeredCourses()->attach($request->course_id);
         else
             ShoppingCart::firstOrCreate($request->only('course_id') + ['user_id' => auth()->id()]);
