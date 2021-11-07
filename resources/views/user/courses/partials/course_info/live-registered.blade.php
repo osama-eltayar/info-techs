@@ -21,7 +21,7 @@
     </li>
     @if($course->cme_count)
         <li>
-            <h3>Accreditation number (CME's)</h3>
+            <h3>Accredited CMEs</h3>
             <p>{{$course->cme_count}}</p>
         </li>
     @endif
@@ -36,15 +36,13 @@
         <h3>Attendance report</h3>
         <a href="{{route('attendance-report',$course->id)}}" id="attendance-report">Generate report</a>
     </li>
-    <li class="congratulation-li">
-        <h3>Congratulation you have finished this course</h3>
-    </li>
     <div class="print-list text-center">
-        <div class="top-icon ">
-            <i class="fa-solid fa-file-certificate"></i>
-            <small><i class="fa-solid fa-magnifying-glass"></i></small>
-        </div>
+
         @if($course->auth_user_trackers_sum_check_point >= $course->successNeededMinutes())
+            <div class="top-icon ">
+                <i class="fa-solid fa-file-certificate"></i>
+                <small><i class="fa-solid fa-magnifying-glass"></i></small>
+            </div>
             <p class="success-text">Congratulation You have enrolled
                 {{$course->certificate}}% from the event</p>
         @endif
@@ -57,8 +55,8 @@
             <form action="" id="certificate-form" method="POST">
                 @csrf
             </form>
-            <a href="{{route('certificates.print',$course->id)}}" class="btn btn-outline"><i class="fa-solid fa-print"></i> Print certificate</a>
-            <a href="{{route('certificates.send',$course->id)}}" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Send by mail</a>
+            <a href="{{route('certificates.print',$course->id)}}" class="btn btn-outline print-certificate-btn"><i class="fa-solid fa-print"></i> Print certificate</a>
+            <a href="{{route('certificates.send',$course->id)}}" class="btn btn-outline send-certificate-btn"><i class="fa-solid fa-envelope"></i> Send by mail</a>
         @else
             <div class="bottom-icon">
                 <span><i class="fa-solid fa-file-certificate"></i></span>

@@ -12,7 +12,7 @@ class CourseFilter extends Filter
 
     public function filterTitle( $title )
     {
-        $this->query->where('title', 'like', "%$title%");
+        $this->query->where('title_'.app()->getLocale(), 'like', "%$title%");
     }
 
     public function filterSpeciality( $speciality )

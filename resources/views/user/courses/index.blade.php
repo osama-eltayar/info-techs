@@ -5,24 +5,24 @@
 @section('content')
 
         <!-- Start Banner-->
-        <section class="banner-slide">
-            <div class="owl-carousel">
-                <div class="item" style="background-image: url('/media/images/slide.png');">
-                    <div class="container">
-                        <h2>
-                            Discover <span>our courses</span> <br> It is you perfect choice
-                        </h2>
-                    </div>
-                </div>
-                <div class="item" style="background-image: url('/media/images/banner.png');">
-                    <div class="container">
-                        <h2>
-                            Discover <span>our courses</span> <br> It is you perfect choice
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </section>
+{{--        <section class="banner-slide">--}}
+{{--            <div class="owl-carousel">--}}
+{{--                <div class="item" style="background-image: url('/media/images/slide.png');">--}}
+{{--                    <div class="container">--}}
+{{--                        <h2>--}}
+{{--                            Discover <span>our courses</span> <br> It is you perfect choice--}}
+{{--                        </h2>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="item" style="background-image: url('/media/images/banner.png');">--}}
+{{--                    <div class="container">--}}
+{{--                        <h2>--}}
+{{--                            Discover <span>our courses</span> <br> It is you perfect choice--}}
+{{--                        </h2>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
         <!-- Start Courses Card-->
         <section class="courses">
@@ -118,8 +118,12 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="row">
 
-                                    <button class="btn btn-default" type="button" id="course-search-btn">Start Search </button>
+                                    </div>
+                                    <button class="btn btn-default " type="button" id="course-search-btn">Start Search </button>
+                                    <button class="btn btn-warning " type="button"  id="course-search-btn">Clear </button>
+
                                 </form>
                             </div>
                             <div class="spons5r-side">

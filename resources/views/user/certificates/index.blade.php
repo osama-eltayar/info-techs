@@ -70,8 +70,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Date</th>
-                        <th scope="col">Event type</th>
                         <th scope="col">Event</th>
+                        <th scope="col">Event type</th>
                         <th scope="col">CME's</th>
                         <th scope="col" class="status-th">Status</th>
                         <th scope="col"></th>

@@ -36,7 +36,7 @@
     </li>
     @if($course->cme_count)
         <li>
-            <h3>Accreditation number (CME's)</h3>
+            <h3>Accredited CMEs</h3>
             <p>{{$course->cme_count}}</p>
         </li>
     @endif

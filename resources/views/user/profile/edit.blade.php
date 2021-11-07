@@ -38,7 +38,6 @@
                 <div class="title">
                     <i class="fa-solid fa-file-pen"></i> Update my information
                 </div>
-                <h3>Please fill these information to update your information </h3>
                 <div class="form-row">
                     <div class="col-md-6 col-12">
                         <div class="form-group">
