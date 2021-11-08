@@ -18,6 +18,7 @@
                     <span class="info"><i class="fa-solid fa-circle-info"></i></span>
                 </div>
                 <div class="card-info">
+                    <div class="box-clickable " onclick="window.location.href='{{route('courses.show' ,$course->id )}}'">
                     <h3>{{$course->title}}</h3>
                     @if($course->activeDiscount)
                         @if($course->activeDiscount->date)
@@ -40,8 +41,7 @@
                     <div class="icon date">
                         <i class="fa-solid fa-calendar-day"></i> <b>Date:</b> {{$course->formatted_start_date}}
                     </div>
-
-                    <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
+                    </div>
                     <p class="view">{{$course->views_count ?? 0}} views</p>
                     <div class="text-center">
                         @if($course->registered_auth_user_exists)

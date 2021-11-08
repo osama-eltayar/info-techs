@@ -84,18 +84,27 @@
                             </ul>
                         </div>
                         @endif
+
                         <div class="box-info ">
                             <div class="top-title">
                                 <i class="fa-solid fa-circle-microphone-lines"></i> Chair person
                             </div>
                             @foreach($course->people as $person)
                             <div class="d-block">
-                                <p>{{$person->title}} {{$person->name}} <span>({{$person->speciality->name}})</span>
-                                </p>
+                                <div class="d-block">
+                                    <div class="left-side-box">
+                                        <img src="/media/images/user.png" alt="user">
+                                    </div>
+                                    <div class="right-side-box">
+                                        <p>{{$person->title}} {{$person->name}}</p>
+                                    </div>
+                                    <div class="bio">
+                                        <span>person bio</span>
+                                    </div>
+                                </div>
                             </div>
                             @endforeach
                         </div>
-
                         <div class="box-info d-block">
                             <div class="top-title">
                                 <i class="fa-solid fa-person-simple"></i> Speakers
@@ -106,8 +115,10 @@
                                     <img src="{{$speaker->image_url}}" alt="user">
                                 </div>
                                 <div class="right-side-box">
-                                    <p>{{$speaker->title}} {{$speaker->name}}
-                                        <span>({{$speaker->speciality->name}})</span></p>
+                                    <p>{{$speaker->title}} {{$speaker->name}}</p>
+                                </div>
+                                <div class="bio">
+                                    <span>speaker bio</span>
                                 </div>
                             </div>
                             @endforeach

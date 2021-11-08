@@ -8,17 +8,17 @@
 
     <!-- Start Banner-->
     <section class="banner" style="background-image: url('/media/images/banner5.png');">
-        <h1>Update my information</h1>
+        <h1>Tell us more about you</h1>
     </section>
 
     <!-- Start Nav Links-->
-    <section class="nav-links">
-        <div class="container">
-            <a href="#">Home page</a>
-            <span>|</span>
-            <a href="{{route('profile.edit')}}">Update my information</a>
-        </div>
-    </section>
+{{--    <section class="nav-links">--}}
+{{--        <div class="container">--}}
+{{--            <a href="#">Home page</a>--}}
+{{--            <span>|</span>--}}
+{{--            <a href="{{route('profile.edit')}}">Update my information</a>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
     <!-- Start Form -->
     <section class="form-section">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="saudi-council-check">Do you have Saudi council number (SCR)? </label>
+                            <label for="saudi-council-check">Do you have a Saudi Commission Number? </label>
                             <div class="input-icon">
                                 <select name="saudi_council_check" id="saudi-council-check" class="form-control">
                                     <option value="1" {{$profile->saudi_council ? 'selected' : NULL}}>Yes</option>
@@ -104,7 +104,7 @@
 
                     <div class="col-md-6 col-12 {{$profile->saudi_council ?: 'd-none' }}" id="saudi-council-input">
                         <div class="form-group ">
-                            <label for="SCR">Saudi council number (SCR)</label>
+                            <label for="SCR">Saudi council number </label>
                             <div class="input-icon">
                                 <input type="tel" name="profile[saudi_council]" id="SCR" class="form-control"
                                        value="{{$profile->saudi_council }}">
@@ -130,6 +130,20 @@
                                     @foreach($specialities as $speciality)
                                         <option
                                             value="{{$speciality->id}}" {{$profile->speciality_id == $speciality->id ? 'selected' : NULL }}>{{$speciality->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="rank">Rank <span>*</span> </label>
+                            <div class="input-icon">
+                                <select name="profile[rank_id]" id="rank" class="form-control" required>
+                                    <option value="" >Rank</option>
+                                    @foreach($ranks as $rank)
+                                        <option
+                                            value="{{$rank->id}}" {{$profile->rank_id == $rank->id ? 'selected' : NULL }}>{{$rank->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

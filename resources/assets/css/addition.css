@@ -14,6 +14,30 @@ label.error{
     overflow-y: hidden !important;
 }
 
+/** override colors **/
+.card-content .info {
+    color: #1277C4 !important ;
+}
+
+.card-content .card-info .add-cart {
+    background-color: #1277C4 !important ;
+}
+
+.card-content .card-info .add-cart:hover {
+    background-color: transparent;
+    border: 1px solid !important ;
+    color: #1277C4 !important ;
+}
+
+.card-content .overlay .status-info .status-text {
+    background-color: #1277C4 !important ;
+}
+
+.card-content .overlay ul li::before {
+    color: #1277C4 !important ;
+}
+
+
 /* loader */
 
 #loader-wrapper {
@@ -30,42 +54,44 @@ label.error{
 #loader {
     display: block;
     position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
+    left: 40%;
+    top: 45%;
+    /*width: 150px;*/
     height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #fff;
+    margin: auto;
+    /*border-radius: 50%;*/
+    /*border: 3px solid transparent;*/
+    /*border-top-color: #fff;*/
     z-index: 1001;
-    animation: spin 2s linear infinite;
+    /*animation: spin 2s linear infinite;*/
+    background-image: url("/media/images/loading.gif");
+    background-repeat: no-repeat ;
 
 }
-#loader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #1437af;
-    animation: spin 3s linear infinite;
-}
-#loader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    left: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #66ce0d;
-    animation: spin 1.5s linear infinite;
-}
+/*#loader:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 5px;*/
+/*    left: 5px;*/
+/*    right: 5px;*/
+/*    bottom: 5px;*/
+/*    border-radius: 50%;*/
+/*    border: 3px solid transparent;*/
+/*    border-top-color: #1437af;*/
+/*    animation: spin 3s linear infinite;*/
+/*}*/
+/*#loader:after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 15px;*/
+/*    right: 15px;*/
+/*    left: 15px;*/
+/*    bottom: 15px;*/
+/*    border-radius: 50%;*/
+/*    border: 3px solid transparent;*/
+/*    border-top-color: #66ce0d;*/
+/*    animation: spin 1.5s linear infinite;*/
+/*}*/
 #loader-wrapper .loader-section {
     position: fixed;
     top: 0;

@@ -87,7 +87,7 @@
                             <li class="main-menu__item"><a class="main-menu__link active" href="{{route('courses.index')}}"><span>Home</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span> Get to know us </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Services</span></a></li>
-                            <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  Our events </span></a></li>
+                            <li class="main-menu__item"><a class="main-menu__link" href="{{route('courses.index',['my_events'=> 1])}}"><span>  My events </span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Join our team</span></a></li>
                             <li class="main-menu__item"><a class="main-menu__link" href="#"><span>Get in touch</span></a></li>
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -173,14 +173,14 @@
                     <img src="{{asset('media/images/logomain.png')}}" alt="logo">
                 </div>
                 <div class="col-auto text-center hidden-small">
-                    <p>Copyright ©2021 Infotechs. All rights reserved. Privacy policy
+                    <p>Copyright ©2021 Infotechs. All rights reserved. <br> Privacy policy
                         Terms and conditions</p>
                     <div class="social">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+{{--                        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>--}}
+                        <a href="https://twitter.com/InfotechsCo" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com/infotechsco" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/channel/UCTpQoE0-Lg76jlBAyUOSnxQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+{{--                        <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>--}}
                     </div>
                 </div>
                 <div class="col-auto d-flex align-items-center form-col-footer">
@@ -193,13 +193,14 @@
                 </div>
 
                 <div class="col-auto text-center hidden-large">
-                    <p>This platform is copy rights @2021 by infotechs.org</p>
+                    <p>Copyright ©2021 Infotechs. All rights reserved. <br> Privacy policy
+                        Terms and conditions</p>
                     <div class="social">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+{{--                        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>--}}
+                        <a href="https://twitter.com/InfotechsCo" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://instagram.com/infotechsco" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/channel/UCTpQoE0-Lg76jlBAyUOSnxQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+{{--                        <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>--}}
                     </div>
                 </div>
             </div>

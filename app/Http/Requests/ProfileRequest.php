@@ -29,6 +29,7 @@ class ProfileRequest extends FormRequest
             'profile.saudi_council' => [],
             'profile.image'         => [],
             'profile.speciality_id' => ['required'],
+            'profile.rank_id' => ['required'],
             'profile.country_id'    => ['required','exists:countries,id'],
             'profile.city_id'       => ['required','exists:cities,id'],
             'user.name'             => [],
