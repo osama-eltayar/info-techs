@@ -27,6 +27,7 @@ class Profile extends Model
         'speciality_id',
         'country_id',
         'city_id',
+        'rank_id'
     ];
 
     //########################################### Constants ################################################

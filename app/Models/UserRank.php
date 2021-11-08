@@ -22,7 +22,10 @@ class UserRank extends Model
 
 
     //########################################### Accessors ################################################
-
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
 
     //########################################### Mutators #################################################
 

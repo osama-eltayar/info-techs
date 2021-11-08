@@ -82,7 +82,7 @@
                     @foreach($courses as $course)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$course->start_date}}</td>
+                        <td>{{$course->start_date->toDateString()}}</td>
                         <td>{{$course->title}}</td>
                         <td>{{$course->type_string}} </td>
                         <td>{{$course->cme_count}}</td>

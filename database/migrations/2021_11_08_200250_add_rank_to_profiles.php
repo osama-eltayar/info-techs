@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserRanksTable extends Migration
+class AddRankToProfiles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateUserRanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_ranks', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_en');
-            $table->string('name_ar');
-            $table->timestamps();
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->unsignedBigInteger('rank_id')->index()->after('speciality_id')->default(1);
         });
     }
 
@@ -28,6 +25,8 @@ class CreateUserRanksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_ranks');
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->dropColumn('rank_id');
+        });
     }
 }

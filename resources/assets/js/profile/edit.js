@@ -42,6 +42,9 @@ $(function () {
             "profile[speciality_id]": {
                 required: true,
             },
+            "profile[rank_id]": {
+                required: true,
+            },
             "profile[city_id]"      : {
                 required: true,
             },
@@ -56,6 +59,10 @@ $(function () {
 
     $('#saudi-council-check').on('change',function (){
        $('#saudi-council-input').toggleClass('d-none');
+       if($(this).val() == 1)
+       {
+           $('#saudi-council-input').rules('add',{required:true})
+       }
     });
 
     $('#country').on('select2:select',function (){
@@ -63,6 +70,7 @@ $(function () {
         $('#city').val('').trigger('change')
         $('#city').prop('disabled',false)
     })
+
 })
 
 function initCountrySelector(){
@@ -73,6 +81,7 @@ function initCountrySelector(){
             url: function() {
                 return `/api/countries`;
             },
+            // global : false,
             dataType: "json",
             processResults: function(data) {
                 return mapSelect2Data(data);
@@ -89,6 +98,7 @@ function initCitySelector(){
             url: function() {
                 return `/api/cities?country=${countryId}`;
             },
+            // global : false,
             dataType: "json",
             processResults: function(data) {
                 return mapSelect2Data(data);

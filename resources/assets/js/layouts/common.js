@@ -26,11 +26,11 @@ function redirect(url) {
 }
 
 $(document).ready(function(){
-    $(document).ajaxStart(function(){
+    $(document).ajaxStart(function(ajax){
         loading();
     });
 
-    $(document).ajaxComplete(function (){
+    $(document).ajaxComplete(function (ajax){
         unLoading();
     })
 })
