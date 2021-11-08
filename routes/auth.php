@@ -33,7 +33,7 @@ Route::group([ 'middleware' => [ 'auth' ] ], function () {
     Route::post('logout', [ LoginController::class, 'logout' ])->name('logout');
 //    Route::get('reset-password', [ResetPasswordController::class, 'show']);
     Route::post('auth/reset-password', [ ResetPasswordController::class, 'passwordResetForAuthUser' ])->name('auth.password.reset');
-    Route::get('email/verify/{id}/{hash}', [ EmailVerificationController::class, 'verify' ])->middleware([ 'signed' ])->name('verification.verify');
     Route::post('email/verify/resend', [ EmailVerificationController::class, 'resend' ])->name('verification.resend');
+    Route::get('email/verify/{id}/{hash}', [ EmailVerificationController::class, 'verify' ])->middleware([ 'signed' ])->name('verification.verify');
 
 });

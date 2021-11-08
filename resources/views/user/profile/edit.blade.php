@@ -95,7 +95,7 @@
                                     <span class="vaild-label">Verified</span>
                                 @else
                                     <span class="vaild-label bg-danger">Not Verified</span>
-                                    <button type="button" class="message" onclick="$('#verification-form').submit()">Resend Verification Email</button>
+                                    <button type="button" class="message" id="resend-verification">Resend Verification Email</button>
                                 @endif
                                     <span class="message">you cannot change your e-mail</span>
                             </div>

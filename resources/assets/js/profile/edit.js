@@ -71,6 +71,22 @@ $(function () {
         $('#city').prop('disabled',false)
     })
 
+    $('#resend-verification').on('click',function (){
+        $.ajax({
+            type: 'POST',
+            url  : '/en/email/verify/resend',
+        })
+         .done(res => {
+             console.log('done')
+             toastr.success('Your verification email was sent again.')
+         })
+         .fail(res => {
+
+         })
+    });
+
+
+
 })
 
 function initCountrySelector(){

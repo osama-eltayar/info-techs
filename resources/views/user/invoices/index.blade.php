@@ -39,17 +39,17 @@
                                                 <label for="from-date" class="visually-hidden">From date</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input  data-toggle="datepicker" name="from-date" id="from-date" class="form-control">
+                                                <input  data-toggle="datepicker" name="from-date" type="date" id="from-date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="row">
                                             <div class="col-auto">
-                                                <label for="from-date" class="visually-hidden">From date</label>
+                                                <label for="from-date" class="visually-hidden">To date</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input  data-toggle="datepicker" name="from-date" id="from-date" class="form-control">
+                                                <input  data-toggle="datepicker" type="date" name="from-date" id="from-date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                             <td>{{$invoice->transaction->number}}</td>
                             <td>{{$invoice->course->type_string}}</td>
                             <td>{{$invoice->course->title}}</td>
-                            <td>{{$invoice->paid_at}}</td>
+                            <td>{{$invoice->paid_at->toDateString()}}</td>
                             <td>$ {{$invoice->price}} </td>
                             <td><a href="{{route('invoices.print',$invoice->course_id)}}"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
                         </tr>
