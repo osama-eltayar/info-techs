@@ -15,6 +15,8 @@ class ShoppingCart extends Pivot
         'course_id', 'user_id', 'price', 'paid_at', 'transaction_id'
     ];
 
+    protected $dates = ['paid_at'];
+
     //########################################### Constants ################################################
 
 
