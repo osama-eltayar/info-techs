@@ -25,7 +25,7 @@
 <ul class="list-unstyled list-info">
     <li>
         <h3>Event date and time</h3>
-        <p>{{$course->start_date}}</p>
+        <p>{{$course->start_date}} - {{$course->end_date}}</p>
     </li>
     <li>
         <h3>Speciality</h3>
