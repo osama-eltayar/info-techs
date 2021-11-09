@@ -69,7 +69,10 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Date</th>
+                        <th scope="col">
+{{--                            <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> --}}
+                            Date
+                        </th>
                         <th scope="col">Event</th>
                         <th scope="col">Event type</th>
                         <th scope="col">CME's</th>
@@ -80,8 +83,8 @@
                     </thead>
                     <tbody>
                     @foreach($courses as $course)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
+                    <tr class="text-center">
+                        <th scope="row" class="text-center">{{$loop->iteration}}</th>
                         <td>{{$course->start_date->toDateString()}}</td>
                         <td>{{$course->title}}</td>
                         <td>{{$course->type_string}} </td>

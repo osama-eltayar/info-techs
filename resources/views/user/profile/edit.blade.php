@@ -81,7 +81,7 @@
                                     <option value="1" {{$profile->saudi_council ? 'selected' : NULL}}>Yes</option>
                                     <option value="0" {{$profile->saudi_council ?: 'selected'}}>No</option>
                                 </select>
-                                <span class="message">What is Saudi council number?</span>
+                                <span class="message" data-toggle="modal" data-target="#saudi-commission" style="cursor: pointer" >What is Saudi council number?</span>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <label for="country">Country <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[country_id]" id="country" class="form-control">
-                                    <option value="{{$profile->country_id}}" selected>{{optional($profile->country)->name}}</option>
+                                    <option value="{{$profile->country_id ?? $defaultCountry->id}}" selected>{{optional($profile->country)->name ?? $defaultCountry->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                         <div class="form-group">
                             <label for="city">City <span>*</span> </label>
                             <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control" id="city" {{ !$profile->country_id? 'disabled' : '' }}>
+                                <select name="profile[city_id]" class="form-control" id="city" >
                                     <option value="{{$profile->city_id}}" selected>{{optional($profile->city)->name}}</option>
                                 </select>
                             </div>
@@ -187,7 +187,7 @@
                             </div>
                             <div class="avatar-preview">
                                 <div id="imagePreview"
-                                     style="background-image: url({{$profile->image_url ?? 'http://i.pravatar.cc/500?img=7'}});">
+                                     style="background-image: url({{$profile->image_url ?? '/media/images/user.png'}});">
                                 </div>
                             </div>
 
@@ -216,6 +216,11 @@
 
     <div class="qus">
         <a href="#"><i class="fa-solid fa-circle-question"></i></a>
+    </div>
+@endsection
+@section('modals')
+    <div class="modal text-center" id="saudi-commission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <img src="/media/images/saudi_commission.jpg"  style="margin: 25% 0;" height="300" width="350" alt="">
     </div>
 @endsection
 @section('script')

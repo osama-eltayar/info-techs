@@ -69,18 +69,27 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Invoice number</th>
-                            <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Event type</th>
+                            <th scope="col">
+{{--                                <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i>--}}
+                                Invoice number
+                            </th>
+                            <th scope="col">
+{{--                                <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i>--}}
+                                Event type
+                            </th>
                             <th scope="col">Event</th>
-                            <th scope="col"><i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i> Date</th>
+                            <th scope="col">
+{{--                                <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i>--}}
+                                Date
+                            </th>
                             <th scope="col">Payment</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($invoices as $invoice)
-                            <tr>
-                            <th scope="row">{{$loop->iteration}}</th>
+                        <tr class="text-center">
+                            <th scope="row" class="text-center">{{$loop->iteration}}</th>
                             <td>{{$invoice->transaction->number}}</td>
                             <td>{{$invoice->course->type_string}}</td>
                             <td>{{$invoice->course->title}}</td>

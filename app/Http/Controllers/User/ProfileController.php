@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Country;
 use App\Models\Profile;
 use App\Models\Speciality;
 use App\Models\UserRank;
@@ -27,6 +28,7 @@ class ProfileController extends Controller
         $specialities = Speciality::all();
         $titles       = UserTitle::all();
         $ranks = UserRank::all();
-        return view('user.profile.edit', compact('profile', 'titles', 'specialities','ranks'));
+        $defaultCountry = Country::find(Country::DEFAULT);
+        return view('user.profile.edit', compact('profile', 'titles', 'specialities','ranks','defaultCountry'));
     }
 }
