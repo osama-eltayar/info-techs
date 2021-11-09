@@ -26,12 +26,14 @@ function redirect(url) {
 }
 
 $(document).ready(function(){
-    $(document).ajaxStart(function(ajax){
-        loading();
+    $(document).ajaxSend(function(event, jqxhr, settings){
+        if (! settings.url.startsWith("/api/"))
+            loading();
     });
 
-    $(document).ajaxComplete(function (ajax){
-        unLoading();
+    $(document).ajaxComplete(function (event, jqxhr, settings){
+        if (! settings.url.startsWith("/api/"))
+            unLoading();
     })
 })
 

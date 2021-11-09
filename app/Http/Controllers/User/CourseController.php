@@ -23,7 +23,8 @@ class CourseController extends Controller
             'upcoming_events',
             'favorites',
             'my_speciality',
-            'my_events'
+            'my_events',
+            'paid'
         );
         $courses    = Course::filter($filterData)
                             ->with('speakers', 'sponsors', 'organization')

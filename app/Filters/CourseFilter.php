@@ -37,6 +37,11 @@ class CourseFilter extends Filter
         $this->query->where('price', 0);
     }
 
+    public function filterPaid($paid)
+    {
+        $this->query->where('price','>', 0);
+    }
+
     public function filterPastEvents( $past_events )
     {
         $this->query->whereDate('end_date', '<', now());

@@ -30,9 +30,9 @@
                 <div class="row">
                     <div class="col-lg-9 col-md-8 col-12">
                         <ul class="list-unstyled links">
-                            <li><a href="#">Upcoming activities</a></li>
-                            <li><a href="#">Activities on Demand</a></li>
-                            <li class="active"><a href="#"> My Activities</a></li>
+                            <li class="{{request()->my_events ?: 'active' }}"><a href="{{route('courses.index')}}">Upcoming activities</a></li>
+{{--                            <li><a href="#">Activities on Demand</a></li>--}}
+                            <li class="{{request()->my_events ? 'active' : ''}}"><a href="{{route('courses.index',['my_events'=>1])}}"> My Activities</a></li>
                         </ul>
                         <div class="filter">
                             <div class="left-side-text">Filter by:</div>
@@ -45,19 +45,19 @@
                                     </label>
                                 </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck2" name="upcoming_events" {{request()->upcoming_events ? 'checked' : ''}} >
-                                    <label class="custom-control-label" for="customCheck2">
-                                        Upcoming events
-                                    </label>
-                                </div>
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck2" name="upcoming_events" {{request()->upcoming_events ? 'checked' : ''}} >--}}
+{{--                                    <label class="custom-control-label" for="customCheck2">--}}
+{{--                                        Upcoming events--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck3" name="past_events" {{request()->past_events ? 'checked' : ''}}>
-                                    <label class="custom-control-label" for="customCheck3">
-                                        Past events
-                                    </label>
-                                </div>
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck3" name="past_events" {{request()->past_events ? 'checked' : ''}}>--}}
+{{--                                    <label class="custom-control-label" for="customCheck3">--}}
+{{--                                        Past events--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck4" name="with_cme" {{request()->with_cme ? 'checked' : ''}}>
                                     <label class="custom-control-label" for="customCheck4">
@@ -68,6 +68,12 @@
                                     <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck5" name="free" {{request()->free ? 'checked' : ''}}>
                                     <label class="custom-control-label" for="customCheck5">
                                         Free
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck6" name="paid" {{request()->paid ? 'checked' : ''}}>
+                                    <label class="custom-control-label" for="customCheck6">
+                                        Paid
                                     </label>
                                 </div>
                                 @auth()

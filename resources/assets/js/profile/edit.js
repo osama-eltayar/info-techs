@@ -68,7 +68,7 @@ $(function () {
     $('#country').on('select2:select',function (){
         countryId = $(this).val();
         $('#city').val('').trigger('change')
-        $('#city').prop('disabled',false)
+        // $('#city').prop('disabled',false)
     })
 
     $('#resend-verification').on('click',function (){
