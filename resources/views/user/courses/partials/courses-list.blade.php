@@ -35,7 +35,7 @@
                     @else
                         <div class="icon price">
                             <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b>
-                            {{$course->price ? '$' . $course->price  : 'Free'}}
+                            <span>{{$course->price ? '$' . $course->price  : 'Free'}}</span>
                         </div>
                     @endif
                     <div class="icon date">

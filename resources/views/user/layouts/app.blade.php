@@ -105,7 +105,7 @@
                 <div class="col-auto  right-header">
                     @auth()
                         <div class="user-dropdown">
-                            <div class="dropdown">
+                            <div class="dropdown text-center">
                                 <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>Welcome, {{auth()->user()->first_name}} </span>
                                     <img src="{{ optional(auth()->user()->profile)->image_url ??  asset('media/images/user1.png')}}" alt="user">

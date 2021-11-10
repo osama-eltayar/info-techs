@@ -44338,7 +44338,7 @@ header.header {
     box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.04);
     -webkit-transition: background .3s;
     transition: background .3s;
-    height: 115px;
+    height: 75px;
     padding: 15px 0
 }
 
@@ -44473,8 +44473,8 @@ header.header .user-dropdown .dropdown-toggle span {
 }
 
 header.header .user-dropdown .dropdown-toggle img {
-    width: 48px;
-    height: 48px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     border: 1px solid #fff
 }
@@ -44485,10 +44485,10 @@ header.header .user-dropdown .dropdown-toggle::after {
     content: '\f078';
     border: 0;
     position: absolute;
-    right: -20 حx;
-    top: 35%;
+    /*right: -20px;*/
+    top: 20%;
     color: #fff;
-    font-size: 14px
+    font-size: 10px
 }
 
 header.header .user-dropdown .dropdown-menu {
@@ -45017,7 +45017,7 @@ section.nav-links span {
 }
 
 .form-section .form-content.table-box .filter {
-    background-color: #182955;
+    /*background-color: #182955;*/
     padding: 10px 15px
 }
 
@@ -45025,13 +45025,14 @@ section.nav-links span {
     margin: 0;
     background-color: #FDD205;
     color: #182955;
-    border-color: #FDD205;
+    /*border-color: #FDD205;*/
     height: 38px;
     padding: 5px 15px
 }
 
 .form-section .form-content.table-box .filter button.btn.btn-default:hover {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
+    background-color: #182955;
     color: #FDD205
 }
 
@@ -45046,7 +45047,8 @@ section.nav-links span {
 }
 
 .form-section .form-content.table-box .filter label {
-    color: #fff;
+    /*color: #fff;*/
+    color: #182955;
     font-size: 14px;
     margin: 0
 }
@@ -45064,13 +45066,13 @@ section.nav-links span {
 }
 
 .form-section .form-content.table-box .filter h3 {
-    color: #fff;
+    /*color: #fff;*/
     font-family: 'ROBOTOCONDENSED-BOLD';
     margin: 0
 }
 
 .form-section .form-content.table-box .filter p {
-    color: #fff;
+    /*color: #fff;*/
     margin: 0
 }
 
@@ -47240,8 +47242,8 @@ section.nav-links span {
     }
 
     header.header .user-dropdown .dropdown-toggle img {
-        width: 40px;
-        height: 40px
+        width: 25px;
+        height: 25px
     }
 
     .courses {

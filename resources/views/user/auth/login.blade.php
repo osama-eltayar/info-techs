@@ -10,9 +10,9 @@
         <!-- Start Nav Links-->
         <section class="nav-links">
             <div class="container">
-                <a href="#">Home page</a>
+                <a href="{{route('courses.index')}}">Home page</a>
                 <span>|</span>
-                <a href="#">Login to my account</a>
+                <a >Login to my account</a>
             </div>
         </section>
 

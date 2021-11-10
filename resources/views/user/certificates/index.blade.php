@@ -11,9 +11,9 @@
     <!-- Start Nav Links-->
     <section class="nav-links">
         <div class="container">
-            <a href="#">Home page</a>
+            <a href="{{route('courses.index')}}">Home page</a>
             <span>|</span>
-            <a href="#"> My Certificates</a>
+            <a > My Certificates</a>
         </div>
     </section>
 
@@ -26,17 +26,17 @@
                 </div>
                 <div class="filter">
                     <div class="row no-gutters justify-content-between">
-                        <div class="col-lg-2 col-12 input-row">
+                        <div class="col-lg-1 col-12 input-row">
                             <h3>Filter by:</h3>
                         </div>
                         <div class="col-lg-10 col-12 input-row">
                             <div class="row">
                                 <div class="col-lg-5 col-12">
                                     <div class="row">
-                                        <div class="col-lg-3 col-12">
-                                            <label for="Status" >Status</label>
-                                        </div>
-                                        <div class="col-lg-9 col-12">
+{{--                                        <div class="col-lg-3 col-12">--}}
+{{--                                            <label for="Status" >Status</label>--}}
+{{--                                        </div>--}}
+                                        <div class="col-lg-10 col-12">
                                             <select name="status" class="form-control" id="">
                                                 <option value="0" selected>Status</option>
                                             </select>
@@ -45,12 +45,12 @@
                                 </div>
                                 <div class="col-lg-5 col-12">
                                     <div class="row">
-                                        <div class="col-lg-4 col-12">
-                                            <label for="course-type" >Course Type</label>
-                                        </div>
-                                        <div class="col-lg-8 col-12">
+{{--                                        <div class="col-lg-4 col-12">--}}
+{{--                                            <label for="course-type" >Course Type</label>--}}
+{{--                                        </div>--}}
+                                        <div class="col-lg-10 col-12">
                                             <select name="course-type" class="form-control" id="">
-                                                <option value="0" selected>All</option>
+                                                <option value="0" selected>All Types</option>
                                             </select>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                         <th scope="col">Event type</th>
                         <th scope="col">CME's</th>
                         <th scope="col" class="status-th">Status</th>
-                        <th scope="col"></th>
+                        <th scope="col">Certificate</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -86,7 +86,11 @@
                     <tr class="text-center">
                         <th scope="row" class="text-center">{{$loop->iteration}}</th>
                         <td>{{$course->start_date->toDateString()}}</td>
-                        <td>{{$course->title}}</td>
+                        <td>
+                            <a href="{{route('courses.show',$course->id)}}">
+                                {{$course->title}}
+                            </a>
+                        </td>
                         <td>{{$course->type_string}} </td>
                         <td>{{$course->cme_count}}</td>
 

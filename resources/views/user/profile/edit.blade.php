@@ -12,13 +12,13 @@
     </section>
 
     <!-- Start Nav Links-->
-{{--    <section class="nav-links">--}}
-{{--        <div class="container">--}}
-{{--            <a href="#">Home page</a>--}}
-{{--            <span>|</span>--}}
-{{--            <a href="{{route('profile.edit')}}">Update my information</a>--}}
-{{--        </div>--}}
-{{--    </section>--}}
+    <section class="nav-links">
+        <div class="container">
+            <a href="{{route('courses.index')}}#">Home page</a>
+            <span>|</span>
+            <a >Update my information</a>
+        </div>
+    </section>
 
     <!-- Start Form -->
     <section class="form-section">
@@ -81,7 +81,7 @@
                                     <option value="1" {{$profile->saudi_council ? 'selected' : NULL}}>Yes</option>
                                     <option value="0" {{$profile->saudi_council ?: 'selected'}}>No</option>
                                 </select>
-                                <span class="message" data-toggle="modal" data-target="#saudi-commission" style="cursor: pointer" >What is Saudi council number?</span>
+                                <span class="message" data-toggle="modal" data-target="#saudi-commission" style="cursor: pointer" >What is Saudi Commission Number?</span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
 
                     <div class="col-md-6 col-12 {{$profile->saudi_council ?: 'd-none' }}" id="saudi-council-input">
                         <div class="form-group ">
-                            <label for="SCR">Saudi council number </label>
+                            <label for="SCR">Saudi Commission Number </label>
                             <div class="input-icon">
                                 <input type="tel" name="profile[saudi_council]" id="SCR" class="form-control"
                                        value="{{$profile->saudi_council }}">
@@ -118,6 +118,25 @@
                                 <select name="profile[country_id]" id="country" class="form-control">
                                     <option value="{{$profile->country_id ?? $defaultCountry->id}}" selected>{{optional($profile->country)->name ?? $defaultCountry->name}}</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="city">City <span>*</span> </label>
+                            <div class="input-icon">
+                                <select name="profile[city_id]" class="form-control" id="city" >
+                                    <option value="{{$profile->city_id}}" selected>{{optional($profile->city)->name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="nationality">Nationality <span>*</span></label>
+                            <div class="input-icon">
+                                <input type="text" id="nationality" name="profile[nationality]" class="form-control"
+                                       value="{{$profile->nationality}}">
                             </div>
                         </div>
                     </div>
@@ -146,25 +165,6 @@
                                             value="{{$rank->id}}" {{$profile->rank_id == $rank->id ? 'selected' : NULL }}>{{$rank->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="city">City <span>*</span> </label>
-                            <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control" id="city" >
-                                    <option value="{{$profile->city_id}}" selected>{{optional($profile->city)->name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="nationality">Nationality <span>*</span></label>
-                            <div class="input-icon">
-                                <input type="text" id="nationality" name="profile[nationality]" class="form-control"
-                                       value="{{$profile->nationality}}">
                             </div>
                         </div>
                     </div>
