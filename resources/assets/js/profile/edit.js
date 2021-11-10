@@ -17,6 +17,7 @@ $(function () {
      countryId = $('#country').val();
      initCountrySelector()
      initCitySelector()
+    initNationalitySelector()
     $("#imageUpload").change(function () {
         readURL(this);
     });
@@ -48,7 +49,7 @@ $(function () {
             "profile[city_id]"      : {
                 required: true,
             },
-            "profile[nationality]"  : {
+            "profile[nationality_id]"  : {
                 required: true,
             },
             "profile[job]"          : {},
@@ -92,6 +93,23 @@ $(function () {
 function initCountrySelector(){
     $('#country').select2({
         placeholder: "Country",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/countries`;
+            },
+            // global : false,
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function initNationalitySelector(){
+    $('#nationality').select2({
+        placeholder: "Nationality",
         allowClear: false,
         ajax: {
             url: function() {

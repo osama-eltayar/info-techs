@@ -23,19 +23,23 @@
                     @if($course->activeDiscount)
                         @if($course->activeDiscount->date)
                             <div class="icon price">
-                                <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b> <span>${{$course->activeDiscount->price}}</span> <small>Before {{$course->activeDiscount->date}}</small>
+                                <i class="fa-solid fa-credit-card"></i> <b>Price:</b> <span><small class="currency" style="color: black !important;">SAR</small>{{$course->activeDiscount->price}}</span> <small>Before {{$course->activeDiscount->date}}</small>
                             </div>
                         @else
                             <div class="icon price">
-                                <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b>
-                                <span> ${{$course->activeDiscount->price}} </span>
-                                <del>${{$course->price}}</del>
+                                <i class="fa-solid fa-credit-card"></i> <b>Price:</b>
+                                <span> <small class="currency" style="color: black">SAR</small>{{$course->activeDiscount->price}} </span>
+                                <del><small class="currency" style="color: red !important;">SAR</small>{{$course->price}}</del>
                             </div>
                         @endif
                     @else
                         <div class="icon price">
-                            <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b>
-                            {{$course->price ? '$' . $course->price  : 'Free'}}
+                            <i class="fa-solid fa-credit-card"></i> <b>Price:</b>
+                            <span>
+                                @if($course->price)  <small class="currency" style="color: black">SAR</small>{{$course->price}}
+                                @else
+                                    Free
+                                @endif</span>
                         </div>
                     @endif
                     <div class="icon date">

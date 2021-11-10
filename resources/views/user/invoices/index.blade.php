@@ -13,9 +13,9 @@
         <!-- Start Nav Links-->
         <section class="nav-links">
             <div class="container">
-                <a href="#">Home page</a>
+                <a href="{{route('courses.index')}}">Home page</a>
                 <span>|</span>
-                <a href="#"> My Invoices</a>
+                <a > My Invoices</a>
             </div>
         </section>
 
@@ -74,13 +74,16 @@
                                 Invoice number
                             </th>
                             <th scope="col">
-{{--                                <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i>--}}
                                 Event type
+                                <i class="fa-solid fa-caret-up"></i>
+                                <i class="fa-solid fa-caret-down"></i>
                             </th>
                             <th scope="col">Event</th>
                             <th scope="col">
-{{--                                <i class="fa-solid fa-caret-up"></i> <i class="fa-solid fa-caret-down"></i>--}}
+
                                 Date
+                                <i class="fa-solid fa-caret-up"></i>
+                                <i class="fa-solid fa-caret-down"></i>
                             </th>
                             <th scope="col">Payment</th>
                             <th scope="col">Action</th>
@@ -94,7 +97,7 @@
                             <td>{{$invoice->course->type_string}}</td>
                             <td>{{$invoice->course->title}}</td>
                             <td>{{$invoice->paid_at->toDateString()}}</td>
-                            <td>$ {{$invoice->price}} </td>
+                            <td>SAR {{$invoice->price}} </td>
                             <td><a href="{{route('invoices.print',$invoice->course_id)}}"><i class="fa-solid fa-file-pdf"></i> Print</a></td>
                         </tr>
                         @endforeach
