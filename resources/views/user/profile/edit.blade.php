@@ -135,8 +135,9 @@
                         <div class="form-group">
                             <label for="nationality">Nationality <span>*</span></label>
                             <div class="input-icon">
-                                <input type="text" id="nationality" name="profile[nationality]" class="form-control"
-                                       value="{{$profile->nationality}}">
+                                <select name="profile[nationality_id]" id="nationality" class="form-control">
+                                    <option value="{{$profile->nationality_id ?? $defaultCountry->id}}" selected>{{optional($profile->nationality)->name ?? $defaultCountry->name}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>

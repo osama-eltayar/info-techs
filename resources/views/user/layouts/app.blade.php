@@ -169,8 +169,8 @@
     <footer>
         <div class="container-fluid">
             <div class="row no-gutters justify-content-between">
-                <div class="col-auto d-flex align-items-center">
-                    <img src="{{asset('media/images/logomain.png')}}" alt="logo">
+                <div class="col-auto d-flex align-items-center" >
+                    <img src="{{asset('media/images/logomain.png')}}" height="40" alt="logo">
                 </div>
                 <div class="col-auto text-center hidden-small">
                     <p>Copyright ©2021 Infotechs. All rights reserved. <br> Privacy policy

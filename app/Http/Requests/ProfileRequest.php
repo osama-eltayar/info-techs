@@ -23,7 +23,6 @@ class ProfileRequest extends FormRequest
     {
         return [
             'profile.title'         => ['required'],
-            'profile.nationality'   => ['required'],
             'profile.job'           => [],
             'profile.mobile'        => ['required'],
             'profile.saudi_council' => [],
@@ -31,8 +30,9 @@ class ProfileRequest extends FormRequest
             'profile.speciality_id' => ['required'],
             'profile.rank_id' => ['required'],
             'profile.country_id'    => ['required','exists:countries,id'],
+            'profile.nationality_id'    => ['required','exists:countries,id'],
             'profile.city_id'       => ['required','exists:cities,id'],
-            'user.name'             => [],
+            'user.name'             => ['required'],
         ];
     }
 }

@@ -39106,7 +39106,7 @@ ul {
 .main {
     z-index: 2;
     position: relative;
-    padding-top: 115px;
+    padding-top: 75px;
     background-color: #FBFBFB
 }
 
@@ -39136,7 +39136,8 @@ footer {
 
 footer p {
     color: #808080;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    font-size: 10px;
 }
 
 footer .social a {
@@ -39158,7 +39159,7 @@ footer form .form-group {
 
 footer form input.form-control {
     width: calc(100% - 90px);
-    height: 44px;
+    height: 35px;
     background-color: #fff;
     border: 1px solid #707070;
     color: #757575;
@@ -39176,7 +39177,7 @@ footer form input.form-control:focus {
 footer form .btn {
     background-color: #FDD205;
     color: #002859;
-    height: 44px;
+    height: 35px;
     width: 85px;
     border-radius: 0;
     display: inline-block;
@@ -45224,13 +45225,15 @@ section.nav-links span {
 
 .form-section .form-content .table thead th i.fa-solid.fa-caret-up {
     position: absolute;
-    left: 0
+    left: 10px;
+    cursor: pointer;
 }
 
 .form-section .form-content .table thead th i.fa-solid.fa-caret-down {
     position: absolute;
-    left: 0;
-    bottom: 12px
+    left: 10px;
+    bottom: 10px;
+    cursor: pointer;
 }
 
 .form-section .form-content .table td {
