@@ -19,7 +19,7 @@ class Profile extends Model
      */
     protected $fillable = [
         'title',
-        'nationality',
+        'nationality_id',
         'job',
         'mobile',
         'saudi_council',
@@ -27,6 +27,7 @@ class Profile extends Model
         'speciality_id',
         'country_id',
         'city_id',
+        'rank_id'
     ];
 
     //########################################### Constants ################################################
@@ -45,6 +46,21 @@ class Profile extends Model
 
 
     //########################################### Relations ################################################
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function nationality()
+    {
+        return $this->belongsTo(Country::class,'nationality_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 
 
 }

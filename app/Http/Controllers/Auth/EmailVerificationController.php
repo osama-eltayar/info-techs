@@ -12,6 +12,16 @@ class EmailVerificationController extends Controller
     {
         $emailVerificationRequest->fulfill();
 
-        return redirect('/home');
+        return redirect('/');
+    }
+
+    public function resend()
+    {
+        if (auth()->user()->hasVerifiedEmail())
+            abort(422);
+
+        auth()->user()->sendEmailVerificationNotification();
+
+        return response([],204);
     }
 }

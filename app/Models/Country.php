@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
@@ -10,18 +11,21 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+    use HasFilter;
 
     /**
     * The attributes that are mass assignable.
     * @var array
     */
     protected $fillable = [
+        'name'
     ];
 
     //########################################### Constants ################################################
-
+    Const DEFAULT = 194 ;
 
     //########################################### Accessors ################################################
+
 
 
     //########################################### Mutators #################################################

@@ -12,7 +12,7 @@ class CourseFilter extends Filter
 
     public function filterTitle( $title )
     {
-        $this->query->where('title', 'like', "%$title%");
+        $this->query->where('title_'.app()->getLocale(), 'like', "%$title%");
     }
 
     public function filterSpeciality( $speciality )
@@ -37,6 +37,11 @@ class CourseFilter extends Filter
         $this->query->where('price', 0);
     }
 
+    public function filterPaid($paid)
+    {
+        $this->query->where('price','>', 0);
+    }
+
     public function filterPastEvents( $past_events )
     {
         $this->query->whereDate('end_date', '<', now());
@@ -50,6 +55,17 @@ class CourseFilter extends Filter
     public function filterMySpeciality( $my_speciality )
     {
         $this->filterSpeciality(Auth::user()->profile->speciality_id);
+    }
+    public function filterFavorites()
+    {
+        $this->query->whereIn('id',Auth::user()->favouriteCourses()->pluck('courses.id'));
+    }
+
+    public function filterMyEvents()
+    {
+        $this->query->whereHas('registeredUsers',function ($q){
+            return $q->where('users.id',Auth::user()->id);
+        });
     }
 
 }

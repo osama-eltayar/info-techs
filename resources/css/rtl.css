@@ -1,0 +1,192 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+.text-right {
+    text-align: left !important;
+}
+.main-menu .main-menu__item {
+    border-right: 0;
+    border-left: 1px solid #fff;
+}
+.main-menu .main-menu__item:last-child {
+    border-left: 0;
+    border-right: 1px solid #fff;
+}
+header.header .right-header .nav-action a {
+    padding-right: 0;
+    padding-left: 15px;
+}
+.form-section .form-content form span.top-message {
+    left: 0;
+    right: auto;
+}
+.form-section .form-content .title {
+    right: -40px;
+    left: auto;
+}
+header.header .dropdown-trigger {
+    margin: 0 0 0 15px;
+}
+.form-section .form-content .input-icon .form-control {
+    padding-right: 15px;
+    padding-left: 30px;
+}
+.form-section .form-content .input-icon i {
+    left: 10px;
+    right: auto;
+}
+.course-details .top-fav span {
+    padding-left: 10px;
+    padding-right: 0;
+}
+.course-details .top-fav .soical {
+    padding-left: 15px;
+    padding-right: 0;
+}
+.card-content .card-status {
+    right: 10px;
+    left: auto;
+}
+.course-details .card-content .card-status {
+    right: 35px;
+    left: auto;
+}
+.course-details .card-info .box-info .top-title {
+    right: 15px;
+    left: auto;
+}
+.course-details .card-info .box-info p span {
+    padding-right: 10px;
+    padding-left: 0;
+}
+
+.sponsor-row ul li a i {
+    left: 5px;
+    right: auto;
+}
+.sponsor-row h2,
+.sponsor-row {text-align: right;}
+.course-right-info .icon i {
+    padding-left: 5px;
+    padding-right: 0;
+}
+.course-right-info .list-info li::before {
+    right: 0;left: auto;
+}
+.course-right-info .list-info li {
+    padding-right: 20px;
+    padding-left: 0;
+}
+header.header .user-dropdown .dropdown-toggle span {
+    padding-left: 5px;
+    padding-right: 0;
+}
+header.header .user-dropdown .dropdown-toggle::after {
+    left: -20px;
+    right: auto;
+}
+.course-details .card-info h2 {
+    padding-left: 55px;
+    padding-right: 0;
+}
+.course-details .card-info h2 span {
+    left: 0;
+    right: auto;
+}
+.dropdown-item {
+    text-align: right;
+}
+.close {
+    float: left;
+}
+.modal-body .table-responsive .table thead th:first-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 8px;
+}
+.modal-body .table-responsive .table thead th:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0;
+}
+.banner-slide .item h2 {
+    text-align: right;
+}
+.card-content .fav {
+    left: 10px;
+    right: auto;
+}
+.card-content .info {
+    left: 38px;
+    right: auto;
+}
+.card-content .card-info .message {
+    right: 15px;left: auto;
+}
+.card-content .overlay .status-info .price {
+    padding-right: 10px;
+    padding-left: 0;
+}
+.card-content .overlay {
+    right: 35%;
+    left: auto;
+}
+.card-content .overlay ul li {
+    padding-right: 20px;
+    padding-left: 0;
+}
+.card-content .overlay ul li::before {
+    left: auto;
+    right: 0;
+}
+/* .custom-control-label::after,
+.custom-control-label::before {
+    right: -1.5rem;
+    left: auto;
+} */
+.form-section .form-content.table-box .title {
+    left: auto;
+    right: -10px;
+}
+.fa-chevron-right:before {
+    content: "\f053";
+}
+.fa-chevron-left:before {
+    content: "\f054";
+}
+.form-section .form-content .vaild span.vaild-label {
+    left: 10px;
+    right: auto;
+}
+.avatar-upload .avatar-edit {
+    padding-left: 15px;
+    padding-right: 0;
+}
+@media only screen and (max-width: 991px) {
+    .courses .filter .select-side {
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    header.header .user-dropdown .dropdown-toggle::after {
+        left: 0;
+        right: auto;
+    }
+    .form-section .form-content .title {
+        right: -5px;
+        left: auto;
+    }
+    .course-details .card-info h2 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .card-content .overlay {
+        right: 0;
+        left: auto;
+    }
+    .form-section .form-content.table-box .title {
+        left: auto;
+        right: 10px;
+    }
+        
+}

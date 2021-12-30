@@ -17,6 +17,14 @@ $(function () {
     $('#clear-filters-btn').on('click',function (){
         clearFilters()
     })
+
+    $(document).on('click','.fav',function (){
+        toggleFavouriteCourse($(this))
+    });
+
+    $(document).on('click','.add-cart',function (){
+        addToShoppingCart($(this))
+    })
 })
 
 function searchCourses() {
@@ -57,3 +65,49 @@ function clearFilters(){
     searchCourses();
 }
 
+function toggleFavouriteCourse(element)
+{
+    element.toggleClass('active-red')
+    let url = element.attr('data-action');
+    $.ajax({
+        url : url,
+        type: 'post',
+    })
+     .done(res => {
+         if(element.hasClass('active-red'))
+             $('#favourite-courses-count').text( +$('#favourite-courses-count').text() + 1 )
+         else
+             $('#favourite-courses-count').text( +$('#favourite-courses-count').text() - 1 )
+     })
+     .fail(res => {
+         element.toggleClass('active-red')
+     })
+     .always(() => {
+     })
+}
+
+function addToShoppingCart(element)
+{
+    element.attr('disabled', true)
+    let url = element.attr('data-action');
+    let courseId = element.closest('.single-course').attr('data-course-id');
+    let data = {
+        'course_id': courseId
+    };
+
+    $.ajax({
+        url,
+        type: 'post',
+        data,
+    })
+     .done(res => {
+         $('#cart-courses-count').text( +$('#cart-courses-count').text() + 1 )
+     })
+     .fail(res => {
+         element.attr('disabled', false)
+
+     })
+     .always(() => {
+     })
+
+}

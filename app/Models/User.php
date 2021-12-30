@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -44,7 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     //########################################### Accessors ################################################
-
+    public function getFirstNameAttribute()
+    {
+        return Str::before($this->name,' ') ;
+    }
 
     //########################################### Mutators #################################################
     /**
@@ -67,5 +71,26 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
+    public function favouriteCourses()
+    {
+        return $this->belongsToMany(Course::class,'user_favourite_courses')->withTimestamps();
+    }
+
+    public function shoppingCart()
+    {
+        return $this->belongsToMany(Course::class, ShoppingCart::class)
+                    ->withPivot('paid_at', 'price')
+                    ->withTimestamps();
+    }
+
+    public function registeredCourses()
+    {
+        return $this->belongsToMany(Course::class,'user_registered_course')->withTimestamps();
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(UserCertificate::class);
+    }
 
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @method static self create( array $data )
@@ -20,9 +21,7 @@ class Course extends Model
      */
     protected $fillable
         = [
-            'title',
             'price',
-            'description',
             'cme_count',
             'certificate',
             'type_id',
@@ -32,7 +31,12 @@ class Course extends Model
             'from',
             'to',
             'organization_id',
-            'seats'
+            'seats',
+            'title_en',
+            'title_ar',
+            'description_en',
+            'description_ar',
+            'certificate_image'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];
@@ -103,6 +107,31 @@ class Course extends Model
         return $this->to->format('h:i a');
     }
 
+    public function isLive()
+    {
+        return now()->between($this->start_date,$this->end_date);
+    }
+
+    public function isEnded()
+    {
+        return now()->gt($this->end_date);
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->{getLocalizeAttribute('title')};
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->{getLocalizeAttribute('description')};
+    }
+
+    public function successNeededMinutes()
+    {
+        return round(($this->certificate / 100) * $this->duration )  ;
+    }
+
     //########################################### Mutators #################################################
 
 
@@ -116,6 +145,13 @@ class Course extends Model
         return $this->hasMany(CourseDiscount::class);
     }
 
+    public function activeDiscount()
+    {
+        return $this->hasOne(CourseDiscount::class)->where(function ($query){
+            $query->whereNull('date')->orWhere('date','>',now());
+        });
+    }
+
     public function materials()
     {
         return $this->hasMany(CourseMaterial::class);
@@ -123,7 +159,7 @@ class Course extends Model
 
     public function people()
     {
-        return $this->hasMany(CoursePerson::class);
+        return $this->belongsToMany(Person::class,'course_people');
     }
 
     public function speakers()
@@ -146,5 +182,59 @@ class Course extends Model
         return $this->belongsTo(Organization::class);
     }
 
-}
+    public function favouriteAuthUser()
+    {
+        return $this->belongsToMany(User::class, 'user_favourite_courses')
+                    ->where('users.id', auth()->id());
+    }
 
+    public function registeredUsers()
+    {
+        return $this->belongsToMany(User::class, 'user_registered_course')->withTimestamps();
+    }
+
+    public function registeredAuthUser()
+    {
+        return $this->registeredUsers()->where('users.id', auth()->id());
+    }
+
+    public function shoppingCarts()
+    {
+        return $this->belongsToMany(User::class, ShoppingCart::class)->withTimestamps();
+    }
+
+    public function shoppingCartAuthUser()
+    {
+        return $this->shoppingCarts()->where('users.id', auth()->id());
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(CourseVideo::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(CourseSession::class);
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(UserCertificate::class);
+    }
+
+    public function views()
+    {
+        return $this->hasMany(CourseView::class);
+    }
+
+    public function trackers()
+    {
+        return $this->hasMany(UserVideoTracker::class);
+    }
+
+    public function authUserTrackers()
+    {
+        return $this->hasMany(UserVideoTracker::class)->where('user_id',\auth()->id());
+    }
+}

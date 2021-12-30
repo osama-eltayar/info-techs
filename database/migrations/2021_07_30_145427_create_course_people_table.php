@@ -15,9 +15,7 @@ class CreateCoursePeopleTable extends Migration
     {
         Schema::create('course_people', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('title');
-            $table->string('speciality');
+            $table->unsignedBigInteger('person_id');
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });

@@ -1,3 +1,4 @@
+let countryId;
 function readURL(input)
 {
     if (input.files && input.files[0]) {
@@ -13,6 +14,10 @@ function readURL(input)
 
 
 $(function () {
+     countryId = $('#country').val();
+     initCountrySelector()
+     initCitySelector()
+    initNationalitySelector()
     $("#imageUpload").change(function () {
         readURL(this);
     });
@@ -38,10 +43,13 @@ $(function () {
             "profile[speciality_id]": {
                 required: true,
             },
+            "profile[rank_id]": {
+                required: true,
+            },
             "profile[city_id]"      : {
                 required: true,
             },
-            "profile[nationality]"  : {
+            "profile[nationality_id]"  : {
                 required: true,
             },
             "profile[job]"          : {},
@@ -52,5 +60,96 @@ $(function () {
 
     $('#saudi-council-check').on('change',function (){
        $('#saudi-council-input').toggleClass('d-none');
+       if($(this).val() == 1)
+       {
+           $('#saudi-council-input').rules('add',{required:true})
+       }
     });
+
+    $('#country').on('select2:select',function (){
+        countryId = $(this).val();
+        $('#city').val('').trigger('change')
+        // $('#city').prop('disabled',false)
+    })
+
+    $('#resend-verification').on('click',function (){
+        $.ajax({
+            type: 'POST',
+            url  : '/en/email/verify/resend',
+        })
+         .done(res => {
+             console.log('done')
+             toastr.success('Your verification email was sent again.')
+         })
+         .fail(res => {
+
+         })
+    });
+
+
+
 })
+
+function initCountrySelector(){
+    $('#country').select2({
+        placeholder: "Country",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/countries`;
+            },
+            // global : false,
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function initNationalitySelector(){
+    $('#nationality').select2({
+        placeholder: "Nationality",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/countries`;
+            },
+            // global : false,
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function initCitySelector(){
+    $('#city').select2({
+        placeholder: "City",
+        allowClear: false,
+        ajax: {
+            url: function() {
+                return `/api/cities?country=${countryId}`;
+            },
+            // global : false,
+            dataType: "json",
+            processResults: function(data) {
+                return mapSelect2Data(data);
+            },
+        },
+    });
+}
+
+function mapSelect2Data(data) {
+    var data2 = [];
+    data.data.forEach(function (item) {
+        data2.push({
+            id: item.id,
+            text: item.name
+        })
+    });
+    return {
+        results: data2
+    };
+}

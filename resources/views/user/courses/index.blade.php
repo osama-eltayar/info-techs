@@ -30,58 +30,113 @@
                 <div class="row">
                     <div class="col-lg-9 col-md-8 col-12">
                         <ul class="list-unstyled links">
-                            <li><a href="#">Upcoming activities</a></li>
-                            <li><a href="#">Activities on Demand</a></li>
-                            <li class="active"><a href="#"> My Activities</a></li>
-                        </ul>
-                        <div class="filter">
-                            <div class="left-side-text">Filter by:</div>
-                            <div class="select-side">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck" name="my_favorites" {{request()->my_favorites ? 'checked' : ''}} >
-                                    <label class="custom-control-label" for="customCheck">
-                                        My Favorites
-                                    </label>
-                                </div>
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck2" name="upcoming_events" {{request()->upcoming_events ? 'checked' : ''}} >
-                                    <label class="custom-control-label" for="customCheck2">
-                                        Upcoming events
-                                    </label>
-                                </div>
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck3" name="past_events" {{request()->past_events ? 'checked' : ''}}>
-                                    <label class="custom-control-label" for="customCheck3">
-                                        Past events
-                                    </label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck4" name="with_cme" {{request()->with_cme ? 'checked' : ''}}>
-                                    <label class="custom-control-label" for="customCheck4">
-                                        With CME's
-                                    </label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck5" name="free" {{request()->free ? 'checked' : ''}}>
-                                    <label class="custom-control-label" for="customCheck5">
-                                        Free
-                                    </label>
-                                </div>
-                                @auth()
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input filter-checkbox" id="my-speciality-checkbox" name="my_speciality" {{request()->my_speciality ? 'checked' : ''}}>
-                                        <label class="custom-control-label" for="my-speciality-checkbox">
-                                            My Speciality
-                                        </label>
+                            <li class="{{request()->my_events ?: 'active' }}"><a href="{{route('courses.index')}}">Upcoming activities</a></li>
+{{--                            <li><a href="#">Activities on Demand</a></li>--}}
+                            @auth
+                            <li class="{{request()->my_events ? 'active' : ''}}"><a href="{{route('courses.index',['my_events'=>1])}}"> My Activities</a></li>
+                            @endauth
+                            <li>
+                                <div class="dropdown">
+                                    <a class=" dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                        <div class="select-side">
+                                            @auth
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck_11" name="favorites" {{request()->my_favorites ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck_11">
+                                                    My Favorites
+                                                </label>
+                                            </div>
+                                            @endauth
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck_33" name="with_cme" {{request()->with_cme ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck_33">
+                                                    With CME's
+                                                </label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck_44" name="free" {{request()->free ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck_44">
+                                                    Free
+                                                </label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck_55" name="paid"{{request()->paid ? 'checked' : ''}} >
+                                                <label class="custom-control-label" for="customCheck_55">
+                                                    Paid
+                                                </label>
+                                            </div>
+                                            @auth
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input filter-checkbox " id="customCheck_66" name="my_speciality" {{request()->my_speciality ? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="customCheck_66">
+                                                    My Speciality
+                                                </label>
+                                            </div>
+                                            @endauth
+                                        </div>
                                     </div>
-                                @endauth
-                            </div>
-                            <div class="right-action">
-                                <button type="button" class="clear" id="clear-filters-btn">Clear all</button>
-                            </div>
-                        </div>
+                                </div>
+                            </li>
+                        </ul>
+{{--                        <div class="filter">--}}
+{{--                            <div class="left-side-text">Filter by:</div>--}}
+{{--                            <input type="checkbox" class=" filter-checkbox"  name="my_events" {{request()->my_events ? 'checked' : ''}} style="display: none">--}}
+{{--                            <div class="select-side">--}}
+{{--                                @auth--}}
+{{--                                    <div class="custom-control custom-checkbox">--}}
+{{--                                        <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck" name="favorites" {{request()->my_favorites ? 'checked' : ''}} >--}}
+{{--                                        <label class="custom-control-label" for="customCheck">--}}
+{{--                                            My Favorites--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                @endauth--}}
+
+
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck2" name="upcoming_events" {{request()->upcoming_events ? 'checked' : ''}} >--}}
+{{--                                    <label class="custom-control-label" for="customCheck2">--}}
+{{--                                        Upcoming events--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck3" name="past_events" {{request()->past_events ? 'checked' : ''}}>--}}
+{{--                                    <label class="custom-control-label" for="customCheck3">--}}
+{{--                                        Past events--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck4" name="with_cme" {{request()->with_cme ? 'checked' : ''}}>--}}
+{{--                                    <label class="custom-control-label" for="customCheck4">--}}
+{{--                                        With CME's--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck5" name="free" {{request()->free ? 'checked' : ''}}>--}}
+{{--                                    <label class="custom-control-label" for="customCheck5">--}}
+{{--                                        Free--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="customCheck6" name="paid" {{request()->paid ? 'checked' : ''}}>--}}
+{{--                                    <label class="custom-control-label" for="customCheck6">--}}
+{{--                                        Paid--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                @auth()--}}
+{{--                                    <div class="custom-control custom-checkbox">--}}
+{{--                                        <input type="checkbox" class="custom-control-input filter-checkbox" id="my-speciality-checkbox" name="my_speciality" {{request()->my_speciality ? 'checked' : ''}}>--}}
+{{--                                        <label class="custom-control-label" for="my-speciality-checkbox">--}}
+{{--                                            My Speciality--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                @endauth--}}
+{{--                            </div>--}}
+{{--                            <div class="right-action">--}}
+{{--                                <button type="button" class="clear" id="clear-filters-btn">Clear all</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div id="courses-list">
                                 @include('user.courses.partials.courses-list')
                         </div>
@@ -117,8 +172,16 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="col-8">
+                                            <button class="btn btn-default " type="button" id="course-search-btn">Start Search </button>
+                                        </div>
+                                       <div class="col-4">
+                                           <button class="btn btn-warning " type="button" onclick="this.form.reset();"  id="course-clear-btn">Clear </button>
+                                       </div>
+                                    </div>
 
-                                    <button class="btn btn-default" type="button" id="course-search-btn">Start Search </button>
+
                                 </form>
                             </div>
                             <div class="spons5r-side">
@@ -133,6 +196,5 @@
         </section>
 @endsection
 @section('script')
-    <script src="/js/courses/common.min.js"></script>
     <script src="/js/courses/list.min.js"></script>
 @endsection

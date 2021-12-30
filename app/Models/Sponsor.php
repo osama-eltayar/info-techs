@@ -19,8 +19,10 @@ class Sponsor extends Model
      */
     protected $fillable
         = [
-            'name',
-            'description',
+            'name_en',
+            'name_ar',
+            'description_en',
+            'description_ar',
             'logo'
         ];
 
@@ -31,6 +33,16 @@ class Sponsor extends Model
     public function getLogoUrlAttribute()
     {
         return $this->getFileUrl($this->logo);
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->{getLocalizeAttribute('title')};
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->{getLocalizeAttribute('description')};
     }
 
 

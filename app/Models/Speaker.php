@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Speaker extends Model
 {
     use HasFactory;
+    use HasFiles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +20,11 @@ class Speaker extends Model
      */
     protected $fillable
         = [
-            'name',
+            'name_ar',
+            'name_en',
             'image',
-            'title',
+            'title_ar',
+            'title_en',
             'speciality_id',
         ];
 
@@ -28,6 +32,21 @@ class Speaker extends Model
 
 
     //########################################### Accessors ################################################
+
+    public function getNameAttribute()
+    {
+        return $this->{getLocalizeAttribute('name')};
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->{getLocalizeAttribute('title')};
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->getFileUrl($this->image);
+    }
 
 
     //########################################### Mutators #################################################

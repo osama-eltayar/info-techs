@@ -14,9 +14,14 @@ class UserTitleSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1 ; $i<5 ; $i++)
+        UserTitle::query()->truncate();
+        $userTitles = ['Dr.','Mr.','Mrs.','Ms.','Prof.'] ;
+        foreach($userTitles as $userTitle)
         {
-            UserTitle::firstOrCreate(['name' => 'title' . $i]);
+            UserTitle::firstOrCreate([
+                'name_en' => $userTitle,
+                'name_ar' => $userTitle
+            ]);
         }
     }
 }

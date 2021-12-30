@@ -13,7 +13,7 @@
             <div class="container">
                 <a href="{{route('courses.index')}}">Home page</a>
                 <span>|</span>
-                <a href="{{route('password.forget')}}">Forgot password</a>
+                <a >Forgot password</a>
             </div>
         </section>
 

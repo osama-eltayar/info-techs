@@ -3,32 +3,72 @@
 </div>
 <div class="row row-cards">
     @foreach($courses as $course)
-        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 single-course" data-course-id="{{$course->id}}">
             <div class="card-content {{$course->type_class_name}}">
                 <div class="card-status">
                     {{$course->type_string}}
                 </div>
                 <div class="img-card">
                     <img src="/media/images/product.png" alt="product">
-                    <button type="button" class="fav"><i class="fa-solid fa-heart"></i></button>
+                    @auth()
+                        <button data-action="{{route('courses.favourite',$course->id)}}" type="button"
+                                class="fav {{$course->favourite_auth_user_exists ? 'active-red' : NULL}}"><i
+                                class="fa-solid fa-heart "></i></button>
+                    @endauth
                     <span class="info"><i class="fa-solid fa-circle-info"></i></span>
                 </div>
                 <div class="card-info">
+                    <div class="box-clickable " onclick="window.location.href='{{route('courses.show' ,$course->id )}}'">
                     <h3>{{$course->title}}</h3>
-                    <div class="icon price">
-                        <i class="fa-solid fa-sack-dollar"></i> <b>Price:</b>
-                        {{$course->price ? '$' . $course->price  : 'Free'}}
-                    </div>
+                    @if($course->activeDiscount)
+                        @if($course->activeDiscount->date)
+                            <div class="icon price">
+                                <i class="fa-solid fa-dollar-sign"></i> <b>Price:</b> <span><small class="currency" style="color: black !important;">SAR</small>{{$course->activeDiscount->price}}</span> <small>Before {{$course->activeDiscount->date}}</small>
+                            </div>
+                        @else
+                            <div class="icon price">
+                                <i class="fa-solid fa-dollar-sign"></i> <b>Price:</b>
+                                <span> <small class="currency" style="color: black">SAR</small>{{$course->activeDiscount->price}} </span>
+                                <del><small class="currency" style="color: red !important;">SAR</small>{{$course->price}}</del>
+                            </div>
+                        @endif
+                    @else
+                        <div class="icon price">
+                            <i class="fa-solid fa-dollar-sign"></i> <b>Price:</b>
+                            <span>
+                                @if($course->price)  <small class="currency" style="color: black">SAR</small>{{$course->price}}
+                                @else
+                                    Free
+                                @endif</span>
+                        </div>
+                    @endif
                     <div class="icon date">
                         <i class="fa-solid fa-calendar-day"></i> <b>Date:</b> {{$course->formatted_start_date}}
                     </div>
-
-                    <a href="{{route('courses.show' ,$course->id )}}" class="btn btn-light">More details</a>
-                    <p class="view">200 views</p>
+                    </div>
+                    <p class="view">{{$course->views_count ?? 0}} views</p>
                     <div class="text-center">
-                        <button type="button" class="btn btn-default add-cart"><i class="fa-solid fa-cart-plus"></i> Add
-                            to cart
-                        </button>
+                        @if($course->registered_auth_user_exists)
+                            <button type="button" class="btn btn-default "
+                                    onclick="window.location.href = '{{route('courses.show',$course->id)}}'"><i
+                                    class="fa-solid fa-cart-plus"></i>
+                                View
+                            </button>
+
+                        @elseif($course->shopping_cart_auth_user_exists)
+                            <button type="button" class="btn btn-default "
+                                    onclick="window.location.href = '{{route('shopping-cart.index')}}'"><i
+                                    class="fa-solid fa-cart-plus"></i>
+                                Pay now
+                            </button>
+                        @else
+                            <button type="button" data-action="{{route('shopping-cart.store')}}"
+                                    class="btn btn-default add-cart">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                Add
+                                to cart
+                            </button>
+                        @endif
                     </div>
                 </div>
 

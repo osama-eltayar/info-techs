@@ -1,21 +1,22 @@
 @extends('user.layouts.app')
 @section('header')
     <title></title>
+    <link href="{{asset('css/vendor/select2.min.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 
 
     <!-- Start Banner-->
     <section class="banner" style="background-image: url('/media/images/banner5.png');">
-        <h1>Update my information</h1>
+        <h1>Tell us more about you</h1>
     </section>
 
     <!-- Start Nav Links-->
     <section class="nav-links">
         <div class="container">
-            <a href="#">Home page</a>
+            <a href="{{route('courses.index')}}#">Home page</a>
             <span>|</span>
-            <a href="{{route('profile.edit')}}">Update my information</a>
+            <a >Update my information</a>
         </div>
     </section>
 
@@ -37,7 +38,6 @@
                 <div class="title">
                     <i class="fa-solid fa-file-pen"></i> Update my information
                 </div>
-                <h3>Please fill these information to update your information </h3>
                 <div class="form-row">
                     <div class="col-md-6 col-12">
                         <div class="form-group">
@@ -75,13 +75,13 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="saudi-council-check">Do you have Saudi council number (SCR)? </label>
+                            <label for="saudi-council-check">Do you have a Saudi Commission Number? </label>
                             <div class="input-icon">
                                 <select name="saudi_council_check" id="saudi-council-check" class="form-control">
                                     <option value="1" {{$profile->saudi_council ? 'selected' : NULL}}>Yes</option>
                                     <option value="0" {{$profile->saudi_council ?: 'selected'}}>No</option>
                                 </select>
-                                <span class="message">What is Saudi council number?</span>
+                                <span class="message" data-toggle="modal" data-target="#saudi-commission" style="cursor: pointer" >What is Saudi Commission Number?</span>
                             </div>
                         </div>
                     </div>
@@ -91,15 +91,20 @@
                             <div class="input-icon vaild">
                                 <input type="email" name="email" class="form-control" disabled
                                        value="{{auth()->user()->email}}">
-                                <span class="vaild-label">Verified</span>
-                                <span class="message">you cannot change your e-mail</span>
+                                @if(auth()->user()->hasVerifiedEmail())
+                                    <span class="vaild-label">Verified</span>
+                                @else
+                                    <span class="vaild-label bg-danger">Not Verified</span>
+                                    <button type="button" class="message" id="resend-verification">Resend Verification Email</button>
+                                @endif
+                                    <span class="message">you cannot change your e-mail</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6 col-12 {{$profile->saudi_council ?: 'd-none' }}" id="saudi-council-input">
                         <div class="form-group ">
-                            <label for="SCR">Saudi council number (SCR)</label>
+                            <label for="SCR">Saudi Commission Number </label>
                             <div class="input-icon">
                                 <input type="tel" name="profile[saudi_council]" id="SCR" class="form-control"
                                        value="{{$profile->saudi_council }}">
@@ -111,7 +116,27 @@
                             <label for="country">Country <span>*</span> </label>
                             <div class="input-icon">
                                 <select name="profile[country_id]" id="country" class="form-control">
-                                    <option value="1" selected>Saudi Arabia</option>
+                                    <option value="{{$profile->country_id ?? $defaultCountry->id}}" selected>{{optional($profile->country)->name ?? $defaultCountry->name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="city">City <span>*</span> </label>
+                            <div class="input-icon">
+                                <select name="profile[city_id]" class="form-control" id="city" >
+                                    <option value="{{$profile->city_id}}" selected>{{optional($profile->city)->name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="nationality">Nationality <span>*</span></label>
+                            <div class="input-icon">
+                                <select name="profile[nationality_id]" id="nationality" class="form-control">
+                                    <option value="{{$profile->nationality_id ?? $defaultCountry->id}}" selected>{{optional($profile->nationality)->name ?? $defaultCountry->name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -132,20 +157,15 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="city">City <span>*</span> </label>
+                            <label for="rank">Rank <span>*</span> </label>
                             <div class="input-icon">
-                                <select name="profile[city_id]" class="form-control">
-                                    <option value="1">Jeddah</option>
+                                <select name="profile[rank_id]" id="rank" class="form-control" required>
+                                    <option value="" >Rank</option>
+                                    @foreach($ranks as $rank)
+                                        <option
+                                            value="{{$rank->id}}" {{$profile->rank_id == $rank->id ? 'selected' : NULL }}>{{$rank->name}}</option>
+                                    @endforeach
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="nationality">Nationality <span>*</span></label>
-                            <div class="input-icon">
-                                <input type="text" id="nationality" name="profile[nationality]" class="form-control"
-                                       value="{{$profile->nationality}}">
                             </div>
                         </div>
                     </div>
@@ -168,7 +188,7 @@
                             </div>
                             <div class="avatar-preview">
                                 <div id="imagePreview"
-                                     style="background-image: url({{$profile->image_url ?? 'http://i.pravatar.cc/500?img=7'}});">
+                                     style="background-image: url({{$profile->image_url ?? '/media/images/user.png'}});">
                                 </div>
                             </div>
 
@@ -189,6 +209,9 @@
                 <button type="submit" class="btn btn-primary">Update my information</button>
 
             </form>
+            <form action="{{route('verification.resend')}}" method="POST" id="verification-form">
+                @csrf
+            </form>
         </div>
     </section>
 
@@ -196,6 +219,12 @@
         <a href="#"><i class="fa-solid fa-circle-question"></i></a>
     </div>
 @endsection
+@section('modals')
+    <div class="modal text-center" id="saudi-commission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <img src="/media/images/saudi_commission.jpg"  style="margin: 25% 0;" height="300" width="350" alt="">
+    </div>
+@endsection
 @section('script')
+    <script src="{{asset('js/vendor/select2.min.js')}}"></script>
     <script src="{{asset('js/profile/edit.min.js')}}" ></script>
 @endsection
