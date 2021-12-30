@@ -137,16 +137,18 @@ label.error{
 /*** select 2**/
 .select2-container--default .select2-selection--single {
     height: 34px !important;
-    padding: 5px 10px;
-    font-size: 18px;
+    padding: 6px 12px;
+    font-size: 14px;
     line-height: 1.33;
-    /*border-radius: 6px;*/
+    border-radius: 0 !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     top: 65% !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 26px !important;
+    line-height: 20px !important;
+    padding: 0;
+    padding-left: 2px !important;
 }
 .select2-container--default .select2-selection--single {
     border: 1px solid black !important;

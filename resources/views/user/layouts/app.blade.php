@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('header')
     <!-- Bootstrap -->
-    <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/main.css')}}?100" rel="stylesheet">
     @if(LaravelLocalization::getCurrentLocale() == 'ar')
         <link href="{{asset('css/rtl.css')}}" rel="stylesheet">
     @endif

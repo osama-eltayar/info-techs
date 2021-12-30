@@ -32,7 +32,7 @@ trait HasFiles
 
     public function disk()
     {
-        return $this->storageDisk??'public';
+        return $this->storageDisk;
     }
 
     public function deleteFile( $path ): ?bool
