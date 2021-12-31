@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+    <link rel="icon" href="assets/img/fav.png" type="image/x-icon">
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/font-awsome-all.css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main>
+            <div class="dashboard-content">
+                <!-- Start Sidebar -->
+                <div class="sidebar">
+                    <div class="top-logo">
+                        <img src="assets/img/light-logo.png" alt="">
+                    </div>
+                    <div class="list-links">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" ><img src="assets/img/icon.png" alt="icon"> Create new event </a>
+                            </li>
+                            <li>
+                                <a href="#" class="active"><img src="assets/img/icon.png" alt="icon"> Events  List</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Owners</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Sponsors</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Speakers</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Users List</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Discounts</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Payments & Invoices</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Start Dashboard -->
+                <div class="dashboard-body">
+                    <!-- Start Header -->
+                    <header>
+                        <nav>
+                            <div class="logo-nav">
+                                <a href="#" class="collapse-btn"><i class="fal fa-bars"></i></a>
+                                <img src="assets/img/fav.png" alt="image">
+                            </div>
+                            <div class="navbar">
+                                <div class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Welcome Jawaher 
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <li><a class="dropdown-item" href="#">Settngs</a></li>
+                                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </nav>
+                    </header>
+                    <!-- Start Content -->
+                    <div class="content-side">
+                        <div class="page-title">
+                            <div class="container-fluid "><h1><img src="assets/img/icon2.png" alt="icon"> Events List  </h1></div>
+
+                        </div>
+                        <div class="container-fluid bg-blue">
+                            <div class="content-body">
+                                <div class="form-search">
+                                    <form action="">
+                                        <div class="row justify-content-end">
+                                            <div class="col-xl-auto col-lg-3 col-md-6 col-12 col-12 mb-2">
+                                                <div class="custom-date">
+                                                    <label for="" class="form-label">From</label>
+                                                    <input type="text" class="form-control" id="" data-toggle="datepicker" placeholder="Date" aria-label="Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-auto col-lg-3 col-md-6 col-12 col-12 mb-2">
+                                                <div class="custom-date">
+                                                    <label for="" class="form-label">To</label>
+                                                    <input type="text" class="form-control" id="" data-toggle="datepicker" placeholder="Date" aria-label="Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-auto col-lg-3 col-md-6 col-12 col-12 mb-2">
+                                                <label for="" class="form-label">Status</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Upcoming Events</option>
+                                                    <option value="1">test1</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-auto col-lg-3 col-md-6 col-12 col-12 mb-2">
+                                                <label for="" class="form-label">Owner</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Select from list</option>
+                                                    <option value="1">test1</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped" >
+                                        <thead>
+                                            <th scope="col"># <i class="fa-solid fa-sort"></i></th>
+                                            <th scope="col">Event type</th>
+                                            <th scope="col">Event name</th>
+                                            <th scope="col">Create date <i class="fa-solid fa-sort"></i></th>
+                                            <th scope="col">Event running date <i class="fa-solid fa-sort"></i></th>
+                                            <th scope="col">Fees</th>
+                                            <th scope="col">Event owner</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col"></th>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Recorded</td>
+                                                <td>About Socilology</td>
+                                                <td>20/11/2022</td>
+                                                <td>20/11/2022</td>
+                                                <td>SAR 200</td>
+                                                <td>جمعية طب الاسنان</td>
+                                                <td>Running</td>
+                                                <td>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-file-certificate"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-id-badge"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-video"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <button class="btn-action" type="button"><i class="fa-solid fa-square-info"></i></button>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    Recorded
+                                                    <span class="message-table">Not published</span>
+                                                </td>
+                                                <td>About Socilology</td>
+                                                <td>20/11/2022</td>
+                                                <td>20/11/2022</td>
+                                                <td>SAR 200</td>
+                                                <td>جمعية طب الاسنان</td>
+                                                <td>Running</td>
+                                                <td>
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-file-certificate"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-id-badge"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="btn-action" href="#"><i class="fa-solid fa-video"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <button class="btn-action" type="button"><i class="fa-solid fa-square-info"></i></button>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                              </tr>
+                                          </tbody>
+                                    </table>
+                                  </div>
+
+                                  <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                          <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item"><a class="page-link active" href="#">page 2 / 3</a></li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                          <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Start Footer -->
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script>
+        $('[data-toggle="datepicker"]').datepicker();
+    </script>
+</body>
+
+</html>

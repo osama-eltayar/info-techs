@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+    <link rel="icon" href="assets/img/fav.png" type="image/x-icon">
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/font-awsome-all.css" />
+    <link rel="stylesheet" href="assets/css/jquery-clockpicker.css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <main>
+            <div class="dashboard-content">
+                <!-- Start Sidebar -->
+                <div class="sidebar">
+                    <div class="top-logo">
+                        <img src="assets/img/light-logo.png" alt="">
+                    </div>
+                    <div class="list-links">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="active"><img src="assets/img/icon.png" alt="icon"> Create new event </a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Events  List</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Owners</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Sponsors</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Speakers</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Users List</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Discounts</a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="assets/img/icon.png" alt="icon"> Payments & Invoices</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Start Dashboard -->
+                <div class="dashboard-body">
+                    <!-- Start Header -->
+                    <header>
+                        <nav>
+                            <div class="logo-nav">
+                                <a href="#" class="collapse-btn"><i class="fal fa-bars"></i></a>
+                                <img src="assets/img/fav.png" alt="image">
+                            </div>
+                            <div class="navbar">
+                                <div class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Welcome Jawaher 
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <li><a class="dropdown-item" href="#">Settngs</a></li>
+                                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </nav>
+                    </header>
+                    <!-- Start Content -->
+                    <div class="content-side">
+                        <div class="page-title">
+                            <div class="container-fluid "><h1><img src="assets/img/icon2.png" alt="icon"> Create new event  </h1></div>
+
+                        </div>
+                        <div class="container-fluid bg-blue">
+                            <div class="tabs-body">
+                                <ul class="nav nav-pills " id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1" aria-selected="true"><i class="fa-solid fa-align-left"></i> General information</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link" id="pills-2-tab" data-bs-toggle="pill" data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2" aria-selected="false"><i class="fa-solid fa-credit-card"></i> Payments and discounts</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                      <button class="nav-link" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false"><i class="fa-solid fa-keynote"></i> Chair persons & speakers</button>
+                                    </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="true"><i class="fa-solid fa-file-certificate"></i> Sponsors</button>
+                                      </li>
+                                      <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-5-tab" data-bs-toggle="pill" data-bs-target="#pills-5" type="button" role="tab" aria-controls="pills-5" aria-selected="false"><i class="fa-solid fa-file"></i> Materials</button>
+                                      </li>
+                                      <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-6-tab" data-bs-toggle="pill" data-bs-target="#pills-6" type="button" role="tab" aria-controls="pills-6" aria-selected="false"><i class="fa-solid fa-info"></i> Event description</button>
+                                      </li>
+
+                                      <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-7-tab" data-bs-toggle="pill" data-bs-target="#pills-7" type="button" role="tab" aria-controls="pills-7" aria-selected="false"><i class="fa-solid fa-photo-film"></i> Event Media</button>
+                                      </li>
+
+                                      <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-8-tab" data-bs-toggle="pill" data-bs-target="#pills-8" type="button" role="tab" aria-controls="pills-8" aria-selected="false"><i class="fa-solid fa-calendar-star"></i> Publish sceduale</button>
+                                      </li>
+
+                                  </ul>
+                                  <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-align-left"></i> General Information</h3>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-12">
+                                                        <div class="mb-5">
+                                                            <label for="" class="form-label">Course Type <span>*</span></label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Recorded</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                          </div>
+
+                                                          <div class="mb-4">
+                                                            <label for="" class="form-label">Course Name <span>*</span></label>
+                                                            <input type="text" class="form-control mb-3" id="" placeholder="">
+                                                            <input type="text" class="form-control " id="" placeholder="Arabic Language">
+                                                          </div>
+
+                                                          <div class="mb-4">
+                                                            <div id="list1" class="input-content">
+                                                                <div class="title">
+                                                                    <label>Course Date and time <span>*</span></label>
+                                                                    <button type="button" class="add-new">Add new</button>
+                                                                </div>
+                                                                <div class="input-group row">
+                                                                    <div class="mb-2 col-md-6 col-sm-12">
+                                                                        <label for="" class="form-label">Date</label>
+                                                                        <input type="text" class="form-control" id="date" data-toggle="datepicker" placeholder="Date" aria-label="Date">
+                                                                    </div>
+                                                                    <div class="mb-2 col-md col-sm-12">
+                                                                        <label for="" class="form-label">Time From</label>
+                                                                        <div class="clockpicker" data-align="top" data-autoclose="true">
+                                                                            <input type="text" class="form-control" id="from" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-2 col-md col-sm-12">
+                                                                        <label for="" class="form-label">Time To</label>
+                                                                        <div class="clockpicker" data-align="top" data-autoclose="true">
+                                                                            <input type="text" class="form-control" id="to" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                  </div>
+ 
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="mb-4">
+                                                            <label for="" class="form-label">Country <span>*</span></label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Country</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                          </div>
+
+                                                          <div class="mb-4">
+                                                            <label for="" class="form-label">Address</label>
+                                                            <input type="text" class="form-control" id="" placeholder="">
+                                                          </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-4 field-disabled">
+                                                                    <label for="" class="form-label">Available seats</label>
+                                                                    <input type="number" class="form-control" id="" placeholder="20" disabled>
+                                                                    <span class="message">Leave blank for unlimited seats</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-12">
+                                                                <div class="mb-4">
+                                                                    <label for="" class="form-label">Available seats</label>
+                                                                    <input type="number" class="form-control" id="" placeholder="20">
+                                                                    <span class="message">Leave blank for none CME's</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Certification availability %  <span>*</span></label>
+                                                            <input type="text" class="form-control" id="" placeholder="">
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Course survey</label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected="">About infotechs v1</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Speciality <span>*</span></label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected="">Doctors</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Event Owner  <span>*</span></label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected="">Doctors</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">City</label>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected="">City</option>
+                                                                <option value="1">test1</option>
+                                                              </select>
+                                                        </div>
+
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Location</label>
+                                                            <input type="text" class="form-control" id="" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-9 col-12">
+                                                        <div class="mb-4">
+                                                            <div id="list2" class="input-content">
+                                                                <div class="title">
+                                                                    <label>Recorded event sections</label>
+                                                                    <button type="button" class="add-new">Add new</button>
+                                                                </div>
+                                                                <div class="input-group row">
+                                                                    <div class="mb-2 col-md-4 col-sm-12">
+                                                                        <label for="" class="form-label">Title</label>
+                                                                        <input type="text" class="form-control" placeholder="Brain of the socilology ">
+                                                                    </div>
+                                                                    <div class="mb-2 col-md col-sm-12">
+                                                                        <label for="" class="form-label">Section URL</label>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" placeholder="http://www,youtube.com/ghhYg">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-2 col-md col-sm-12">
+                                                                        <label for="" class="form-label">Type</label>
+                                                                        <div class="input-group">
+                                                                            <select class="form-select" aria-label="Default select example">
+                                                                                <option selected>Free</option>
+                                                                                <option value="1">test1</option>
+                                                                              </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    
+
+                                                                  </div>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-credit-card"></i> Payments and Discounts</h3>
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-12">
+                                                        <div class="mb-4">
+                                                            <label for="" class="form-label">Course fees    <span class="fees">0 SAR</span></label>
+                                                            <input type="text" class="form-control" id="" placeholder="">
+                                                            <span class="message">Fees in SAR | Leave blank for free course</span>
+                                                          </div>
+
+                                                          <div class="row">
+                                                            <div class="col-lg-6 col-12">
+                                                                <label for="" class="form-label">Course Discount</label>
+                                                                <div class="input-group row">
+                                                                    <div class="mb-2 col-md-7 col-12">
+                                                                        <input type="number" class="form-control">
+                                                                    </div>
+                                                                    <div class="mb-2 col-md-5 col-12">
+                                                                        <select class="form-select" aria-label="Default select example">
+                                                                            <option selected> SAR</option>
+                                                                            <option value="1">test1</option>
+                                                                          </select>
+                                                                    </div>
+                                                                  </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-12">
+                                                                <div class="mb-4">
+                                                                    <label for="" class="form-label">Activate discount before date</label>
+                                                                    <input type="text" class="form-control" id="" placeholder="">
+                                                                    <span class="message">Please select a date  </span>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-keynote"></i>   Chair persons, speakers </h3>
+                                                <div class="row">
+                                                    <div class="col-xl-10 col-12">
+                                                          <div class="row">
+                                                            <div class="col-lg-6 col-12">
+                                                                <div class="box">
+                                                                    <div class="mb-4">
+                                                                        <label for="" class="form-label">Chair Person</label>
+                                                                        <select class="form-select" aria-label="Default select example">
+                                                                            <option selected></option>
+                                                                            <option value="1">test1</option>
+                                                                        </select>
+                                                                        <span class="message">Select multiple chair person</span>
+                                                                    </div>
+                                                                    <ul class="list-unstyled user-list">
+                                                                        <li>
+                                                                            <i class="fa-solid fa-user"></i> Ahmed Samir mohamed
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa-solid fa-user"></i> Sameh abdel naby
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-12">
+                                                                <div class="box">
+                                                                    <div class="mb-4">
+                                                                        <label for="" class="form-label">Course speakers</label>
+                                                                        <select class="form-select" aria-label="Default select example">
+                                                                            <option selected></option>
+                                                                            <option value="1">test1</option>
+                                                                        </select>
+                                                                        <span class="message">Select multiple course speakers</span>
+                                                                    </div>
+                                                                    <ul class="list-unstyled user-list">
+                                                                        <li>
+                                                                            <i class="fa-solid fa-user"></i> Ahmed Samir mohamed
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-file-certificate"></i> Sponsors</h3>
+                                                <div class="row sponsors-w">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-4">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected> </option>
+                                                                <option value="1">Select multiple sponsors</option>
+                                                            </select>
+                                                            <span class="message">Fees in SAR | Leave blank for free course</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mb-4">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>Type </option>
+                                                                <option value="1">Select multiple sponsors</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-12">
+                                                        <button type="button" class="btn btn-primary d-block w-100">Add</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-file"></i> Materials</h3>
+                                                <div class="upload-file">
+                                                    <div class="custom-file">
+                                                        <input class="custom-file-input"  type="file"/>
+                                                        <label class="custom-file-label" ></label>
+                                                    </div>
+                                                    <div class="action">
+                                                        <button type="button" class="btn btn-primary">Upload</button>
+                                                    </div>
+                                                    <div class="message">
+                                                        <span>Maximum size 50 MB</span>
+                                                        <span>Extensions available jpg, png, pdf,  doc, docx, xls, pts</span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="pills-6" role="tabpanel" aria-labelledby="pills-6-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-info"></i> Event description</h3>
+                                                <div class="dis">
+                                                    <div class="mb-4">
+                                                        <textarea class="form-control" placeholder="English description"></textarea>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <textarea class="form-control" placeholder="Arabic description" style="direction: rtl;"></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="pills-7" role="tabpanel" aria-labelledby="pills-7-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-photo-film"></i> Event Media</h3>
+                                                <div class="mb-5">
+                                                    <label for="" class="form-label">TOP SIDE</label>
+                                                    <div class="upload-file">
+                                                        <div class="custom-file">
+                                                            <input class="custom-file-input"  type="file"/>
+                                                            <label class="custom-file-label" ></label>
+                                                        </div>
+                                                        <div class="action">
+                                                            <button type="button" class="btn btn-primary">Upload</button>
+                                                        </div>
+                                                        <div class="message">
+                                                            <span>Dimension: Width (1920px) - Height (400px) 
+                                                            </span>
+                                                            <span>Maximum size: 10 MB</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="result-file">
+                                                        <i class="fa-solid fa-photo-film"></i>
+                                                        <span>header.jpg  - 5 MB  ( Top side )</span>
+                                                        <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4">
+                                                    <label for="" class="form-label">LEFT SIDE</label>
+                                                    <div class="upload-file">
+                                                        <div class="custom-file">
+                                                            <input class="custom-file-input"  type="file"/>
+                                                            <label class="custom-file-label" ></label>
+                                                        </div>
+                                                        <div class="action">
+                                                            <button type="button" class="btn btn-primary">Upload</button>
+                                                        </div>
+                                                        <div class="message">
+                                                            <span>Dimension: Width (1920px) - Height (400px) 
+                                                            </span>
+                                                            <span>Maximum size: 10 MB</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="result-file">
+                                                        <i class="fa-solid fa-photo-film"></i>
+                                                        <span>header.jpg  - 5 MB  ( Top side )</span>
+                                                        <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade " id="pills-8" role="tabpanel" aria-labelledby="pills-7-tab">
+                                        <div class="form-content">
+                                            <form action="">
+                                                <h3 class="form-title"><i class="fa-solid fa-calendar-star"></i> Publish sceduale</h3>
+                                                <div class="mb-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Publish now
+                                                        </label>
+                                                      </div>
+                                                      <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            Schedule publish
+                                                        </label>
+                                                      </div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            Hide how many view
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                                                        <label class="form-check-label" for="flexCheckDefault2">
+                                                            I confirm to create the event
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-action">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Start Footer -->
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/jquery-clockpicker.js"></script>
+    <script>
+        $('[data-toggle="datepicker"]').datepicker();
+
+        $('.clockpicker').clockpicker({
+            placement: 'top',
+            align: 'left',
+            donetext: 'Done'
+        });
+
+        (function() {
+        $(document).on('click', '#list1 .add-new', function(e) {
+            var clone, examsList;
+            e.preventDefault();
+            examsList = $('#list1');
+            clone = examsList.children('.input-group:first').clone(true);
+            clone.append($('<button>').addClass('remove').html(`<i class="fa-solid fa-trash-can"></i>`));
+
+            clone.find('input').val('').attr('id', function() {
+            return $(this).attr('id') + '_' + (examsList.children('.input-group').length + 1);
+            });
+            return examsList.append(clone);
+        });
+
+        $(document).on('click', '#list2 .add-new', function(e) {
+            var clone, examsList;
+            e.preventDefault();
+            examsList = $('#list2');
+            clone = examsList.children('.input-group:first').clone(true);
+            clone.append($('<button>').addClass('remove').html(`<i class="fa-solid fa-trash-can"></i>`));
+
+            clone.find('input').val('').attr('id', function() {
+            return $(this).attr('id') + '_' + (examsList.children('.input-group').length + 1);
+            });
+            return examsList.append(clone);
+        });
+
+        //remove rows when remove button is clicked
+        $(document).on('click', '.remove', function(e) {
+            e.preventDefault();
+            return $(this).parent().remove();
+        });
+
+        }).call(this);
+
+        // Upload file
+        $(document).ready(function() {
+            $(document).on('change', '.custom-file-input',function(event){
+                var files = event.target.files;
+                console.log(files);
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    $(this).next('.custom-file-label').addClass("selected").html(file.name);
+                }
+            });
+        });	
+    </script>
+</body>
+
+</html>
