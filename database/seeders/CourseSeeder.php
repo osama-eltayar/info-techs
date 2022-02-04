@@ -28,7 +28,8 @@ class CourseSeeder extends Seeder
             'type_id'         => '1',
             'from'            => '12:00',
             'to'              => '13:00',
-            'organization_id' => '5'
+            'organization_id' => '5',
+            'duration' => 1
         ]);
 
         Course::firstOrCreate([
@@ -45,7 +46,8 @@ class CourseSeeder extends Seeder
             'type_id'         => '2',
             'from'            => '12:00',
             'to'              => '13:00',
-            'organization_id' => '4'
+            'organization_id' => '4',
+            'duration' => 1
         ]);
 
         Course::firstOrCreate([
@@ -62,7 +64,8 @@ class CourseSeeder extends Seeder
             'type_id'         => '3',
             'from'            => '12:00',
             'to'              => '13:00',
-            'organization_id' => '3'
+            'organization_id' => '3',
+            'duration' => 1
         ]);
 
         Course::firstOrCreate([
@@ -80,7 +83,8 @@ class CourseSeeder extends Seeder
             'from'            => '12:00',
             'to'              => '13:00',
             'organization_id' => '2',
-            'seats'           => 20
+            'seats'           => 20,
+            'duration' => 1
         ]);
 
         Course::firstOrCreate([
@@ -98,7 +102,8 @@ class CourseSeeder extends Seeder
             'from'            => '12:00',
             'to'              => '13:00',
             'organization_id' => '1',
-            'seats'           => 10
+            'seats'           => 10,
+            'duration' => 1
         ]);
     }
 }

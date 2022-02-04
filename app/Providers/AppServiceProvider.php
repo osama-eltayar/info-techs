@@ -6,6 +6,7 @@ use App\Payment\HyperpayService;
 use App\Payment\PaymentServiceInterface;
 use App\Services\User\Session\SessionServiceInterface;
 use App\Services\User\Session\Zoom\ZoomMeetingService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
         Schema::defaultStringLength(125 );
 
         $this->app->bind(SessionServiceInterface::class,ZoomMeetingService::class);

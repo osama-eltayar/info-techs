@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware(['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
                  ->prefix( LaravelLocalization::setLocale().'/dashboard')
                  ->namespace($this->namespace)
-                 ->as('dashboard.')
+                 ->as('admin.')
                  ->group(base_path('routes/admin.php'));
         });
     }

@@ -65,8 +65,29 @@ mix
         'resources/admin/assets/js/scripts.js',
     ], 'public/admin/assets/js/scripts.js')
     .js([
+        'resources/admin/assets/js/common.js',
+    ], 'public/admin/assets/js/common.min.js')
+    .js([
         'resources/admin/assets/js/auth/login.js',
     ], 'public/admin/assets/js/auth/login.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/common.js',
+        'resources/admin/assets/js/owners/create.js',
+    ], 'public/admin/assets/js/owners/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/common.js',
+        'resources/admin/assets/js/owners/edit.js',
+    ], 'public/admin/assets/js/owners/edit.min.js')
+
+    .js([
+        'resources/admin/assets/js/owners/show.js',
+    ], 'public/admin/assets/js/owners/show.min.js')
+
+    .js([
+        'resources/admin/assets/js/owners/list.js',
+    ], 'public/admin/assets/js/owners/list.min.js')
 
     .copyDirectory(['resources/admin/assets/css/'],'public/admin/assets/css/')
     .copyDirectory(['resources/admin/assets/fonts/'],'public/admin/assets/fonts/')

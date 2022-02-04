@@ -97,6 +97,11 @@ class Course extends Model
         return $this->start_date->format('d M Y');
     }
 
+    public function getFormattedEndDateAttribute()
+    {
+        return $this->end_date->format('d M Y');
+    }
+
     public function getFormattedFromAttribute()
     {
         return $this->from->format('h:i a');
@@ -105,6 +110,11 @@ class Course extends Model
     public function getFormattedToAttribute()
     {
         return $this->to->format('h:i a');
+    }
+
+    public function getDaysCountAttribute()
+    {
+        return $this->end_date->diffInDays($this->start_date);
     }
 
     public function isLive()

@@ -5,7 +5,7 @@
             <div class="logo-form">
                 <img src="{{asset('admin/assets/img/logo.png')}}" alt="logo">
             </div>
-            <form action="{{route('dashboard.login')}}" method="POST" id="login-form">
+            <form action="{{route('admin.login')}}" method="POST" id="login-form">
                 @csrf
                 <div class="mb-4">
                     <label for="email" class="form-label">Email </label>

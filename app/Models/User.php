@@ -43,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //########################################### Constants ################################################
     const USER = 'user';
     const ADMIN = 'admin';
+    const OWNER ='owner';
 
 
     //########################################### Accessors ################################################
@@ -76,12 +77,12 @@ class User extends Authenticatable implements MustVerifyEmail
     //########################################### Scopes ###################################################
     public function scopeUser($q)
     {
-        return $q->roles(self::USER);
+        return $q->role(self::USER);
     }
 
     public function scopeAdmin($q)
     {
-        return $q->roles(self::ADMIN);
+        return $q->role(self::ADMIN);
 
     }
 
@@ -111,6 +112,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function certificates()
     {
         return $this->hasMany(UserCertificate::class);
+    }
+
+    public function organization()
+    {
+        return $this->hasOne(Organization::class);
     }
 
 }
