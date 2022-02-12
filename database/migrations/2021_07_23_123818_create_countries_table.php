@@ -14,11 +14,12 @@ class CreateCountriesTable extends Migration
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id();
+//            $table->id();
 //            $table->string('name_ar');
-            $table->string('name');
-            $table->timestamps();
+//            $table->string('name');
+//            $table->timestamps();
         });
+
     }
 
     /**

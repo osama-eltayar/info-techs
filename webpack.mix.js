@@ -58,4 +58,61 @@ mix
     .copy(['resources/css/rtl.css'], 'public/css/rtl.css')
     .copy(['resources/assets/js/vendor'],'public/js/vendor')
     .copy(['resources/assets/css/vendor'],'public/css/vendor')
+
+
+    //#############################  admin assets  ##################################
+    .js([
+        'resources/admin/assets/js/scripts.js',
+    ], 'public/admin/assets/js/scripts.js')
+    .js([
+        'resources/admin/assets/js/common.js',
+    ], 'public/admin/assets/js/common.min.js')
+    .js([
+        'resources/admin/assets/js/auth/login.js',
+    ], 'public/admin/assets/js/auth/login.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/common.js',
+        'resources/admin/assets/js/owners/create.js',
+    ], 'public/admin/assets/js/owners/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/common.js',
+        'resources/admin/assets/js/owners/edit.js',
+    ], 'public/admin/assets/js/owners/edit.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/show.js',
+    ], 'public/admin/assets/js/owners/show.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/owners/list.js',
+    ], 'public/admin/assets/js/owners/list.min.js')
+
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/common.js',
+        'resources/admin/assets/js/sponsors/create.js',
+    ], 'public/admin/assets/js/sponsors/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/common.js',
+        'resources/admin/assets/js/sponsors/edit.js',
+    ], 'public/admin/assets/js/sponsors/edit.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/show.js',
+    ], 'public/admin/assets/js/sponsors/show.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/list.js',
+    ], 'public/admin/assets/js/sponsors/list.min.js')
+
+    .copyDirectory(['resources/admin/assets/css/'],'public/admin/assets/css/')
+    .copyDirectory(['resources/admin/assets/fonts/'],'public/admin/assets/fonts/')
+    .copyDirectory(['resources/admin/assets/webfonts/'],'public/admin/assets/webfonts/')
+    .copyDirectory(['resources/admin/assets/img/'],'public/admin/assets/img/')
+    .copyDirectory(['resources/admin/assets/js/vendor'],'public/admin/assets/js/vendor')
+
+
     .sourceMaps();

@@ -19,3 +19,5 @@ yarn-error.log
 /public/media
 /public/webfonts
 /infotechs_database.txt
+/public/admin/
+routes.txt

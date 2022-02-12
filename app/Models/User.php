@@ -42,12 +42,24 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //########################################### Constants ################################################
     const USER = 'user';
+    const ADMIN = 'admin';
+    const OWNER ='owner';
 
 
     //########################################### Accessors ################################################
     public function getFirstNameAttribute()
     {
         return Str::before($this->name,' ') ;
+    }
+
+    public function isUser()
+    {
+        return $this->hasRole(self::USER);
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole(self::ADMIN);
     }
 
     //########################################### Mutators #################################################
@@ -63,7 +75,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     //########################################### Scopes ###################################################
+    public function scopeUser($q)
+    {
+        return $q->role(self::USER);
+    }
 
+    public function scopeAdmin($q)
+    {
+        return $q->role(self::ADMIN);
+
+    }
 
     //########################################### Relations ################################################
     public function profile()
@@ -91,6 +112,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function certificates()
     {
         return $this->hasMany(UserCertificate::class);
+    }
+
+    public function organization()
+    {
+        return $this->hasOne(Organization::class);
     }
 
 }
