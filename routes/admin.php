@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/','dashboard/owners');
+
 Route::group(['middleware' => ['guest']], function () {
     Route::get('login', [LoginController::class, 'show'])->name('login.show');
     Route::post('login', [LoginController::class, 'login'])->name('login');

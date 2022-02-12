@@ -58,8 +58,8 @@ class RouteServiceProvider extends ServiceProvider
                  ->namespace($this->namespace)
                  ->group(base_path('routes/uploads.php'));
 
-            Route::middleware(['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
-                 ->prefix( LaravelLocalization::setLocale().'/dashboard')
+            Route::middleware(['web'])
+                 ->prefix( 'dashboard')
                  ->namespace($this->namespace)
                  ->as('admin.')
                  ->group(base_path('routes/admin.php'));

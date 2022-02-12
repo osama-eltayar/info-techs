@@ -31,64 +31,13 @@
         @auth()
             <div class="dashboard-content">
                 <!-- Start Sidebar -->
-                <div class="sidebar">
-                    <div class="top-logo">
-                        <img src="/admin/assets/img/light-logo.png" alt="">
-                    </div>
-                    <div class="list-links">
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Create new event </a>
-                            </li>
-                            <li>
-                                <a href="#" class="active"><img src="/admin/assets/img/icon.png" alt="icon"> Events List</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Owners</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Sponsors</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Speakers</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Users List</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Discounts</a>
-                            </li>
-                            <li>
-                                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Payments & Invoices</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include('admin.layouts.partials.sidebar')
                 <!-- Start Dashboard -->
                 <div class="dashboard-body">
                 @endauth
                 <!-- Start Header -->
                     @auth()
-                        <header>
-                            <nav>
-                                <div class="logo-nav">
-                                    <a href="#" class="collapse-btn"><i class="fal fa-bars"></i></a>
-                                    <img src="/admin/assets/img/fav.png" alt="image">
-                                </div>
-                                <div class="navbar">
-                                    <div class="dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                           data-bs-toggle="dropdown" aria-expanded="false">
-                                            Welcome Jawaher
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="#">Settngs</a></li>
-                                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </header>
+                        @include('admin.layouts.partials.header')
                     @endauth
                     @yield('content')
                     @auth()
