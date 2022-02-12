@@ -6,13 +6,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExportCoursesPdfReportService extends ExportPdfService
 {
+    private $view;
+
     function view()
     {
-        return 'admin.courses.report';
+        return $this->view;
     }
 
     function fileName()
     {
         return 'events.pdf';
+    }
+
+    public function setView($view)
+    {
+        $this->view = $view;
+        return $this;
     }
 }

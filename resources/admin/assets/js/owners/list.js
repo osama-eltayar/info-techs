@@ -40,7 +40,7 @@ function exportOwnersExcel(){
     const searchData =  $('#owners-search-form').serialize()
     if(!ownersExcelExportUrl)
         ownersExcelExportUrl =  $('#owners-export-excel-form').attr('action')
-    $('#owners-export-excel-form').attr('action',`${ownersExcelExportUrl}/?${searchData}`)
+    $('#owners-export-excel-form').attr('action',`${ownersExcelExportUrl}?${searchData}`)
     $('#owners-export-excel-form').submit();
 }
 
@@ -48,7 +48,7 @@ function exportOwnersPdf(){
     const searchData =  $('#owners-search-form').serialize()
     if(!ownersPdfExportUrl)
         ownersPdfExportUrl =  $('#owners-export-pdf-form').attr('action')
-    $('#owners-export-pdf-form').attr('action',`${ownersPdfExportUrl}/?${searchData}`)
+    $('#owners-export-pdf-form').attr('action',`${ownersPdfExportUrl}?${searchData}`)
     $('#owners-export-pdf-form').submit();
 }
 

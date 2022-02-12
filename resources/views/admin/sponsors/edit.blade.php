@@ -3,45 +3,42 @@
     <!-- Start Content -->
     <div class="content-side">
         <div class="page-title">
-            <div class="container-fluid "><h1><img src="/admin/assets/img/icon2.png" alt="icon"> Owners  </h1></div>
+            <div class="container-fluid "><h1><img src="/admin/assets/img/icon2.png" alt="icon"> Sponsors  </h1></div>
 
         </div>
         <div class="container-fluid bg-blue">
             <div class="content-body">
                 <div class="form-body">
-                    <h4>Create new owner</h4>
-                    <form action="{{route('admin.owners.update',$owner->id)}}" method="POST" enctype="multipart/form-data" id="edit-owner-form">
+                    <h4>Create new sponsor</h4>
+                    <form action="{{route('admin.sponsors.update',$sponsor->id)}}" method="POST" enctype="multipart/form-data" id="edit-sponsor-form">
                         @method('PUT')
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="mb-4">
-                                    <label for="" class="form-label">Owner name</label>
-                                    <input type="text" class="form-control mb-3" id="" placeholder="English name" name="name_en" value="{{$owner->name_en}}">
-                                    <input type="text" class="form-control " id="" placeholder="Arabic Name" name="name_ar" value="{{$owner->name_ar}}">
+                                    <label for="" class="form-label">Sponsor name</label>
+                                    <input type="text" class="form-control mb-3" id="" placeholder="English name" name="name_en" value="{{$sponsor->name_en}}">
+                                    <input type="text" class="form-control " id="" placeholder="Arabic Name" name="name_ar" value="{{$sponsor->name_ar}}">
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="" class="form-label">Email </label>
-                                    <input type="email" class="form-control " id="" placeholder="" name="email" value="{{$owner->user->email}}">
+                                    <input type="email" class="form-control " id="" placeholder="" name="email" value="{{$sponsor->email}}">
                                 </div>
-                                <div class="mb-4">
-                                    <label for="" class="form-label">Password </label>
-                                    <input type="password" class="form-control " id="" placeholder="" name="password">
-                                </div>
+
                                 <div class="mb-4">
                                     <label for="" class="form-label">Mobile </label>
-                                    <input type="tel" class="form-control " id="" placeholder="" name="mobile" value="{{$owner->mobile}}">
+                                    <input type="tel" class="form-control " id="" placeholder="" name="mobile" value="{{$sponsor->mobile}}">
                                 </div>
                                 <div class="mb-4">
                                     <label for="" class="form-label">Country </label>
                                     <select class="form-select" aria-label="Default select example" name="country_id" id="country-selector">
-                                        <option value="{{$owner->country->id}}" selected>{{$owner->country->name}}</option>
+                                        <option value="{{$sponsor->country->id}}" selected>{{$sponsor->country->name}}</option>
                                     </select>
                                 </div>
                                 <div class="mb-4">
                                     <label for="" class="form-label">City </label>
                                     <select class="form-select" aria-label="Default select example" name="city_id" id="city-selector">
-                                        <option value="{{$owner->city->id}}" selected>{{$owner->city->name}}</option>
+                                        <option value="{{$sponsor->city->id}}" selected>{{$sponsor->city->name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -91,7 +88,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('/admin/assets/js/owners/edit.min.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/sponsors/edit.min.js')}}"></script>
     <script>
         // Upload file
         $(document).ready(function() {

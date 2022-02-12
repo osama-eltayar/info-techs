@@ -81,13 +81,32 @@ mix
         'resources/admin/assets/js/owners/edit.js',
     ], 'public/admin/assets/js/owners/edit.min.js')
 
-    .js([
+    .scripts([
         'resources/admin/assets/js/owners/show.js',
     ], 'public/admin/assets/js/owners/show.min.js')
 
-    .js([
+    .scripts([
         'resources/admin/assets/js/owners/list.js',
     ], 'public/admin/assets/js/owners/list.min.js')
+
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/common.js',
+        'resources/admin/assets/js/sponsors/create.js',
+    ], 'public/admin/assets/js/sponsors/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/common.js',
+        'resources/admin/assets/js/sponsors/edit.js',
+    ], 'public/admin/assets/js/sponsors/edit.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/show.js',
+    ], 'public/admin/assets/js/sponsors/show.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/sponsors/list.js',
+    ], 'public/admin/assets/js/sponsors/list.min.js')
 
     .copyDirectory(['resources/admin/assets/css/'],'public/admin/assets/css/')
     .copyDirectory(['resources/admin/assets/fonts/'],'public/admin/assets/fonts/')

@@ -184,7 +184,7 @@ class Course extends Model
 
     public function sponsors()
     {
-        return $this->belongsToMany(Sponsor::class, 'course_sponsors');
+        return $this->belongsToMany(Sponsor::class, 'course_sponsors')->withPivot('type','level');
     }
 
     public function organization()

@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Admin\SponsorController;
+use App\Http\Controllers\Admin\SponsorMaterialController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @method static self create( array $data )
@@ -33,6 +36,17 @@ class SponsorMaterial extends Model
     public function getNameAttribute()
     {
         return $this->{getLocalizeAttribute('name')};
+    }
+
+
+    public function getMaterialUrlAttribute()
+    {
+        return action([SponsorMaterialController::class,'download'],['sponsor' => $this->sponsor_id, 'material' => $this->id]);
+    }
+
+    public function getMaterialSizeAttribute()
+    {
+        return formatSizeUnits(Storage::size($this->path));
     }
 
 

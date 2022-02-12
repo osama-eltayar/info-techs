@@ -3,7 +3,7 @@
     <!-- Start Content -->
     <div class="content-side">
         <div class="page-title">
-            <div class="container-fluid "><h1><img src="/admin/assets/img/icon2.png" alt="icon"> Owners  </h1></div>
+            <div class="container-fluid "><h1><img src="/admin/assets/img/icon2.png" alt="icon"> Sponsors  </h1></div>
 
         </div>
         <div class="container-fluid bg-blue">
@@ -11,12 +11,12 @@
                 <div class="event-body">
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            <h4>Owner Details <a href="{{route('admin.owners.edit',$owner->id)}}">Update information</a></h4>
-                            <h3>{{$owner->name}}</h3>
+                            <h4>Sponsor Details <a href="{{route('admin.owners.edit',$sponsor->id)}}">Update information</a></h4>
+                            <h3>{{$sponsor->name}}</h3>
                         </div>
                         <div class="col-lg-6 col-12 text-end">
                             <div class="event-image">
-                                <img src="{{$owner->logo_url}}" class="img-fluid" alt="image">
+                                <img src="{{$sponsor->logo_url}}" class="img-fluid" alt="image">
                             </div>
                         </div>
                     </div>
@@ -26,20 +26,20 @@
                                 <div class="list-date">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <span class="left-side">Owner name:</span>
-                                            <span class="right-side">{{$owner->name}}</span>
+                                            <span class="left-side">Sponsor name:</span>
+                                            <span class="right-side">{{$sponsor->name}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Email:</span>
-                                            <span class="right-side">{{$owner->user->email}}</span>
+                                            <span class="right-side">{{$sponsor->email}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Mobile:</span>
-                                            <span class="right-side">{{$owner->mobile}}</span>
+                                            <span class="right-side">{{$sponsor->mobile}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Country:</span>
-                                            <span class="right-side">{{$owner->country->name}}</span>
+                                            <span class="right-side">{{$sponsor->country->name}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -52,8 +52,8 @@
                                         <li>
                                                             <span class="left-side">
                                                                 Material
-                                                                <a href="{{$owner->material_url}}" style="text-decoration: none">
-                                                                    <p>{{$owner->name}}.pdf  - {{$owner->material_size}}  </p>
+                                                                <a href="{{$sponsor->material->material_url}}" style="text-decoration: none">
+                                                                    <p>{{$sponsor->name}}.pdf  - {{$sponsor->material->material_size}}  </p>
                                                                 </a>
                                                             </span>
                                         </li>
@@ -72,8 +72,8 @@
                         <div class="col-lg-6 col-12 text-end">
                             <h3>
                                 Export report
-                                <button class="btn-file btn-pdf" type="button"><i class="fa-solid fa-file-pdf"></i></button>
-                                <button class="btn-file btn-excel" type="button"><i class="fa-solid fa-file-excel"></i></button>
+                                <a class="btn-file btn-pdf" href="#"><i class="fa-solid fa-file-pdf"></i></a>
+                                <a class="btn-file btn-excel" href="#"><i class="fa-solid fa-file-excel"></i></a>
                             </h3>
                         </div>
                     </div>
@@ -87,11 +87,10 @@
                         <th scope="col">Days</th>
                         <th scope="col">Start date</th>
                         <th scope="col">End Date</th>
-                        <th scope="col">Registered users</th>
-                        <th scope="col">Event Amount</th>
+                        <th scope="col">Event Sponsorship</th>
                         </thead>
                         <tbody>
-                        @foreach($owner->courses as $course)
+                        @foreach($sponsor->courses as $course)
                             <tr>
                                 <td>{{$course->id}}</td>
                                 <td>{{$course->title}}</td>
@@ -99,21 +98,19 @@
                                 <td>{{$course->days_count}}</td>
                                 <td>{{$course->formatted_start_date}}</td>
                                 <td>{{$course->formatted_end_date}}</td>
+{{--                                todo add level--}}
                                 <td>{{$course->registered_users_count}}</td>
-                                <td>
-                                    SAR {{$course->price}}
-                                </td>
                             </tr>
                         @endforeach
 
                         </tbody>
                     </table>
                 </div>
-                {{$owner->courses->links()}}
-                <form action="{{route('admin.courses.export.excel',['resource_type' =>'owners','resource_id' => $owner->id])}}" method="POST" id="courses-export-excel-form">
+                {{$sponsor->courses->links()}}
+                <form action="{{route('admin.courses.export.excel',['resource_type' => 'sponsors' ,'resource_id' => $sponsor->id])}}" method="POST" id="courses-export-excel-form">
                     @csrf
                 </form>
-                <form action="{{route('admin.courses.export.pdf',['resource_type' =>'owners','resource_id' => $owner->id])}}" method="POST" id="courses-export-pdf-form">
+                <form action="{{route('admin.courses.export.pdf',['resource_type' => 'sponsors' ,'resource_id' => $sponsor->id])}}" method="POST" id="courses-export-pdf-form">
                     @csrf
                 </form>
 

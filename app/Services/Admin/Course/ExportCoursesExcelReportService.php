@@ -6,13 +6,22 @@ use App\Services\Admin\Export\ExportExcelService;
 
 class ExportCoursesExcelReportService extends ExportExcelService
 {
-    function view()
+    private $view;
+
+    public function view()
     {
-        return 'admin.courses.report';
+        return $this->view;
     }
 
-    function fileName()
+    public function fileName()
     {
         return 'events.xlsx';
     }
+
+    public function setView($view)
+    {
+        $this->view = $view;
+        return $this;
+    }
+
 }
