@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasFiles;
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ class Speaker extends Model
 {
     use HasFactory;
     use HasFiles;
+    use HasFilter;
 
     /**
      * The attributes that are mass assignable.

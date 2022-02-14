@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,8 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
 
     Route::post('{resource_type}/{resource_id}/courses/export/pdf',[ CourseController::class, 'exportPdf'])
          ->where('resource_type','owners|sponsors')->name('courses.export.pdf');
+
+    //  Speakers
+    Route::resource('speakers', SpeakerController::class);
 
 });
