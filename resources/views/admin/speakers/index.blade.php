@@ -15,13 +15,13 @@
                         <h4>Speakers List</h4>
                     </div>
                     <div class="form-search">
-                        <form action="{{route('admin.speakers.index')}}" method="GET" id="owners-search-form">
+                        <form action="{{route('admin.speakers.index')}}" method="GET" id="speakers-search-form">
                             <div class="row justify-content-end">
                                 <div class="col-lg-4 col-12 mb-2">
                                     <label for="" class="form-label">Search by name</label>
                                     <div class="search-form">
                                         <input type="text" class="form-control" id="" name="name">
-                                        <button class="btn btn-primary search-btn"  type="button" id="owners-search-btn">Search</button>
+                                        <button class="btn btn-primary search-btn"  type="button" id="speakers-search-btn">Search</button>
                                     </div>
                                 </div>
 
@@ -37,13 +37,13 @@
                             </h3>
                         </div>
                     </div>
-                    {{-- <form action="{{route('admin.owners.export.excel')}}" method="POST" id="owners-export-excel-form">
+                    {{-- <form action="{{route('admin.speakers.export.excel')}}" method="POST" id="speakers-export-excel-form">
                         @csrf
                     </form>
-                    <form action="{{route('admin.owners.export.pdf')}}" method="POST" id="owners-export-pdf-form">
+                    <form action="{{route('admin.speakers.export.pdf')}}" method="POST" id="speakers-export-pdf-form">
                         @csrf
                     </form> --}}
-                    <div id="owners-list-container">
+                    <div id="speakers-list-container">
                         @include('admin.speakers.partials.speakers-list')
                     </div>
 
@@ -52,5 +52,5 @@
         </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('/admin/assets/js/owners/list.min.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/speakers/list.min.js')}}"></script>
 @endsection

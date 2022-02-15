@@ -14,15 +14,16 @@
         </thead>
         <tbody>
         @forelse($speakers as $speaker)
-            <tr class="speaker-row" data-id="{{$speaker->id}}">
+        <tr class="speaker-row" data-id="{{$speaker->id}}">
+            <td>{{$speaker->id}}</td>
             <td>{{$speaker->title}}</td>
             <td>{{$speaker->name}}</td>
             <td>{{$speaker->formatted_created_at}}</td>
             <td>{{$speaker->mobile}}</td>
-            <td>{{$speaker->country->name}}/{{$speaker->city->name}}</td>
+            <td>{{$speaker->country? $speaker->country->name : ''}}/{{$speaker->city? $speaker->city->name : ''}}</td>
             <td>{{$speaker->courses_count}}</td>
             <td>{{$speaker->position}}</td>
-            <td>{{$speaker->user->email}}</td>
+            <td>{{$speaker->user? $speaker->user->email : ''}}</td>
             <td>
                 <ul class="list-unstyled">
                     <li>

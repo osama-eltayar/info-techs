@@ -89,6 +89,10 @@ mix
         'resources/admin/assets/js/owners/list.js',
     ], 'public/admin/assets/js/owners/list.min.js')
 
+    .scripts([
+        'resources/admin/assets/js/speakers/list.js',
+    ], 'public/admin/assets/js/speakers/list.min.js')
+
 
     .scripts([
         'resources/admin/assets/js/sponsors/common.js',
