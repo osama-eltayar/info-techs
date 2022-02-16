@@ -11,11 +11,11 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <h4>Speaker Details <a href="{{route('admin.speakers.edit', $speaker->id)}}">Update information</a></h4>
-                            <h3>Ahmed Salem</h3>
+                            <h3>{{$speaker->name}}</h3>
                         </div>
                         <div class="col-lg-6 col-12 text-end">
                             <div class="event-image">
-                                <img src="{{asset('admin/assets/img/download.png')}}" class="img-fluid" alt="image">
+                                <img src="{{$speaker->image_url}}" class="img-fluid" alt="image">
                             </div>
                         </div>
                     </div>
@@ -26,23 +26,23 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <span class="left-side">Title :</span>
-                                            <span class="right-side">Mr.</span>
+                                            <span class="right-side">{{$speaker->title}}.</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Speaker name:</span>
-                                            <span class="right-side">Ahmed sALEM</span>
+                                            <span class="right-side">{{$speaker->name}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Email:</span>
-                                            <span class="right-side">ramy@jj.com</span>
+                                            <span class="right-side">{{$speaker->user? $speaker->user->email : '--'}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Mobile:</span>
-                                            <span class="right-side">+966 542113256</span>
+                                            <span class="right-side">{{$speaker->mobile}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Country:</span>
-                                            <span class="right-side">Country:</span>
+                                            <span class="right-side">{{$speaker->country? $speaker->country->name : '--'}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -58,13 +58,7 @@
                                             </span>
                                         </li>
                                     </ul>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    </p>
-                                    <p>
-                                        1) Lorem Ipsum has been the industry's standard dummy text ever since the <br>
-                                        2) 1500s, when an unknown printer took a galley of type and scrambled it to  <br>
-                                        3) make a type specimen book. It has survived not only five centuries,
-                                    </p>
+                                    {!! $speaker->bio !!}
                                 </div>
                             </div>
                         </div>

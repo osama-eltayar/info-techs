@@ -20,7 +20,7 @@
             <td>{{$speaker->name}}</td>
             <td>{{$speaker->formatted_created_at}}</td>
             <td>{{$speaker->mobile}}</td>
-            <td>{{$speaker->country? $speaker->country->name : ''}}/{{$speaker->city? $speaker->city->name : ''}}</td>
+            <td>{{$speaker->country? $speaker->country->name.'/' : ''}}{{$speaker->city? $speaker->city->name : ''}}</td>
             <td>{{$speaker->courses_count}}</td>
             <td>{{$speaker->position}}</td>
             <td>{{$speaker->user? $speaker->user->email : ''}}</td>
