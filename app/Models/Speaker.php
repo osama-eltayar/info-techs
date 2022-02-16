@@ -20,14 +20,19 @@ class Speaker extends Model
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable
-        = [
+    protected $fillable = [
             'name_ar',
             'name_en',
             'image',
             'title_ar',
             'title_en',
             'speciality_id',
+            'mobile',
+            'bio',
+            'position',
+            'country_id',
+            'user_id',
+            'city_id'
         ];
 
     //########################################### Constants ################################################
@@ -69,5 +74,19 @@ class Speaker extends Model
         return $this->belongsTo(Speciality::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 
