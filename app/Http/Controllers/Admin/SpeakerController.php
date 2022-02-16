@@ -23,6 +23,21 @@ class SpeakerController extends Controller
         return view('admin.speakers.index', compact('speakers'));
     }
 
+    public function show(Speaker $speaker)
+    {
+        return view('admin.speakers.show', compact('speaker'));
+    }
+
+    public function create()
+    {
+        return view('admin.speakers.create');
+    }
+
+    public function edit(Speaker $speaker)
+    {
+        return view('admin.speakers.edit', compact('speaker'));
+    }
+
     public function destroy(Speaker $speaker)
     {
         $speaker->delete();
