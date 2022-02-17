@@ -22,9 +22,9 @@ class AddColumnsToSpeakersTable extends Migration
             $table->string('mobile')->after('image')->unique();
             $table->text('bio')->nullable()->after('image');
             $table->string('position')->nullable()->after('image');
-            $table->unsignedBigInteger('user_title_id')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
-            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('user_title_id')->nullable()->after('email');
+            $table->unsignedBigInteger('country_id')->nullable()->after('email');
+            $table->unsignedBigInteger('city_id')->nullable()->after('email');
 
             $table->foreign('country_id')->references('id')->on('countries')->nullOnDelete();
             $table->foreign('city_id')->references('id')->on('cities')->nullOnDelete();

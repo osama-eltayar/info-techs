@@ -9,7 +9,7 @@ class FetchSpeakersListService
     public function execute($filterData, $perPage = null)
     {
         return Speaker::query()
-                        //    ->with('city','country')
+                           ->with('city', 'country', 'speciality', 'title')
                         //    ->withCount('courses')
                            ->filter($filterData)
                            ->when(!$perPage, function ($q) {

@@ -26,7 +26,7 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <span class="left-side">Title :</span>
-                                            <span class="right-side">{{$speaker->title}}.</span>
+                                            <span class="right-side">{{$speaker->title->name}}.</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Speaker name:</span>
@@ -34,7 +34,7 @@
                                         </li>
                                         <li>
                                             <span class="left-side">Email:</span>
-                                            <span class="right-side">{{$speaker->user? $speaker->user->email : '--'}}</span>
+                                            <span class="right-side">{{$speaker->email}}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Mobile:</span>

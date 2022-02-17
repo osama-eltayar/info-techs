@@ -43,16 +43,25 @@ class Speaker extends Model
         return $this->{getLocalizeAttribute('name')};
     }
 
-    public function getTitleAttribute()
-    {
-        return $this->{getLocalizeAttribute('title')};
-    }
+    // public function getTitleAttribute()
+    // {
+    //     return $this->{getLocalizeAttribute('title')};
+    // }
 
     public function getImageUrlAttribute()
     {
         return $this->getFileUrl($this->image);
     }
 
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function getCoursesCountAttribute()
+    {
+        return $this->courses()->count();
+    }
 
     //########################################### Mutators #################################################
 
@@ -84,7 +93,7 @@ class Speaker extends Model
 
     public function title()
     {
-        return $this->belongsTo(UserTitle::class);
+        return $this->belongsTo(UserTitle::class, 'user_title_id');
     }
 }
 
