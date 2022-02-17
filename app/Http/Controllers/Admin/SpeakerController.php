@@ -25,6 +25,7 @@ class SpeakerController extends Controller
 
     public function show(Speaker $speaker)
     {
+        $speaker->load('courses', 'title', 'country', 'city', 'speciality');
         return view('admin.speakers.show', compact('speaker'));
     }
 

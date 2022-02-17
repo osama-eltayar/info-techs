@@ -90,16 +90,17 @@
                             <th scope="col">Event status</th>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>What is socililogy?</td>
-                                <td>Online</td>
-                                <td>2</td>
-                                <td>10/11/2021</td>
-                                <td>12/11/2021</td>
-                                <td>Speaker</td>
-                              </tr>
-                          
+                              @foreach ($speaker->courses as $course)    
+                                <tr>
+                                    <td>{{$course->id}}</td>
+                                    <td>{{$course->title}}</td>
+                                    <td>{{$course->type_string}}</td>
+                                    <td>{{$course->days_count}}</td>
+                                    <td>{{$course->formatted_start_date}}</td>
+                                    <td>{{$course->formatted_end_date}}</td>
+                                    <td>{{$course->status}}</td>
+                                </tr>
+                              @endforeach
                           </tbody>
                     </table>
                 </div>
