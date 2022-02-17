@@ -24,12 +24,11 @@ class Speaker extends Model
             'name_ar',
             'name_en',
             'image',
-            'title_ar',
-            'title_en',
-            'speciality_id',
             'mobile',
             'bio',
             'position',
+            'title_id',
+            'speciality_id',
             'country_id',
             'user_id',
             'city_id'
@@ -84,9 +83,9 @@ class Speaker extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function user()
+    public function title()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserTitle::class);
     }
 }
 

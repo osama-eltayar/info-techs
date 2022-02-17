@@ -14,7 +14,7 @@ class UserTitleSeeder extends Seeder
      */
     public function run()
     {
-        UserTitle::query()->truncate();
+        // UserTitle::query()->truncate();
         $userTitles = ['Dr.','Mr.','Mrs.','Ms.','Prof.'] ;
         foreach($userTitles as $userTitle)
         {
