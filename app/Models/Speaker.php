@@ -27,10 +27,9 @@ class Speaker extends Model
             'mobile',
             'bio',
             'position',
-            'title_id',
+            'user_title_id',
             'speciality_id',
             'country_id',
-            'user_id',
             'city_id'
         ];
 
