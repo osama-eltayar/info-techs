@@ -11,6 +11,7 @@ use App\Models\Speciality;
 use App\Models\UserTitle;
 use App\Services\Admin\Speaker\FetchSpeakersListService;
 use App\Services\Admin\Speaker\CreateSpeakerService;
+use App\Services\Admin\Speaker\UpdateSpeakerService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -69,7 +70,34 @@ class SpeakerController extends Controller
 
     public function edit(Speaker $speaker)
     {
-        return view('admin.speakers.edit', compact('speaker'));
+        $titles = UserTitle::all();
+        $specialities = Speciality::all();
+        return view('admin.speakers.edit', compact('speaker', 'titles' , 'specialities'));
+    }
+
+    public function update(SpeakerRequest $request, Speaker $speaker, UpdateSpeakerService $updateSpeakerService)
+    {
+        $speakerData = $request->only([
+            'name_ar',
+            'name_en',
+            'image',
+            'email',
+            'mobile',
+            'bio',
+            'position',
+            'user_title_id',
+            'speciality_id',
+            'country_id',
+            'city_id'
+        ]);
+        $updateSpeakerService->execute([
+            'speaker_data' => $speakerData,
+            'speaker' => $speaker
+        ]);
+
+        return $this->successResponse([
+            'redirect' => route('admin.speakers.index')
+        ],'speaker Updated Successfully.',Response::HTTP_ACCEPTED);
     }
 
     public function destroy(Speaker $speaker)
