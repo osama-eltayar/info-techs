@@ -93,6 +93,16 @@ mix
         'resources/admin/assets/js/speakers/list.js',
     ], 'public/admin/assets/js/speakers/list.min.js')
 
+    .scripts([
+        'resources/admin/assets/js/speakers/common.js',
+        'resources/admin/assets/js/speakers/create.js',
+    ], 'public/admin/assets/js/speakers/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/speakers/common.js',
+        'resources/admin/assets/js/speakers/edit.js',
+    ], 'public/admin/assets/js/speakers/edit.min.js')
+
 
     .scripts([
         'resources/admin/assets/js/sponsors/common.js',

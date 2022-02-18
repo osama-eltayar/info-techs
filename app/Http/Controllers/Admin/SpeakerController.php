@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SpeakerRequest;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Speaker;
+use App\Models\Speciality;
+use App\Models\UserTitle;
 use App\Services\Admin\Speaker\FetchSpeakersListService;
+use App\Services\Admin\Speaker\CreateSpeakerService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,8 +37,35 @@ class SpeakerController extends Controller
 
     public function create()
     {
-        return view('admin.speakers.create');
+        $titles = UserTitle::all();
+        $specialities = Speciality::all();
+        return view('admin.speakers.create', compact('titles' , 'specialities'));
     }
+
+    public function store(SpeakerRequest $request, CreateSpeakerService $createSpeakerService)
+    {
+        $speakerData = $request->only([
+            'name_ar',
+            'name_en',
+            'image',
+            'email',
+            'mobile',
+            'bio',
+            'position',
+            'user_title_id',
+            'speciality_id',
+            'country_id',
+            'city_id'
+        ]);
+        $createSpeakerService->execute([
+            'speaker_data' => $speakerData
+        ]);
+
+        return $this->successResponse([
+            'redirect' => route('admin.speakers.index')
+        ], 'Speaker Created Successfully.', Response::HTTP_CREATED);
+    }
+
 
     public function edit(Speaker $speaker)
     {

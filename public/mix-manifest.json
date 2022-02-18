@@ -86,6 +86,8 @@
     "/admin/assets/js/owners/show.min.js": "/admin/assets/js/owners/show.min.js",
     "/admin/assets/js/owners/list.min.js": "/admin/assets/js/owners/list.min.js",
     "/admin/assets/js/speakers/list.min.js": "/admin/assets/js/speakers/list.min.js",
+    "/admin/assets/js/speakers/create.min.js": "/admin/assets/js/speakers/create.min.js",
+    "/admin/assets/js/speakers/edit.min.js": "/admin/assets/js/speakers/edit.min.js",
     "/admin/assets/js/sponsors/create.min.js": "/admin/assets/js/sponsors/create.min.js",
     "/admin/assets/js/sponsors/edit.min.js": "/admin/assets/js/sponsors/edit.min.js",
     "/admin/assets/js/sponsors/show.min.js": "/admin/assets/js/sponsors/show.min.js",
