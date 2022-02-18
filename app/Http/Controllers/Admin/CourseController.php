@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Organization;
+use App\Models\Speaker;
 use App\Models\Sponsor;
 use App\Services\Admin\Course\ExportCoursesExcelReportService;
 use App\Services\Admin\Course\ExportCoursesPdfReportService;
 use App\Services\Admin\Course\FetchCoursesListService as FetchCoursesListForOwnerService;
 use App\Services\Admin\Sponsor\FetchCoursesListService as FetchCoursesListForSponsorService;
+use App\Services\Admin\Speaker\FetchCoursesListService as FetchCoursesListForSpeakerService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -57,6 +59,11 @@ class CourseController extends Controller
             'sponsors' => [
                 'model' => Sponsor::class,
                 'coursesFetchService' => FetchCoursesListForSponsorService::class,
+                'coursesReportView' => 'admin.courses.sponsor-report'
+            ],
+            'speakers' => [
+                'model' => Speaker::class,
+                'coursesFetchService' => FetchCoursesListForSpeakerService::class,
                 'coursesReportView' => 'admin.courses.sponsor-report'
             ]
         ];

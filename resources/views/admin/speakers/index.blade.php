@@ -37,12 +37,12 @@
                             </h3>
                         </div>
                     </div>
-                    {{-- <form action="{{route('admin.speakers.export.excel')}}" method="POST" id="speakers-export-excel-form">
+                    <form action="{{route('admin.speakers.export.excel')}}" method="POST" id="speakers-export-excel-form">
                         @csrf
                     </form>
                     <form action="{{route('admin.speakers.export.pdf')}}" method="POST" id="speakers-export-pdf-form">
                         @csrf
-                    </form> --}}
+                    </form>
                     <div id="speakers-list-container">
                         @include('admin.speakers.partials.speakers-list')
                     </div>

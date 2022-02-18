@@ -35,12 +35,14 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
 //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
-        ->name('courses.export.excel')->where('resource_type','owners|sponsors');
+        ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
 
     Route::post('{resource_type}/{resource_id}/courses/export/pdf',[ CourseController::class, 'exportPdf'])
-         ->where('resource_type','owners|sponsors')->name('courses.export.pdf');
+         ->where('resource_type','owners|sponsors|speakers')->name('courses.export.pdf');
 
     //  Speakers
     Route::resource('speakers', SpeakerController::class);
+    Route::post('speakers/export/excel',[SpeakerController::class,'exportExcel'])->name('speakers.export.excel');
+    Route::post('speakers/export/pdf',[SpeakerController::class,'exportPdf'])->name('speakers.export.pdf');
 
 });

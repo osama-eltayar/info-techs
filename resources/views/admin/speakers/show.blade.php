@@ -104,6 +104,13 @@
                           </tbody>
                     </table>
                 </div>
+                {{$speaker->courses->links()}}
+                <form action="{{route('admin.courses.export.excel',['resource_type' =>'speakers','resource_id' => $speaker->id])}}" method="POST" id="courses-export-excel-form">
+                    @csrf
+                </form>
+                <form action="{{route('admin.courses.export.pdf',['resource_type' =>'speakers','resource_id' => $speaker->id])}}" method="POST" id="courses-export-pdf-form">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>

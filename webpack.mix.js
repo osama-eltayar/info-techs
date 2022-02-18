@@ -103,7 +103,10 @@ mix
         'resources/admin/assets/js/speakers/edit.js',
     ], 'public/admin/assets/js/speakers/edit.min.js')
 
-
+    .scripts([
+        'resources/admin/assets/js/speakers/show.js',
+    ], 'public/admin/assets/js/speakers/show.min.js')
+    
     .scripts([
         'resources/admin/assets/js/sponsors/common.js',
         'resources/admin/assets/js/sponsors/create.js',
