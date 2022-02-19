@@ -45,6 +45,8 @@ class EventController extends Controller
     public function store(EventRequest $request, StoreEventService $storeEventService)
     {
         $storeEventService->execute($request->all());
-        return $this->successResponse([], 'Event Created Successfully.', Response::HTTP_CREATED);
+        return $this->successResponse([
+            'redirect' => route('admin.events.index')
+        ], 'Event Created Successfully.', Response::HTTP_CREATED);
     }
 }

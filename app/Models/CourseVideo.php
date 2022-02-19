@@ -24,6 +24,7 @@ class CourseVideo extends Model
         'size',
         'duration',
         'is_free',
+        'url'
     ];
 
     //########################################### Constants ################################################

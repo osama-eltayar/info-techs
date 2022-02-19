@@ -20,7 +20,7 @@
                                 <input type="text" class="form-control "  placeholder="Arabic Language" v-model="eventData.titleAr">
                             </div>
 
-                            <div class="mb-4">
+                            <div class="mb-4"  :class="{'field-disabled' :[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 }" >
                                 <div id="list1" class="input-content">
                                     <div class="title">
                                         <label>Course Date and time <span>*</span></label>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-9 col-12" v-if="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid].indexOf(eventData.typeId) != -1">
+                        <div class="col-lg-9 col-12" v-if="[courseTypeEnum.recorded,courseTypeEnum.hybrid].indexOf(eventData.typeId) != -1">
                             <div class="mb-4">
                                 <div id="list2" class="input-content">
                                     <div class="title">
@@ -151,9 +151,10 @@
                                         <div class="mb-2 col-md col-sm-12">
                                             <label  class="form-label">Type</label>
                                             <div class="input-group">
-                                                <select class="form-select" aria-label="Default select example" @change="onEventRecordedSessionChange(idx,'type',$event)">
-                                                    <option selected value="free">Free</option>
-                                                    <option value="paid">Paid</option>
+                                                <select class="form-select" aria-label="Default select example" @change="onEventRecordedSessionChange(idx,'is_free',$event)">
+                                                    <option  selected disabled>Type</option>
+                                                    <option  value="1">Free</option>
+                                                    <option value="0">Paid</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -442,7 +443,6 @@ export default {
     props : ['courseTypes','specialities','owners','countries','sponsorTypes','sponsors','speakers','chairPersons'],
     components:{VueEditor},
     mounted() {
-        console.log(this.courseTypes)
     },
     data(){
         return {
@@ -530,8 +530,6 @@ export default {
             })
         },
         onSponsorChange(idx,property,event){
-            console.log({idx,property,event})
-            console.log(this.eventData.sponsors[idx])
             if(this.eventData.sponsors[idx])
                 this.eventData.sponsors[idx][property] = event.target.value
         },
@@ -577,7 +575,6 @@ export default {
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
             axios.post('/dashboard/events',formData).then(res=>{
-                console.log(res)
             })
         },
         appendMaterials(formData){
