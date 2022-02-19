@@ -142,6 +142,12 @@ class Course extends Model
         return round(($this->certificate / 100) * $this->duration )  ;
     }
 
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+
     //########################################### Mutators #################################################
 
 
