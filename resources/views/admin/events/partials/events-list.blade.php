@@ -20,7 +20,7 @@
                     <td>{{ $course->formatted_created_at }}</td>
                     <td>{{ $course->formatted_start_date }}</td>
                     <td>SAR {{$course->price }}</td>
-                    <td>{{ $course->organization->user->name }}</td>
+                    <td>{{ $course->organization->name_en }}</td>
                     <td>
                     </td>
                 </tr>

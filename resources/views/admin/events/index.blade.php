@@ -33,10 +33,11 @@
                             <div class="col-lg-3 col-12 mb-2">
                                 <label for="" class="form-label">Organization</label>
                                 <div class="search-form">
-                                    <select class="form-select" aria-label="Default select example" name="organization_id">
-                                        <option  value='0' selected>All</option>
+                                    <select class="form-select" aria-label="Default select example"
+                                        name="organization_id">
+                                        <option value='' selected>All</option>
                                         @foreach ($organizations as $organization)
-                                        <option value="{{$organization->id}}">{{$organization->name_en}}</option>
+                                            <option value="{{ $organization->id }}">{{ $organization->name_en }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -45,8 +46,8 @@
                             <div class="col-lg-3 col-12 mb-2">
                                 <label for="" class="form-label">Status</label>
                                 <div class="search-form">
-                                    <select class="form-select" aria-label="Default select example" name="type_id">
-                                        <option selected>All</option>
+                                    <select class="form-select" aria-label="Default select example" name="type">
+                                        <option value="" selected>All</option>
                                         <option value="1">Online Event</option>
                                         <option value="2">Online Course</option>
                                         <option value="3">Recorded</option>

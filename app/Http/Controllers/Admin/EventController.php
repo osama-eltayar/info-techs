@@ -16,13 +16,14 @@ class EventController extends Controller
      */
     public function index(Request $request, FetchCoursesListService $fetchEventListService)
     {
-        $filterData = $request->only('start_date', 'end_date', 'organization_id', 'type_id');
+        $filterData = $request->only('start_date', 'end_date', 'organization_id', 'type');
         $courses = $fetchEventListService->execute($filterData, self::$perPage);
         $organizations = Organization::all();
         //get count of users
 
         if ($request->ajax())
             return view('admin.events.partials.events-list', compact(['courses', 'organizations']));
+
 
 
         return view('admin.events.index', compact('courses', 'organizations'));
