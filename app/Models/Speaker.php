@@ -27,6 +27,7 @@ class Speaker extends Model
             'title_en',
             'speciality_id',
         ];
+    protected $appends = ['name'];
 
     //########################################### Constants ################################################
 

@@ -20,6 +20,8 @@ class CourseType extends Model
         'name_en'
     ];
 
+    protected $appends = ['name'];
+
     //########################################### Constants ################################################
 
 

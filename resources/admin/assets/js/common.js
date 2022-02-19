@@ -51,3 +51,22 @@ function mapSelect2Data(data) {
         results: data2
     };
 }
+
+
+function buildFormData(formData, data, parentKey) {
+    if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
+        Object.keys(data).forEach(key => {
+            buildFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+        });
+    } else {
+        let value = data;
+        if(data == null)
+            value = ''
+        else if(data === true)
+            value = 1
+        else if(data === false)
+            value = 0
+        formData.append(parentKey, value);
+    }
+    return formData;
+}

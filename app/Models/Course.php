@@ -36,7 +36,12 @@ class Course extends Model
             'title_ar',
             'description_en',
             'description_ar',
-            'certificate_image'
+            'certificate_image',
+            'location',
+            'address',
+            'published_at',
+            'is_views_hidden',
+            'speciality_id'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];

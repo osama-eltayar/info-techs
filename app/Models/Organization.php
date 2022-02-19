@@ -35,6 +35,8 @@ class Organization extends Model
         'mobile'
     ];
 
+    protected $appends = ['name'];
+
     //########################################### Constants ################################################
 
 
