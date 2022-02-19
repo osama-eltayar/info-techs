@@ -8,7 +8,7 @@
                         <div class="col-lg-6 col-12">
                             <div class="mb-5">
                                 <label  class="form-label">Course Type <span>*</span></label>
-                                <select class="form-select" aria-label="Default select example" v-model="eventData.typeId">
+                                <select class="form-select" aria-label="Default select example" v-model="eventData.typeId" :disabled="isEdit">
                                     <option value="" selected disabled>Course Type</option>
                                     <option v-for="courseType in courseTypes" :key="courseType.id" :value="courseType.id">{{courseType.name}}</option>
                                 </select>
@@ -29,20 +29,20 @@
                                     <div class="input-group row" v-for="(dateTimeData,idx) in eventData.eventDateTimeData" :key="idx">
                                         <div class="mb-2 col-md-5 col-sm-12">
                                             <label  class="form-label">Date</label>
-                                            <input type="date" class="form-control" id="date" data-toggle="datepicker" placeholder="Date" aria-label="Date" @change="onEventDateTimeChange(idx,'date',$event)">
+                                            <input type="date" class="form-control" :value="dateTimeData.date" id="date" data-toggle="datepicker" placeholder="Date" aria-label="Date" @change="onEventDateTimeChange(idx,'date',$event)">
                                         </div>
                                         <div class="col">
                                             <div class="row">
                                                 <div class="mb-2 col-md col-sm-12">
                                                     <label  class="form-label">Time From</label>
                                                     <div >
-                                                        <input type="time" class="form-control" id="from" value="" @change="onEventDateTimeChange(idx,'from_time',$event)">
+                                                        <input type="time" class="form-control" id="from" :value="dateTimeData.from_time" @change="onEventDateTimeChange(idx,'from_time',$event)">
                                                     </div>
                                                 </div>
                                                 <div class="mb-2 col-md col-sm-12">
                                                     <label  class="form-label">Time To</label>
                                                     <div >
-                                                        <input type="time" class="form-control" id="to" value="" @change="onEventDateTimeChange(idx,'to_time',$event)">
+                                                        <input type="time" class="form-control" id="to" :value="dateTimeData.to_time" @change="onEventDateTimeChange(idx,'to_time',$event)">
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,12 +140,12 @@
                                     <div class="input-group row" v-for="(recordedSessionData,idx) in eventData.recordedSessions" :key="idx">
                                         <div class="mb-2 col-md-4 col-sm-12">
                                             <label  class="form-label">Title</label>
-                                            <input type="text" class="form-control" placeholder="Brain of the socilology " @change="onEventRecordedSessionChange(idx,'title',$event)">
+                                            <input type="text" class="form-control" placeholder="Brain of the socilology " :value="recordedSessionData.title" @change="onEventRecordedSessionChange(idx,'title',$event)">
                                         </div>
                                         <div class="mb-2 col-md col-sm-12">
                                             <label  class="form-label">Section URL</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="http://www,youtube.com/ghhYg" @change="onEventRecordedSessionChange(idx,'url',$event)">
+                                                <input type="text" class="form-control" placeholder="http://www,youtube.com/ghhYg" :value="recordedSessionData.url" @change="onEventRecordedSessionChange(idx,'url',$event)">
                                             </div>
                                         </div>
                                         <div class="mb-2 col-md col-sm-12">
@@ -153,8 +153,8 @@
                                             <div class="input-group">
                                                 <select class="form-select" aria-label="Default select example" @change="onEventRecordedSessionChange(idx,'is_free',$event)">
                                                     <option  selected disabled>Type</option>
-                                                    <option  value="1">Free</option>
-                                                    <option value="0">Paid</option>
+                                                    <option  value="1" :selected="recordedSessionData.is_free == 1">Free</option>
+                                                    <option value="0" :selected="recordedSessionData.is_free == 0">Paid</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -406,7 +406,7 @@
                             <label class="form-check-label" for="exampleRadios2">
                                 Schedule publish
                             </label>
-                            <input type="datetime-local" v-if="eventData.is_publish_scheduled == 1">
+                            <input type="datetime-local" v-if="eventData.is_publish_scheduled == 1" v-model="eventData.published_at">
                         </div>
                     </div>
                     <div class="mb-2">
@@ -440,9 +440,19 @@ import { VueEditor } from "vue2-editor";
 
 export default {
     name: "EventForm",
-    props : ['courseTypes','specialities','owners','countries','sponsorTypes','sponsors','speakers','chairPersons'],
+    props: ['courseTypes', 'specialities', 'owners', 'countries', 'sponsorTypes', 'sponsors', 'speakers', 'chairPersons', "isEdit",'dbData','formSubmitUrl'],
     components:{VueEditor},
     mounted() {
+        if(this.isEdit)
+        {
+            Object.keys(this.eventData).forEach(key=>{
+                this.eventData[key] = this.dbData[key];
+            })
+            this.syncEventChairPersons();
+            this.syncEventSpeakers();
+            this.onCountryChange();
+            this.eventData.is_publish_scheduled = 1;
+        }
     },
     data(){
         return {
@@ -466,6 +476,7 @@ export default {
                 is_publish_scheduled:0,
                 is_views_hidden:0,
                 confirmed : 0,
+                published_at:null,
                 sponsors : [{}],
                 speakers : [],
                 chairPersons : [],
@@ -534,7 +545,8 @@ export default {
                 this.eventData.sponsors[idx][property] = event.target.value
         },
         onCountryChange(){
-            this.eventData.cityId = ''
+            if(!this.isEdit)
+                this.eventData.cityId = ''
             axios.get(`/api/cities?country=${this.eventData.countryId}`).then(res=>{
                 this.cities = res.data.data
             })
@@ -546,7 +558,7 @@ export default {
         },
         syncEventChairPersons(){
             this.selectedChairPersons = this.chairPersons.filter(chairPerson=>{
-                return this.eventData.chairPersons.indexOf(chairPerson.id + '')!= -1
+                return this.eventData.chairPersons.find(eventDataPerson => eventDataPerson == chairPerson.id)
             })
         },
         onSpeakerChange(event){
@@ -556,7 +568,7 @@ export default {
         },
         syncEventSpeakers(){
             this.selectedSpeakers = this.speakers.filter(speaker=>{
-                return this.eventData.speakers.indexOf(speaker.id + '') != -1
+                return this.eventData.speakers.find(eventDataSpeaker => eventDataSpeaker == speaker.id)
             })
         },
         onDeleteSelectedChairPerson(chairPersonId){
@@ -574,7 +586,33 @@ export default {
         onFormSubmit(){
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
-            axios.post('/dashboard/events',formData).then(res=>{
+            if (this.isEdit)
+                formData.append('_method','PUT')
+
+            axios.post(this.formSubmitUrl,formData).then(({data})=>{
+                if (data && data.data && data.data.redirect)
+                    successRedirectTimeout = setTimeout(function () {
+                        redirect(data.data.redirect);
+                    }, 1000);
+
+                if (data && data.message)
+                    toastr.success(data.message);
+
+            }).catch(({response})=>{
+                const {data,status} = response;
+                if(status == 422){
+                    toastr.clear();
+                    toastr.error(Object.values(data.errors)[0][0])
+                }
+
+                if ([401,402,403,429].indexOf(status) != -1) {
+                    toastr.clear();
+                    toastr.error(data.message);
+                }
+
+
+                if(status == 500)
+                    toastr.error("Internal Server Error");
             })
         },
         appendMaterials(formData){

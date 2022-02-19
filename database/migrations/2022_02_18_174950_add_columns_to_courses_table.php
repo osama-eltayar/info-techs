@@ -19,12 +19,16 @@ class AddColumnsToCoursesTable extends Migration
             $table->dateTime('published_at')->default(now())->after('location');
             $table->unsignedBigInteger('speciality_id')->after('published_at')->index();
             $table->unsignedBigInteger('is_views_hidden')->after('published_at')->default(false);
+            $table->unsignedBigInteger('country_id')->after('address');
+            $table->unsignedBigInteger('city_id')->after('address');
             $table->dateTime('start_date')->nullable()->change();
             $table->dateTime('end_date')->nullable()->change();
             $table->time('from')->nullable()->change();
             $table->time('to')->nullable()->change();
             $table->unsignedInteger('hours_count')->nullable()->change();
             $table->unsignedBigInteger('duration')->nullable()->change();
+
+
         });
     }
 
@@ -37,11 +41,13 @@ class AddColumnsToCoursesTable extends Migration
     {
         Schema::table('courses', function (Blueprint $table) {
             $table->dropColumn([
-                'address' ,
+                'address',
                 'location',
                 'published_at',
                 'is_views_hidden',
-                'speciality_id'
+                'speciality_id',
+                'country_id',
+                'city_id'
             ]);
         });
     }

@@ -41,10 +41,12 @@ class Course extends Model
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id'
+            'speciality_id',
+            'country_id',
+            'city_id'
         ];
 
-    protected $dates = [ 'start_date', 'end_date', 'from', 'to' ];
+    protected $dates = [ 'start_date', 'end_date', 'from', 'to','published_at' ];
 
     //########################################### Constants ################################################
     const ONLINE_EVENT  = 1;

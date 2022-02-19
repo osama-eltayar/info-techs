@@ -7,7 +7,7 @@
 @section('content')
     <div class="content-side">
         <div class="page-title">
-            <div class="container-fluid "><h1><img src="assets/img/icon2.png" alt="icon"> Create new event  </h1></div>
+            <div class="container-fluid "><h1><img src="assets/img/icon2.png" alt="icon"> Edit  event  </h1></div>
 
         </div>
         <div class="container-fluid bg-blue">
@@ -52,8 +52,9 @@
                         :sponsors='@json($sponsors)'
                         :speakers='@json($speakers)'
                         :chair-persons='@json($chairPersons)'
-                        :is-edit="false"
-                        form-submit-url='{{route('admin.events.store')}}'
+                        :is-edit="true"
+                        :db-data='@json($eventData)'
+                        form-submit-url="{{route('admin.events.update',$event)}}"
                     ></event-form>
                 </div>
             </div>

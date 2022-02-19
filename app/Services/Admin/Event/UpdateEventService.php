@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
-class StoreEventService
+class UpdateEventService
 {
     use HasFiles;
 
@@ -17,9 +17,10 @@ class StoreEventService
     protected $startDateTime;
     protected $endDateTime;
 
-    public function execute($data)
+    public function execute($data,$event)
     {
         $this->data = $data;
+        $this->course = $event;
         $courseData = Arr::only($this->data, [
             'price',
             'cme_count',
@@ -41,10 +42,10 @@ class StoreEventService
             'country_id'
         ]);
         DB::beginTransaction();
-        $this->course = Course::create($courseData);
+        $this->course->update($courseData);
         $this->storeMaterials();
         $this->storeDiscount();
-        $this->course->speakers()->attach($this->data['speakers']);
+        $this->course->speakers()->sync($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
         $this->storeSponsors();
         $this->storeSessions();
@@ -55,7 +56,10 @@ class StoreEventService
 
     protected function storeMaterials()
     {
-        foreach ($this->data['materials'] as $material) {
+        if(isset($this->data['materials']) && count($this->data['materials']))
+            $this->course->materials()->delete();
+
+        foreach ($this->data['materials'] ??[] as $material) {
             $this->course->materials()->create([
                 'name_en'   => $material->getClientOriginalName(),
                 'name_ar'   => $material->getClientOriginalName(),
@@ -67,7 +71,12 @@ class StoreEventService
 
     protected function storeDiscount()
     {
-        if ($this->data['discount']) {
+        $discount = $this->course->discounts()->latest()->first();
+        $isDiscountChanged = $this->data['discount'] &&
+                             $this->data['discount']['date'] != $discount->date &&
+                             $this->data['discount']['price']  != $discount->price;
+
+        if ($isDiscountChanged) {
             $this->course->discounts()->create([
                 'date'  => $this->data['discount']['date'],
                 'price' => $this->data['discount']['price'],
@@ -77,6 +86,9 @@ class StoreEventService
 
     protected function storeSponsors()
     {
+        if(count($this->data['sponsors']))
+            $this->course->sponsors()->detach();
+
         foreach ($this->data['sponsors'] as $sponsor)
             $this->course->sponsors()->attach([
                 'sponsor_id' => $sponsor['sponsor_id'],
@@ -90,6 +102,9 @@ class StoreEventService
     {
         if ($this->course->isRecorded())
             return ;
+
+        if(count($this->data['eventDateTimeData']))
+            $this->course->sessions()->delete();
 
         foreach ($this->data['eventDateTimeData'] ??[] as $idx => $eventDateTimeData) {
             $startAt = Carbon::parse($eventDateTimeData['date'])->setTimeFromTimeString($eventDateTimeData['from_time']);
@@ -125,6 +140,9 @@ class StoreEventService
     {
         if (!($this->course->isRecorded() || $this->course->isHybrid()) )
             return;
+
+        if(count($this->data['recordedSessions']))
+            $this->course->videos()->delete();
 
         foreach ($this->data['recordedSessions'] ?? [] as $recordedSession)
             $this->course->videos()->create([
