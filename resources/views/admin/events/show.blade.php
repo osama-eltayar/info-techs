@@ -11,13 +11,12 @@
             <div class="event-title">
                 <span><strong>Event Title:</strong>  About Sociology</span>
                 <ul class="list-unstyled">
-                    <li>In progress</li>
-                    <li>Not started</li>
-                    <li>Ready</li>
-                    <li>Finished</li>
+                    <li>{{$event->state}}</li>
                 </ul>
                 <div class="event-status">
+                    @if ($event->isOnlineEvent())
                     <span>Event Online</span>
+                    @endif
                 </div>
             </div>
 
@@ -49,45 +48,48 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <span class="left-side">Course type:</span>
-                                                <span class="right-side">Event online</span>
+                                                <span class="right-side">{{$event->type_string}}</span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Course Name:</span>
                                                 <span class="right-side">
-                                                    <p>About sociology ?</p>
-                                                    <p>ماهو السوسيولوجي</p>
+                                                    <p>{{$event->title_en}}</p>
+                                                    <p>{{$event->title_ar}}</p>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Course Date:</span>
                                                 <span class="right-side">
-                                                    <p>15/11/2021      05:00 pm to 06:00 pm</p>
-                                                    <p>16/11/2021      05:00 pm to 06:00 pm</p>
+                                                    <p>{{$event->formatted_start_date}}</p>
+                                                    <p>{{$event->formatted_end_date}}</p>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Available seats:</span>
-                                                <span class="right-side">20 seats</span>
+                                                <span class="right-side">{{$event->seats}} seats</span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Accreditation number (CME's)</span>
-                                                <span class="right-side">6</span>
+                                                <span class="right-side">{{$event->cme_count}}</span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Certification Availabilty:</span>
-                                                <span class="right-side">70% (show on)</span>
+                                                <span class="right-side">
+                                                    {{$event->certificate}}% 
+                                                    {{-- (show on) --}}
+                                                </span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Course Survey:</span>
-                                                <span class="right-side">Yes ( Survey sociology)</span>
+                                                <span class="right-side"></span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Speciality:</span>
-                                                <span class="right-side">Doctors, Pharma,</span>
+                                                <span class="right-side">{{$event->specialities_string}}</span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Event Qwner:</span>
-                                                <span class="right-side">جمعية التوحد بمكة</span>
+                                                <span class="right-side">{{optional($event->organization)->name}}</span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Zoom Link:</span>
@@ -95,11 +97,11 @@
                                             </li>
                                             <li>
                                                 <span class="left-side">Publish date:</span>
-                                                <span class="right-side">16/11/2021     </span>
+                                                <span class="right-side">{{$event->formatted_published_at}}     </span>
                                             </li>
                                             <li>
                                                 <span class="left-side">Create date:</span>
-                                                <span class="right-side">16/11/2021     </span>
+                                                <span class="right-side">{{$event->formatted_created_at}}     </span>
                                             </li>
                                         </ul>
                                     </div>
@@ -111,32 +113,30 @@
                                         <h3><i class="fa-solid fa-keynote"></i>  Chair persons & speakers </h3>
                                         <div class="list-date">
                                             <ul class="list-unstyled">
+                                                @foreach ($event->speakers as $speaker)
                                                 <li>
-                                                    <span class="left-side-full">Ahmed Metwaly</span>
+                                                    <span class="left-side-full">{{$speaker->name}}</span>
                                                 </li>
-                                                <li>
-                                                    <span class="left-side-full">Sameh Abdalah</span>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
 
                                     <div class="box-muli-date">
                                         <h3><i class="fa-solid fa-keynote"></i>  Sponsors </h3>
-                                        <h4>Gold sponsors</h4>
+                                        {{-- <h4>Gold sponsors</h4> --}}
                                         <div class="list-date">
                                             <ul class="list-unstyled">
+                                                @foreach ($event->sponsors as $sponsor)
                                                 <li>
-                                                    <span class="left-side-full">جمعية التوحد بمكة</span>
+                                                    <span class="left-side-full">{{$sponsor->name}}</span>
                                                 </li>
-                                                <li>
-                                                    <span class="left-side-full">Nour Clinic</span>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
 
-                                    <div class="box-muli-date">
+                                    {{-- <div class="box-muli-date">
                                         <h4>Bronze sponsors</h4>
                                         <div class="list-date">
                                             <ul class="list-unstyled">
@@ -145,7 +145,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="box-date">
@@ -153,29 +153,27 @@
                                         <h3><i class="fa-solid fa-file"></i>  Event Materials </h3>
                                         <div class="list-date">
                                             <ul class="list-unstyled">
+                                                @foreach ($event->materials as $material)
                                                 <li>
-                                                    <span class="left-side-full">Document reads.pdf   10 MB</span>
+                                                    <span class="left-side-full">{{$material->name}}</span>
                                                 </li>
-                                                <li>
-                                                    <span class="left-side-full">Scenario.jpg   5 MB</span>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
 
-                                    <div class="box-muli-date">
+                                    {{-- <div class="box-muli-date">
                                         <h3><i class="fa-solid fa-photo-film"></i> Event Media </h3>
                                         <div class="list-date">
                                             <ul class="list-unstyled">
+                                                @foreach ($event->videos as $video)
                                                 <li>
-                                                    <span class="left-side-full">Poster1.jpg   200kb    (top side)</span>
+                                                    <span class="left-side-full">{{$video->name}}</span>
                                                 </li>
-                                                <li>
-                                                    <span class="left-side-full">Smallpic.jpg   50kb    (right side)</span>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
@@ -186,12 +184,20 @@
                                                 <li>
                                                     <span class="left-side">Fees:</span>
                                                     <span class="right-side">
-                                                        <p>200 SAR    [ 150 SAR before 15/10/2021 ] <br> Discount 50 SAR
-                                                        </p>
+                                                        @foreach ($event->discounts as $discount)
+                                                            @if ($discount->date)
+                                                                @if ($discount->date->gt(now()))
+                                                                <p>
+                                                                    {{$event->price}} SAR    [ {{$event->price -= $discount->price}} SAR before {{$discount->formatted_date}} ] <br> Discount {{$discount->price}} SAR
+                                                                </p>
+                                                                @endif
+                                                            @else                                                            
+                                                                <p>
+                                                                    <del>{{$event->price}}SAR</del>    {{$event->price -=$discount->price}} SAR  <br> Discount {{$discount->price}} SAR
+                                                                </p>
+                                                            @endif    
 
-                                                        <p>
-                                                            <del>200 SAR</del>    150 SAR  <br> Discount 50 SAR
-                                                        </p>
+                                                        @endforeach
                                                     </span>
                                                 </li>
                                                 
@@ -205,7 +211,7 @@
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <span class="left-side">Certificate: </span>
-                                                    <span class="right-side">Sociology certificate</span>
+                                                    {{-- <span class="right-side">Sociology certificate</span> --}}
                                                 </li>
                                                 <li>
                                                     <span class="left-side">Badges:</span>
@@ -218,25 +224,11 @@
                                 <div class="box-date">
                                     <h3><i class="fa-solid fa-info"></i>  Event Description</h3>
                                        <div class="dis en-dis">
-                                           <p>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                           </p>
-                                           <p>
-                                            1) Lorem Ipsum has been the industry's standard dummy text ever since the <br>
-                                            2) 1500s, when an unknown printer took a galley of type and scrambled it to <br>
-                                            3) make a type specimen book. It has survived not only five centuries,
-                                           </p>
+                                           {{$event->description_en}}
                                        </div>
 
                                        <div class="dis ar-dis">
-                                            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة
-                                            </p>
-                                            <p> ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة 
-                                            </p>
-                                            <p>التي يقرأها. ولذلك يتم استخدام
-                                            </p>
-                                            <p>التي يقرأها. ولذلك يتم استخدام
-                                            </p>
+                                            {{$event->description_ar}}
                                         </div>
                                 </div>
 
@@ -247,12 +239,13 @@
                                                 <span>Section Name</span>
                                                 <span>Type</span>
                                             </div>
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <span class="left-side">Brain of the socilology </span>
-                                                    <span class="right-side">Free</span>
-                                                </li>
-                                            </ul>
+
+                                            @foreach ($event->videos as $video)
+                                            <li>
+                                                <span class="left-side">{{$video->name}}</span>
+                                                <span class="right-side">{{$video->type}}</span>
+                                            </li>
+                                            @endforeach
                                         </div>
                                 </div>
                                 

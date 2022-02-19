@@ -27,12 +27,18 @@ class CourseVideo extends Model
     ];
 
     //########################################### Constants ################################################
-
+    const FREE = 'Free';
+    const PAID = 'Paid';
 
     //########################################### Accessors ################################################
     public function getUrlAttribute()
     {
         return $this->getFileUrl($this->path);
+    }
+
+    public function getTypeAttribute()
+    {
+        return $this->is_free? self::FREE : self::PAID ;
     }
 
     public function getNameAttribute()
