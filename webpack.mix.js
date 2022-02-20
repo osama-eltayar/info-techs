@@ -108,7 +108,7 @@ mix
     .scripts([
         'resources/admin/assets/js/speakers/show.js',
     ], 'public/admin/assets/js/speakers/show.min.js')
-    
+
     .scripts([
         'resources/admin/assets/js/sponsors/common.js',
         'resources/admin/assets/js/sponsors/create.js',
@@ -135,6 +135,7 @@ mix
         'resources/admin/assets/js/events/list.js',
     ], 'public/admin/assets/js/events/list.min.js')
 
+    .scripts([
         'resources/admin/assets/js/users/list.js',
     ], 'public/admin/assets/js/users/list.min.js')
 

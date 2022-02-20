@@ -25,10 +25,6 @@ class AddColumnsToSpeakersTable extends Migration
             $table->unsignedBigInteger('user_title_id')->nullable()->after('email');
             $table->unsignedBigInteger('country_id')->nullable()->after('email');
             $table->unsignedBigInteger('city_id')->nullable()->after('email');
-
-            $table->foreign('country_id')->references('id')->on('countries')->nullOnDelete();
-            $table->foreign('city_id')->references('id')->on('cities')->nullOnDelete();
-            $table->foreign('user_title_id')->references('id')->on('user_titles')->nullOnDelete();
         });
     }
 
@@ -47,11 +43,6 @@ class AddColumnsToSpeakersTable extends Migration
                 'mobile',
                 'bio',
                 'position',
-            ]);
-            $table->dropForeign([
-                'country_id',
-                'city_id',
-                'user_title_id',
             ]);
         });
     }
