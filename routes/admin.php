@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
@@ -34,6 +35,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('sponsors/{sponsor}/material/{material}/download', [SponsorMaterialController::class, 'download'])->name('sponsors.martial.download');
     //    Route::post('sponsors/{sponsor}/courses/export/excel',[ CourseController::class, 'exportExcel'])->name('sponsors.courses.export.excel');
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
+
+    Route::resource('events', EventController::class);
 
     Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
         ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
