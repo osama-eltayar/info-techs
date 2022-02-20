@@ -20,12 +20,11 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
         $user          = User::admin()->where('email', $request->email)->first();
-        $previousRoute = session()->pull('url.intended', '/');
 
         if ($user && Hash::check($request->password, $user->password)) {
             $request->session()->regenerate();
             Auth::login($user,$request->remember_me);
-            return redirect($previousRoute);
+            return redirect(route('admin.events.index'));
         }
 
         return back()

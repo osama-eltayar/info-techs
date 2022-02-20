@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasFiles;
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,20 +14,26 @@ class Speaker extends Model
 {
     use HasFactory;
     use HasFiles;
+    use HasFilter;
 
     /**
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable
-        = [
+    protected $fillable = [
             'name_ar',
             'name_en',
             'image',
-            'title_ar',
-            'title_en',
+            'mobile',
+            'bio',
+            'position',
+            'email',
+            'user_title_id',
             'speciality_id',
+            'country_id',
+            'city_id'
         ];
+    protected $appends = ['name'];
 
     //########################################### Constants ################################################
 
@@ -38,16 +45,25 @@ class Speaker extends Model
         return $this->{getLocalizeAttribute('name')};
     }
 
-    public function getTitleAttribute()
-    {
-        return $this->{getLocalizeAttribute('title')};
-    }
+    // public function getTitleAttribute()
+    // {
+    //     return $this->{getLocalizeAttribute('title')};
+    // }
 
     public function getImageUrlAttribute()
     {
         return $this->getFileUrl($this->image);
     }
 
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function getCoursesCountAttribute()
+    {
+        return $this->courses()->count();
+    }
 
     //########################################### Mutators #################################################
 
@@ -67,5 +83,19 @@ class Speaker extends Model
         return $this->belongsTo(Speciality::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function title()
+    {
+        return $this->belongsTo(UserTitle::class, 'user_title_id');
+    }
 }
 

@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(UserRankSeeder::class);
         $this->call(AdminSeeder::class);
 //        $this->call(CourseSeeder::class);
-//        $this->call(CourseTypeSeeder::class);
+        $this->call(CourseTypeSeeder::class);
 //        $this->call(OrganizationSeeder::class);
 //        $this->call(CourseVideoSeeder::class);
 //        $this->call(CountrySeeder::class);
 //        $this->call(CitySeeder::class);
+        $this->call(SpeakerSeeder::class);
     }
 }
