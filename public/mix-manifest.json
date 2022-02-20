@@ -93,6 +93,7 @@
     "/admin/assets/js/sponsors/edit.min.js": "/admin/assets/js/sponsors/edit.min.js",
     "/admin/assets/js/sponsors/show.min.js": "/admin/assets/js/sponsors/show.min.js",
     "/admin/assets/js/sponsors/list.min.js": "/admin/assets/js/sponsors/list.min.js",
+    "/admin/assets/js/users/list.min.js": "/admin/assets/js/users/list.min.js",
     "/admin/assets/css/datepicker.css": "/admin/assets/css/datepicker.css",
     "/admin/assets/css/font-awsome-all.css": "/admin/assets/css/font-awsome-all.css",
     "/admin/assets/css/jquery-clockpicker.css": "/admin/assets/css/jquery-clockpicker.css",

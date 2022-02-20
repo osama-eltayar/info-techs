@@ -14,22 +14,22 @@ const mix = require('laravel-mix');
 mix
     .js('resources/js/app.js', 'public/js')
     .scripts([
-              'resources/assets/js/common/script.js',
+        'resources/assets/js/common/script.js',
     ], 'public/js/common.min.js')
-    .js('resources/assets/js/layouts/common.js','public/js/layouts.min.js')
+    .js('resources/assets/js/layouts/common.js', 'public/js/layouts.min.js')
     //#############################  courses  ##################################
-    .js(['resources/assets/js/courses/common.js','resources/assets/js/courses/list.js'],'public/js/courses/list.min.js')
+    .js(['resources/assets/js/courses/common.js', 'resources/assets/js/courses/list.js'], 'public/js/courses/list.min.js')
     .js([
         'resources/assets/js/courses/common.js',
         'resources/assets/js/courses/video-player.js',
         'resources/assets/js/courses/show.js'
-    ],'public/js/courses/show.min.js')
+    ], 'public/js/courses/show.min.js')
     //#############################  shopping cart  ##################################
-    .js('resources/assets/js/certificates/list.js','public/js/certificates/list.min.js')
+    .js('resources/assets/js/certificates/list.js', 'public/js/certificates/list.min.js')
     //#############################  shopping cart  ##################################
-    .js('resources/assets/js/shopping-cart.js','public/js/shopping-cart.min.js')
+    .js('resources/assets/js/shopping-cart.js', 'public/js/shopping-cart.min.js')
     //#############################  invoices  ##################################
-    .js('resources/assets/js/invoices/list.js','public/js/invoices/list.min.js')
+    .js('resources/assets/js/invoices/list.js', 'public/js/invoices/list.min.js')
     //#############################  Authentication  ##################################
     .js([
         'resources/assets/js/auth/login.js',
@@ -47,17 +47,17 @@ mix
         'resources/assets/js/profile/edit.js',
     ], 'public/js/profile/edit.min.js')
 
-    .copyDirectory(['resources/assets/js/zoom'],'public/js/zoom')
+    .copyDirectory(['resources/assets/js/zoom'], 'public/js/zoom')
 
     //#############################  assets  ##################################
     .styles(['resources/assets/css/'], 'public/css/main.css')
     .copy(['resources/assets/media/'], 'public/media')
     .copy(['resources/assets/webfonts/'], 'public/webfonts')
     .copy(['resources/assets/fonts/'], 'public/fonts')
-    .copyDirectory(['resources/assets/css/zoom'],'public/css/zoom')
+    .copyDirectory(['resources/assets/css/zoom'], 'public/css/zoom')
     .copy(['resources/css/rtl.css'], 'public/css/rtl.css')
-    .copy(['resources/assets/js/vendor'],'public/js/vendor')
-    .copy(['resources/assets/css/vendor'],'public/css/vendor')
+    .copy(['resources/assets/js/vendor'], 'public/js/vendor')
+    .copy(['resources/assets/css/vendor'], 'public/css/vendor')
 
 
     //#############################  admin assets  ##################################
@@ -125,11 +125,15 @@ mix
         'resources/admin/assets/js/sponsors/list.js',
     ], 'public/admin/assets/js/sponsors/list.min.js')
 
-    .copyDirectory(['resources/admin/assets/css/'],'public/admin/assets/css/')
-    .copyDirectory(['resources/admin/assets/fonts/'],'public/admin/assets/fonts/')
-    .copyDirectory(['resources/admin/assets/webfonts/'],'public/admin/assets/webfonts/')
-    .copyDirectory(['resources/admin/assets/img/'],'public/admin/assets/img/')
-    .copyDirectory(['resources/admin/assets/js/vendor'],'public/admin/assets/js/vendor')
+    .scripts([
+        'resources/admin/assets/js/users/list.js',
+    ], 'public/admin/assets/js/users/list.min.js')
+
+    .copyDirectory(['resources/admin/assets/css/'], 'public/admin/assets/css/')
+    .copyDirectory(['resources/admin/assets/fonts/'], 'public/admin/assets/fonts/')
+    .copyDirectory(['resources/admin/assets/webfonts/'], 'public/admin/assets/webfonts/')
+    .copyDirectory(['resources/admin/assets/img/'], 'public/admin/assets/img/')
+    .copyDirectory(['resources/admin/assets/js/vendor'], 'public/admin/assets/js/vendor')
 
 
     .sourceMaps();

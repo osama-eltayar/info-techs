@@ -210,7 +210,7 @@ class Course extends Model
 
     public function shoppingCarts()
     {
-        return $this->belongsToMany(User::class, ShoppingCart::class)->withTimestamps();
+        return $this->belongsToMany(User::class, ShoppingCart::class)->withPivot('price','paid_at')->withTimestamps();
     }
 
     public function shoppingCartAuthUser()
