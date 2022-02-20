@@ -18,7 +18,9 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <h4 >Create new sponsor</h4>
+                        <a href="{{route('admin.sponsor.create')}}">
+                            <h4>Create new sponsor</h4>
+                        </a>
                     </div>
                     <div class="form-search">
                         <form action="{{route('admin.sponsors.index')}}" method="GET" id="sponsors-search-form">
