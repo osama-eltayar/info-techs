@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'dashboard/owners');
@@ -34,11 +36,21 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/excel',[ CourseController::class, 'exportExcel'])->name('sponsors.courses.export.excel');
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
-    Route::post('{resource_type}/{resource_id}/courses/export/excel', [CourseController::class, 'exportExcel'])
-        ->name('courses.export.excel')->where('resource_type', 'owners|sponsors');
-
-    Route::post('{resource_type}/{resource_id}/courses/export/pdf', [CourseController::class, 'exportPdf'])
-        ->where('resource_type', 'owners|sponsors')->name('courses.export.pdf');
-
     Route::resource('events', EventController::class);
+
+    Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
+        ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
+
+    Route::post('{resource_type}/{resource_id}/courses/export/pdf',[ CourseController::class, 'exportPdf'])
+         ->where('resource_type','owners|sponsors|speakers')->name('courses.export.pdf');
+
+    //  Speakers
+    Route::resource('speakers', SpeakerController::class);
+    Route::post('speakers/export/excel',[SpeakerController::class,'exportExcel'])->name('speakers.export.excel');
+    Route::post('speakers/export/pdf',[SpeakerController::class,'exportPdf'])->name('speakers.export.pdf');
+  
+    Route::resource('users', UserController::class);
+    Route::post('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.export.pdf');
+    Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
+
 });

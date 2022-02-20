@@ -28,7 +28,11 @@
                     <img src="/admin/assets/img/icon.png" alt="icon"> Sponsors</a>
             </li>
             <li>
-                <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Speakers</a>
+                <a 
+                    href="{{route('admin.speakers.index')}}"
+                    class="{{request()->routeIs('admin.speakers.index') ? 'active' : ''}}"
+                >
+                <img src="/admin/assets/img/icon.png" alt="icon"> Speakers</a>
             </li>
             <li>
                 <a href="#"><img src="/admin/assets/img/icon.png" alt="icon"> Users List</a>

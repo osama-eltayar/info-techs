@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -48,7 +49,18 @@ class Course extends Model
     const PHYSICAL      = 4;
     const HYBRID        = 5;
 
+    // 
+    const IN_PROGRESS = 'In progress';
+    const NOT_STARTED = 'Not started';
+    const FINISHED = 'Finished';
+
     //########################################### Accessors ################################################
+    public function getStateAttribute() 
+    {
+        $now = Carbon::now();
+        return ($this->end_date->lt($now) )? self::FINISHED : (($this->start_date->gt($now) ) ? self::NOT_STARTED : self::IN_PROGRESS);
+    }
+
     public function isOnlineEvent()
     {
         return $this->type_id == self::ONLINE_EVENT;
@@ -112,6 +124,16 @@ class Course extends Model
         return $this->to->format('h:i a');
     }
 
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function getFormattedPublishedAtAtAttribute()
+    {
+        return $this->published_at->format('d/m/Y');
+    }
+
     public function getDaysCountAttribute()
     {
         return $this->end_date->diffInDays($this->start_date);
@@ -142,11 +164,10 @@ class Course extends Model
         return round(($this->certificate / 100) * $this->duration )  ;
     }
 
-    public function getFormattedCreatedAtAttribute()
+    public function getSpecialitiesStringAttribute()
     {
-        return $this->created_at->format('d/m/Y');
+        return implode(', ', $this->specialities->pluck('name')->toArray());
     }
-
 
     //########################################### Mutators #################################################
 
@@ -216,7 +237,7 @@ class Course extends Model
 
     public function shoppingCarts()
     {
-        return $this->belongsToMany(User::class, ShoppingCart::class)->withTimestamps();
+        return $this->belongsToMany(User::class, ShoppingCart::class)->withPivot('price','paid_at')->withTimestamps();
     }
 
     public function shoppingCartAuthUser()

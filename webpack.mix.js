@@ -89,7 +89,24 @@ mix
         'resources/admin/assets/js/owners/list.js',
     ], 'public/admin/assets/js/owners/list.min.js')
 
+    .scripts([
+        'resources/admin/assets/js/speakers/list.js',
+    ], 'public/admin/assets/js/speakers/list.min.js')
 
+    .scripts([
+        'resources/admin/assets/js/speakers/common.js',
+        'resources/admin/assets/js/speakers/create.js',
+    ], 'public/admin/assets/js/speakers/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/speakers/common.js',
+        'resources/admin/assets/js/speakers/edit.js',
+    ], 'public/admin/assets/js/speakers/edit.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/speakers/show.js',
+    ], 'public/admin/assets/js/speakers/show.min.js')
+    
     .scripts([
         'resources/admin/assets/js/sponsors/common.js',
         'resources/admin/assets/js/sponsors/create.js',
@@ -116,6 +133,8 @@ mix
         'resources/admin/assets/js/events/list.js',
     ], 'public/admin/assets/js/events/list.min.js')
 
+        'resources/admin/assets/js/users/list.js',
+    ], 'public/admin/assets/js/users/list.min.js')
 
     .copyDirectory(['resources/admin/assets/css/'], 'public/admin/assets/css/')
     .copyDirectory(['resources/admin/assets/fonts/'], 'public/admin/assets/fonts/')
