@@ -12,7 +12,9 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <h4>Create new owner</h4>
+                        <a href="{{route('admin.owners.create')}}">
+                            <h4>Create new owner</h4>
+                        </a>
                     </div>
                     <div class="form-search">
                         <form action="{{route('admin.owners.index')}}" method="GET" id="owners-search-form">

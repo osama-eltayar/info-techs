@@ -13,7 +13,9 @@
         <div class="container-fluid bg-blue">
             <div class="content-body">
                 <div class="form-body">
-                    <h4>Create new event</h4>
+                    <a href="{{route('admin.events.create')}}">
+                        <h4>Create new event</h4>
+                    </a>
                 </div>
                 <div class="form-search">
                     <form action="{{ route('admin.events.index') }}" method="GET" id="events-search-form">
