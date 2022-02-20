@@ -33,6 +33,7 @@ class Speaker extends Model
             'country_id',
             'city_id'
         ];
+    protected $appends = ['name'];
 
     //########################################### Constants ################################################
 

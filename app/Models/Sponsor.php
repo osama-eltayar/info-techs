@@ -33,6 +33,8 @@ class Sponsor extends Model
             'city_id'
         ];
 
+    protected $appends = ['name'];
+
     //########################################### Constants ################################################
 
 

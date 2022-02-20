@@ -53,4 +53,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.export.pdf');
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
+    Route::resource('events', EventController::class);
+
 });

@@ -24,6 +24,7 @@ class CourseVideo extends Model
         'size',
         'duration',
         'is_free',
+        'url'
     ];
 
     //########################################### Constants ################################################
@@ -33,7 +34,10 @@ class CourseVideo extends Model
     //########################################### Accessors ################################################
     public function getUrlAttribute()
     {
-        return $this->getFileUrl($this->path);
+        if($this->path)
+            return $this->getFileUrl($this->path);
+
+        return $this->attributes['url'];
     }
 
     public function getTypeAttribute()
