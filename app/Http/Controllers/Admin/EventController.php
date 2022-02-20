@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Organization;
 use App\Services\Admin\Events\FetchCoursesListService;
 use App\Models\Course;
+use App\Services\Admin\Event\FetchRegisteredUsersListService;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -107,10 +108,11 @@ class EventController extends Controller
     }
     
 
-    public function show(Course $event)
+    public function show(Course $event, FetchRegisteredUsersListService $fetchRegisteredUsersListService)
     {
-        // $courses =$fetchCoursesListService->execute($course->id,self::$perPage);
-        // $course->setRelation('courses',$courses);
+        $event->load('discounts', 'materials', 'people', 'speakers', 'specialities', 'sponsors', 'organization', 'paidShoppingCarts', 'videos', 'sessions', 'certificates', 'views', 'trackers');
+        $users = $fetchRegisteredUsersListService->execute($event->id, self::$perPage);
+        $event->setRelation('registeredUsers', $users);
         return view('admin.events.show', compact('event'));
     }
 }

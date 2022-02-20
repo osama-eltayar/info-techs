@@ -247,6 +247,11 @@ class Course extends Model
         return $this->belongsToMany(User::class, ShoppingCart::class)->withPivot('price','paid_at')->withTimestamps();
     }
 
+    public function paidShoppingCarts()
+    {
+        return $this->shoppingCarts()->whereNotNull('paid_at');
+    }
+
     public function shoppingCartAuthUser()
     {
         return $this->shoppingCarts()->where('users.id', auth()->id());
