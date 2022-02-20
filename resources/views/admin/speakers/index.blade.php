@@ -12,7 +12,9 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <h4>Speakers List</h4>
+                        <a href="{{route('admin.speakers.create')}}">
+                            <h4>Create new speaker</h4>
+                        </a>
                     </div>
                     <div class="form-search">
                         <form action="{{route('admin.speakers.index')}}" method="GET" id="speakers-search-form">

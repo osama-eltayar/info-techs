@@ -46,13 +46,13 @@
             <li>
                 <a
                     href="{{route('admin.users.index')}}"
-                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"
+{{--                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"--}}
                 ><img src="/admin/assets/img/icon.png" alt="icon"> Discounts</a>
             </li>
             <li>
                 <a
                     href="{{route('admin.users.index')}}"
-                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"
+{{--                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"--}}
                 ><img src="/admin/assets/img/icon.png" alt="icon"> Payments & Invoices</a>
             </li>
         </ul>

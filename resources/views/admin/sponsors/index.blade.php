@@ -18,7 +18,7 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <a href="{{route('admin.sponsor.create')}}">
+                        <a href="{{route('admin.sponsors.create')}}">
                             <h4>Create new sponsor</h4>
                         </a>
                     </div>
