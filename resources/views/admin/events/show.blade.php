@@ -387,7 +387,12 @@
                                         <td>--</td>
                                         <td>--</td>
                                         <td></td>
-                                        <td></td>
+                                        <td>                        
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>
+                                                </li>
+                                        </ul></td>
                                       </tr>
                                       @endforeach
                                   </tbody>

@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::resource('events', EventController::class);
+    Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
     Route::post('events/{event}/users/export/excel',[ RegisteredUserController::class, 'exportExcel'])->name('registered-users.export.excel');
     Route::post('events/{event}/users/export/pdf',[ RegisteredUserController::class, 'exportPdf'])->name('registered-users.export.pdf');
 
