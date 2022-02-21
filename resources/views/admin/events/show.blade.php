@@ -394,6 +394,12 @@
                             </table>
                           </div>
                           {{$event->registeredUsers->links()}}
+                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">
+                                @csrf
+                            </form>
+                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">
+                                @csrf
+                            </form>
                           {{-- <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item">
@@ -419,5 +425,5 @@
 </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('/admin/assets/js/owners/show.min.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/events/show.min.js')}}"></script>
 @endsection
