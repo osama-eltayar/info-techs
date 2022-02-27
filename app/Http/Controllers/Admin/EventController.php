@@ -136,4 +136,19 @@ class EventController extends Controller
 
 
     }
+
+    public function zoomLinks(Request $request,Course $event)
+    {
+        $request->validate([
+            'sessions'                         => ['required', 'array', 'filled', 'distinct'],
+            'sessions.*'                       => ['required', 'array', 'filled', 'distinct'],
+            'sessions.*.zoom_meeting_id'       => ['nullable'],
+            'sessions.*.zoom_meeting_password' => ['nullable'],
+        ]);
+        foreach ($request->sessions as $sessionId => $session)
+            $event->sessions()->find($sessionId)->update($session);
+
+        return $this->successResponse([
+        ], 'Zoom links updated Successfully.', Response::HTTP_ACCEPTED);
+    }
 }

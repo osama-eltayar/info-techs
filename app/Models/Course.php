@@ -294,4 +294,9 @@ class Course extends Model
     {
         return $this->hasMany(UserVideoTracker::class)->where('user_id',\auth()->id());
     }
+
+    public function onlineSessions()
+    {
+        return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
+    }
 }

@@ -24,6 +24,16 @@ $(function () {
         e.preventDefault();
         uploadCertificateImg();
     })
+
+        if(badgeUrl){
+            $('.avatar-preview').show();
+            $('#imagePreview').fadeIn(650);
+            $('#imagePreview').css('background-image', 'url('+badgeUrl +')');
+        }
+
+        $('#attach-zoom-links').on('click',function (){
+            storeZoomLinks();
+        })
 })
 
 
@@ -70,6 +80,26 @@ function uploadCertificateImg() {
         data: data,
         contentType: false,
         processData: false
+    })
+        .done(res => {
+
+        })
+        .fail(res => {
+        })
+        .always(() => {
+        })
+}
+
+function storeZoomLinks(){
+    const formElement = $('#events-zoom-links-form')
+    const action = formElement.attr('action')
+    const method = formElement.attr('method')
+    const data = formElement.serializeArray()
+    $.ajax({
+        url: action ,
+        type: method,
+        cache: false,
+        data: data,
     })
         .done(res => {
 

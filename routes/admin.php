@@ -55,5 +55,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
+    Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
 
 });
