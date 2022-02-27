@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::resource('events', EventController::class);
+    Route::put('/events/{event}/upload-certificate',[EventController::class,'uploadCertificate'])->name('events.upload-certificate');
 
     Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
         ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
@@ -48,7 +49,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('speakers', SpeakerController::class);
     Route::post('speakers/export/excel',[SpeakerController::class,'exportExcel'])->name('speakers.export.excel');
     Route::post('speakers/export/pdf',[SpeakerController::class,'exportPdf'])->name('speakers.export.pdf');
-  
+
     Route::resource('users', UserController::class);
     Route::post('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.export.pdf');
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');

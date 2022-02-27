@@ -35,7 +35,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="true"><i class="fa-solid fa-flag"></i> Event status</button>
                     </li>
-                     
+
                   </ul>
 
                   <div class="tab-content" id="pills-tabContent">
@@ -75,7 +75,7 @@
                                             <li>
                                                 <span class="left-side">Certification Availabilty:</span>
                                                 <span class="right-side">
-                                                    {{$event->certificate}}% 
+                                                    {{$event->certificate}}%
                                                     {{-- (show on) --}}
                                                 </span>
                                             </li>
@@ -191,16 +191,16 @@
                                                                     {{$event->price}} SAR    [ {{$event->price -= $discount->price}} SAR before {{$discount->formatted_date}} ] <br> Discount {{$discount->price}} SAR
                                                                 </p>
                                                                 @endif
-                                                            @else                                                            
+                                                            @else
                                                                 <p>
                                                                     <del>{{$event->price}}SAR</del>    {{$event->price -=$discount->price}} SAR  <br> Discount {{$discount->price}} SAR
                                                                 </p>
-                                                            @endif    
+                                                            @endif
 
                                                         @endforeach
                                                     </span>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                 </div>
@@ -248,7 +248,7 @@
                                             @endforeach
                                         </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="tab-action">
@@ -259,20 +259,28 @@
                         <div class="certificate-content">
                             <h3>Event Certificate</h3>
                             <div class="image-content">
-                                <img src="assets/img/certificate.png" class="img-fluid" alt="image">
+                                @if($event->certificate_image_url)
+                                    <img src="{{$event->certificate_image_url}}" class="img-fluid" alt="image" id="certificate-img">
+                                @else
+                                    <img src="/admin/assets/img/certificate.png" class="img-fluid" alt="image" id="certificate-img">
+                                @endif
                             </div>
                             <div class="image-info">
-                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>
+{{--                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
                                 <span>
-                                    Dimension: Width (1024px) - Height (800px) <br> Maximum size: 10 MB
+                                    Dimension: Width (1080px) - Height (715px) <br> Maximum size: 10 MB
                                 </span>
+                                <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="certificate-form">
+                                    <input type='file' class="imageUpload"  id="certificate-input" accept=".png, .jpg, .jpeg"  data-url="{{route('admin.events.upload-certificate',$event->id)}}" name="certificate_img" />
+                                </form>
                             </div>
-                        </div>
                         <div class="badge-content">
                             <h3>Event Badge</h3>
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="badge-form">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  data-url="{{route('admin.events.upload-certificate',$event->id)}}" name="badge" />
+                                    </form>
                                     <label for="imageUpload">Upload new Badge</label>
                                 </div>
                                 <div class="avatar-preview" style="display: none;">
@@ -281,7 +289,7 @@
                                 </div>
                             </div>
                             <div class="image-info">
-                                <span>Dimension: Width (200px) - Height (500px) 
+                                <span>Dimension: Width (200px) - Height (500px)
                                 </span>
                                 <span>
                                     Maximum size: 3 MB
@@ -289,7 +297,7 @@
                             </div>
                         </div>
                         <div class="tab-action">
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" id="save-certificate-img-btn" form="certificate-form">Save</button>
                         </div>
                     </div>
                     <div class="tab-pane fade " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
@@ -330,7 +338,7 @@
                                         0/2
                                         <small>No certificate</small>
                                     </h5>
-                                    
+
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -371,7 +379,7 @@
                                 </div>
                                 <div class="col-lg-6 col-12 text-end">
                                     <h3>
-                                        Export report    
+                                        Export report
                                         <a class="btn-file btn-pdf" href="#"><i class="fa-solid fa-file-pdf"></i></a>
                                         <a class="btn-file btn-excel" href="#"><i class="fa-solid fa-file-excel"></i></a>
                                     </h3>
@@ -408,8 +416,8 @@
                           <div class="table-info text-end">
                             <h3>Total Amount   23 Hours</h3>
                         </div>
-                          
-                          
+
+
                           <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item">
@@ -427,7 +435,7 @@
                             </ul>
                           </nav>
                     </div>
-                    
+
                   </div>
             </div>
         </div>
@@ -435,5 +443,15 @@
 </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('/admin/assets/js/owners/show.min.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/events/show.min.js')}}"></script>
+        <script>
+              const badgeUrl = '{{$event->badge_url}}'
+          $(function (){
+              if(badgeUrl){
+                  $('.avatar-preview').show();
+                  $('#imagePreview').fadeIn(650);
+                  $('#imagePreview').css('background-image', 'url('+badgeUrl +')');
+              }
+          })
+        </script>
 @endsection
