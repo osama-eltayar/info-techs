@@ -39,7 +39,7 @@
                   </ul>
 
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                    <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="box-date">
@@ -268,7 +268,9 @@
                             <div class="image-info">
 {{--                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
                                 <span>
-                                    Dimension: Width (1080px) - Height (715px) <br> Maximum size: 10 MB
+                                    Dimension: Width (1080px) - Height (715px) <br>
+                                    X:(550px) Y:(350px) <br>
+                                    Maximum size: 10 MB
                                 </span>
                                 <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="certificate-form">
                                     <input type='file' class="imageUpload"  id="certificate-input" accept=".png, .jpg, .jpeg"  data-url="{{route('admin.events.upload-certificate',$event->id)}}" name="certificate_img" />
@@ -437,9 +439,9 @@
                     </div>
 
                   </div>
-                      <div class="tab-pane active show " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                      <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                           <div class="title">
-                              <p class="message-zoom">No zoom link available to this event</p>
+{{--                              <p class="message-zoom">No zoom link available to this event</p>--}}
                               <h3>Create Zoom link for this event</h3>
                           </div>
                           <div class="zoom-form">
