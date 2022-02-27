@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\SponsorTypeEnum;
 use App\Http\Requests\Admin\EventRequest;
 use App\Models\Country;
+use App\Models\CourseSession;
 use App\Models\CourseType;
 use App\Models\Speaker;
 use App\Models\Speciality;
