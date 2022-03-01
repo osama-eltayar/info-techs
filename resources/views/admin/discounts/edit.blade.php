@@ -10,7 +10,7 @@
         <div class="container-fluid bg-blue">
             <div class="content-body">
                 <div class="form-body">
-                    <h4>Edit new promocode</h4>
+                    <h4>Edit promocode</h4>
                     <form action="{{route('admin.discounts.update',$discount->id)}}" method="POST" id="discount-form">
                         @method('PUT')
                         <div class="row">
