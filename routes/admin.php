@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Admin\SpeakerController;
@@ -48,11 +49,13 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('speakers', SpeakerController::class);
     Route::post('speakers/export/excel',[SpeakerController::class,'exportExcel'])->name('speakers.export.excel');
     Route::post('speakers/export/pdf',[SpeakerController::class,'exportPdf'])->name('speakers.export.pdf');
-  
+
     Route::resource('users', UserController::class);
     Route::post('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.export.pdf');
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
+
+    Route::resource('discounts', DiscountController::class);
 
 });
