@@ -23,20 +23,24 @@ class DiscountController extends Controller
 
     public function store(DiscountRequest $request)
     {
-        $discountData = $request->only([
-            'type',
-            'name',
-            'code',
-            'amount',
-            'amount_type',
-            'generation_number',
-            'limit_usage',
-            'course_id',
-            'speciality_id',
-            'start_date',
-            'end_date'
-        ]);
-        Discount::create($discountData);
+        Discount::create($request->validated());
+        return $this->successResponse([
+            'redirect' => route('admin.discounts.index')
+        ], 'Discount Created Successfully.', Response::HTTP_CREATED);
+    }
+
+    public function edit(Discount $discount)
+    {
+        $discountAmountTypes = DiscountAmountTypeEnum::MAPPED_TYPES;
+        $discountTypes       = ['Individual' => Discount::INDIVIDUAL, 'General' => Discount::GENERAL];
+        $courses             = Course::all();
+        $specialities        = Speciality::all();
+        return view('admin.discounts.edit', compact('discountTypes', 'discountAmountTypes', 'courses', 'specialities','discount'));
+    }
+
+    public function update(DiscountRequest $request,Discount $discount)
+    {
+        $discount->update($request->validated());
         return $this->successResponse([
             'redirect' => route('admin.discounts.index')
         ], 'Discount Created Successfully.', Response::HTTP_CREATED);

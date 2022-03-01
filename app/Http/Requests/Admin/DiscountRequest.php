@@ -41,7 +41,7 @@ class DiscountRequest extends FormRequest
         $rules = [
             'type'              => ['required', Rule::in([Discount::INDIVIDUAL, Discount::GENERAL])],
             'name'              => ['required', 'string', 'max:100'],
-            'code'              => ['required', 'string', 'max:100', 'unique:discounts'],
+            'code'              => ['required', 'string', 'max:100', 'unique:discounts,code,' . optional($this->discount)->id],
             'amount'            => ['required', 'numeric'],
             'amount_type'       => ['required', Rule::in(DiscountAmountTypeEnum::CASH, DiscountAmountTypeEnum::PERCENTAGE)],
             'generation_number' => ['required', 'integer'],
