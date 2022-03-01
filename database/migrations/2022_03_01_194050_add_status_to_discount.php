@@ -14,7 +14,7 @@ class AddStatusToDiscount extends Migration
     public function up()
     {
         Schema::table('discounts', function (Blueprint $table) {
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(1);
         });
     }
 
