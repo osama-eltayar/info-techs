@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Admin\SpeakerController;
@@ -54,5 +55,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
+    
+    Route::resource('discounts', DiscountController::class);
+    Route::post('discounts/export/pdf', [DiscountController::class, 'exportPdf'])->name('discounts.export.pdf');
+    Route::post('discounts/export/excel', [DiscountController::class, 'exportExcel'])->name('discounts.export.excel');
+
 
 });

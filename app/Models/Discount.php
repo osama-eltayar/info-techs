@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\DiscountAmountTypeEnum;
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Discount extends Model
 {
-    use HasFactory;
+    use HasFactory, HasFilter;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,8 @@ class Discount extends Model
         'course_id',
         'speciality_id',
         'start_date',
-        'end_date'
+        'end_date',
+        'status'
     ];
 
     protected $dates = ['start_date', 'end_date'];
@@ -56,6 +58,21 @@ class Discount extends Model
     public function isPercentage()
     {
         return $this->amount_type == DiscountAmountTypeEnum::PERCENTAGE;
+    }
+
+    public function getTypeStringAttribute()
+    {
+        return getAttributeStringByReflection(self::class, $this->type);
+    }
+
+    public function getFormattedStartDateAttribute()
+    {
+        return $this->start_date->format('d M Y');
+    }
+
+    public function getFormattedEndDateAttribute()
+    {
+        return $this->end_date->format('d M Y');
     }
 
 

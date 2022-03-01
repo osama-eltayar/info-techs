@@ -139,6 +139,10 @@ mix
         'resources/admin/assets/js/users/list.js',
     ], 'public/admin/assets/js/users/list.min.js')
 
+    .scripts([
+        'resources/admin/assets/js/discounts/list.js',
+    ], 'public/admin/assets/js/discounts/list.min.js')
+
     .copyDirectory(['resources/admin/assets/css/'], 'public/admin/assets/css/')
     .copyDirectory(['resources/admin/assets/fonts/'], 'public/admin/assets/fonts/')
     .copyDirectory(['resources/admin/assets/webfonts/'], 'public/admin/assets/webfonts/')
