@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\SponsorTypeEnum;
 use App\Http\Requests\Admin\EventRequest;
 use App\Models\Country;
+use App\Models\CourseSession;
 use App\Models\CourseType;
 use App\Models\Speaker;
 use App\Models\Speciality;
@@ -12,6 +13,7 @@ use App\Models\Sponsor;
 use App\Services\Admin\Event\MapEventToFormDataService;
 use App\Services\Admin\Event\StoreEventService;
 use App\Services\Admin\Event\UpdateEventService;
+use App\Traits\HasFiles;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Models\Organization;
@@ -21,7 +23,9 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    use HasFiles;
     private static int $perPage = 10;
+
 
     public function create()
     {
@@ -88,7 +92,7 @@ class EventController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function index(Request $request, FetchCoursesListService $fetchEventListService)
     {
@@ -105,12 +109,47 @@ class EventController extends Controller
 
         return view('admin.events.index', compact('courses', 'organizations'));
     }
-    
+
 
     public function show(Course $event)
     {
         // $courses =$fetchCoursesListService->execute($course->id,self::$perPage);
         // $course->setRelation('courses',$courses);
         return view('admin.events.show', compact('event'));
+    }
+
+    public function uploadCertificate(Request $request,Course $event)
+    {
+        $request->validate([
+            'certificate_img' => 'nullable', 'image', 'max:' . 3 * 1024,
+            'badge'           => 'nullable', 'image', 'max:' . 3 * 1024,
+        ]);
+        $data = [];
+        if ($request->hasFile('certificate_img'))
+            $data['certificate_image'] =  $this->storeFile('events',$request->certificate_img,$event);
+
+        if ($request->hasFile('badge'))
+            $data['badge'] =  $this->storeFile('events',$request->badge,$event);
+
+        $event->update($data);
+        return $this->successResponse([
+        ], 'Certificate Uploaded Successfully.', Response::HTTP_ACCEPTED);
+
+
+    }
+
+    public function zoomLinks(Request $request,Course $event)
+    {
+        $request->validate([
+            'sessions'                         => ['required', 'array', 'filled', 'distinct'],
+            'sessions.*'                       => ['required', 'array', 'filled', 'distinct'],
+            'sessions.*.zoom_meeting_id'       => ['nullable'],
+            'sessions.*.zoom_meeting_password' => ['nullable'],
+        ]);
+        foreach ($request->sessions as $sessionId => $session)
+            $event->sessions()->find($sessionId)->update($session);
+
+        return $this->successResponse([
+        ], 'Zoom links updated Successfully.', Response::HTTP_ACCEPTED);
     }
 }

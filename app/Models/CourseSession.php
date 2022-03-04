@@ -29,6 +29,9 @@ class CourseSession extends Model
 
     protected $dates = [ 'start_at','end_at' ];
 
+    const ONLINE   = 1;
+    const PHYSICAL = 2;
+
 
     //########################################### Constants ################################################
 
@@ -37,7 +40,9 @@ class CourseSession extends Model
 
     public function getZoomMeetingPasswordAttribute( $value )
     {
-        return decrypt($value);
+        if ($this->attributes['zoom_meeting_password'])
+            return decrypt($value);
+        return null;
     }
 
     public function getParsedDurationAttribute()
