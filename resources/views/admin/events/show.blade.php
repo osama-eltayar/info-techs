@@ -9,7 +9,7 @@
     <div class="container-fluid bg-blue">
         <div class="content-body">
             <div class="event-title">
-                <span><strong>Event Title:</strong>  About Sociology</span>
+                <span><strong>Event Title:</strong>  {{$event->title}}</span>
                 <ul class="list-unstyled">
                     <li>{{$event->state}}</li>
                 </ul>
@@ -338,9 +338,9 @@
                                 <li>
                                     <p>Paid Amount </p>
                                     <h5>
-                                        @foreach ($event->shoppingCarts as $shoppingCart)
-                                            <span>SAR</span> {{$shoppingCart->pivot->price}}
-                                        @endforeach
+                                        {{-- @foreach ($event->shoppingCarts as $shoppingCart) --}}
+                                            <span>SAR</span> {{$event->total_paid_amount}}
+                                        {{-- @endforeach --}}
                                     </h5>
                                 </li>
                                 <li>

@@ -9,7 +9,7 @@
     <div class="container-fluid bg-blue">
         <div class="content-body">
             <div class="event-title">
-                <span><strong>Event Title:</strong>  About Sociology</span>
+                <span><strong>Event Title:</strong>  {{$event->title}}</span>
                 <ul class="list-unstyled">
                     <li>{{$event->state}}</li>
                 </ul>
@@ -22,7 +22,7 @@
             
             <div class="event-body">
                 <div class="boxes-section">
-                    <h4>Ahmed Sameh Mohamed </h4>
+                    <h4>{{$user->name}} </h4>
                     <ul class="list-unstyled">
                         <li>
                             <p><strong>Certificate</strong></p>
@@ -39,7 +39,7 @@
                             </div>
                             <span class="message-status">Certificate available</span>
                         </li>
-                        <li>
+                        {{-- <li>
                             <p><strong>Badge Status</strong></p>
                             <h5>0/2</h5>
                             <span>Send by mail | Download</span>
@@ -48,20 +48,20 @@
                             <p><strong>Certificate Print</strong> </p>
                             <h5>1/2</h5>
                             <span>Send by mail | Download</span>
-                        </li>
+                        </li> --}}
                         <li>
                             <p><strong>Invoice</strong></p>
                             <h5>
-                                <span>SAR</span> 2,000
-                                <small>Early Pay | On time</small>
+                                <span>SAR</span> {{$shopping_cart->price}}
+                                {{-- <small>Early Pay | On time</small> --}}
                             </h5>
-                            <span>Send by mail | Download</span>
+                            {{-- <span>Send by mail | Download</span> --}}
                         </li>
-                        <li>
+                        {{-- <li>
                             <p><strong>Promocode</strong></p>
                             <span>No discount used </span>
                             <span>25FOff (-200 SAR)</span>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="table-title">

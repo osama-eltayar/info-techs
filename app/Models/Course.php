@@ -176,6 +176,11 @@ class Course extends Model
         return implode(', ', $this->specialities->pluck('name')->toArray());
     }
 
+    public function getTotalPaidAmountAttribute()
+    {
+        return $this->paidShoppingCarts->sum('pivot.price');
+    }
+
     //########################################### Mutators #################################################
 
 
