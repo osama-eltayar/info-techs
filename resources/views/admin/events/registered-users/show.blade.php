@@ -90,7 +90,7 @@
                           <tbody>
                             @foreach ($trackers as $tracker)  
                             <tr>
-                              <td>1</td>
+                              <td>{{$tracker->id}}</td>
                               <td>15/11/2015</td>
                               <td>03:00 AM</td>
                               <td>03:10 AM</td>
@@ -103,27 +103,38 @@
                   <div class="table-info text-end">
                     <h3>Total Amount   23 Hours</h3>
                 </div>
-                  
+                <form action="{{route('admin.course-progress.export.excel', ['user' => $user->id, 'event' => $event->id])}}" method="POST" id="course-progress-export-excel-form">
+                    @csrf
+                </form>
+                <form action="{{route('admin.course-progress.export.pdf', ['user' => $user->id, 'event' => $event->id])}}" method="POST" id="course-progress-export-pdf-form">
+                    @csrf
+                </form>
                 {{$trackers->links()}}
-                  {{-- <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link active" href="#">page 2 / 3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav> --}}
             </div>
 
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+    $(function () {
+        $(document).on('click','.btn-excel',function (){
+            exportEventsExcel();
+        })
+        $(document).on('click','.btn-pdf',function (){
+            exportEventsPdf();
+        })
+    })
+
+
+    function exportEventsExcel(){
+        $('#course-progress-export-excel-form').submit();
+    }
+
+    function exportEventsPdf(){
+        $('#course-progress-export-pdf-form').submit();
+    }
+</script>
 @endsection

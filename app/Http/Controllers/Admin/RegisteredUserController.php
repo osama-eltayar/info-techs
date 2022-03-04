@@ -9,7 +9,9 @@ use App\Models\User;
 use App\Models\UserVideoTracker;
 use App\Services\Admin\Event\FetchRegisteredUsersListService;
 use App\Services\Admin\User\ExportUserPdfReportService;
+use App\Services\Admin\User\ExportUserProgressPdfReportService;
 use App\Services\Admin\User\ExportUsersExcelReportService;
+use App\Services\Admin\User\ExportUsersProgressExcelReportService;
 use Illuminate\Http\Request;
 
 class RegisteredUserController extends Controller
@@ -37,5 +39,17 @@ class RegisteredUserController extends Controller
     {
         $users = (new FetchRegisteredUsersListService)->execute($event->id);
         return $exportUsersExcelReportService->setView('admin.events.event-report')->execute($users);
+    }
+
+    public function progressExportPdf(Request $request, Course $event, $user_id, ExportUserProgressPdfReportService $exportUserProgressPdfReportService)
+    {
+        $trackers = UserVideoTracker::where(['user_id' => $user_id, 'course_id' => $event->id])->paginate(self::$perPage);
+        return $exportUserProgressPdfReportService->execute($trackers);
+    }
+
+    public function progressExportExcel(Request $request, Course $event, $user_id, ExportUsersProgressExcelReportService $exportUsersProgressExcelReportService)
+    {
+        $trackers = UserVideoTracker::where(['user_id' => $user_id, 'course_id' => $event->id])->paginate(self::$perPage);
+        return $exportUsersProgressExcelReportService->execute($trackers);
     }
 }

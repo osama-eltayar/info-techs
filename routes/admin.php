@@ -38,9 +38,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::resource('events', EventController::class);
-    Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
     Route::post('events/{event}/users/export/excel',[ RegisteredUserController::class, 'exportExcel'])->name('registered-users.export.excel');
     Route::post('events/{event}/users/export/pdf',[ RegisteredUserController::class, 'exportPdf'])->name('registered-users.export.pdf');
+    Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
+    Route::post('events/{event}/users/{user}/export/excel',[ RegisteredUserController::class, 'progressExportPdf'])->name('course-progress.export.excel');
+    Route::post('events/{event}/users/{user}/export/pdf',[ RegisteredUserController::class, 'progressExportExcel'])->name('course-progress.export.pdf');
+    
 
     Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
         ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
