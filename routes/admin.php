@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
 use App\Http\Controllers\Admin\SpeakerController;
@@ -56,5 +57,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::resource('events', EventController::class);
     Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
+
+    Route::resource('discounts', DiscountController::class);
 
 });
