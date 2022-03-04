@@ -27,16 +27,16 @@
                         <li>
                             <p><strong>Certificate</strong></p>
                             <h5 class="red">
-                                0/2
+                                {{$trackers->avg('time_progress')?? 0}}%
                                 <small>No certificate</small>
                             </h5>
                             
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Enable
                                 </label>
-                            </div>
+                            </div> --}}
                             <span class="message-status">Certificate available</span>
                         </li>
                         {{-- <li>
@@ -88,20 +88,15 @@
                             <th scope="col">Total</th>
                           </thead>
                           <tbody>
+                            @foreach ($trackers as $tracker)  
                             <tr>
-                                <td>1</td>
-                                <td>15/11/2015</td>
-                                <td>03:00 AM</td>
-                                <td>03:10 AM</td>
-                                <td>0:Hours - 10 min</td>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td>15/11/2015</td>
-                                <td>03:00 AM</td>
-                                <td>03:10 AM</td>
-                                <td>0:Hours - 10 min</td>
-                              </tr>
+                              <td>1</td>
+                              <td>15/11/2015</td>
+                              <td>03:00 AM</td>
+                              <td>03:10 AM</td>
+                              <td>0:Hours - 10 min</td>
+                            </tr>
+                            @endforeach
                           </tbody>
                     </table>
                   </div>
@@ -109,8 +104,8 @@
                     <h3>Total Amount   23 Hours</h3>
                 </div>
                   
-                  
-                  <nav aria-label="Page navigation example">
+                {{$trackers->links()}}
+                  {{-- <nav aria-label="Page navigation example">
                     <ul class="pagination">
                       <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -125,7 +120,7 @@
                         </a>
                       </li>
                     </ul>
-                  </nav>
+                  </nav> --}}
             </div>
 
         </div>
