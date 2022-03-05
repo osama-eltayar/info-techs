@@ -23,7 +23,9 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="answer-container " :class="{col : question.answers.length <=4 , 'col-3' :  question.answers.length >4 }" v-for="(answer,answerIdx) in question.answers"
+                    <div class="answer-container "
+                         :class="{col : question.answers.length <=4 , 'col-3' :  question.answers.length >4 }"
+                         v-for="(answer,answerIdx) in question.answers"
                          :key="`answer`+answerIdx">
                         <div class="form-floating mb-3 ">
                             <input type="text" class="form-control" :id="`answer-title-${answerIdx}`"
@@ -36,13 +38,15 @@
                         </button>
 
                         <div class="row">
-                            <div class="answer-label-container " :class="{col : answer.labels.length <=2 , 'col-6' :  answer.labels.length >2 }"
+                            <div class="answer-label-container "
+                                 :class="{col : answer.labels.length <=2 , 'col-6' :  answer.labels.length >2 }"
                                  v-for="(answerLabel,answerLabelIdx) in answer.labels"
                                  :key="`answer-label-${answerIdx}-${answerLabelIdx}`"
                                  v-if="question.type == questionTypeEnum.radio">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="label-option" placeholder="Option Title"
-                                           :value="answerLabel.title" @input="onAnswerLabelTitleChange(questionIdx,answerIdx,answerLabelIdx,$event)">
+                                           :value="answerLabel.title"
+                                           @input="onAnswerLabelTitleChange(questionIdx,answerIdx,answerLabelIdx,$event)">
                                     <label for="label-option">Option Title</label>
                                 </div>
                             </div>
@@ -67,9 +71,12 @@
 <script>
 export default {
     name: "SurveyForm",
-    props: ['questionTypes','isEdit','formSubmitUrl'],
+    props: ['questionTypes', 'isEdit', 'formSubmitUrl', 'formData'],
     mounted() {
-        this.form.questions.push({
+        if (this.isEdit)
+            this.form = this.formData
+        else
+            this.form.questions.push({
                 title: null,
                 type: null,
                 answers: []
@@ -95,7 +102,7 @@ export default {
                 radio: '3',
             },
             form: {
-                title : null,
+                title: null,
                 questions: []
             }
         }
@@ -116,18 +123,18 @@ export default {
             }]
             if (this.form.questions[questionIdx].type == this.questionTypeEnum.radio) {
                 this.form.questions[questionIdx].answers[0].labels = [{
-                title: null,
-            }]
+                    title: null,
+                }]
             }
         },
-        onQuestionTitleChange(questionIdx,event){
+        onQuestionTitleChange(questionIdx, event) {
             this.form.questions[questionIdx].title = event.target.value
         },
-        onAnswerTitleChange(questionIdx,answerIdx,event){
+        onAnswerTitleChange(questionIdx, answerIdx, event) {
             this.form.questions[questionIdx].answers[answerIdx].title = event.target.value
         },
-        onAnswerLabelTitleChange(questionIdx,answerIdx,labelIdx,event){
-            this.form.questions[questionIdx].answers[answerIdx].labels[labelIdx] = {title : event.target.value}
+        onAnswerLabelTitleChange(questionIdx, answerIdx, labelIdx, event) {
+            this.form.questions[questionIdx].answers[answerIdx].labels[labelIdx] = {title: event.target.value}
         },
         onAddLabel(questionIdx, answerIdx) {
             this.form.questions[questionIdx].answers[answerIdx].labels.push({
@@ -140,31 +147,34 @@ export default {
                 labels: []
             })
         },
-        onFormSubmit(){
-            axios.post(this.formSubmitUrl,this.form)
-                .then(({data})=>{
-                if (data && data.data && data.data.redirect)
-                    successRedirectTimeout = setTimeout(function () {
-                        redirect(data.data.redirect);
-                    }, 1000);
+        onFormSubmit() {
+            if (this.isEdit)
+                this.form['_method'] = 'PUT'
 
-                if (data && data.message)
-                    toastr.success(data.message);
+            axios.post(this.formSubmitUrl, this.form)
+                .then(({data}) => {
+                    if (data && data.data && data.data.redirect)
+                        successRedirectTimeout = setTimeout(function () {
+                            redirect(data.data.redirect);
+                        }, 1000);
 
-            }).catch(({response})=>{
-                const {data,status} = response;
-                if(status == 422){
+                    if (data && data.message)
+                        toastr.success(data.message);
+
+                }).catch(({response}) => {
+                const {data, status} = response;
+                if (status == 422) {
                     toastr.clear();
                     toastr.error(Object.values(data.errors)[0][0])
                 }
 
-                if ([401,402,403,429].indexOf(status) != -1) {
+                if ([401, 402, 403, 429].indexOf(status) != -1) {
                     toastr.clear();
                     toastr.error(data.message);
                 }
 
 
-                if(status == 500)
+                if (status == 500)
                     toastr.error("Internal Server Error");
             })
         },
