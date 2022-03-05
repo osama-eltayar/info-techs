@@ -8,6 +8,7 @@ use App\Models\ShoppingCart;
 use App\Models\User;
 use App\Models\UserVideoTracker;
 use App\Services\Admin\Event\FetchRegisteredUsersListService;
+use App\Services\Admin\Event\User\FetchRegisteredUserListService;
 use App\Services\Admin\Event\User\FetchTrackersListService;
 use App\Services\Admin\User\ExportUserPdfReportService;
 use App\Services\Admin\User\ExportUserProgressPdfReportService;
@@ -19,12 +20,9 @@ class RegisteredUserController extends Controller
 {
     private static int $perPage = 10;
 
-    public function show(Course $event, $user_id)
+    public function show(Course $event, $user_id, FetchRegisteredUserListService $fetchRegisteredUserListService)
     {
-        $user = User::where('id', $user_id)->with('registeredCourses', function ($q) use ($event) {
-            return $q->where('courses.id', $event->id);
-        })->with('shoppingCart')->first();
-
+        $user = $fetchRegisteredUserListService->execute($event->id, $user_id);
         $shopping_cart = ShoppingCart::where(['user_id' => $user_id, 'course_id' => $event->id])->first();
         $trackers = (new FetchTrackersListService)->execute($event->id, $user_id, self::$perPage);
 
