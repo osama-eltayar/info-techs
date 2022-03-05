@@ -8,6 +8,7 @@ use App\Models\ShoppingCart;
 use App\Models\User;
 use App\Models\UserVideoTracker;
 use App\Services\Admin\Event\FetchRegisteredUsersListService;
+use App\Services\Admin\Event\User\FetchTrackersListService;
 use App\Services\Admin\User\ExportUserPdfReportService;
 use App\Services\Admin\User\ExportUserProgressPdfReportService;
 use App\Services\Admin\User\ExportUsersExcelReportService;
@@ -25,7 +26,7 @@ class RegisteredUserController extends Controller
         })->with('shoppingCart')->first();
 
         $shopping_cart = ShoppingCart::where(['user_id' => $user_id, 'course_id' => $event->id])->first();
-        $trackers = UserVideoTracker::where(['user_id' => $user_id, 'course_id' => $event->id])->paginate(self::$perPage);
+        $trackers = (new FetchTrackersListService)->execute($event->id, $user_id, self::$perPage);
 
         return view('admin.events.registered-users.show', compact('user', 'event', 'shopping_cart', 'trackers'));
     }
@@ -43,13 +44,13 @@ class RegisteredUserController extends Controller
 
     public function progressExportPdf(Request $request, Course $event, $user_id, ExportUserProgressPdfReportService $exportUserProgressPdfReportService)
     {
-        $trackers = UserVideoTracker::where(['user_id' => $user_id, 'course_id' => $event->id])->paginate(self::$perPage);
+        $trackers = (new FetchTrackersListService)->execute($event->id, $user_id, self::$perPage);
         return $exportUserProgressPdfReportService->execute($trackers);
     }
 
     public function progressExportExcel(Request $request, Course $event, $user_id, ExportUsersProgressExcelReportService $exportUsersProgressExcelReportService)
     {
-        $trackers = UserVideoTracker::where(['user_id' => $user_id, 'course_id' => $event->id])->paginate(self::$perPage);
+        $trackers = (new FetchTrackersListService)->execute($event->id, $user_id, self::$perPage);
         return $exportUsersProgressExcelReportService->execute($trackers);
     }
 }
