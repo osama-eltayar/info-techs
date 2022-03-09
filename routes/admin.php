@@ -67,9 +67,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
-    Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
-
+    
     Route::resource('discounts', DiscountController::class);
+    Route::post('discounts/export/pdf', [DiscountController::class, 'exportPdf'])->name('discounts.export.pdf');
+    Route::post('discounts/export/excel', [DiscountController::class, 'exportExcel'])->name('discounts.export.excel');
+
+    Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
 
     Route::resource('surveys', SurveyController::class);
     Route::resource('shopping-carts', ShoppingCartController::class);

@@ -97,6 +97,7 @@
     "/admin/assets/js/events/show.min.js": "/admin/assets/js/events/show.min.js",
     "/admin/assets/js/events/list.min.js": "/admin/assets/js/events/list.min.js",
     "/admin/assets/js/users/list.min.js": "/admin/assets/js/users/list.min.js",
+    "/admin/assets/js/discounts/list.min.js": "/admin/assets/js/discounts/list.min.js",
     "/admin/assets/js/shoppingCarts/list.min.js": "/admin/assets/js/shoppingCarts/list.min.js",
     "/admin/assets/js/discounts/create.min.js": "/admin/assets/js/discounts/create.min.js",
     "/admin/assets/js/discounts/edit.min.js": "/admin/assets/js/discounts/edit.min.js",
