@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
@@ -40,11 +41,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('events', EventController::class);
     Route::put('/events/{event}/upload-certificate',[EventController::class,'uploadCertificate'])->name('events.upload-certificate');
 
-    Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
-        ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
+    Route::post('{resource_type}/{resource_id}/courses/export/excel', [CourseController::class, 'exportExcel'])
+        ->name('courses.export.excel')->where('resource_type', 'owners|sponsors|speakers');
 
-    Route::post('{resource_type}/{resource_id}/courses/export/pdf',[ CourseController::class, 'exportPdf'])
-         ->where('resource_type','owners|sponsors|speakers')->name('courses.export.pdf');
+    Route::post('{resource_type}/{resource_id}/courses/export/pdf', [CourseController::class, 'exportPdf'])
+        ->where('resource_type', 'owners|sponsors|speakers')->name('courses.export.pdf');
 
     //  Speakers
     Route::resource('speakers', SpeakerController::class);
@@ -60,4 +61,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::resource('discounts', DiscountController::class);
 
+    Route::resource('shopping-carts', ShoppingCartController::class);
+    Route::post('shopping-carts/export/pdf', [ShoppingCartController::class, 'exportPdf'])->name('shopping-carts.export.pdf');
+    Route::post('shopping-carts/export/excel', [ShoppingCartController::class, 'exportExcel'])->name('shopping-carts.export.excel');
 });

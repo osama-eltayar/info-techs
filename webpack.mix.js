@@ -140,6 +140,8 @@ mix
     ], 'public/admin/assets/js/users/list.min.js')
 
     .scripts([
+        'resources/admin/assets/js/shoppingCarts/list.js',
+    ], 'public/admin/assets/js/shoppingCarts/list.min.js')
         'resources/admin/assets/js/discounts/common.js',
         'resources/admin/assets/js/discounts/create.js',
     ], 'public/admin/assets/js/discounts/create.min.js')
