@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasFiles;
 use Carbon\Carbon;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ class Course extends Model
 {
     use HasFactory;
     use HasFilter;
+    use HasFiles;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +46,8 @@ class Course extends Model
             'is_views_hidden',
             'speciality_id',
             'country_id',
-            'city_id'
+            'city_id',
+            'badge'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to','published_at' ];
@@ -56,16 +59,26 @@ class Course extends Model
     const PHYSICAL      = 4;
     const HYBRID        = 5;
 
-    // 
+    //
     const IN_PROGRESS = 'In progress';
     const NOT_STARTED = 'Not started';
     const FINISHED = 'Finished';
 
     //########################################### Accessors ################################################
-    public function getStateAttribute() 
+    public function getStateAttribute()
     {
         $now = Carbon::now();
         return ($this->end_date->lt($now) )? self::FINISHED : (($this->start_date->gt($now) ) ? self::NOT_STARTED : self::IN_PROGRESS);
+    }
+
+    public function getCertificateImageUrlAttribute()
+    {
+        return $this->getFileUrl($this->certificate_image);
+    }
+
+    public function getBadgeUrlAttribute()
+    {
+        return $this->getFileUrl($this->badge);
     }
 
     public function isOnlineEvent()
@@ -176,6 +189,11 @@ class Course extends Model
         return implode(', ', $this->specialities->pluck('name')->toArray());
     }
 
+    public function getTotalPaidAmountAttribute()
+    {
+        return $this->paidShoppingCarts->sum('pivot.price');
+    }
+
     //########################################### Mutators #################################################
 
 
@@ -247,6 +265,11 @@ class Course extends Model
         return $this->belongsToMany(User::class, ShoppingCart::class)->withPivot('price','paid_at')->withTimestamps();
     }
 
+    public function paidShoppingCarts()
+    {
+        return $this->shoppingCarts()->whereNotNull('paid_at');
+    }
+
     public function shoppingCartAuthUser()
     {
         return $this->shoppingCarts()->where('users.id', auth()->id());
@@ -280,5 +303,10 @@ class Course extends Model
     public function authUserTrackers()
     {
         return $this->hasMany(UserVideoTracker::class)->where('user_id',\auth()->id());
+    }
+
+    public function onlineSessions()
+    {
+        return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
     }
 }

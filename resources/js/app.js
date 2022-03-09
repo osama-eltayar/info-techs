@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('event-form', require('./components/Event/EventForm.vue').default);
+Vue.component('survey-form', require('./components/Survey/SurveyForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

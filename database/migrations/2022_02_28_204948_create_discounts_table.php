@@ -22,8 +22,8 @@ class CreateDiscountsTable extends Migration
             $table->unsignedTinyInteger('amount_type');
             $table->unsignedInteger('generation_number');
             $table->unsignedInteger('limit_usage');
-            $table->unsignedBigInteger('course_id')->index();
-            $table->unsignedBigInteger('speciality_id')->index();
+            $table->unsignedBigInteger('course_id')->nullable()->index();
+            $table->unsignedBigInteger('speciality_id')->nullable()->index();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

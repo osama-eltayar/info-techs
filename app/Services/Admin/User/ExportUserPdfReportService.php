@@ -7,13 +7,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExportUserPdfReportService extends ExportPdfService
 {
+    protected $view;
+
     function view()
     {
-        return 'admin.users.report';
+        return $this->view ?? 'admin.users.report';
     }
 
     function fileName()
     {
         return 'users.pdf';
+    }
+
+    public function setView($view)
+    {
+        $this->view = $view;
+        return $this;
     }
 }
