@@ -37,15 +37,13 @@ class SurveyController extends Controller
         return view('admin.surveys.show',compact('survey','questions'));
     }
 
-
-
     public function create()
     {
         $questionTypes = SurveyQuestion::getMappedTypes();
         return view('admin.surveys.create', compact('questionTypes'));
     }
 
-    public function store(SurveyRequest $request, CreateSurveyService $createSurveyService)
+    public function store(SurveyRequest $request,CreateSurveyService $createSurveyService)
     {
         $createSurveyService->execute($request->validated());
         return $this->successResponse([
@@ -53,7 +51,8 @@ class SurveyController extends Controller
         ], 'Survey Created Successfully.', Response::HTTP_CREATED);
     }
 
-    public function edit(Survey $survey, MapSurveyToFormDataService $mapSurveyToFormDataService)
+
+    public function edit(Survey $survey,MapSurveyToFormDataService $mapSurveyToFormDataService)
     {
         $questionTypes = SurveyQuestion::getMappedTypes();
         $survey->load('questions.answers.labels');
@@ -61,10 +60,10 @@ class SurveyController extends Controller
         return view('admin.surveys.edit', compact('questionTypes', 'survey', 'surveyData'));
     }
 
-    public function update(SurveyRequest $request, Survey $survey, UpdateSurveyService $updateSurveyService)
+    public function update(SurveyRequest $request,Survey $survey,UpdateSurveyService $updateSurveyService)
     {
         //todo authorize prevent update when has user answer
-        $updateSurveyService->execute($survey, $request->validated());
+        $updateSurveyService->execute($survey,$request->validated());
         return $this->successResponse([
             'redirect' => route('admin.surveys.index')
         ], 'Survey Updated Successfully.', Response::HTTP_CREATED);
