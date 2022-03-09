@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OwnerController;
+use App\Http\Controllers\Admin\RegisteredUserController;
+use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
@@ -38,12 +41,21 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::resource('events', EventController::class);
+    Route::post('events/{event}/users/export/excel',[ RegisteredUserController::class, 'exportExcel'])->name('registered-users.export.excel');
+    Route::post('events/{event}/users/export/pdf',[ RegisteredUserController::class, 'exportPdf'])->name('registered-users.export.pdf');
+    Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
+    Route::post('events/{event}/users/{user}/export/excel',[ RegisteredUserController::class, 'progressExportPdf'])->name('course-progress.export.excel');
+    Route::post('events/{event}/users/{user}/export/pdf',[ RegisteredUserController::class, 'progressExportExcel'])->name('course-progress.export.pdf');
+    
+    Route::put('/events/{event}/upload-certificate',[EventController::class,'uploadCertificate'])->name('events.upload-certificate');
 
-    Route::post('{resource_type}/{resource_id}/courses/export/excel',[ CourseController::class, 'exportExcel'])
-        ->name('courses.export.excel')->where('resource_type','owners|sponsors|speakers');
 
-    Route::post('{resource_type}/{resource_id}/courses/export/pdf',[ CourseController::class, 'exportPdf'])
-         ->where('resource_type','owners|sponsors|speakers')->name('courses.export.pdf');
+    Route::post('{resource_type}/{resource_id}/courses/export/excel', [CourseController::class, 'exportExcel'])
+        ->name('courses.export.excel')->where('resource_type', 'owners|sponsors|speakers');
+
+    Route::post('{resource_type}/{resource_id}/courses/export/pdf', [CourseController::class, 'exportPdf'])
+        ->where('resource_type', 'owners|sponsors|speakers')->name('courses.export.pdf');
+
 
     //  Speakers
     Route::resource('speakers', SpeakerController::class);
@@ -55,6 +67,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
+    Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
+
+    Route::resource('discounts', DiscountController::class);
 
     Route::resource('surveys', SurveyController::class);
+    Route::resource('shopping-carts', ShoppingCartController::class);
+    Route::post('shopping-carts/export/pdf', [ShoppingCartController::class, 'exportPdf'])->name('shopping-carts.export.pdf');
+    Route::post('shopping-carts/export/excel', [ShoppingCartController::class, 'exportExcel'])->name('shopping-carts.export.excel');
 });

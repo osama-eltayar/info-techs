@@ -9,7 +9,7 @@
     <div class="container-fluid bg-blue">
         <div class="content-body">
             <div class="event-title">
-                <span><strong>Event Title:</strong>  About Sociology</span>
+                <span><strong>Event Title:</strong>  {{$event->title}}</span>
                 <ul class="list-unstyled">
                     <li>{{$event->state}}</li>
                 </ul>
@@ -29,17 +29,17 @@
                       <button class="nav-link" id="pills-2-tab" data-bs-toggle="pill" data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2" aria-selected="false"><i class="fa-solid fa-file-certificate"></i> Certificate & Badges</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false"><i class="fa-solid fa-video"></i> Zoom Link</button>
+                        <button class="nav-link" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false"><i class="fa-solid fa-video"></i> Zoom Link</button>
                     </li>
 
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="true"><i class="fa-solid fa-flag"></i> Event status</button>
                     </li>
-                     
+
                   </ul>
 
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                    <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="box-date">
@@ -75,7 +75,7 @@
                                             <li>
                                                 <span class="left-side">Certification Availabilty:</span>
                                                 <span class="right-side">
-                                                    {{$event->certificate}}% 
+                                                    {{$event->certificate}}%
                                                     {{-- (show on) --}}
                                                 </span>
                                             </li>
@@ -191,16 +191,16 @@
                                                                     {{$event->price}} SAR    [ {{$event->price -= $discount->price}} SAR before {{$discount->formatted_date}} ] <br> Discount {{$discount->price}} SAR
                                                                 </p>
                                                                 @endif
-                                                            @else                                                            
+                                                            @else
                                                                 <p>
                                                                     <del>{{$event->price}}SAR</del>    {{$event->price -=$discount->price}} SAR  <br> Discount {{$discount->price}} SAR
                                                                 </p>
-                                                            @endif    
+                                                            @endif
 
                                                         @endforeach
                                                     </span>
                                                 </li>
-                                                
+
                                             </ul>
                                         </div>
                                 </div>
@@ -248,7 +248,7 @@
                                             @endforeach
                                         </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="tab-action">
@@ -259,20 +259,30 @@
                         <div class="certificate-content">
                             <h3>Event Certificate</h3>
                             <div class="image-content">
-                                <img src="assets/img/certificate.png" class="img-fluid" alt="image">
+                                @if($event->certificate_image_url)
+                                    <img src="{{$event->certificate_image_url}}" class="img-fluid" alt="image" id="certificate-img">
+                                @else
+                                    <img src="/admin/assets/img/certificate.png" class="img-fluid" alt="image" id="certificate-img">
+                                @endif
                             </div>
                             <div class="image-info">
-                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>
+{{--                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
                                 <span>
-                                    Dimension: Width (1024px) - Height (800px) <br> Maximum size: 10 MB
+                                    Dimension: Width (1080px) - Height (715px) <br>
+                                    X:(550px) Y:(350px) <br>
+                                    Maximum size: 10 MB
                                 </span>
+                                <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="certificate-form">
+                                    <input type='file' class="imageUpload"  id="certificate-input" accept=".png, .jpg, .jpeg"  data-url="{{route('admin.events.upload-certificate',$event->id)}}" name="certificate_img" />
+                                </form>
                             </div>
-                        </div>
                         <div class="badge-content">
                             <h3>Event Badge</h3>
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="badge-form">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  data-url="{{route('admin.events.upload-certificate',$event->id)}}" name="badge" />
+                                    </form>
                                     <label for="imageUpload">Upload new Badge</label>
                                 </div>
                                 <div class="avatar-preview" style="display: none;">
@@ -281,7 +291,7 @@
                                 </div>
                             </div>
                             <div class="image-info">
-                                <span>Dimension: Width (200px) - Height (500px) 
+                                <span>Dimension: Width (200px) - Height (500px)
                                 </span>
                                 <span>
                                     Maximum size: 3 MB
@@ -289,7 +299,7 @@
                             </div>
                         </div>
                         <div class="tab-action">
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" id="save-certificate-img-btn" form="certificate-form">Save</button>
                         </div>
                     </div>
                     <div class="tab-pane fade " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
@@ -322,15 +332,13 @@
 
                     <div class="tab-pane fade " id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
                         <div class="boxes-section">
-                            <h4>Ahmed Sameh Mohamed </h4>
+                            {{-- <h4>Ahmed Sameh Mohamed </h4> --}}
                             <ul class="list-unstyled">
                                 <li>
-                                    <p><strong>Certificate</strong></p>
-                                    <h5 class="red">
-                                        0/2
-                                        <small>No certificate</small>
+                                    <p>Available seats</p>
+                                    <h5>
+                                        {{$event->registeredUsers->count()}}/{{$event->seats}}
                                     </h5>
-                                    
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -345,33 +353,31 @@
                                     <span>Send by mail | Download</span>
                                 </li>
                                 <li>
-                                    <p><strong>Certificate Print</strong> </p>
-                                    <h5>1/2</h5>
-                                    <span>Send by mail | Download</span>
+                                    <p>Registered Users</p>
+                                    <h5>{{$event->registeredUsers->count()}}</h5>
                                 </li>
                                 <li>
-                                    <p><strong>Invoice</strong></p>
+                                    <p>Paid Amount </p>
                                     <h5>
-                                        <span>SAR</span> 2,000
-                                        <small>Early Pay | On time</small>
+                                        {{-- @foreach ($event->shoppingCarts as $shoppingCart) --}}
+                                            <span>SAR</span> {{$event->total_paid_amount}}
+                                        {{-- @endforeach --}}
                                     </h5>
-                                    <span>Send by mail | Download</span>
                                 </li>
                                 <li>
-                                    <p><strong>Promocode</strong></p>
-                                    <span>No discount used </span>
-                                    <span>25FOff (-200 SAR)</span>
+                                    <p>Event views</p>
+                                    <h5>{{$event->views->count()}}</h5>
                                 </li>
                             </ul>
                         </div>
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    <h3>Course Progress</h3>
+                                    <h3>User list</h3>
                                 </div>
                                 <div class="col-lg-6 col-12 text-end">
                                     <h3>
-                                        Export report    
+                                        Export report
                                         <a class="btn-file btn-pdf" href="#"><i class="fa-solid fa-file-pdf"></i></a>
                                         <a class="btn-file btn-excel" href="#"><i class="fa-solid fa-file-excel"></i></a>
                                     </h3>
@@ -382,34 +388,50 @@
                             <table class="table table-striped" >
                                 <thead>
                                     <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-                                    <th scope="col">Session List  </th>
-                                    <th scope="col">Start time</th>
-                                    <th scope="col">Out of Session</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Register name  </th>
+                                    <th scope="col">Register Date</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Promo discount</th>
+                                    <th scope="col">Sessions</th>
+                                    <th scope="col">Attendance</th>
+                                    <th scope="col">Invoice</th>
+                                    <th scope="col"></th>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>15/11/2015</td>
-                                        <td>03:00 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>0:Hours - 10 min</td>
-                                      </tr>
+                                      @foreach ($event->registeredUsers as $user)
                                       <tr>
-                                        <td>1</td>
-                                        <td>15/11/2015</td>
-                                        <td>03:00 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>0:Hours - 10 min</td>
+                                        <td>{{$user->id}}</td>
+                                        <td><span class="left-side-full">{{$user->name}}</span></td>
+                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>
+                                        <td>SAR {{$event->price}}</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td></td>
+                                        <td>                        
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>
+                                                </li>
+                                        </ul></td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                             </table>
                           </div>
+                          {{$event->registeredUsers->links()}}
+                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">
+                                @csrf
+                            </form>
+                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">
+                                @csrf
+                            </form>
+                          {{-- <nav aria-label="Page navigation example">
                           <div class="table-info text-end">
                             <h3>Total Amount   23 Hours</h3>
                         </div>
-                          
-                          
+
+
                           <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item">
@@ -425,15 +447,45 @@
                                 </a>
                               </li>
                             </ul>
-                          </nav>
+                          </nav> --}}
                     </div>
-                    
+
                   </div>
+                      <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                          <div class="title">
+{{--                              <p class="message-zoom">No zoom link available to this event</p>--}}
+                              <h3>Create Zoom link for this event</h3>
+                          </div>
+                          <div class="zoom-form">
+                                  <div class="row">
+                                      <div class="col-xl-6 col-12">
+                                          <form action="{{route('admin.events.zoom-links',$event)}}" method="POST" id="events-zoom-links-form">
+                                              @foreach($event->onlineSessions as $idx => $session)
+                                                  <div class="mb-4">
+                                                      <label for="" class="form-label"><strong>Date {{$loop->iteration}}:</strong> <span>{{$session->start_at->toDateString()}}      {{$session->start_at->toTimeString()}}   to {{$session->end_at->toTimeString()}}  </span></label>
+                                                      <div class="d-flex">
+                                                          <input type="text" class="form-control mx-1" id="" placeholder="Meeting Id" value="{{$session->zoom_meeting_id}}" name="sessions[{{$session->id}}][zoom_meeting_id]">
+                                                          <input type="text" class="form-control" id="" placeholder="Meeting Password" value="{{$session->zoom_meeting_password}}"  name="sessions[{{$session->id}}][zoom_meeting_password]">
+                                                      </div>
+                                                      <span class="message">Add zoom details here</span>
+                                                  </div>
+                                              @endforeach
+                                          </form>
+                                      </div>
+                                  </div>
+                                  <div class="tab-action">
+                                      <button type="button" class="btn btn-primary" id="attach-zoom-links">Attach Zoom link</button>
+                                  </div>
+                          </div>
+                      </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('/admin/assets/js/owners/show.min.js')}}"></script>
+        <script>
+              const badgeUrl = '{{$event->badge_url}}'
+        </script>
+    <script src="{{asset('/admin/assets/js/events/show.min.js')}}"></script>
 @endsection
