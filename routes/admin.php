@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\SpeakerController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\SponsorMaterialController;
+use App\Http\Controllers\Admin\SurveyController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::resource('discounts', DiscountController::class);
 
+    Route::resource('surveys', SurveyController::class);
     Route::resource('shopping-carts', ShoppingCartController::class);
     Route::post('shopping-carts/export/pdf', [ShoppingCartController::class, 'exportPdf'])->name('shopping-carts.export.pdf');
     Route::post('shopping-carts/export/excel', [ShoppingCartController::class, 'exportExcel'])->name('shopping-carts.export.excel');
