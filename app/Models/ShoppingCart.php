@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ShoppingCart extends Pivot
 {
+    use HasFilter;
     /**
      * The attributes that are mass assignable.
      * @var array
@@ -21,13 +23,16 @@ class ShoppingCart extends Pivot
 
 
     //########################################### Accessors ################################################
-
+    public function getFormattedPaidAtAttribute()
+    {
+        return $this->paid_at->format('d/m/Y');
+    }
 
     //########################################### Mutators #################################################
 
 
     //########################################### Scopes ###################################################
-    public function scopeForUser(Builder $query,$userId)
+    public function scopeForUser(Builder $query, $userId)
     {
         return $query->where('user_id', $userId);
     }
@@ -44,5 +49,8 @@ class ShoppingCart extends Pivot
         return $this->belongsTo(Transaction::class);
     }
 
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Services\Admin\Event;
 
 use App\Models\Course;
+use App\Models\CourseSession;
 use App\Traits\HasFiles;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
@@ -13,6 +14,9 @@ class StoreEventService
     use HasFiles;
 
     protected $data;
+    /**
+     * @var Course
+     * */
     protected $course;
     protected $startDateTime;
     protected $endDateTime;
@@ -98,6 +102,7 @@ class StoreEventService
                 'start_at' => $startAt,
                 'end_at'   => $endAt,
                 'duration' => $endAt->diffInMinutes($startAt),
+                'type'     => $this->getSessionType()
             ]);
             if ($idx == 0)
                 $this->startDateTime = $startAt;
@@ -105,6 +110,17 @@ class StoreEventService
             if ($idx == count($this->data['eventDateTimeData']) - 1)
                 $this->endDateTime = $endAt;
         }
+    }
+
+    private function getSessionType()
+    {
+        if ($this->course->isOnlineCourse() || $this->course->isOnlineEvent())
+            return CourseSession::ONLINE;
+
+        if ($this->course->isPhysical())
+            return CourseSession::PHYSICAL;
+
+        return null;
     }
 
     protected function storeCourseTime()
