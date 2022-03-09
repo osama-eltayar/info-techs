@@ -37,6 +37,15 @@ $(function () {
 })
 
 
+
+function exportEventsExcelSecond(){
+    $('#registered-users-export-excel-form').submit();
+}
+
+function exportEventsPdfSecond(){
+    $('#registered-users-export-pdf-form').submit();
+}
+
 function exportEventsExcel() {
     $('#courses-export-excel-form').submit();
 }

@@ -9,9 +9,6 @@ class FetchCoursesListService
     public function execute($speaker_id, $perPage = null)
     {
         return Course::query()
-                     ->with(['speakers' => function($q) use ($speaker_id) {
-                         return $q->where('speakers.id',$speaker_id);
-                     }])
                      ->whereHas('speakers',function ($q) use ($speaker_id) {
                          return $q->where('speakers.id', $speaker_id);
                      })

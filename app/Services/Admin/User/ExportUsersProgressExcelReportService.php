@@ -2,21 +2,20 @@
 
 namespace App\Services\Admin\User;
 
-use App\Services\Admin\Export\ExportPdfService;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\Admin\Export\ExportExcelService;
 
-class ExportUserPdfReportService extends ExportPdfService
+class ExportUsersProgressExcelReportService extends ExportExcelService
 {
     protected $view;
 
     function view()
     {
-        return $this->view ?? 'admin.users.report';
+        return $this->view ?? 'admin.events.registered-users.progress-report';
     }
 
     function fileName()
     {
-        return 'users.pdf';
+        return 'progress.xlsx';
     }
 
     public function setView($view)

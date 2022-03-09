@@ -9,7 +9,7 @@
     <div class="container-fluid bg-blue">
         <div class="content-body">
             <div class="event-title">
-                <span><strong>Event Title:</strong>  About Sociology</span>
+                <span><strong>Event Title:</strong>  {{$event->title}}</span>
                 <ul class="list-unstyled">
                     <li>{{$event->state}}</li>
                 </ul>
@@ -332,15 +332,13 @@
 
                     <div class="tab-pane fade " id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
                         <div class="boxes-section">
-                            <h4>Ahmed Sameh Mohamed </h4>
+                            {{-- <h4>Ahmed Sameh Mohamed </h4> --}}
                             <ul class="list-unstyled">
                                 <li>
-                                    <p><strong>Certificate</strong></p>
-                                    <h5 class="red">
-                                        0/2
-                                        <small>No certificate</small>
+                                    <p>Available seats</p>
+                                    <h5>
+                                        {{$event->registeredUsers->count()}}/{{$event->seats}}
                                     </h5>
-
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -355,29 +353,27 @@
                                     <span>Send by mail | Download</span>
                                 </li>
                                 <li>
-                                    <p><strong>Certificate Print</strong> </p>
-                                    <h5>1/2</h5>
-                                    <span>Send by mail | Download</span>
+                                    <p>Registered Users</p>
+                                    <h5>{{$event->registeredUsers->count()}}</h5>
                                 </li>
                                 <li>
-                                    <p><strong>Invoice</strong></p>
+                                    <p>Paid Amount </p>
                                     <h5>
-                                        <span>SAR</span> 2,000
-                                        <small>Early Pay | On time</small>
+                                        {{-- @foreach ($event->shoppingCarts as $shoppingCart) --}}
+                                            <span>SAR</span> {{$event->total_paid_amount}}
+                                        {{-- @endforeach --}}
                                     </h5>
-                                    <span>Send by mail | Download</span>
                                 </li>
                                 <li>
-                                    <p><strong>Promocode</strong></p>
-                                    <span>No discount used </span>
-                                    <span>25FOff (-200 SAR)</span>
+                                    <p>Event views</p>
+                                    <h5>{{$event->views->count()}}</h5>
                                 </li>
                             </ul>
                         </div>
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    <h3>Course Progress</h3>
+                                    <h3>User list</h3>
                                 </div>
                                 <div class="col-lg-6 col-12 text-end">
                                     <h3>
@@ -392,29 +388,45 @@
                             <table class="table table-striped" >
                                 <thead>
                                     <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-                                    <th scope="col">Session List  </th>
-                                    <th scope="col">Start time</th>
-                                    <th scope="col">Out of Session</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Register name  </th>
+                                    <th scope="col">Register Date</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Promo discount</th>
+                                    <th scope="col">Sessions</th>
+                                    <th scope="col">Attendance</th>
+                                    <th scope="col">Invoice</th>
+                                    <th scope="col"></th>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>15/11/2015</td>
-                                        <td>03:00 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>0:Hours - 10 min</td>
-                                      </tr>
+                                      @foreach ($event->registeredUsers as $user)
                                       <tr>
-                                        <td>1</td>
-                                        <td>15/11/2015</td>
-                                        <td>03:00 AM</td>
-                                        <td>03:10 AM</td>
-                                        <td>0:Hours - 10 min</td>
+                                        <td>{{$user->id}}</td>
+                                        <td><span class="left-side-full">{{$user->name}}</span></td>
+                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>
+                                        <td>SAR {{$event->price}}</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td></td>
+                                        <td>                        
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>
+                                                </li>
+                                        </ul></td>
                                       </tr>
+                                      @endforeach
                                   </tbody>
                             </table>
                           </div>
+                          {{$event->registeredUsers->links()}}
+                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">
+                                @csrf
+                            </form>
+                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">
+                                @csrf
+                            </form>
+                          {{-- <nav aria-label="Page navigation example">
                           <div class="table-info text-end">
                             <h3>Total Amount   23 Hours</h3>
                         </div>
@@ -435,7 +447,7 @@
                                 </a>
                               </li>
                             </ul>
-                          </nav>
+                          </nav> --}}
                     </div>
 
                   </div>

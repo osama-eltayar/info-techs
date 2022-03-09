@@ -189,6 +189,11 @@ class Course extends Model
         return implode(', ', $this->specialities->pluck('name')->toArray());
     }
 
+    public function getTotalPaidAmountAttribute()
+    {
+        return $this->paidShoppingCarts->sum('pivot.price');
+    }
+
     //########################################### Mutators #################################################
 
 
@@ -258,6 +263,11 @@ class Course extends Model
     public function shoppingCarts()
     {
         return $this->belongsToMany(User::class, ShoppingCart::class)->withPivot('price','paid_at')->withTimestamps();
+    }
+
+    public function paidShoppingCarts()
+    {
+        return $this->shoppingCarts()->whereNotNull('paid_at');
     }
 
     public function shoppingCartAuthUser()
