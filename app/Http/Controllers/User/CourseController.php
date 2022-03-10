@@ -47,7 +47,6 @@ class CourseController extends Controller
     public function show( Course $course, ViewCounterService $viewCounterService )
     {
         $viewCounterService->execute($course, request()->ip(), auth()->id());
-        $survey = Survey::first();
 
         $course->load([ 'activeDiscount',
                         'materials',
@@ -67,6 +66,6 @@ class CourseController extends Controller
         $course->loadSum('authUserTrackers','check_point');
 
 
-        return view('user.courses.show', compact('course','survey'));
+        return view('user.courses.show', compact('course'));
     }
 }

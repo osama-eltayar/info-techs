@@ -254,27 +254,27 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="top-icon"><i class="fa-solid fa-ballot-check"></i> Survey</h4>
-                <form action="{{route('courses.survey.answers.store',['course' => $course->id,'survey' =>  $survey->id])}}" id="survey-form" method="POST">
+                <form action="{{route('courses.survey.answers.store',['course' => $course->id,'survey' =>  $course->survey->id])}}" id="survey-form" method="POST">
                     <div class="row survey-info">
                         <div class="col-md-9 col-12">
                             <p>To print your certificate you must finish this survey</p>
                         </div>
                         <div class="col-md-3 col-12 text-right">
                             <div class="num">
-                                Question <span id="current-question-number">1</span>/{{$survey->questions->count()}}
+                                Question <span id="current-question-number">1</span>/{{$course->survey->questions->count()}}
                             </div>
                         </div>
                     </div>
-                    @foreach($survey->questions as $question)
+                    @foreach($course->survey->questions as $question)
                         <div class="form-group {{!$loop->first ? 'hide': ''}} survey-question-container" data-question-idx="{{$loop->iteration}}">
                             <label for="qus">{{$loop->iteration}}){{$question->title}}</label>
                                 @foreach($question->answers as $answer)
 
                                     @if($question->type == \App\Models\SurveyQuestion::TEXT)
 
-                                        <div class="">
-                                            <label class="label" for="input-{{$answer->id}}">{{$answer->title}}</label>
-                                            <textarea id="input-{{$answer->id}}" name="questions[{{$question->id}}][{{$answer->id}}]"></textarea>
+                                        <div class="input-group">
+                                            <label class="input-group-text d-flex" for="input-{{$answer->id}}">{{$answer->title}}</label>
+                                            <textarea id="input-{{$answer->id}}"  class="form-control" name="questions[{{$question->id}}][{{$answer->id}}]"></textarea>
                                         </div>
                                     @endif
                                     @if($question->type == \App\Models\SurveyQuestion::RADIO)
@@ -288,25 +288,15 @@
                                     @endif
 
                                         @if($question->type == \App\Models\SurveyQuestion::CHECKBOX)
-                                            <div class="">
-                                                <input type="checkbox"  id="answer-{{$answer->id}}" name="questions[{{$question->id}}][{{$answer->id}}]" value="{{$answer->title}}" required>
-                                                <label  id="answer-{{$answer->id}}">{{$answer->title}}</label>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input type="checkbox"  class="form-check-input" id="answer-{{$answer->id}}" name="questions[{{$question->id}}][{{$answer->id}}]" value="{{$answer->title}}" required >
+                                                    <label class="form-check-label"  id="answer-{{$answer->id}}">{{$answer->title}}</label>
+                                                </div>
                                             </div>
                                         @endif
 
                                 @endforeach
-{{--                            <div class="custom-control custom-radio">--}}
-{{--                                <input type="radio" class="custom-control-input" id="customRadio1" name="example1" value="customEx">--}}
-{{--                                <label class="custom-control-label" for="customRadio1">Good</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="custom-control custom-radio">--}}
-{{--                                <input type="radio" class="custom-control-input" id="customRadio2" name="example1" value="customEx">--}}
-{{--                                <label class="custom-control-label" for="customRadio2">Excellent</label>--}}
-{{--                            </div>--}}
-{{--                            <div class="custom-control custom-radio">--}}
-{{--                                <input type="radio" class="custom-control-input" id="customRadio3" name="example1" value="customEx">--}}
-{{--                                <label class="custom-control-label" for="customRadio3">Fair</label>--}}
-{{--                            </div>--}}
                         </div>
                     @endforeach
                     <button class="btn btn-default submit-question-btn" type="button">Submit</button>
@@ -324,7 +314,7 @@
     <script>
      var courseId = "{{$course->id}}"
      let surveyQuestionIdx = 1;
-     let surveyQuestionCount = '{{$survey->questions->count()}}'
+     let surveyQuestionCount = '{{$course->survey->questions->count()}}'
     </script>
 <script src="/js/courses/show.min.js"></script>
     <script>

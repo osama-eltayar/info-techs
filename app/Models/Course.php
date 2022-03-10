@@ -44,7 +44,8 @@ class Course extends Model
             'is_views_hidden',
             'speciality_id',
             'country_id',
-            'city_id'
+            'city_id',
+            'survey_id'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to','published_at' ];
@@ -56,13 +57,13 @@ class Course extends Model
     const PHYSICAL      = 4;
     const HYBRID        = 5;
 
-    // 
+    //
     const IN_PROGRESS = 'In progress';
     const NOT_STARTED = 'Not started';
     const FINISHED = 'Finished';
 
     //########################################### Accessors ################################################
-    public function getStateAttribute() 
+    public function getStateAttribute()
     {
         $now = Carbon::now();
         return ($this->end_date->lt($now) )? self::FINISHED : (($this->start_date->gt($now) ) ? self::NOT_STARTED : self::IN_PROGRESS);
@@ -280,5 +281,10 @@ class Course extends Model
     public function authUserTrackers()
     {
         return $this->hasMany(UserVideoTracker::class)->where('user_id',\auth()->id());
+    }
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
     }
 }
