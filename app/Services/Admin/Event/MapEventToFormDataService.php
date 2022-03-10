@@ -19,6 +19,7 @@ class MapEventToFormDataService
         $eventData['address']              = $event->address;
         $eventData['countryId']            = $event->country_id;
         $eventData['cityId']               = $event->city_id;
+        $eventData['survey_id']            = $event->survey_id;
         $eventData['descriptionEn']        = $event->description_en;
         $eventData['descriptionAr']        = $event->description_ar;
         $eventData['is_publish_scheduled'] = $event->is_publish_scheduled;

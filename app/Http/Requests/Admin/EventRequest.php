@@ -48,7 +48,7 @@ class EventRequest extends FormRequest
             'seats'                         => ['nullable', 'integer'],
             'location'                      => ['required', 'string'],
             'address'                       => ['required', 'string'],
-            'published_at'                  => ['sometimes', 'date'],
+            'published_at'                  => ['sometimes','nullable', 'date'],
             'is_views_hidden'               => ['sometimes', 'boolean'],
             'country_id'                    => ['required', 'exists:countries,id'],
             'city_id'                       => ['required', 'exists:cities,id'],
@@ -73,6 +73,7 @@ class EventRequest extends FormRequest
             'recordedSessions.*.is_free'    => ['required', 'boolean'],
             'recordedSessions.*.url'        => ['required', 'url'],
             'recordedSessions.*.title'      => ['required', 'string'],
+            'survey_id'                     => ['nullable', 'exists:surveys,id']
         ];
     }
 }

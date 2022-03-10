@@ -93,9 +93,9 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Course survey</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected="">About infotechs v1</option>
-                                    <option value="1">test1</option>
+                                <select class="form-select" aria-label="Default select example" v-model="eventData.survey_id">
+                                    <option value="" selected disabled>Survey</option>
+                                    <option v-for="survey in surveys" :key="survey.id" :value="survey.id">{{survey.title}}</option>
                                 </select>
                             </div>
 
@@ -393,7 +393,7 @@
         <div class="tab-pane fade " id="pills-8" role="tabpanel" aria-labelledby="pills-7-tab">
             <div class="form-content">
                 <form action="" @submit.prevent="onFormSubmit">
-                    <h3 class="form-title"><i class="fa-solid fa-calendar-star"></i> Publish sceduale</h3>
+                    <h3 class="form-title"><i class="fa-solid fa-calendar-star"></i> Publish schedule</h3>
                     <div class="mb-4">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked value="0" v-model="eventData.is_publish_scheduled">
@@ -440,7 +440,7 @@ import { VueEditor } from "vue2-editor";
 
 export default {
     name: "EventForm",
-    props: ['courseTypes', 'specialities', 'owners', 'countries', 'sponsorTypes', 'sponsors', 'speakers', 'chairPersons', "isEdit",'dbData','formSubmitUrl'],
+    props: ['courseTypes', 'specialities', 'owners', 'countries', 'sponsorTypes', 'sponsors', 'speakers', 'chairPersons', "isEdit",'dbData','formSubmitUrl','surveys'],
     components:{VueEditor},
     mounted() {
         if(this.isEdit)
@@ -484,7 +484,8 @@ export default {
                     date : null,
                     price :null
                 },
-                price:null
+                price:null,
+                survey_id : null
             },
             cities:[],
             courseTypeEnum : {
