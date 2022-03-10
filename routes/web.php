@@ -10,6 +10,7 @@ use App\Http\Controllers\User\CourseSessionController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ShoppingCartController;
+use App\Http\Controllers\User\SurveyUserAnswerController;
 use App\Http\Controllers\User\UserCertificateController;
 use App\Http\Controllers\User\UserFavouriteCourseController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,8 @@ Route::group([
         Route::view('course-sessions/leave','user.course-sessions.leave')->name('course-sessions.leave');
         Route::get('course-sessions/{course_session}',[ CourseSessionController::class, 'show'])->name('course-sessions.show');
         Route::get('course-sessions/{course_session}/join',[ CourseSessionController::class, 'joinMeeting'])->name('course-sessions.join-meeting');
+
+        Route::post('courses/{course}/surveys/{survey}/answers',[SurveyUserAnswerController::class, 'store'])->name('courses.survey.answers.store');
 
     });
 
