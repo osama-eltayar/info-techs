@@ -21,6 +21,7 @@ use App\Models\Organization;
 use App\Services\Admin\Events\FetchCoursesListService;
 use App\Models\Course;
 use App\Services\Admin\Event\FetchRegisteredUsersListService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -61,7 +62,7 @@ class EventController extends Controller
         ], 'Event Created Successfully.', Response::HTTP_CREATED);
     }
 
-    public function edit(Course $event,MapEventToFormDataService $mapEventToFormDataService)
+    public function edit(Course $event, MapEventToFormDataService $mapEventToFormDataService)
     {
         $courseTypes  = CourseType::all();
         $specialities = Speciality::all();
@@ -86,10 +87,9 @@ class EventController extends Controller
             'event',
             'surveys'
         ));
-
     }
 
-    public function update(Course $event, EventRequest $request,UpdateEventService $updateEventService)
+    public function update(Course $event, EventRequest $request, UpdateEventService $updateEventService)
     {
         $updateEventService->execute($request->all(), $event);
         return $this->successResponse([
@@ -105,15 +105,16 @@ class EventController extends Controller
         $filterData = $request->only('start_date', 'end_date', 'organization_id', 'type');
         $courses = $fetchEventListService->execute($filterData, self::$perPage);
         $organizations = Organization::all();
+        $today = Carbon::now();
         //get count of users
 
         if ($request->ajax()) {
-            return view('admin.events.partials.events-list', compact(['courses', 'organizations']));
+            return view('admin.events.partials.events-list', compact(['courses', 'organizations', 'today']));
         }
 
 
 
-        return view('admin.events.index', compact('courses', 'organizations'));
+        return view('admin.events.index', compact('courses', 'organizations', 'today'));
     }
 
 
@@ -125,7 +126,7 @@ class EventController extends Controller
         return view('admin.events.show', compact('event'));
     }
 
-    public function uploadCertificate(Request $request,Course $event)
+    public function uploadCertificate(Request $request, Course $event)
     {
         $request->validate([
             'certificate_img' => 'nullable', 'image', 'max:' . 3 * 1024,
@@ -133,19 +134,16 @@ class EventController extends Controller
         ]);
         $data = [];
         if ($request->hasFile('certificate_img'))
-            $data['certificate_image'] =  $this->storeFile('events',$request->certificate_img,$event);
+            $data['certificate_image'] =  $this->storeFile('events', $request->certificate_img, $event);
 
         if ($request->hasFile('badge'))
-            $data['badge'] =  $this->storeFile('events',$request->badge,$event);
+            $data['badge'] =  $this->storeFile('events', $request->badge, $event);
 
         $event->update($data);
-        return $this->successResponse([
-        ], 'Certificate Uploaded Successfully.', Response::HTTP_ACCEPTED);
-
-
+        return $this->successResponse([], 'Certificate Uploaded Successfully.', Response::HTTP_ACCEPTED);
     }
 
-    public function zoomLinks(Request $request,Course $event)
+    public function zoomLinks(Request $request, Course $event)
     {
         $request->validate([
             'sessions'                         => ['required', 'array', 'filled', 'distinct'],
@@ -156,7 +154,12 @@ class EventController extends Controller
         foreach ($request->sessions as $sessionId => $session)
             $event->sessions()->find($sessionId)->update($session);
 
-        return $this->successResponse([
-        ], 'Zoom links updated Successfully.', Response::HTTP_ACCEPTED);
+        return $this->successResponse([], 'Zoom links updated Successfully.', Response::HTTP_ACCEPTED);
+    }
+
+    public function publish(Course $event)
+    {
+        $event->update(['published_at' => Carbon::now()]);
+        return $this->successResponse([], 'Course Published.', Response::HTTP_ACCEPTED);
     }
 }
