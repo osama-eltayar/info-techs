@@ -13,6 +13,9 @@
         <div class="container-fluid bg-blue">
             <div class="content-body">
                 <div class="form-body">
+                    <a href="{{route('admin.discounts.create')}}">
+                        <h4>Create new Discount</h4>
+                    </a>
                     <div class="form-search">
                         <form action="{{ route('admin.discounts.index') }}" method="GET" id="discounts-search-form">
                             <div class="row justify-content-end">

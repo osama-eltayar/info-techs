@@ -9,6 +9,7 @@ class FetchUsersListService
     public function execute($filterData, $perPage = null)
     {
         return User::query()
+                   ->user()
             ->with('profile')
             ->filter($filterData)
             ->when(!$perPage, function ($q) {
