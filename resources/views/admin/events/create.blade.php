@@ -52,6 +52,7 @@
                         :sponsors='@json($sponsors)'
                         :speakers='@json($speakers)'
                         :chair-persons='@json($chairPersons)'
+                        :surveys='@json($surveys)'
                         :is-edit="false"
                         form-submit-url='{{route('admin.events.store')}}'
                     ></event-form>

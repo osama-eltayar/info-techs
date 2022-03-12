@@ -52,6 +52,7 @@
                         :sponsors='@json($sponsors)'
                         :speakers='@json($speakers)'
                         :chair-persons='@json($chairPersons)'
+                        :surveys='@json($surveys)'
                         :is-edit="true"
                         :db-data='@json($eventData)'
                         form-submit-url="{{route('admin.events.update',$event)}}"
