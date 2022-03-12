@@ -42,13 +42,17 @@ class StoreEventService
             'is_views_hidden',
             'speciality_id',
             'city_id',
-            'country_id'
+            'country_id',
+            'survey_id'
         ]);
+        if (!$courseData['published_at'])
+            $courseData['published_at'] = now();
         DB::beginTransaction();
         $this->course = Course::create($courseData);
         $this->storeMaterials();
         $this->storeDiscount();
-        $this->course->speakers()->attach($this->data['speakers']);
+        if(isset($this->data['speakers']))
+            $this->course->speakers()->attach($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
         $this->storeSponsors();
         $this->storeSessions();

@@ -10,6 +10,7 @@ use App\Models\CourseType;
 use App\Models\Speaker;
 use App\Models\Speciality;
 use App\Models\Sponsor;
+use App\Models\Survey;
 use App\Services\Admin\Event\MapEventToFormDataService;
 use App\Services\Admin\Event\StoreEventService;
 use App\Services\Admin\Event\UpdateEventService;
@@ -37,6 +38,7 @@ class EventController extends Controller
         $sponsorTypes = SponsorTypeEnum::MAPPED_TYPES;
         $sponsors     = Sponsor::all();
         $speakers     = Speaker::all();
+        $surveys      = Survey::all();
         $chairPersons = $speakers;
         return view('admin.events.create', compact(
             'countries',
@@ -46,7 +48,8 @@ class EventController extends Controller
             'sponsorTypes',
             'sponsors',
             'speakers',
-            'chairPersons'
+            'chairPersons',
+            'surveys'
         ));
     }
 
@@ -67,6 +70,7 @@ class EventController extends Controller
         $sponsorTypes = SponsorTypeEnum::MAPPED_TYPES;
         $sponsors     = Sponsor::all();
         $speakers     = Speaker::all();
+        $surveys      = Survey::all();
         $chairPersons = $speakers;
         $eventData = $mapEventToFormDataService->execute($event);
         return view('admin.events.edit', compact(
@@ -79,7 +83,8 @@ class EventController extends Controller
             'speakers',
             'chairPersons',
             'eventData',
-            'event'
+            'event',
+            'surveys'
         ));
 
     }
