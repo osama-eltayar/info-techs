@@ -45,15 +45,21 @@
             </li>
             <li>
                 <a
-                    href="{{route('admin.users.index')}}"
-{{--                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"--}}
+                    href="{{route('admin.discounts.index')}}"
+                    class="{{request()->routeIs('admin.discounts.index') ? 'active' : ''}}"
                 ><img src="/admin/assets/img/icon.png" alt="icon"> Discounts</a>
             </li>
             <li>
                 <a
-                    href="{{route('admin.users.index')}}"
-{{--                    class="{{request()->routeIs('admin.users.index') ? 'active' : ''}}"--}}
+                    href="{{route('admin.shopping-carts.index')}}"
+                    class="{{request()->routeIs('admin.shopping-carts.index') ? 'active' : ''}}"
                 ><img src="/admin/assets/img/icon.png" alt="icon"> Payments & Invoices</a>
+            </li>
+            <li>
+                <a
+                    href="{{route('admin.surveys.index')}}"
+                                        class="{{request()->routeIs('admin.surveys.index') ? 'active' : ''}}"
+                ><img src="/admin/assets/img/icon.png" alt="icon"> Surveys</a>
             </li>
         </ul>
     </div>

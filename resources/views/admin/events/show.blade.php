@@ -402,13 +402,14 @@
                                       <tr>
                                         <td>{{$user->id}}</td>
                                         <td><span class="left-side-full">{{$user->name}}</span></td>
-                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>
+{{--                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>--}}
+                                        <td>__</td>
                                         <td>SAR {{$event->price}}</td>
                                         <td>--</td>
                                         <td>--</td>
                                         <td>--</td>
                                         <td></td>
-                                        <td>                        
+                                        <td>
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>

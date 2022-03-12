@@ -136,8 +136,6 @@ class EventController extends Controller
         $event->update($data);
         return $this->successResponse([
         ], 'Certificate Uploaded Successfully.', Response::HTTP_ACCEPTED);
-
-
     }
 
     public function zoomLinks(Request $request,Course $event)
