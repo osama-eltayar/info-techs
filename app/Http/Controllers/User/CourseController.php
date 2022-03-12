@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseType;
 use App\Models\Speciality;
+use App\Models\Survey;
 use App\Services\User\ViewCounterService;
 use Illuminate\Http\Request;
 
