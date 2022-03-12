@@ -37,7 +37,7 @@
                                 <li>
                                     <button class="btn-action publish-btn" data-id="{{ $course->id }}"
                                         data-url="{{ route('admin.events.publish', $course->id) }}"><i
-                                            class="fa-solid fa-trash-can"></i></button>
+                                            class="fa-solid fa-arrow-up-from-square"></i></button>
                                 </li>
                             @endif
                         </ul>
