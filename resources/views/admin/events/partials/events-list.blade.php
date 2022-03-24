@@ -19,9 +19,28 @@
                     <td>{{ $course->title }}</td>
                     <td>{{ $course->formatted_created_at }}</td>
                     <td>{{ $course->formatted_start_date }}</td>
-                    <td>SAR {{$course->price }}</td>
+                    <td>SAR {{ $course->price }}</td>
                     <td>{{ $course->organization->name_en }}</td>
                     <td>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="btn-action" href="{{ route('admin.events.edit', $course->id) }}"><i
+                                        class="fa-solid fa-edit"></i></a>
+                            </li>
+                            <li>
+                                <a class="btn-action" href="{{ route('admin.events.show', $course->id) }}"><i
+                                        class="fa-solid fa-square-info"></i></a>
+                            </li>
+                            @if ($today < $course->published_at)
+                                <li>
+                                    <button class="btn-action publish-btn" data-id="{{ $course->id }}"
+                                        data-url="{{ route('admin.events.publish', $course->id) }}"><i
+                                            class="fa-solid fa-arrow-up-from-square"></i></button>
+                                </li>
+                            @endif
+                        </ul>
                     </td>
                 </tr>
             @empty
