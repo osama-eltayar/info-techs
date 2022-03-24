@@ -75,6 +75,9 @@ class UpdateEventService
 
     protected function storeDiscount()
     {
+        if (!(isset($this->data['discount']) && count($this->data['discount']) && $this->data['discount']['price']))
+            return;
+
         $discount = $this->course->discounts()->latest()->first();
         $isDiscountChanged = $this->data['discount'] &&
                              $this->data['discount']['date'] != $discount->date &&
@@ -90,10 +93,10 @@ class UpdateEventService
 
     protected function storeSponsors()
     {
-        if(count($this->data['sponsors']))
+        if (!isset($this->data['sponsors']) || (isset($this->data['sponsors'] )&& count($this->data['sponsors']) ))
             $this->course->sponsors()->detach();
 
-        foreach ($this->data['sponsors'] as $sponsor)
+        foreach ($this->data['sponsors'] ?? [] as $sponsor)
             $this->course->sponsors()->attach([
                 'sponsor_id' => $sponsor['sponsor_id'],
             ], [
