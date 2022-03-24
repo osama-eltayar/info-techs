@@ -75,23 +75,24 @@ class StoreEventService
 
     protected function storeDiscount()
     {
-        if ($this->data['discount']) {
+        if (isset($this->data['discount']) && count($this->data['discount']) && $this->data['discount']['price']) {
             $this->course->discounts()->create([
-                'date'  => $this->data['discount']['date'],
-                'price' => $this->data['discount']['price'],
+                'date'  => $this->data['discount']['date'] ?? null,
+                'price' => $this->data['discount']['price'] ,
             ]);
         }
     }
 
     protected function storeSponsors()
     {
-        foreach ($this->data['sponsors'] as $sponsor)
-            $this->course->sponsors()->attach([
-                'sponsor_id' => $sponsor['sponsor_id'],
-            ], [
-                'level' => $sponsor['sponsor_type'],
-                'type'  => $sponsor['sponsor_type'],
-            ]);
+        if (isset($this->data['sponsors']))
+            foreach ($this->data['sponsors'] as $sponsor)
+                $this->course->sponsors()->attach([
+                    'sponsor_id' => $sponsor['sponsor_id'],
+                ], [
+                    'level' => $sponsor['sponsor_type'],
+                    'type'  => $sponsor['sponsor_type'],
+                ]);
     }
 
     protected function storeSessions()
