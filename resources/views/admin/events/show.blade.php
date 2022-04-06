@@ -33,13 +33,13 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="true"><i class="fa-solid fa-flag"></i> Event status</button>
+                         <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="false"><i class="fa-solid fa-flag"></i> Event status</button>
                     </li>
 
                   </ul>
 
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                  <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="box-date">
@@ -302,6 +302,7 @@
                             <button type="submit" class="btn btn-primary" id="save-certificate-img-btn" form="certificate-form">Save</button>
                         </div>
                     </div>
+                    </div>
                     <div class="tab-pane fade " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                         <div class="title">
                             <p class="message-zoom">No zoom link available to this event</p>
@@ -408,7 +409,7 @@
                                         <td>--</td>
                                         <td>--</td>
                                         <td></td>
-                                        <td>                        
+                                        <td>
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>
@@ -420,12 +421,12 @@
                             </table>
                           </div>
                           {{$event->registeredUsers->links()}}
-                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">
-                                @csrf
-                            </form>
-                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">
-                                @csrf
-                            </form>
+{{--                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">--}}
+{{--                                @csrf--}}
+{{--                            </form>--}}
+{{--                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">--}}
+{{--                                @csrf--}}
+{{--                            </form>--}}
                           {{-- <nav aria-label="Page navigation example">
                           <div class="table-info text-end">
                             <h3>Total Amount   23 Hours</h3>
@@ -451,7 +452,7 @@
                     </div>
 
                   </div>
-                      <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                  <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                           <div class="title">
 {{--                              <p class="message-zoom">No zoom link available to this event</p>--}}
                               <h3>Create Zoom link for this event</h3>
