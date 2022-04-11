@@ -13,7 +13,7 @@ class MapEventToFormDataService
         $eventData['typeId']               = $event->type_id;
         $eventData['seats']                = $event->seats;
         $eventData['cmeCount']             = $event->cme_count;
-        $eventData['specialityId']         = $event->speciality_id;
+        $eventData['specialities']         = $event->specialities->pluck('id');
         $eventData['organization_id']      = $event->organization_id;
         $eventData['location']             = $event->location;
         $eventData['address']              = $event->address;

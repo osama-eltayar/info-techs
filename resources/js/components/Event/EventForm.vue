@@ -101,10 +101,8 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Speciality <span>*</span></label>
-                                <select class="form-select" aria-label="Default select example" v-model="eventData.specialityId">
-                                    <option value="" selected disabled>Speciality</option>
-                                    <option v-for="speciality in specialities" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
-
+                                <select class="form-select" aria-label="Default select example" multiple id="speciality-selector">
+                                    <option v-for="speciality in specialities" :selected="eventData.specialities.includes(+speciality.id)" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
                                 </select>
                             </div>
 
@@ -452,9 +450,11 @@ export default {
             this.syncEventSpeakers();
             this.onCountryChange();
             this.eventData.is_publish_scheduled = 1;
+            $('#speciality-selector').val(this.eventData.specialities).trigger('change')
         }
         this.initCitySelector()
         this.initCountrySelector()
+        this.initSpecialitySelector()
 
         $('#country').on('select2:select', ()=>{
             this.eventData.countryId = $('#country').val();
@@ -463,6 +463,10 @@ export default {
         $('#city').on('select2:select', ()=>{
             this.eventData.cityId = $('#city').val();
         })
+        $('#speciality-selector').on('select2:select select2:unselect', ()=>{
+            this.eventData.specialities = $('#speciality-selector').val();
+        })
+
     },
     data(){
         return {
@@ -473,7 +477,7 @@ export default {
                 typeId : '',
                 seats :'',
                 cmeCount :'',
-                specialityId:'',
+                specialities:[],
                 organization_id:'',
                 location:'',
                 address:'',
@@ -665,6 +669,11 @@ export default {
                 },
             });
         },
+        initSpecialitySelector(){
+            $('#speciality-selector').select2({
+                placeholder : "Specialities"
+            })
+        }
 
 
     },

@@ -44,7 +44,6 @@ class Course extends Model
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id',
             'country_id',
             'city_id',
             'badge',
@@ -310,7 +309,7 @@ class Course extends Model
     {
         return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
     }
-    
+
     public function survey()
     {
         return $this->belongsTo(Survey::class);

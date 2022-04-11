@@ -37,7 +37,6 @@ class UpdateEventService
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id',
             'city_id',
             'country_id',
             'survey_id'
@@ -51,6 +50,7 @@ class UpdateEventService
         if(isset($this->data['speakers']))
             $this->course->speakers()->sync($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
+        $this->course->specialities()->sync($this->data['specialities']);
         $this->storeSponsors();
         $this->storeSessions();
         $this->storeVideos();

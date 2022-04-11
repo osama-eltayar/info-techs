@@ -40,7 +40,6 @@ class StoreEventService
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id',
             'city_id',
             'country_id',
             'survey_id'
@@ -54,6 +53,8 @@ class StoreEventService
         if(isset($this->data['speakers']))
             $this->course->speakers()->attach($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
+        if (isset($this->data['specialities']) && count($this->data['specialities']))
+            $this->course->specialities()->attach($this->data['specialities']);
         $this->storeSponsors();
         $this->storeSessions();
         $this->storeVideos();

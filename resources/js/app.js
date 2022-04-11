@@ -28,6 +28,8 @@ Vue.component('survey-form', require('./components/Survey/SurveyForm.vue').defau
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import _ from 'lodash'
+Vue.prototype._ = _
 
 const app = new Vue({
     el: '#app',
