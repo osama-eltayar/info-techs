@@ -300,16 +300,21 @@
                     <h3 class="form-title"><i class="fa-solid fa-file"></i> Materials</h3>
                     <div class="upload-file">
                         <div class="custom-file">
-                            <input class="custom-file-input"  type="file"  id="material-input" name="materials[]" multiple/>
+                            <input class="custom-file-input materials-input"  type="file"  id="material-input" name="materials[]" multiple @change="onSelectMaterials($event)"/>
                             <label class="custom-file-label" ></label>
                         </div>
-                        <div class="action">
-                            <button type="button" class="btn btn-primary">Upload</button>
-                        </div>
+
                         <div class="message">
                             <span>Maximum size 50 MB</span>
                             <span>Extensions available jpg, png, pdf,  doc, docx, xls, pts</span>
                         </div>
+
+                        <ul>
+                            <li v-for="(material,idx) in materials">
+                                <p>{{material.name}} <i class="fa-solid fa-trash" @click="onDeleteMaterials(idx)" style="cursor: pointer"></i></p>
+
+                            </li>
+                        </ul>
                     </div>
 
                 </form>
@@ -451,6 +456,7 @@ export default {
             this.onCountryChange();
             this.eventData.is_publish_scheduled = 1;
             $('#speciality-selector').val(this.eventData.specialities).trigger('change')
+            this.materials = this.dbData['materials']
         }
         this.initCitySelector()
         this.initCountrySelector()
@@ -502,6 +508,8 @@ export default {
                 is_discount_available:false
             },
             cities:[],
+            materials : [],
+            materialsFormData:null,
             courseTypeEnum : {
                 onlineEvent: 1,
                 onlineCourse: 2,
@@ -631,8 +639,7 @@ export default {
             })
         },
         appendMaterials(formData){
-            const materialData = new FormData($('#material-form')[0])
-            materialData.getAll('materials[]').forEach(file=>{
+            this.materialsFormData.forEach(file=>{
                 formData.append('materials[]',file)
             })
             return formData;
@@ -673,6 +680,49 @@ export default {
             $('#speciality-selector').select2({
                 placeholder : "Specialities"
             })
+        },
+        onSelectMaterials(event){
+            if (!this.materialsFormData)
+                this.materialsFormData = new FormData();
+
+
+            Array.from(event.target.files).forEach(file=>{
+                this.materialsFormData.append(`files[${file.name}]`,file)
+                this.materials.push(file)
+            })
+        },
+        onDeleteMaterials(idx){
+            if (this.materials[idx].id){
+                axios.delete(this.materials[idx].deleteUrl).then(({data})=>{
+
+                    if (data && data.message)
+                        toastr.success(data.message);
+
+                }).catch(({response})=>{
+                    const {data,status} = response;
+                    if(status == 422){
+                        toastr.clear();
+                        toastr.error(Object.values(data.errors)[0][0])
+                    }
+
+                    if ([401,402,403,429].indexOf(status) != -1) {
+                        toastr.clear();
+                        toastr.error(data.message);
+                    }
+
+
+                    if(status == 500)
+                        toastr.error("Internal Server Error");
+                })
+
+            }
+            else{
+            this.materialsFormData.delete(`files[${this.materials[idx].name}]`)
+            }
+            this.materials = this.materials.filter((material,index)=>{
+                return idx != index;
+            })
+
         }
 
 

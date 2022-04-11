@@ -56,6 +56,15 @@ class MapEventToFormDataService
         $eventData['speakers']     = $event->speakers()->pluck('speakers.id')->toArray();
         $eventData['chairPersons'] = $eventData['speakers'];
         $eventData['discount']     = $event->discounts()->latest()->first() ?: [];
+        $eventData['materials']    = $event->materials
+                                    ->map(function ($material) use ($event) {
+                                        $data              = [];
+                                        $data['id']        = $material->id;
+                                        $data['name']      = $material->name_en;
+                                        $data['deleteUrl'] = route('admin.events.delete-material',['event' => $event->id,'material' => $material->id]);
+                                        return $data;
+                                    })
+                                    ->toArray();
         return $eventData;
     }
 }

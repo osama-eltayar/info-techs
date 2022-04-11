@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
     Route::post('events/{event}/users/{user}/export/excel', [RegisteredUserController::class, 'progressExportPdf'])->name('course-progress.export.excel');
     Route::post('events/{event}/users/{user}/export/pdf', [RegisteredUserController::class, 'progressExportExcel'])->name('course-progress.export.pdf');
+    Route::delete('events/{event}/materials/{material}', [EventController::class, 'deleteMaterial'])->name('events.delete-material');
 
     Route::put('/events/{event}/upload-certificate', [EventController::class, 'uploadCertificate'])->name('events.upload-certificate');
 

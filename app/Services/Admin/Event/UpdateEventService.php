@@ -60,8 +60,8 @@ class UpdateEventService
 
     protected function storeMaterials()
     {
-        if(isset($this->data['materials']) && count($this->data['materials']))
-            $this->course->materials()->delete();
+//        if(isset($this->data['materials']) && count($this->data['materials']))
+//            $this->course->materials()->delete();
 
         foreach ($this->data['materials'] ??[] as $material) {
             $this->course->materials()->create([

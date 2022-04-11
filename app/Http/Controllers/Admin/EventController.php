@@ -162,4 +162,11 @@ class EventController extends Controller
         $event->update(['published_at' => Carbon::now()]);
         return $this->successResponse([], 'Course Published.', Response::HTTP_ACCEPTED);
     }
+
+    public function deleteMaterial(Course $event,$id)
+    {
+        $event->materials()->findOrFail($id)->delete();
+        return $this->successResponse([], 'Material deleted Successfully.', Response::HTTP_ACCEPTED);
+
+    }
 }
