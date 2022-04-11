@@ -2,6 +2,8 @@
 
 namespace App\Services\Admin\Event;
 
+use App\Models\Sponsor;
+
 class MapEventToFormDataService
 {
     public function execute($event)
@@ -35,14 +37,14 @@ class MapEventToFormDataService
                                                         return $data;
                                                     })
                                                     ->toArray();
-        $eventData['sponsors']             = $event->sponsors
+        $eventData['sponsors']             =  $event->sponsors()->count() ? $event->sponsors
                                                     ->map(function ($sponsor) {
                                                         $data                 = [];
                                                         $data['sponsor_id']   = $sponsor->id;
                                                         $data['sponsor_type'] = $sponsor->pivot->level;
                                                         return $data;
                                                     })
-                                                    ->toArray();
+                                                    ->toArray() : [new Sponsor()];
         $eventData['recordedSessions']     = $event->videos
                                                     ->map(function ($video) {
                                                         $data            = [];
