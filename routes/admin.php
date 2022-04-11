@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('owners/export/excel', [OwnerController::class, 'exportExcel'])->name('owners.export.excel');
     Route::post('owners/export/pdf', [OwnerController::class, 'exportPdf'])->name('owners.export.pdf');
     Route::get('owners/{owner}/material/download', [OwnerController::class, 'downloadMaterial'])->name('owners.martial.download');
+    Route::delete('owners/{owner}/materials/{material}', [OwnerController::class, 'deleteMaterial'])->name('owners.delete-material');
+
 
     //    Route::post('owners/{owner}/courses/export/excel',[ CourseController::class, 'exportExcel'])->name('owners.courses.export.excel');
     //    Route::post('owners/{owner}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('owners.courses.export.pdf');

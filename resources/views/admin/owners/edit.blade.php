@@ -67,7 +67,7 @@
                                     <label for="" class="form-label">Material </label>
                                     <div class="upload-file">
                                         <div class="custom-file">
-                                            <input class="custom-file-input"  type="file" name="material"/>
+                                            <input class="custom-file-input"  type="file" name="materials[]" multiple id="materials-input"/>
                                             <label class="custom-file-label" ></label>
                                         </div>
                                         <div class="message">
@@ -76,6 +76,9 @@
                                                         </span>
                                             <span>Extensions available PDF</span>
                                         </div>
+                                    </div>
+                                    <div id="materials-container">
+
                                     </div>
                                 </div>
                             </div>
@@ -91,6 +94,11 @@
     </div>
 @endsection
 @section('scripts')
+    <script>
+        let materials = @json($materials);
+        let materialsFormData = null;
+
+    </script>
     <script src="{{asset('/admin/assets/js/owners/edit.min.js')}}"></script>
     <script>
         // Upload file

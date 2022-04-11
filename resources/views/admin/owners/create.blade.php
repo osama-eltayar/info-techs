@@ -55,16 +55,16 @@
                                                         </span>
                                                 <span>Extensions available jpg, png</span>
                                             </div>
-                                            <div class="file-info">
-                                                <span>Logo  - 5 MB  ( Right side ) <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>
-                                            </div>
+{{--                                            <div class="file-info">--}}
+{{--                                                <span>Logo  - 5 MB  ( Right side ) <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="" class="form-label">Material </label>
                                         <div class="upload-file">
                                             <div class="custom-file">
-                                                <input class="custom-file-input"  type="file" name="material"/>
+                                                <input class="custom-file-input"  type="file" name="materials[]" multiple id="materials-input" />
                                                 <label class="custom-file-label" ></label>
                                             </div>
                                             <div class="message">
@@ -73,6 +73,9 @@
                                                         </span>
                                                 <span>Extensions available PDF</span>
                                             </div>
+                                        </div>
+                                        <div id="materials-container">
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,6 +91,10 @@
         </div>
 @endsection
 @section('scripts')
+    <script>
+        let materials =[];
+        let materialsFormData = null;
+    </script>
     <script src="{{asset('/admin/assets/js/owners/create.min.js')}}"></script>
     <script>
         // Upload file

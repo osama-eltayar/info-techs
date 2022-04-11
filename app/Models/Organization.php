@@ -95,6 +95,11 @@ class Organization extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function materials()
+    {
+        return $this->hasMany(OrganizationMaterials::class);
+    }
+
 
 }
 

@@ -13,12 +13,15 @@ use App\Services\Admin\Owner\ExportOwnersExcelReportService;
 use App\Services\Admin\Owner\ExportOwnersPdfReportService;
 use App\Services\Admin\Owner\FetchOwnersListService;
 use App\Services\Admin\Owner\UpdateOwnerService;
+use App\Traits\HasFiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class OwnerController extends Controller
 {
+    use HasFiles;
+
     private static int $perPage = 10;
 
     public function index(Request $request, FetchOwnersListService $fetchOwnersListService)
@@ -50,7 +53,7 @@ class OwnerController extends Controller
             'name_ar',
             'name_en',
             'logo',
-            'material',
+            'materials',
             'user_id',
             'city_id',
             'country_id',
@@ -82,17 +85,27 @@ class OwnerController extends Controller
 
     public function edit(Organization $owner)
     {
-        return view('admin.owners.edit',compact('owner'));
+        $materials = $owner->materials
+                    ->map(function ($material) use ($owner) {
+                        $data              = [];
+                        $data['id']        = $material->id;
+                        $data['name']      = $material->name_en;
+                        $data['deleteUrl'] = route('admin.owners.delete-material',['owner' => $owner->id,'material' => $material->id]);
+                        return $data;
+                    })
+                    ->toArray();
+        return view('admin.owners.edit',compact('owner','materials'));
     }
 
     public function update(OwnerRequest $request,Organization $owner,UpdateOwnerService $updateOwnerService)
     {
+//        dd($request->all());
         $userData = $request->only('email','password') + [ 'name' => $request->name_en ];
         $organizationData = $request->only([
             'name_ar',
             'name_en',
             'logo',
-            'material',
+            'materials',
             'user_id',
             'city_id',
             'country_id',
@@ -119,5 +132,11 @@ class OwnerController extends Controller
     public function downloadMaterial(Organization $owner)
     {
         return Storage::download($owner->material,$owner->name.'.pdf');
+    }
+
+    protected function deleteMaterial(Organization $owner,$material)
+    {
+        $owner->materials()->findOrFail($material)->delete();
+        return $this->successResponse([], 'Material deleted Successfully.', Response::HTTP_ACCEPTED);
     }
 }

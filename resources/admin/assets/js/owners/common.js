@@ -32,3 +32,52 @@ function initCountrySelector(){
         },
     });
 }
+
+function onSelectMaterials(event){
+    if (!materialsFormData)
+        materialsFormData = new FormData();
+
+
+    Array.from(event.target.files).forEach(file=>{
+        materialsFormData.append(`files[${file.name}]`,file)
+        materials.push(file)
+    })
+}
+
+function onDeleteMaterials(idx){
+    if (materials[idx].id){
+        $.ajax({
+            url : materials[idx].deleteUrl,
+            type : 'DELETE'
+        })
+    }
+    else{
+        materialsFormData.delete(`files[${materials[idx].name}]`)
+    }
+    materials = materials.filter((material,index)=>{
+        return idx != index;
+    })
+
+}
+
+function appendMaterials(formData){
+    materialsFormData.forEach(file=>{
+        formData.append('materials[]',file)
+    })
+    return formData;
+}
+
+function viewMaterials(){
+    $('#materials-container').html('')
+    materials.forEach((material,idx)=>{
+        $('#materials-container').append(`
+                                        <div class="file-info">
+                                               <span>
+                                                    ${material.name}
+                                                    <button class="remove-btn delete-material-btn" data-idx="${idx}" type="button">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </span>
+                                         </div>`)
+    })
+}
