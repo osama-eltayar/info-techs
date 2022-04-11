@@ -94,4 +94,9 @@ class Discount extends Model
     {
         return $this->belongsTo(Speciality::class, 'speciality_id');
     }
+
+    public function specialities()
+    {
+        return $this->belongsToMany(Speciality::class)->using(DiscountSpeciality::class)->withTimestamps();
+    }
 }

@@ -47,7 +47,8 @@ class DiscountRequest extends FormRequest
             'generation_number' => ['required', 'integer'],
             'limit_usage'       => ['required', 'integer'],
             'course_id'         => ['nullable'] + ($this->course_id ? ['exists:courses,id'] : []),
-            'speciality_id'     => ['nullable'] + ($this->speciality_id ? ['exists:specialities,id'] : []),
+            'specialities'      => ['nullable','array','distinct','filled'],
+            'specialities.*'    => ['required','exists:specialities,id'],
             'start_date'        => ['required', 'date'],
             'end_date'          => ['required', 'date'],
         ];

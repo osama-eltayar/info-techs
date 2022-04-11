@@ -1,21 +1,22 @@
 $(function () {
-    $('select[name=course_id]').on('change', function () {
-        if ($(this).val()) {
-            $('select[name=speciality_id]').val('')
-            $('select[name=speciality_id]').prop('disabled', true)
-        } else {
-            $('select[name=speciality_id]').prop('disabled', false)
-
-        }
-    })
-    $('select[name=speciality_id]').on('change', function () {
-        if ($(this).val()) {
-            $('select[name=course_id]').val('')
-            $('select[name=course_id]').prop('disabled', true)
-        } else {
-            $('select[name=course_id]').prop('disabled', false)
-        }
-    })
+    initSpecialitySelector();
+    // $('select[name=course_id]').on('change', function () {
+    //     if ($(this).val()) {
+    //         $('select[name=speciality_id]').val('')
+    //         $('select[name=speciality_id]').prop('disabled', true)
+    //     } else {
+    //         $('select[name=speciality_id]').prop('disabled', false)
+    //
+    //     }
+    // })
+    // $('select[name=speciality_id]').on('change', function () {
+    //     if ($(this).val()) {
+    //         $('select[name=course_id]').val('')
+    //         $('select[name=course_id]').prop('disabled', true)
+    //     } else {
+    //         $('select[name=course_id]').prop('disabled', false)
+    //     }
+    // })
 
     $('#discount-form').on('submit', function (e) {
         e.preventDefault();
@@ -33,5 +34,10 @@ function submitDiscount() {
         type: method,
         cache: false,
         data: data,
+    })
+}
+function initSpecialitySelector(){
+    $('#speciality-selector').select2({
+        placeholder : "Specialities"
     })
 }

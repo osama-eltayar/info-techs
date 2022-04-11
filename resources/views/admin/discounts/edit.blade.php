@@ -69,10 +69,9 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="" class="form-label">Event Speciality </label>
-                                    <select class="form-select" aria-label="Default select example" name="speciality_id">
-                                        <option selected disabled value="">Speciality</option>
+                                    <select class="form-select" aria-label="Default select example" multiple name="specialities[]" id="speciality-selector">
                                     @foreach($specialities as $speciality)
-                                            <option value="{{$speciality->id}}"  @if($speciality->id == $discount->speciality_id) selected @endif>{{$speciality->name}}</option>
+                                            <option value="{{$speciality->id}}"  @if( $discount->specialities->pluck('id')->contains($speciality->id)) selected @endif>{{$speciality->name}}</option>
                                         @endforeach
                                     </select>
                                     <span class="message">Leave blank for all speciality</span>
