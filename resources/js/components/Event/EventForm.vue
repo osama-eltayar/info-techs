@@ -609,8 +609,12 @@ export default {
         onFormSubmit(){
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
-            if (this.isEdit)
+            if (this.isEdit){
                 formData.append('_method','PUT')
+                if(this.eventData.sponsors.length == 1 &&  !this.eventData.sponsors[0].sponsor_type && !this.eventData.sponsors[0].sponsor_id){
+                    formData.delete('sponsors[0][name]')
+                }
+            }
 
             axios.post(this.formSubmitUrl,formData).then(({data})=>{
                 if (data && data.data && data.data.redirect)
@@ -639,9 +643,10 @@ export default {
             })
         },
         appendMaterials(formData){
-            this.materialsFormData.forEach(file=>{
-                formData.append('materials[]',file)
-            })
+            if (this.materialsFormData)
+                this.materialsFormData.forEach(file=>{
+                    formData.append('materials[]',file)
+                })
             return formData;
         },
         initCountrySelector(){

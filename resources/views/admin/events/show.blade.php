@@ -81,7 +81,7 @@
                                             </li>
                                             <li>
                                                 <span class="left-side">Course Survey:</span>
-                                                <span class="right-side"></span>
+                                                <a href="{{route('admin.events.surveys.export-answers',['event'=>$event->id,'survey' => $event->survey->id])}}" class="right-side">{{$event->survey->title}}</a>
                                             </li>
                                             <li>
                                                 <span class="left-side">Speciality:</span>
@@ -224,11 +224,11 @@
                                 <div class="box-date">
                                     <h3><i class="fa-solid fa-info"></i>  Event Description</h3>
                                        <div class="dis en-dis">
-                                           {{$event->description_en}}
+                                           {!!$event->description_en  !!}
                                        </div>
 
                                        <div class="dis ar-dis">
-                                            {{$event->description_ar}}
+                                           {!!$event->description_ar  !!}
                                         </div>
                                 </div>
 
@@ -403,7 +403,7 @@
                                       <tr>
                                         <td>{{$user->id}}</td>
                                         <td><span class="left-side-full">{{$user->name}}</span></td>
-                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>
+{{--                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>--}}
                                         <td>SAR {{$event->price}}</td>
                                         <td>--</td>
                                         <td>--</td>
