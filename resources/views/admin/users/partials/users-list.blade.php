@@ -1,20 +1,20 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <th scope="col" class="sort-col" data-col="id" data-direction="{{$orderBy['col'] == 'id' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+            <th scope="col" class="sort-col" data-col="id" data-direction="{{getSortDirection($orderBy,'id')}}"  >
                 #
                 @include('admin.layouts.partials.sort-icon',['col' =>'id'])
             </th>
-            <th scope="col" class="sort-col" data-col="name" data-direction="{{$orderBy['col'] == 'name' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+            <th scope="col" class="sort-col" data-col="name" data-direction="{{getSortDirection($orderBy,'name')}}"  >
                 User name
                 @include('admin.layouts.partials.sort-icon',['col' =>'name'])
             </th>
-            <th scope="col" class="sort-col" data-col="created_at" data-direction="{{$orderBy['col'] == 'created_at' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+            <th scope="col" class="sort-col" data-col="created_at" data-direction="{{getSortDirection($orderBy,'created_at')}}" >
                 User create date
                @include('admin.layouts.partials.sort-icon',['col' =>'created_at'])
             </th>
             <th scope="col"  >Country/City</th>
-            <th scope="col" class="sort-col" data-col="email" data-direction="{{$orderBy['col'] == 'email' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+            <th scope="col" class="sort-col" data-col="email" data-direction="{{getSortDirection($orderBy,'email')}}"  >
                 Email (username)
                 @include('admin.layouts.partials.sort-icon',['col' =>'email'])
             </th>

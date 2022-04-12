@@ -30,15 +30,11 @@ class UserController extends Controller
         $registeredUsers = User::count();
         $activeUsers = User::whereNotNull('email_verified_at')->count();
         $nonActiveUsers = User::whereNull('email_verified_at')->count();
-        $orderBy=[
-            'col' => $request->order_by ?: 'id',
-            'direction' => $request->order_direction ?: 'asc'
-        ];
 
         if ($request->ajax())
-            return view('admin.users.partials.users-list', compact(['users', 'registeredUsers', 'activeUsers', 'nonActiveUsers','orderBy']));
+            return view('admin.users.partials.users-list', compact(['users', 'registeredUsers', 'activeUsers', 'nonActiveUsers']));
 
-        return view('admin.users.index', compact('users', 'registeredUsers', 'activeUsers', 'nonActiveUsers','orderBy'));
+        return view('admin.users.index', compact('users', 'registeredUsers', 'activeUsers', 'nonActiveUsers'));
     }
 
     public function create()
