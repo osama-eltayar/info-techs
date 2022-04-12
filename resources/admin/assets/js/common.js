@@ -26,6 +26,26 @@ $(function (){
                 toastr.error("Internal Server Error");
         },
     });
+
+    $(document).on('click','.sort-col',function ($q){
+        const col = $(this).attr('data-col')
+        const direction = $(this).attr('data-direction')
+        if ($('.form-search form').find('input[name=order_by]').length){
+            $('.form-search form').find('input[name=order_by]').val(col)
+        }else{
+            $('.form-search form').append(`<input name="order_by" value="${col}" type="hidden">`)
+        }
+        if ($('.form-search form').find('input[name=order_direction]').length){
+            $('.form-search form').find('input[name=order_direction]').val(direction)
+        }else{
+            $('.form-search form').append(`<input name="order_direction" value="${direction}" type="hidden">`)
+        }
+        $(this).attr('data-direction', (_, attr) => {
+            console.log(attr)
+            return attr == 'asc' ? 'desc' : 'asc'
+        });
+        $('.search-btn').click();
+    })
 })
 function redirect(url) {
     window.location.href = url;

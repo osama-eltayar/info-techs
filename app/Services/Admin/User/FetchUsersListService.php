@@ -11,6 +11,7 @@ class FetchUsersListService
         return User::query()
             ->with('profile')
             ->filter($filterData)
+            ->requestSort()
             ->when(!$perPage, function ($q) {
                 return $q->get();
             })

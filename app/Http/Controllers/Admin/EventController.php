@@ -23,6 +23,7 @@ use App\Models\Course;
 use App\Services\Admin\Event\FetchRegisteredUsersListService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EventController extends Controller
 {
@@ -129,7 +130,7 @@ class EventController extends Controller
     public function uploadCertificate(Request $request, Course $event)
     {
         $request->validate([
-            'certificate_img' => 'nullable', 'image', 'max:' . 3 * 1024,
+            'certificate_img' => ['nullable', 'image', 'max:' . 3 * 1024,Rule::dimensions()->height(521)->width(793)],
             'badge'           => 'nullable', 'image', 'max:' . 3 * 1024,
         ]);
         $data = [];

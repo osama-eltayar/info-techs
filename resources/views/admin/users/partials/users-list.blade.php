@@ -1,14 +1,26 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-            <th scope="col">User name</th>
-            <th scope="col">User create date</th>
-            <th scope="col">Country/City</th>
-            <th scope="col">Email (username)</th>
-            <th scope="col">SCFHS No.</th>
-            <th scope="col">Mobile</th>
-            <th scope="col"></th>
+            <th scope="col" class="sort-col" data-col="id" data-direction="{{$orderBy['col'] == 'id' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+                #
+                @include('admin.layouts.partials.sort-icon',['col' =>'id'])
+            </th>
+            <th scope="col" class="sort-col" data-col="name" data-direction="{{$orderBy['col'] == 'name' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+                User name
+                @include('admin.layouts.partials.sort-icon',['col' =>'name'])
+            </th>
+            <th scope="col" class="sort-col" data-col="created_at" data-direction="{{$orderBy['col'] == 'created_at' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+                User create date
+               @include('admin.layouts.partials.sort-icon',['col' =>'created_at'])
+            </th>
+            <th scope="col"  >Country/City</th>
+            <th scope="col" class="sort-col" data-col="email" data-direction="{{$orderBy['col'] == 'email' && $orderBy['direction'] == 'asc' ? 'desc' : 'asc'}}" >
+                Email (username)
+                @include('admin.layouts.partials.sort-icon',['col' =>'email'])
+            </th>
+            <th scope="col"  >SCFHS No.</th>
+            <th scope="col"  >Mobile</th>
+            <th scope="col"  ></th>
         </thead>
         <tbody>
             @forelse($users as $user)
