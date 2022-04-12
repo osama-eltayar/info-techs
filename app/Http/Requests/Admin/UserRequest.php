@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -25,8 +26,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required' ],
-            'email' => ['required', 'email', 'unique:users' ],
-            'password' => ['required','min:6','confirmed' ],
+            'email' => ['required', 'email', 'unique:users,email,' . optional($this->user)->id ],
+            'password' => [] + ($this->isMethod('POST') ? ['required','min:6','confirmed' ] : []) ,
             'role' => ['required','exists:roles,name']
         ];
     }

@@ -10,6 +10,7 @@ use App\Services\Admin\User\ExportUserPdfReportService;
 use App\Services\Admin\User\ExportUsersExcelReportService;
 use App\Services\Admin\User\FetchUsersListService;
 use App\Services\Admin\User\StoreUserService;
+use App\Services\Admin\User\UpdateUserService;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,6 +49,20 @@ class UserController extends Controller
         return $this->successResponse([
             'redirect' => route('admin.users.index')
         ],'User Create Successfully.',Response::HTTP_CREATED);
+    }
+
+    public function edit(User $user)
+    {
+        $roles = Role::query()->where('name','!=','owner')->get();
+        return view('admin.users.edit',compact('roles','user'));
+    }
+
+    public function update(UserRequest $request,User $user,UpdateUserService $updateUserService)
+    {
+        $updateUserService->execute($user,$request->validated());
+        return $this->successResponse([
+            'redirect' => route('admin.users.index')
+        ],'User Updated Successfully.',Response::HTTP_ACCEPTED);
     }
 
     public function show(User $user, FetchCoursesListService $fetchCoursesListService)

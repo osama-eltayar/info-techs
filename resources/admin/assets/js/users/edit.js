@@ -1,24 +1,17 @@
-let countryId ;
 $(function () {
-    countryId = $('#country').val();
-    initCitySelector()
-    initCountrySelector()
-    $('#edit-owner-form').validate({
+
+    $('#edit-user-form').validate({
         rules: {},
         submitHandler: function () {
-           updateOwner();
+           updateUser();
         }
     })
 
-    $('#country-selector').on('select2:select',function (){
-        countryId = $(this).val();
-        $('#city-selector').val('').trigger('change')
-        $('#city-selector').prop('disabled',false)
-    })
+
 })
 
-function updateOwner() {
-    const formElement = $('#edit-owner-form');
+function updateUser() {
+    const formElement = $('#edit-user-form');
     const method = formElement.attr('method');
     const url = formElement.attr('action');
     const data = new FormData(formElement[0])
