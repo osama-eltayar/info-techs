@@ -38,7 +38,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="speciality_id" class="form-label">Peciality </label>
+                                        <label for="speciality_id" class="form-label">Speciality </label>
                                         <select class="form-select" aria-label="Default select example" name="speciality_id" td="speciality_id">
                                             <option selected></option>
                                             @foreach ($specialities as $speciality)
@@ -51,7 +51,7 @@
                                         <label for="mobile" class="form-label">Mobile </label>
                                         <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="">
                                     </div>
-                                    
+
                                     <div class="mb-4">
                                         <label for="country-selector" class="form-label">Country </label>
                                         <select class="form-select" aria-label="Default select example" name="country_id" id="country-selector">
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>

@@ -140,6 +140,14 @@ mix
     ], 'public/admin/assets/js/users/list.min.js')
 
     .scripts([
+        'resources/admin/assets/js/users/create.js',
+    ], 'public/admin/assets/js/users/create.min.js')
+
+    .scripts([
+        'resources/admin/assets/js/users/edit.js',
+    ], 'public/admin/assets/js/users/edit.min.js')
+
+    .scripts([
         'resources/admin/assets/js/discounts/list.js',
     ], 'public/admin/assets/js/discounts/list.min.js')
   .scripts([
