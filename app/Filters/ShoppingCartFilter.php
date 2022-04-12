@@ -35,6 +35,17 @@ class ShoppingCartFilter extends Filter
         $this->query->whereDate('paid_at', '=', $paid_at);
     }
 
+    public function filterTo($to)
+    {
+        $this->query->whereDate('paid_at','<=',$to);
+    }
+
+    public function filterFrom($from)
+    {
+        $this->query->whereDate('paid_at','>=',$from);
+
+    }
+
     public function filterType($type)
     {
         $this->query->whereHas('transaction', function ($query) use ($type) {

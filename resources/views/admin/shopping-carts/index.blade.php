@@ -57,29 +57,23 @@
                 <br>
                 <div class="form-search">
                     <form action="{{ route('admin.shopping-carts.index') }}" method="GET" id="transactions-search-form">
-                        <div class="row justify-content-end">
+                        <div class="row justify-content-start">
                             <div class="col-lg-2 col-12 mb-2">
                                 <label for="" class="form-label">Number</label>
                                 <div class="search-form">
                                     <input type="text" class="form-control" id="" name="number">
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-12 mb-2">
+                            <div class="col-lg-3 col-12 mb-2">
                                 <label for="" class="form-label">Name</label>
                                 <div class="search-form">
                                     <input type="text" class="form-control" id="" name="name">
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-12 mb-2">
+                            <div class="col-lg-3 col-12 mb-2">
                                 <label for="" class="form-label">Course Name</label>
                                 <div class="search-form">
                                     <input type="text" class="form-control" id="" name="course_name">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-12 mb-2">
-                                <label for="" class="form-label">Invoice Date</label>
-                                <div class="search-form">
-                                    <input type="date" class="form-control" id="" name="paid_at">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-12 mb-2">
@@ -92,7 +86,23 @@
                                         <option value="failed">Failed</option>
                                     </select>
                                     <button type="button" class="btn btn-primary search-btn"
-                                        id="transactions-search-btn">Search</button>
+                                            id="transactions-search-btn">Search</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row justify-content-start">
+                            <div class="col-lg-3 col-12 mb-2">
+                                <label for="" class="form-label">From Date</label>
+                                <div class="search-form">
+                                    <input type="date" class="form-control" id="" name="from">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-12 mb-2">
+                                <label for="" class="form-label">To Date</label>
+                                <div class="search-form">
+                                    <input type="date" class="form-control" id="" name="to">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +121,7 @@
                 <form action="{{ route('admin.shopping-carts.export.excel') }}" method="POST" id="transactions-export-excel-form">
                     @csrf
                 </form>
-                 
+
                 <form action="{{ route('admin.shopping-carts.export.pdf') }}" method="POST" id="transactions-export-pdf-form">
                     @csrf
                 </form>
