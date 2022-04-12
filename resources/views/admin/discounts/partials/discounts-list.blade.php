@@ -30,6 +30,10 @@
                     <td>
                         <ul class="list-unstyled">
                             <li>
+                                <a class="btn-action" href="{{ route('admin.discounts.edit', $discount->id) }}"><i
+                                        class="fa-solid fa-edit"></i></a>
+                            </li>
+                            <li>
                                 <button class="btn-action delete-btn" data-id="{{ $discount->id }}"
                                     data-url="{{ route('admin.discounts.destroy', $discount->id) }}"><i
                                         class="fa-solid fa-trash-can"></i></button>
