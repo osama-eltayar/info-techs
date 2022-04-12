@@ -9,7 +9,7 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <h4>Create new owner</h4>
+                        <h4>edit user</h4>
                         <form action="{{route('admin.users.update',$user->id)}}" method="POST" enctype="multipart/form-data" id="edit-user-form">
                             @method('PUT')
                             <div class="row">

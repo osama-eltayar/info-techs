@@ -9,7 +9,7 @@
             <div class="container-fluid bg-blue">
                 <div class="content-body">
                     <div class="form-body">
-                        <h4>Create new owner</h4>
+                        <h4>Create new user</h4>
                         <form action="{{route('admin.users.store')}}" method="POST" enctype="multipart/form-data" id="create-user-form">
                             <div class="row">
                                 <div class="col-lg-6 col-12">

@@ -23,7 +23,7 @@
                     <td>
                         <ul class="list-unstyled">
                             <li>
-                                {{-- <a class="btn-action" href="{{route('admin.users.edit',$user  ->id)}}"><i class="fa-solid fa-edit"></i></a> --}}
+                                 <a class="btn-action" href="{{route('admin.users.edit',$user  ->id)}}"><i class="fa-solid fa-edit"></i></a>
                             </li>
                             <li>
                                 <a class="btn-action" href="{{route('admin.users.show',$user->id)}}"><i class="fa-solid fa-square-info"></i></a>
