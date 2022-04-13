@@ -1,15 +1,46 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-            <th scope="col">Event Type</th>
-            <th scope="col">Event Name</th>
-            <th scope="col">Create Date</th>
-            <th scope="col">Event Running Date</th>
-            <th scope="col">Fees</th>
-            <th scope="col">Event owner</th>
-            <th scope="col">Status</th>
-            <th scope="col"></th>
+            <th scope="col" class="sort-col" data-col="id" data-direction="{{getSortDirection($orderBy,'id')}}">
+                #
+                @include('admin.layouts.partials.sort-icon',['col' =>'id'])
+            </th>
+            <th scope="col" class="sort-col" data-col="type_id" data-direction="{{getSortDirection($orderBy,'type_id')}}">
+                Event Type
+                @include('admin.layouts.partials.sort-icon',['col' =>'type_id'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="title_en" data-direction="{{getSortDirection($orderBy,'title_en')}}">
+                Event Name
+                @include('admin.layouts.partials.sort-icon',['col' =>'title_en'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="created_at" data-direction="{{getSortDirection($orderBy,'created_at')}}">
+                Create Date
+                @include('admin.layouts.partials.sort-icon',['col' =>'created_at'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="start_date" data-direction="{{getSortDirection($orderBy,'start_date')}}">
+                Event Running Date
+                @include('admin.layouts.partials.sort-icon',['col' =>'start_date'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="price" data-direction="{{getSortDirection($orderBy,'price')}}">
+                Fees
+                @include('admin.layouts.partials.sort-icon',['col' =>'price'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="organization_id" data-direction="{{getSortDirection($orderBy,'organization_id')}}">
+                Event owner
+                @include('admin.layouts.partials.sort-icon',['col' =>'organization_id'])
+
+            </th>
+            <th scope="col">
+                Status
+            </th>
+            <th scope="col">
+
+            </th>
         </thead>
         <tbody>
             @forelse($courses as $course)
