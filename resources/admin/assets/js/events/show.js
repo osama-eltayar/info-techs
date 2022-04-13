@@ -34,6 +34,10 @@ $(function () {
         $('#attach-zoom-links').on('click',function (){
             storeZoomLinks();
         })
+
+    $(document).on('click','.send-certificate-btn',function (){
+        sendCertificate($(this).attr('data-url'));
+    })
 })
 
 
@@ -120,3 +124,12 @@ function storeZoomLinks(){
 }
 
 
+function sendCertificate(url){
+     return $.ajax({
+         url : url,
+         type : "POST",
+         cache:false,
+         processData:false,
+         contentType:false
+     })
+}

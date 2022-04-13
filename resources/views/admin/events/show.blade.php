@@ -408,13 +408,14 @@
                                         <td>--</td>
                                         <td>--</td>
                                         <td>--</td>
-                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <a class="btn-action" href="{{route('admin.registered-users.show', ['event' => $event, 'user' => $user->id])}}"><i class="fa-solid fa-square-info"></i></a>
                                                 </li>
                                         </ul></td>
+                                          <td><button class="btn btn-primary send-certificate-btn" data-url="{{route('admin.events.users.send-certificate',['event' => $event->id,'user'=>$user->id])}}">Send Certificate</button></td>
                                       </tr>
                                       @endforeach
                                   </tbody>

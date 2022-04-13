@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\EventController;
@@ -83,4 +84,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('shopping-carts', ShoppingCartController::class);
     Route::post('shopping-carts/export/pdf', [ShoppingCartController::class, 'exportPdf'])->name('shopping-carts.export.pdf');
     Route::post('shopping-carts/export/excel', [ShoppingCartController::class, 'exportExcel'])->name('shopping-carts.export.excel');
+
+    Route::post('events/{event}/users/{user}/send-certificate',[ CertificateController::class, 'send'])->name('events.users.send-certificate');
 });
