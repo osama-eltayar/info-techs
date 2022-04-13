@@ -1,15 +1,51 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-            <th scope="col">Offer</th>
-            <th scope="col">Discount Name</th>
-            <th scope="col">Discount Code</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Limit</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
-            <th scope="col">Status</th>
+            <th scope="col" class="sort-col" data-col="id" data-direction="{{getSortDirection($orderBy,'id')}}"  >
+                #
+                @include('admin.layouts.partials.sort-icon',['col' =>'id'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="type" data-direction="{{getSortDirection($orderBy,'type')}}"  >
+                Offer
+                @include('admin.layouts.partials.sort-icon',['col' =>'type'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="name" data-direction="{{getSortDirection($orderBy,'name')}}"  >
+                Discount Name
+                @include('admin.layouts.partials.sort-icon',['col' =>'name'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="code" data-direction="{{getSortDirection($orderBy,'code')}}"  >
+                Discount Code
+                @include('admin.layouts.partials.sort-icon',['col' =>'code'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="amount" data-direction="{{getSortDirection($orderBy,'amount')}}"  >
+                Amount
+                @include('admin.layouts.partials.sort-icon',['col' =>'amount'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="limit_usage" data-direction="{{getSortDirection($orderBy,'limit_usage')}}"  >
+                Limit
+                @include('admin.layouts.partials.sort-icon',['col' =>'limit_usage'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="start_date" data-direction="{{getSortDirection($orderBy,'start_date')}}"  >
+                Start Date
+                @include('admin.layouts.partials.sort-icon',['col' =>'start_date'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="end_date" data-direction="{{getSortDirection($orderBy,'end_date')}}"  >
+                End Date
+                @include('admin.layouts.partials.sort-icon',['col' =>'end_date'])
+
+            </th>
+            <th scope="col" class="sort-col" data-col="status" data-direction="{{getSortDirection($orderBy,'status')}}"  >
+                Status
+                @include('admin.layouts.partials.sort-icon',['col' =>'status'])
+
+            </th>
             <th scope="col"></th>
             <th scope="col"></th>
         </thead>

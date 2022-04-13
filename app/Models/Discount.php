@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\DiscountAmountTypeEnum;
+use App\Traits\HasSort;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Discount extends Model
 {
-    use HasFactory, HasFilter;
+    use HasFactory, HasFilter,HasSort;
 
     /**
      * The attributes that are mass assignable.

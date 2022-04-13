@@ -27,7 +27,7 @@
                                     <label for="" class="form-label">Type</label>
                                     <div class="search-form">
                                         <select class="form-select" aria-label="Default select example" name="type">
-                                            <option value=" "selected>All</option>
+                                            <option value=" "selected disabled>All</option>
                                             <option value="1">Individual</option>
                                             <option value="2">General</option>
                                         </select>
@@ -45,7 +45,7 @@
                                     <label for="" class="form-label">Event</label>
                                     <div class="search-form">
                                         <select class="form-select" aria-label="Default select example" name="course">
-                                            <option value="" selected>All</option>
+                                            <option value="" selected disabled>All</option>
                                             @foreach ($courses as $course)
                                                 <option value="{{ $course->id }}">{{ $course->title_en }}</option>
                                             @endforeach
@@ -57,7 +57,7 @@
                                     <label for="" class="form-label">Status</label>
                                     <div class="search-form">
                                         <select class="form-select" aria-label="Default select example" name="status">
-                                            <option selected>All</option>
+                                            <option selected disabled>All</option>
                                             <option value="1">Pending</option>
                                             <option value="2">Ended</option>
                                         </select>
