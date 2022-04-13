@@ -12,6 +12,7 @@ class FetchSpeakersListService
                            ->with('city', 'country', 'speciality', 'title')
                         //    ->withCount('courses')
                            ->filter($filterData)
+                           ->requestSort()
                            ->when(!$perPage, function ($q) {
                                return $q->get();
                            })
