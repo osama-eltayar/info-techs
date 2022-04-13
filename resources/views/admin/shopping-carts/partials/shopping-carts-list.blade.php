@@ -1,17 +1,41 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <th scope="col"># <i class="fa-solid fa-sort"></i></th>
-            <th scope="col">Invoice Number</th>
-            <th scope="col">Name</th>
-            <th scope="col">Invoice Date</th>
-            <th scope="col">Event Name</th>
-            <th scope="col">Event Type</th>
-            <th scope="col">Event Amount</th>
-            <th scope="col">Paid Amount</th>
-            <th scope="col">Paid before</th>
-            <th scope="col">Promocode</th>
-            <th scope="col">Invoice</th>
+            <th scope="col" class="sort-col" data-col="id" data-direction="{{getSortDirection($orderBy,'id')}}"  >
+                #
+                @include('admin.layouts.partials.sort-icon',['col' =>'id'])
+            </th>
+            <th scope="col">
+                Invoice Number
+            </th>
+            <th scope="col">
+                Name
+            </th>
+            <th scope="col" class="sort-col" data-col="paid_at" data-direction="{{getSortDirection($orderBy,'paid_at')}}"  >
+                Invoice Date
+                @include('admin.layouts.partials.sort-icon',['col' =>'paid_at'])
+            </th>
+            <th scope="col">
+                Event Name
+            </th>
+            <th scope="col">
+                Event Type
+            </th>
+            <th scope="col">
+                Event Amount
+            </th>
+            <th scope="col">
+                Paid Amount
+            </th>
+            <th scope="col">
+                Paid before
+            </th>
+            <th scope="col">
+                Promocode
+            </th>
+            <th scope="col">
+                Invoice
+            </th>
         </thead>
         <tbody>
             @forelse($shoppingCarts as $shoppingCart)
@@ -38,7 +62,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center">No results found.</td>
+                    <td colspan="11" class="text-center">No results found.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -12,6 +12,7 @@ class FetchShoppingCartsListService
         return ShoppingCart::query()
             ->with('transaction','user','course')
             ->filter($filterData)
+            ->requestSort()
             ->when(!$perPage, function ($q) {
                 return $q->get();
             })
