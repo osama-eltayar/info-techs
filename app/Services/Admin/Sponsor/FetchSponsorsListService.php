@@ -13,6 +13,7 @@ class FetchSponsorsListService
                            ->with('city','country')
                            ->withCount('courses')
                            ->filter($filterData)
+                           ->requestSort()
                            ->when(!$perPage, function ($q) {
                                return $q->get();
                            })
