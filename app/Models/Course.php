@@ -137,12 +137,14 @@ class Course extends Model
 
     public function getFormattedFromAttribute()
     {
-        return $this->from->format('h:i a');
+        if($this->from)
+            return $this->from->format('h:i a');
     }
 
     public function getFormattedToAttribute()
     {
-        return $this->to->format('h:i a');
+        if ($this->to)
+            return $this->to->format('h:i a');
     }
 
     public function getFormattedCreatedAtAttribute()
@@ -310,7 +312,7 @@ class Course extends Model
     {
         return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
     }
-    
+
     public function survey()
     {
         return $this->belongsTo(Survey::class);
