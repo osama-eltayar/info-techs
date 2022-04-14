@@ -12,6 +12,7 @@ class FetchDiscountsListService
         return Discount::query()
             ->with('course', 'speciality')
             ->filter($filterData)
+            ->requestSort()
             ->when(!$perPage, function ($q) {
                 return $q->get();
             })

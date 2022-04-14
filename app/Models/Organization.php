@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Controllers\Admin\OwnerController;
 use App\Traits\HasFiles;
+use App\Traits\HasSort;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class Organization extends Model
     use HasFiles;
     use HasFilter;
     use SoftDeletes;
+    use HasSort;
 
     /**
     * The attributes that are mass assignable.
@@ -93,6 +95,11 @@ class Organization extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function materials()
+    {
+        return $this->hasMany(OrganizationMaterials::class);
     }
 
 

@@ -60,3 +60,9 @@ function formatSizeUnits($bytes)
 
     return $bytes;
 }
+if ( !function_exists('getSortDirection') ) {
+    function getSortDirection( $prevOrder,$col )
+    {
+        return $prevOrder['col'] == $col && $prevOrder['direction'] == 'asc' ? 'desc' : 'asc';
+    }
+}

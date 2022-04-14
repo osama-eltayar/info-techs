@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('owners/export/excel', [OwnerController::class, 'exportExcel'])->name('owners.export.excel');
     Route::post('owners/export/pdf', [OwnerController::class, 'exportPdf'])->name('owners.export.pdf');
     Route::get('owners/{owner}/material/download', [OwnerController::class, 'downloadMaterial'])->name('owners.martial.download');
+    Route::delete('owners/{owner}/materials/{material}', [OwnerController::class, 'deleteMaterial'])->name('owners.delete-material');
+
 
     //    Route::post('owners/{owner}/courses/export/excel',[ CourseController::class, 'exportExcel'])->name('owners.courses.export.excel');
     //    Route::post('owners/{owner}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('owners.courses.export.pdf');
@@ -41,13 +43,15 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //    Route::post('sponsors/{sponsor}/courses/export/pdf',[ CourseController::class, 'exportPdf'])->name('sponsors.courses.export.pdf');
 
     Route::resource('events', EventController::class);
-    Route::post('events/{event}/users/export/excel',[ RegisteredUserController::class, 'exportExcel'])->name('registered-users.export.excel');
-    Route::post('events/{event}/users/export/pdf',[ RegisteredUserController::class, 'exportPdf'])->name('registered-users.export.pdf');
+    Route::put('events/{event}/publish', [EventController::class, 'publish'])->name('events.publish');
+    Route::post('events/{event}/users/export/excel', [RegisteredUserController::class, 'exportExcel'])->name('registered-users.export.excel');
+    Route::post('events/{event}/users/export/pdf', [RegisteredUserController::class, 'exportPdf'])->name('registered-users.export.pdf');
     Route::get('events/{event}/users/{user}', [RegisteredUserController::class, 'show'])->name('registered-users.show');
-    Route::post('events/{event}/users/{user}/export/excel',[ RegisteredUserController::class, 'progressExportPdf'])->name('course-progress.export.excel');
-    Route::post('events/{event}/users/{user}/export/pdf',[ RegisteredUserController::class, 'progressExportExcel'])->name('course-progress.export.pdf');
-    
-    Route::put('/events/{event}/upload-certificate',[EventController::class,'uploadCertificate'])->name('events.upload-certificate');
+    Route::post('events/{event}/users/{user}/export/excel', [RegisteredUserController::class, 'progressExportPdf'])->name('course-progress.export.excel');
+    Route::post('events/{event}/users/{user}/export/pdf', [RegisteredUserController::class, 'progressExportExcel'])->name('course-progress.export.pdf');
+    Route::delete('events/{event}/materials/{material}', [EventController::class, 'deleteMaterial'])->name('events.delete-material');
+
+    Route::put('/events/{event}/upload-certificate', [EventController::class, 'uploadCertificate'])->name('events.upload-certificate');
 
 
     Route::post('{resource_type}/{resource_id}/courses/export/excel', [CourseController::class, 'exportExcel'])
@@ -59,15 +63,15 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     //  Speakers
     Route::resource('speakers', SpeakerController::class);
-    Route::post('speakers/export/excel',[SpeakerController::class,'exportExcel'])->name('speakers.export.excel');
-    Route::post('speakers/export/pdf',[SpeakerController::class,'exportPdf'])->name('speakers.export.pdf');
+    Route::post('speakers/export/excel', [SpeakerController::class, 'exportExcel'])->name('speakers.export.excel');
+    Route::post('speakers/export/pdf', [SpeakerController::class, 'exportPdf'])->name('speakers.export.pdf');
 
     Route::resource('users', UserController::class);
     Route::post('users/export/pdf', [UserController::class, 'exportPdf'])->name('users.export.pdf');
     Route::post('users/export/excel', [UserController::class, 'exportExcel'])->name('users.export.excel');
 
     Route::resource('events', EventController::class);
-    
+
     Route::resource('discounts', DiscountController::class);
     Route::post('discounts/export/pdf', [DiscountController::class, 'exportPdf'])->name('discounts.export.pdf');
     Route::post('discounts/export/excel', [DiscountController::class, 'exportExcel'])->name('discounts.export.excel');
@@ -75,6 +79,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('events/{event}/zoom-links', [EventController::class, 'zoomLinks'])->name('events.zoom-links');
 
     Route::resource('surveys', SurveyController::class);
+    Route::get('events/{event}/surveys/{survey}',[SurveyController::class,'exportAnswers'])->name('events.surveys.export-answers');
     Route::resource('shopping-carts', ShoppingCartController::class);
     Route::post('shopping-carts/export/pdf', [ShoppingCartController::class, 'exportPdf'])->name('shopping-carts.export.pdf');
     Route::post('shopping-carts/export/excel', [ShoppingCartController::class, 'exportExcel'])->name('shopping-carts.export.excel');

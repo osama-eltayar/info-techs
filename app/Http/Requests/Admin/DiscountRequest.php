@@ -19,17 +19,17 @@ class DiscountRequest extends FormRequest
         return true;
     }
 
-    protected function prepareForValidation()
-    {
-        if ($this->course_id)
-            $this->merge([
-                'speciality_id' => null
-            ]);
-        if ($this->speciality_id)
-            $this->merge([
-                'course_id' => null
-            ]);
-    }
+//    protected function prepareForValidation()
+//    {
+//        if ($this->course_id)
+//            $this->merge([
+//                'speciality_id' => null
+//            ]);
+//        if ($this->speciality_id)
+//            $this->merge([
+//                'course_id' => null
+//            ]);
+//    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -46,8 +46,9 @@ class DiscountRequest extends FormRequest
             'amount_type'       => ['required', Rule::in(DiscountAmountTypeEnum::CASH, DiscountAmountTypeEnum::PERCENTAGE)],
             'generation_number' => ['required', 'integer'],
             'limit_usage'       => ['required', 'integer'],
-            'course_id'         => [Rule::requiredIf(!$this->speciality_id)] + ($this->course_id ? ['exists:courses,id'] : []),
-            'speciality_id'     => [Rule::requiredIf(!$this->course_id)] + ($this->speciality_id ? ['exists:specialities,id'] : []),
+            'course_id'         => ['nullable'] + ($this->course_id ? ['exists:courses,id'] : []),
+            'specialities'      => ['nullable','array','distinct','filled'],
+            'specialities.*'    => ['required','exists:specialities,id'],
             'start_date'        => ['required', 'date'],
             'end_date'          => ['required', 'date'],
         ];

@@ -68,8 +68,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="" class="form-label">Event Speciality </label>
-                                    <select class="form-select" aria-label="Default select example" name="speciality_id">
-                                        <option selected disabled value="">Speciality</option>
+                                    <select class="form-select" aria-label="Default select example" multiple name="specialities[]" id="speciality-selector">
                                     @foreach($specialities as $speciality)
                                             <option value="{{$speciality->id}}" >{{$speciality->name}}</option>
                                         @endforeach

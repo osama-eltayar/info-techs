@@ -2,6 +2,8 @@
 
 namespace App\Services\Admin\Event;
 
+use App\Models\Sponsor;
+
 class MapEventToFormDataService
 {
     public function execute($event)
@@ -13,7 +15,7 @@ class MapEventToFormDataService
         $eventData['typeId']               = $event->type_id;
         $eventData['seats']                = $event->seats;
         $eventData['cmeCount']             = $event->cme_count;
-        $eventData['specialityId']         = $event->speciality_id;
+        $eventData['specialities']         = $event->specialities->pluck('id');
         $eventData['organization_id']      = $event->organization_id;
         $eventData['location']             = $event->location;
         $eventData['address']              = $event->address;
@@ -35,14 +37,14 @@ class MapEventToFormDataService
                                                         return $data;
                                                     })
                                                     ->toArray();
-        $eventData['sponsors']             = $event->sponsors
+        $eventData['sponsors']             =  $event->sponsors()->count() ? $event->sponsors
                                                     ->map(function ($sponsor) {
                                                         $data                 = [];
                                                         $data['sponsor_id']   = $sponsor->id;
                                                         $data['sponsor_type'] = $sponsor->pivot->level;
                                                         return $data;
                                                     })
-                                                    ->toArray();
+                                                    ->toArray() : [new Sponsor()];
         $eventData['recordedSessions']     = $event->videos
                                                     ->map(function ($video) {
                                                         $data            = [];
@@ -56,6 +58,15 @@ class MapEventToFormDataService
         $eventData['speakers']     = $event->speakers()->pluck('speakers.id')->toArray();
         $eventData['chairPersons'] = $eventData['speakers'];
         $eventData['discount']     = $event->discounts()->latest()->first() ?: [];
+        $eventData['materials']    = $event->materials
+                                    ->map(function ($material) use ($event) {
+                                        $data              = [];
+                                        $data['id']        = $material->id;
+                                        $data['name']      = $material->name_en;
+                                        $data['deleteUrl'] = route('admin.events.delete-material',['event' => $event->id,'material' => $material->id]);
+                                        return $data;
+                                    })
+                                    ->toArray();
         return $eventData;
     }
 }

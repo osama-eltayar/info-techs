@@ -19,13 +19,13 @@ class DiscountController extends Controller
     private static int $perPage = 10;
 
     /**
-     * 
+     *
      */
     public function index(Request $request, FetchDiscountsListService $fetchDiscountListService)
     {
         $filterData = $request->only(['name','type','code','status','course']);
         $discounts = $fetchDiscountListService->execute($filterData, self::$perPage);
-        //get courses 
+        //get courses
         $courses=Course::all();
 
         if ($request->ajax())
@@ -55,7 +55,7 @@ class DiscountController extends Controller
         $sponsors = $fetchDiscountListService->execute($filterData);
         return $exportDiscountsExcelReportService->execute($sponsors);
     }
-  
+
     public function create()
     {
         $discountAmountTypes = DiscountAmountTypeEnum::MAPPED_TYPES;
@@ -67,7 +67,8 @@ class DiscountController extends Controller
 
     public function store(DiscountRequest $request)
     {
-        Discount::create($request->validated());
+        $discount = Discount::create($request->validated());
+        $discount->specialities()->attach($request->specialities);
         return $this->successResponse([
             'redirect' => route('admin.discounts.index')
         ], 'Discount Created Successfully.', Response::HTTP_CREATED);
@@ -79,12 +80,14 @@ class DiscountController extends Controller
         $discountTypes       = ['Individual' => Discount::INDIVIDUAL, 'General' => Discount::GENERAL];
         $courses             = Course::all();
         $specialities        = Speciality::all();
+        $discount->load('specialities');
         return view('admin.discounts.edit', compact('discountTypes', 'discountAmountTypes', 'courses', 'specialities','discount'));
     }
 
     public function update(DiscountRequest $request,Discount $discount)
     {
         $discount->update($request->validated());
+        $discount->specialities()->sync($request->specialities);
         return $this->successResponse([
             'redirect' => route('admin.discounts.index')
         ], 'Discount Created Successfully.', Response::HTTP_CREATED);

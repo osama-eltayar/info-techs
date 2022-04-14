@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SurveyRequest;
+use App\Models\Course;
 use App\Models\Survey;
 use App\Models\SurveyQuestion;
 use App\Services\Admin\Course\FetchCoursesListService;
 use App\Services\Admin\Survey\CreateSurveyService;
+use App\Services\Admin\Survey\ExportSurveyAnswersService;
 use App\Services\Admin\Survey\FetchQuestionsListService;
 use App\Services\Admin\Survey\FetchSurveyListService;
 use App\Services\Admin\Survey\MapSurveyToFormDataService;
@@ -67,5 +69,11 @@ class SurveyController extends Controller
         return $this->successResponse([
             'redirect' => route('admin.surveys.index')
         ], 'Survey Updated Successfully.', Response::HTTP_CREATED);
+    }
+
+    public function exportAnswers(Course $event,Survey $survey,ExportSurveyAnswersService $exportSurveyAnswersService)
+    {
+        abort_if($event->survey_id != $survey->id,403);
+        return $exportSurveyAnswersService->execute($survey,$event);
     }
 }

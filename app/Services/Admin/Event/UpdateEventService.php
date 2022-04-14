@@ -37,7 +37,6 @@ class UpdateEventService
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id',
             'city_id',
             'country_id',
             'survey_id'
@@ -51,6 +50,7 @@ class UpdateEventService
         if(isset($this->data['speakers']))
             $this->course->speakers()->sync($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
+        $this->course->specialities()->sync($this->data['specialities']);
         $this->storeSponsors();
         $this->storeSessions();
         $this->storeVideos();
@@ -60,8 +60,8 @@ class UpdateEventService
 
     protected function storeMaterials()
     {
-        if(isset($this->data['materials']) && count($this->data['materials']))
-            $this->course->materials()->delete();
+//        if(isset($this->data['materials']) && count($this->data['materials']))
+//            $this->course->materials()->delete();
 
         foreach ($this->data['materials'] ??[] as $material) {
             $this->course->materials()->create([
@@ -75,6 +75,9 @@ class UpdateEventService
 
     protected function storeDiscount()
     {
+        if (!(isset($this->data['discount']) && count($this->data['discount']) && $this->data['discount']['price']))
+            return;
+
         $discount = $this->course->discounts()->latest()->first();
         $isDiscountChanged = $this->data['discount'] &&
                              $this->data['discount']['date'] != $discount->date &&
@@ -90,10 +93,10 @@ class UpdateEventService
 
     protected function storeSponsors()
     {
-        if(count($this->data['sponsors']))
+        if (!isset($this->data['sponsors']) || (isset($this->data['sponsors'] )&& count($this->data['sponsors']) ))
             $this->course->sponsors()->detach();
 
-        foreach ($this->data['sponsors'] as $sponsor)
+        foreach ($this->data['sponsors'] ?? [] as $sponsor)
             $this->course->sponsors()->attach([
                 'sponsor_id' => $sponsor['sponsor_id'],
             ], [

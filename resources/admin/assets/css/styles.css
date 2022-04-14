@@ -629,7 +629,7 @@ tbody, td, tfoot, th, thead, tr {
 .box-date .list-date li .left-side,
 .box-date .list-date li .right-side {
     width: 50%;
-    
+
 
 }
 .box-date .list-date li p {
@@ -759,7 +759,7 @@ tbody, td, tfoot, th, thead, tr {
     background-repeat: no-repeat;
     background-position: center;
   }
-  
+
   .tabs-event .title {
       margin: 25px 0 35px;
   }
@@ -999,13 +999,13 @@ table .red {
         font-size: 15px;
         padding: 0 8px;
     }
-    
+
 }
 
 @media only screen and  (max-width: 1199px) {
     .nav-pills .nav-link {
         margin-bottom: 15px;
-    }    
+    }
     .form-content {
         padding: 30px 15px;
     }
@@ -1015,8 +1015,8 @@ table .red {
     .upload-file {
         width: 100%;
     }
-    
-    
+
+
 }
 @media only screen and (min-width:992px) and (max-width: 1199px) {
     .tabs-body {
@@ -1033,9 +1033,9 @@ table .red {
     .boxes-section {
         margin: 25px 0 0;
     }
-    
-    
-    
+
+
+
 }
 
 
@@ -1063,7 +1063,7 @@ table .red {
         padding: 5px 5px;
         font-size: 14px;
     }
-    
+
     .content-body {
         padding: 25px 15px;
     }
@@ -1077,7 +1077,7 @@ table .red {
     .tabs-body {
         padding: 15px 15px;
     }
-    
+
 }
 
 @media only screen and (max-width:767px) {
@@ -1137,7 +1137,7 @@ table .red {
         position: relative;
         top: 0;
     }
-    
+
     .content-body .event-title ul {
         display: block;
     }
@@ -1200,5 +1200,19 @@ table .red {
         margin-top: 15px;
         padding: 25px 15px;
     }
-        
+
+}
+.image-content{
+    position: relative;
+}
+
+
+.image-content::after{
+    content: '';
+    position: absolute;
+    left: 458px;
+    top: 290px;
+    border: 1px solid red;
+    height: 50px;
+    width: 150px;
 }

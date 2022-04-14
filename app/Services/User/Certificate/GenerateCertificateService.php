@@ -52,7 +52,7 @@ class GenerateCertificateService
     {
         $image = Image::make(Storage::path($this->course->certificate_image));
 
-        $image->text($this->user->name, 550, 350,
+        $image->text($this->user->name, 400, 340,
             function ($font) {
                 $font->file(public_path(self::$fontFilePath));
                 $font->size(50);
@@ -70,7 +70,7 @@ class GenerateCertificateService
         $pdf             = \PDF::loadView(self::$certificateFileTemplate, ['imageUrl' => $this->getFileUrl($imageName)]);
         $certificateName = $this->getCertificateFileName();
         $pdf->save(Storage::path($certificateName));
-        $this->deleteFile($imageName);
+//        $this->deleteFile($imageName);
 
         return $certificateName;
     }

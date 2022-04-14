@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasFiles;
+use App\Traits\HasSort;
 use Carbon\Carbon;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,7 @@ class Course extends Model
     use HasFactory;
     use HasFilter;
     use HasFiles;
+    use HasSort;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +46,6 @@ class Course extends Model
             'address',
             'published_at',
             'is_views_hidden',
-            'speciality_id',
             'country_id',
             'city_id',
             'badge',

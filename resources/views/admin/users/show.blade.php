@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-lg-6 col-12 text-end">
                             <div class="event-image">
-                                <img src="{{ $user->profile->image }}" class="img-fluid" alt="image">
+                                <img src="{{optional( $user->profile)->image }}" class="img-fluid" alt="image">
                             </div>
                         </div>
                     </div>
@@ -38,11 +38,11 @@
                                         </li>
                                         <li>
                                             <span class="left-side">Mobile:</span>
-                                            <span class="right-side">{{ $user->profile->mobile }}</span>
+                                            <span class="right-side">{{ optional( $user->profile)->mobile }}</span>
                                         </li>
                                         <li>
                                             <span class="left-side">Country:</span>
-                                            <span class="right-side">{{ $user->profile->country->name }}</span>
+                                            <span class="right-side">{{ optional(optional( $user->profile)->country)->name }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -55,7 +55,7 @@
                                         <li>
                                             <span class="left-side">
                                                 Bio
-                                                <p>{{ $user->profile->title }} - {{ $user->profile->job }} </p>
+                                                <p>{{optional( $user->profile)->title }} - {{optional( $user->profile)->job }} </p>
                                             </span>
                                         </li>
                                     </ul>

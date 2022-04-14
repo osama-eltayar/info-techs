@@ -1,5 +1,6 @@
 let countryId ;
 $(function () {
+    viewMaterials()
     countryId = $('#country').val();
     initCitySelector()
     initCountrySelector()
@@ -15,13 +16,25 @@ $(function () {
         $('#city-selector').val('').trigger('change')
         $('#city-selector').prop('disabled',false)
     })
+
+    $(document).on('click','.delete-material-btn',function (){
+        onDeleteMaterials($(this).attr('data-idx'))
+        viewMaterials()
+    })
+
+    $('#materials-input').on('change',function (event){
+        onSelectMaterials(event)
+        viewMaterials()
+    })
 })
 
 function updateOwner() {
     const formElement = $('#edit-owner-form');
     const method = formElement.attr('method');
     const url = formElement.attr('action');
-    const data = new FormData(formElement[0])
+    let data = new FormData(formElement[0])
+    data.delete('materials[]')
+    data = appendMaterials(data)
     return $.ajax({
         url: url,
         type: method,
@@ -31,5 +44,7 @@ function updateOwner() {
         contentType: false
     })
 }
+
+
 
 

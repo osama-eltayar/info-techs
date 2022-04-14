@@ -24,25 +24,25 @@
                                 <div id="list1" class="input-content">
                                     <div class="title">
                                         <label>Course Date and time <span>*</span></label>
-                                        <button type="button" class="add-new" @click="onAddEventDateTimeRow">Add new</button>
+                                        <button type="button" class="add-new" @click="onAddEventDateTimeRow" :style="{'  pointer-events: none;' : [courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 }" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 " >Add new</button>
                                     </div>
                                     <div class="input-group row" v-for="(dateTimeData,idx) in eventData.eventDateTimeData" :key="idx">
                                         <div class="mb-2 col-md-5 col-sm-12">
                                             <label  class="form-label">Date</label>
-                                            <input type="date" class="form-control" :value="dateTimeData.date" id="date" data-toggle="datepicker" placeholder="Date" aria-label="Date" @change="onEventDateTimeChange(idx,'date',$event)">
+                                            <input type="date" class="form-control" :value="dateTimeData.date" id="date" data-toggle="datepicker" placeholder="Date" aria-label="Date" @change="onEventDateTimeChange(idx,'date',$event)" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 ">
                                         </div>
                                         <div class="col">
                                             <div class="row">
                                                 <div class="mb-2 col-md col-sm-12">
                                                     <label  class="form-label">Time From</label>
                                                     <div >
-                                                        <input type="time" class="form-control" id="from" :value="dateTimeData.from_time" @change="onEventDateTimeChange(idx,'from_time',$event)">
+                                                        <input type="time" class="form-control" id="from" :value="dateTimeData.from_time" @change="onEventDateTimeChange(idx,'from_time',$event)" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 ">
                                                     </div>
                                                 </div>
                                                 <div class="mb-2 col-md col-sm-12">
                                                     <label  class="form-label">Time To</label>
                                                     <div >
-                                                        <input type="time" class="form-control" id="to" :value="dateTimeData.to_time" @change="onEventDateTimeChange(idx,'to_time',$event)">
+                                                        <input type="time" class="form-control" id="to" :value="dateTimeData.to_time" @change="onEventDateTimeChange(idx,'to_time',$event)" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 ">
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,7 +56,7 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Country <span>*</span></label>
-                                <select class="form-select" aria-label="Default select example" @change="onCountryChange" v-model="eventData.countryId">
+                                <select class="form-select" aria-label="Default select example" @change="onCountryChange" v-model="eventData.countryId" id="country">
                                     <option selected value="" disabled>Country</option>
                                     <option v-for="country in countries" :key="country.id" :value="country.id">{{country.name}}</option>
                                 </select>
@@ -64,23 +64,23 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Address</label>
-                                <input type="text" class="form-control"  placeholder="" v-model="eventData.address">
+                                <input type="text" class="form-control"  placeholder="" v-model="eventData.address" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent].indexOf(eventData.typeId) != -1">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-12">
                             <div class="row">
                                 <div class="col-md-6 col-12">
-                                    <div class="mb-4 field-disabled">
+                                    <div class="mb-4 ">
                                         <label  class="form-label">Available seats</label>
-                                        <input type="number" class="form-control"  placeholder="20"  v-model="eventData.seats">
+                                        <input type="number" class="form-control"  placeholder=""  v-model="eventData.seats">
                                         <span class="message">Leave blank for unlimited seats</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="mb-4">
-                                        <label  class="form-label">Available seats</label>
-                                        <input type="number" class="form-control"  placeholder="20" v-model="eventData.cmeCount">
+                                        <label  class="form-label">CME's</label>
+                                        <input type="number" class="form-control"  placeholder="" v-model="eventData.cmeCount">
                                         <span class="message">Leave blank for none CME's</span>
                                     </div>
                                 </div>
@@ -101,10 +101,8 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Speciality <span>*</span></label>
-                                <select class="form-select" aria-label="Default select example" v-model="eventData.specialityId">
-                                    <option value="" selected disabled>Speciality</option>
-                                    <option v-for="speciality in specialities" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
-
+                                <select class="form-select" aria-label="Default select example" multiple id="speciality-selector">
+                                    <option v-for="speciality in specialities" :selected="eventData.specialities.includes(+speciality.id)" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
                                 </select>
                             </div>
 
@@ -118,7 +116,7 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">City</label>
-                                <select class="form-select" aria-label="Default select example" v-model="eventData.cityId" :disabled="!cities.length">
+                                <select class="form-select" aria-label="Default select example" id="city" v-model="eventData.cityId" :disabled="!cities.length">
                                     <option selected value="" disabled>City</option>
                                     <option v-for="city in cities" :key="city.id" :value="city.id">{{city.name}}</option>
                                 </select>
@@ -126,7 +124,7 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Location</label>
-                                <input type="text" class="form-control"  placeholder="" v-model="eventData.location">
+                                <input type="text" class="form-control"  placeholder="" v-model="eventData.location" :disabled="[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent].indexOf(eventData.typeId) != -1">
                             </div>
                         </div>
 
@@ -135,7 +133,7 @@
                                 <div id="list2" class="input-content">
                                     <div class="title">
                                         <label>Recorded event sections</label>
-                                        <button type="button" class="add-new" @click="onAddEventRecordedSessionRow">Add new</button>
+                                        <button type="button" class="add-new" @click="onAddEventRecordedSessionRow" >Add new</button>
                                     </div>
                                     <div class="input-group row" v-for="(recordedSessionData,idx) in eventData.recordedSessions" :key="idx">
                                         <div class="mb-2 col-md-4 col-sm-12">
@@ -181,7 +179,7 @@
                                 <span class="message">Fees in SAR | Leave blank for free course</span>
                             </div>
 
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-lg-6 col-12">
                                     <label  class="form-label">Course Discount</label>
                                     <div class="input-group row">
@@ -302,16 +300,21 @@
                     <h3 class="form-title"><i class="fa-solid fa-file"></i> Materials</h3>
                     <div class="upload-file">
                         <div class="custom-file">
-                            <input class="custom-file-input"  type="file"  id="material-input" name="materials[]" multiple/>
+                            <input class="custom-file-input materials-input"  type="file"  id="material-input" name="materials[]" multiple @change="onSelectMaterials($event)"/>
                             <label class="custom-file-label" ></label>
                         </div>
-                        <div class="action">
-                            <button type="button" class="btn btn-primary">Upload</button>
-                        </div>
+
                         <div class="message">
                             <span>Maximum size 50 MB</span>
                             <span>Extensions available jpg, png, pdf,  doc, docx, xls, pts</span>
                         </div>
+
+                        <ul>
+                            <li v-for="(material,idx) in materials">
+                                <p>{{material.name}} <i class="fa-solid fa-trash" @click="onDeleteMaterials(idx)" style="cursor: pointer"></i></p>
+
+                            </li>
+                        </ul>
                     </div>
 
                 </form>
@@ -321,7 +324,7 @@
         <div class="tab-pane fade " id="pills-6" role="tabpanel" aria-labelledby="pills-6-tab">
             <div class="form-content">
                 <form action="">
-                    <h3 class="form-title"><i class="fa-solid fa-info"></i> Event description</h3>
+                    <h3 class="form-title"><i class="fa-solid fa-info"></i> Event description <span style="color: #FF0000;">*</span></h3>
                     <div class="dis">
                         <div class="mb-4">
 <!--                            <textarea class="form-control" placeholder="English description"></textarea>-->
@@ -452,7 +455,24 @@ export default {
             this.syncEventSpeakers();
             this.onCountryChange();
             this.eventData.is_publish_scheduled = 1;
+            $('#speciality-selector').val(this.eventData.specialities).trigger('change')
+            this.materials = this.dbData['materials']
         }
+        this.initCitySelector()
+        this.initCountrySelector()
+        this.initSpecialitySelector()
+
+        $('#country').on('select2:select', ()=>{
+            this.eventData.countryId = $('#country').val();
+            this.onCountryChange()
+        })
+        $('#city').on('select2:select', ()=>{
+            this.eventData.cityId = $('#city').val();
+        })
+        $('#speciality-selector').on('select2:select select2:unselect', ()=>{
+            this.eventData.specialities = $('#speciality-selector').val();
+        })
+
     },
     data(){
         return {
@@ -463,7 +483,7 @@ export default {
                 typeId : '',
                 seats :'',
                 cmeCount :'',
-                specialityId:'',
+                specialities:[],
                 organization_id:'',
                 location:'',
                 address:'',
@@ -481,13 +501,15 @@ export default {
                 speakers : [],
                 chairPersons : [],
                 discount : {
-                    date : null,
-                    price :null
+
                 },
                 price:null,
-                survey_id : null
+                survey_id : null,
+                is_discount_available:false
             },
             cities:[],
+            materials : [],
+            materialsFormData:null,
             courseTypeEnum : {
                 onlineEvent: 1,
                 onlineCourse: 2,
@@ -587,8 +609,12 @@ export default {
         onFormSubmit(){
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
-            if (this.isEdit)
+            if (this.isEdit){
                 formData.append('_method','PUT')
+                if(this.eventData.sponsors.length == 1 &&  !this.eventData.sponsors[0].sponsor_type && !this.eventData.sponsors[0].sponsor_id){
+                    formData.delete('sponsors[0][name]')
+                }
+            }
 
             axios.post(this.formSubmitUrl,formData).then(({data})=>{
                 if (data && data.data && data.data.redirect)
@@ -617,15 +643,112 @@ export default {
             })
         },
         appendMaterials(formData){
-            const materialData = new FormData($('#material-form')[0])
-            materialData.getAll('materials[]').forEach(file=>{
-                formData.append('materials[]',file)
-            })
+            if (this.materialsFormData)
+                this.materialsFormData.forEach(file=>{
+                    formData.append('materials[]',file)
+                })
             return formData;
+        },
+        initCountrySelector(){
+            $('#country').select2({
+                placeholder: "Country",
+                allowClear: false,
+                ajax: {
+                    url: function() {
+                        return `/api/countries`;
+                    },
+                    // global : false,
+                    dataType: "json",
+                    processResults: function(data) {
+                        return mapSelect2Data(data);
+                    },
+                },
+            });
+        },
+        initCitySelector(){
+            $('#city').select2({
+                placeholder: "City",
+                allowClear: false,
+                ajax: {
+                    url: ()=> {
+                        return `/api/cities?country=${this.eventData.countryId}`;
+                    },
+                    // global : false,
+                    dataType: "json",
+                    processResults: function(data) {
+                        return mapSelect2Data(data);
+                    },
+                },
+            });
+        },
+        initSpecialitySelector(){
+            $('#speciality-selector').select2({
+                placeholder : "Specialities"
+            })
+        },
+        onSelectMaterials(event){
+            if (!this.materialsFormData)
+                this.materialsFormData = new FormData();
+
+
+            Array.from(event.target.files).forEach(file=>{
+                this.materialsFormData.append(`files[${file.name}]`,file)
+                this.materials.push(file)
+            })
+        },
+        onDeleteMaterials(idx){
+            if (this.materials[idx].id){
+                axios.delete(this.materials[idx].deleteUrl).then(({data})=>{
+
+                    if (data && data.message)
+                        toastr.success(data.message);
+
+                }).catch(({response})=>{
+                    const {data,status} = response;
+                    if(status == 422){
+                        toastr.clear();
+                        toastr.error(Object.values(data.errors)[0][0])
+                    }
+
+                    if ([401,402,403,429].indexOf(status) != -1) {
+                        toastr.clear();
+                        toastr.error(data.message);
+                    }
+
+
+                    if(status == 500)
+                        toastr.error("Internal Server Error");
+                })
+
+            }
+            else{
+            this.materialsFormData.delete(`files[${this.materials[idx].name}]`)
+            }
+            this.materials = this.materials.filter((material,index)=>{
+                return idx != index;
+            })
+
         }
+
+
     },
 }
 
+
+
+
+function mapSelect2Data(data) {
+    var data2 = [];
+    data.data.forEach(function (item) {
+        data2.push({
+            id: item.id,
+            text: item.name
+        })
+    });
+    return {
+        results: data2
+    };
+}
 </script>
 
 <style scoped>

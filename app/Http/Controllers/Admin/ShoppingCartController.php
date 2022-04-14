@@ -15,11 +15,11 @@ class ShoppingCartController extends Controller
     private static int $perPage = 10;
 
     /**
-     * 
+     *
      */
     public function index(Request $request, FetchShoppingCartsListService $fetchShoppingCartService)
     {
-        $filterData = $request->only(['number', 'name', 'course_name', 'paid_at', 'type']);
+        $filterData = $request->only(['number', 'name', 'course_name', 'from','to', 'type']);
         $shoppingCarts = $fetchShoppingCartService->execute($filterData, self::$perPage);
 
         // get sum of transactions and courses

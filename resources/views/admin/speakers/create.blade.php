@@ -38,7 +38,7 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="speciality_id" class="form-label">Peciality </label>
+                                        <label for="speciality_id" class="form-label">Speciality </label>
                                         <select class="form-select" aria-label="Default select example" name="speciality_id" td="speciality_id">
                                             <option selected></option>
                                             @foreach ($specialities as $speciality)

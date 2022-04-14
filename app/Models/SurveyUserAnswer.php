@@ -38,6 +38,33 @@ class SurveyUserAnswer extends Model
 
 
     //########################################### Relations ################################################
+    public function question()
+    {
+        return $this->belongsTo(SurveyQuestion::class,'question_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function answer()
+    {
+        return $this->belongsTo(SurveyQuestionAnswer::class,'answer_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
+
+
+
 
 
 }

@@ -11,6 +11,7 @@ class FetchCoursesListService
         return Course::query()
             ->with('organization')
             ->filter($filterData)
+            ->requestSort()
             ->when(!$perPage, function ($q) {
                 return $q->get();
             })

@@ -33,13 +33,13 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="true"><i class="fa-solid fa-flag"></i> Event status</button>
+                         <button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="false"><i class="fa-solid fa-flag"></i> Event status</button>
                     </li>
 
                   </ul>
 
                   <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                  <div class="tab-pane fade active show " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="box-date">
@@ -81,7 +81,7 @@
                                             </li>
                                             <li>
                                                 <span class="left-side">Course Survey:</span>
-                                                <span class="right-side"></span>
+                                                <a href="{{route('admin.events.surveys.export-answers',['event'=>$event->id,'survey' => $event->survey->id])}}" class="right-side">{{$event->survey->title}}</a>
                                             </li>
                                             <li>
                                                 <span class="left-side">Speciality:</span>
@@ -224,11 +224,11 @@
                                 <div class="box-date">
                                     <h3><i class="fa-solid fa-info"></i>  Event Description</h3>
                                        <div class="dis en-dis">
-                                           {{$event->description_en}}
+                                           {!!$event->description_en  !!}
                                        </div>
 
                                        <div class="dis ar-dis">
-                                            {{$event->description_ar}}
+                                           {!!$event->description_ar  !!}
                                         </div>
                                 </div>
 
@@ -268,8 +268,8 @@
                             <div class="image-info">
 {{--                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
                                 <span>
-                                    Dimension: Width (1080px) - Height (715px) <br>
-                                    X:(550px) Y:(350px) <br>
+                                    Dimension: Width (793px) - Height (521px) <br>
+                                    Name X:(400px) Y:(340px) <br>
                                     Maximum size: 10 MB
                                 </span>
                                 <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="certificate-form">
@@ -301,6 +301,7 @@
                         <div class="tab-action">
                             <button type="submit" class="btn btn-primary" id="save-certificate-img-btn" form="certificate-form">Save</button>
                         </div>
+                    </div>
                     </div>
                     <div class="tab-pane fade " id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                         <div class="title">
@@ -403,7 +404,6 @@
                                         <td>{{$user->id}}</td>
                                         <td><span class="left-side-full">{{$user->name}}</span></td>
 {{--                                        <td>{{$user->registeredCourses->first()->pivot->created_at->format('d M Y')}}</td>--}}
-                                        <td>__</td>
                                         <td>SAR {{$event->price}}</td>
                                         <td>--</td>
                                         <td>--</td>
@@ -421,12 +421,12 @@
                             </table>
                           </div>
                           {{$event->registeredUsers->links()}}
-                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">
-                                @csrf
-                            </form>
-                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">
-                                @csrf
-                            </form>
+{{--                            <form action="{{route('admin.registered-users.export.excel', $user->id)}}" method="POST" id="registered-users-export-excel-form">--}}
+{{--                                @csrf--}}
+{{--                            </form>--}}
+{{--                            <form action="{{route('admin.registered-users.export.pdf', $user->id)}}" method="POST" id="registered-users-export-pdf-form">--}}
+{{--                                @csrf--}}
+{{--                            </form>--}}
                           {{-- <nav aria-label="Page navigation example">
                           <div class="table-info text-end">
                             <h3>Total Amount   23 Hours</h3>
@@ -452,7 +452,7 @@
                     </div>
 
                   </div>
-                      <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                  <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
                           <div class="title">
 {{--                              <p class="message-zoom">No zoom link available to this event</p>--}}
                               <h3>Create Zoom link for this event</h3>

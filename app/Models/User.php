@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasFiles;
+use App\Traits\HasSort;
 use Filter\HasFilter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
     use HasFiles,HasFilter;
+    use HasSort;
 
     /**
      * The attributes that are mass assignable.

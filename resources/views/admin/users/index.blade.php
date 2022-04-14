@@ -20,7 +20,7 @@
         <div class="container-fluid bg-blue">
             <div class="content-body">
                 <div class="form-body">
-                    <h4>Create new user</h4>
+                    <a href="{{route('admin.users.create')}}"><h4>Create new user</h4></a>
                 </div>
                 <div class="col-12">
                     <div class="row">

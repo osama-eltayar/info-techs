@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasSort;
 use Filter\HasFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class ShoppingCart extends Pivot
 {
     use HasFilter;
+    use HasSort;
     /**
      * The attributes that are mass assignable.
      * @var array
