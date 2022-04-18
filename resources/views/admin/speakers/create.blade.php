@@ -74,7 +74,7 @@
                                         <label for="image" class="form-label">Upload Picture </label>
                                         <div class="upload-file">
                                             <div class="custom-file">
-                                                <input class="custom-file-input" name="image" id="image" type="file" accept=".jpg,.png"/>
+                                                <input class="custom-file-input" name="image" id="image" type="file" />
                                                 <label class="custom-file-label" ></label>
                                             </div>
                                             <div class="message">

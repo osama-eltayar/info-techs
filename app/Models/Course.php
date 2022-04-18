@@ -138,7 +138,7 @@ class Course extends Model
 
     public function getFormattedFromAttribute()
     {
-        if ($this->from)
+        if($this->from)
             return $this->from->format('h:i a');
     }
 

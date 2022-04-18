@@ -65,7 +65,7 @@ Route::group([
     });
 
 Route::get('migrate',function (){
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
+    \Illuminate\Support\Facades\Artisan::call('migrate');
 });
 
 
