@@ -22,7 +22,7 @@
         <!-- Start Form -->
         <section class="form-section">
             <div class="form-content table-box">
-                <form action="">
+                <form action="{{route('invoices.index')}}" method="GET">
                     <div class="title">
                         <i class="fa-solid fa-file-invoice-dollar"></i>  My Invoices
                     </div>
@@ -39,7 +39,7 @@
                                                 <label for="from-date" class="visually-hidden">From date</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input  data-toggle="datepicker" name="from-date" type="date" id="from-date" class="form-control">
+                                                <input  data-toggle="datepicker" name="from" type="date" id="from-date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@
                                                 <label for="from-date" class="visually-hidden">To date</label>
                                             </div>
                                             <div class="col-auto">
-                                                <input  data-toggle="datepicker" type="date" name="from-date" id="from-date" class="form-control">
+                                                <input  data-toggle="datepicker" type="date" name="to" id="to-date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -105,7 +105,8 @@
                     </table>
                 </div>
                 <div class="text-right">
-                    <nav aria-label="Page navigation example">
+                    {{ $invoices->links() }}
+                    <!-- <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
                                 <a class="page-link" href="#" aria-label="Previous">
@@ -119,7 +120,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> -->
                 </div>
             </div>
         </section>
