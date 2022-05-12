@@ -41,11 +41,11 @@ class OwnerRequest extends FormRequest
             'name_en'    => [ 'required', 'string' ],
             'name_ar'    => [ 'required', 'string' ],
             'logo'       => [ Rule::requiredIf($this->isMethod('POST')), 'image', 'max:' . self::$maxLogoSize ],
-            'materials'   => [ Rule::requiredIf($this->isMethod('POST')), 'array' ],
+            'materials'   => [ 'nullable', 'array' ],
             'materials.*' => [ 'required', 'file', 'mimes:pdf', 'max:' . self::$maxMaterialSize ],
             'email'      => [ 'required', 'email', 'unique:users,email,' . optional(optional($this->owner)->user)->id ],
             'password'   => [ Rule::requiredIf($this->isMethod('POST'))] + ($this->isMethod('POST') ? ['string','min:' . self::$minPasswordLength ]:['nullable'] ),
-            'mobile'     => [ 'required', 'string' ],
+            'mobile'     => [ 'required', 'string' ,'unique:organizations,mobile,' .optional($this->owner)->id],
             'country_id' => [ 'required', 'exists:countries,id' ],
             'city_id'    => [ 'required', 'exists:cities,id' ]
         ];

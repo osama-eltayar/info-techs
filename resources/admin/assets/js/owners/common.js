@@ -61,9 +61,10 @@ function onDeleteMaterials(idx){
 }
 
 function appendMaterials(formData){
-    materialsFormData.forEach(file=>{
-        formData.append('materials[]',file)
-    })
+    if (materialsFormData)
+        materialsFormData.forEach(file=>{
+            formData.append('materials[]',file)
+        })
     return formData;
 }
 

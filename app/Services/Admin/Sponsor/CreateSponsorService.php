@@ -29,12 +29,13 @@ class CreateSponsorService
         $sponsor->update([
             'logo' => $this->storeFile('organizations',$data['sponsor_data']['logo'],$sponsor),
         ]);
-        $sponsor->material()->create([
-            'path' => $this->storeFile('sponsors',$data['sponsor_data']['material'],$sponsor),
-            'mime_type' => $data['sponsor_data']['material']->getClientMimeType(),
-            'name_ar'   => $data['sponsor_data']['material']->getClientOriginalName(),
-            'name_en'   => $data['sponsor_data']['material']->getClientOriginalName(),
-        ]);
+        if (isset($data['sponsor_data']['material']))
+            $sponsor->material()->create([
+                'path' => $this->storeFile('sponsors',$data['sponsor_data']['material'],$sponsor),
+                'mime_type' => $data['sponsor_data']['material']->getClientMimeType(),
+                'name_ar'   => $data['sponsor_data']['material']->getClientOriginalName(),
+                'name_en'   => $data['sponsor_data']['material']->getClientOriginalName(),
+            ]);
         DB::commit();
         return compact('sponsor');
     }

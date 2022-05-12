@@ -52,9 +52,9 @@
                                                         </span>
                                                 <span>Extensions available jpg, png</span>
                                             </div>
-                                            <div class="file-info">
-                                                <span>Logo  - 5 MB  ( Right side ) <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>
-                                            </div>
+{{--                                            <div class="file-info">--}}
+{{--                                                <span>Logo  - 5 MB  ( Right side ) <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="mb-4">
