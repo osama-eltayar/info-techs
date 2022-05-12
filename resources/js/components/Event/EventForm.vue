@@ -16,8 +16,8 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Course Name <span>*</span></label>
-                                <input type="text" class="form-control mb-3"  placeholder="English Language" v-model="eventData.titleEn">
-                                <input type="text" class="form-control "  placeholder="Arabic Language" v-model="eventData.titleAr">
+                                <input type="text" class="form-control mb-3"  placeholder="English Language" v-model="eventData.titleEn" required>
+                                <input type="text" class="form-control "  placeholder="Arabic Language" v-model="eventData.titleAr" required>
                             </div>
 
                             <div class="mb-4"  :class="{'field-disabled' :[courseTypeEnum.onlineCourse,courseTypeEnum.onlineEvent,courseTypeEnum.hybrid,courseTypeEnum.physical].indexOf(eventData.typeId) == -1 }" >
@@ -88,7 +88,7 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Certification availability %  <span>*</span></label>
-                                <input type="number" class="form-control"  placeholder="" v-model="eventData.certificate">
+                                <input type="number" class="form-control"  placeholder="" v-model="eventData.certificate" required>
                             </div>
 
                             <div class="mb-4">
@@ -101,7 +101,7 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Speciality <span>*</span></label>
-                                <select class="form-select" aria-label="Default select example" multiple id="speciality-selector">
+                                <select class="form-select" aria-label="Default select example" multiple id="speciality-selector" >
                                     <option v-for="speciality in specialities" :selected="eventData.specialities.includes(+speciality.id)" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
                                 </select>
                             </div>
@@ -175,7 +175,7 @@
                         <div class="col-xl-6 col-12">
                             <div class="mb-4">
                                 <label  class="form-label">Course fees    <span class="fees">0 SAR</span></label>
-                                <input type="number" class="form-control"  placeholder="" v-model="eventData.price">
+                                <input type="number" class="form-control"  placeholder="" v-model="eventData.price" required>
                                 <span class="message">Fees in SAR | Leave blank for free course</span>
                             </div>
 
@@ -328,11 +328,11 @@
                     <div class="dis">
                         <div class="mb-4">
 <!--                            <textarea class="form-control" placeholder="English description"></textarea>-->
-                            <vue-editor v-model="eventData.descriptionEn" :editorToolbar="customToolbar"></vue-editor>
+                            <vue-editor v-model="eventData.descriptionEn" :editorToolbar="customToolbar" required></vue-editor>
                         </div>
                         <div class="mb-4">
 <!--                            <textarea class="form-control" placeholder="Arabic description" style="direction: rtl;"></textarea>-->
-                            <vue-editor v-model="eventData.descriptionAr" :editorToolbar="customToolbar" style="direction: rtl;"></vue-editor>
+                            <vue-editor v-model="eventData.descriptionAr" :editorToolbar="customToolbar" required style="direction: rtl;"></vue-editor>
                         </div>
                     </div>
 
@@ -347,46 +347,42 @@
                         <label  class="form-label">TOP SIDE</label>
                         <div class="upload-file">
                             <div class="custom-file">
-                                <input class="custom-file-input"  type="file"/>
+                                <input class="custom-file-input"  type="file" name="event_media[top_side]" @change="onSelectMedia"/>
                                 <label class="custom-file-label" ></label>
                             </div>
-                            <div class="action">
-                                <button type="button" class="btn btn-primary">Upload</button>
-                            </div>
+
                             <div class="message">
                                                             <span>Dimension: Width (1920px) - Height (400px)
                                                             </span>
                                 <span>Maximum size: 10 MB</span>
                             </div>
                         </div>
-                        <div class="result-file">
-                            <i class="fa-solid fa-photo-film"></i>
-                            <span>header.jpg  - 5 MB  ( Top side )</span>
-                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
+<!--                        <div class="result-file">-->
+<!--                            <i class="fa-solid fa-photo-film"></i>-->
+<!--                            <span>header.jpg  - 5 MB  ( Top side )</span>-->
+<!--                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>-->
+<!--                        </div>-->
                     </div>
 
                     <div class="mb-4">
                         <label  class="form-label">LEFT SIDE</label>
                         <div class="upload-file">
                             <div class="custom-file">
-                                <input class="custom-file-input"  type="file"/>
+                                <input class="custom-file-input"  type="file" name="event_media[left_side]" @change="onSelectMedia"/>
                                 <label class="custom-file-label" ></label>
                             </div>
-                            <div class="action">
-                                <button type="button" class="btn btn-primary">Upload</button>
-                            </div>
+
                             <div class="message">
                                                             <span>Dimension: Width (1920px) - Height (400px)
                                                             </span>
                                 <span>Maximum size: 10 MB</span>
                             </div>
                         </div>
-                        <div class="result-file">
-                            <i class="fa-solid fa-photo-film"></i>
-                            <span>header.jpg  - 5 MB  ( Top side )</span>
-                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
+<!--                        <div class="result-file">-->
+<!--                            <i class="fa-solid fa-photo-film"></i>-->
+<!--                            <span>header.jpg  - 5 MB  ( Top side )</span>-->
+<!--                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>-->
+<!--                        </div>-->
                     </div>
 
                 </form>
@@ -422,7 +418,7 @@
                     </div>
                     <div class="mb-4">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault2" v-model="eventData.confirmed">
+                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault2" v-model="eventData.confirmed" required>
                             <label class="form-check-label" for="flexCheckDefault2">
                                 I confirm to create the event
                             </label>
@@ -509,7 +505,9 @@ export default {
             },
             cities:[],
             materials : [],
+            media : [],
             materialsFormData:null,
+            mediaFormData:null,
             courseTypeEnum : {
                 onlineEvent: 1,
                 onlineCourse: 2,
@@ -609,6 +607,7 @@ export default {
         onFormSubmit(){
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
+            formData = this.appendMedia(formData)
             if (this.isEdit){
                 formData.append('_method','PUT')
                 if(this.eventData.sponsors.length == 1 &&  !this.eventData.sponsors[0].sponsor_type && !this.eventData.sponsors[0].sponsor_id){
@@ -648,6 +647,25 @@ export default {
                     formData.append('materials[]',file)
                 })
             return formData;
+        },
+        appendMedia(formData){
+            if (this.mediaFormData){
+                if(this.mediaFormData.get('event_media[top_side]'))
+                    formData.append('event_media[top_side]',this.mediaFormData.get('event_media[top_side]'))
+                if(this.mediaFormData.get('event_media[left_side]'))
+                    formData.append('event_media[left_side]',this.mediaFormData.get('event_media[left_side]'))
+            }
+            return formData;
+        },
+        onSelectMedia(){
+            if (!this.mediaFormData)
+                this.mediaFormData = new FormData();
+
+
+            Array.from(event.target.files).forEach(file=>{
+                this.mediaFormData.append(`${event.target.name}`,file)
+                this.media.push(file)
+            })
         },
         initCountrySelector(){
             $('#country').select2({

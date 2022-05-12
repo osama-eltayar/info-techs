@@ -46,10 +46,12 @@ class UpdateEventService
         DB::beginTransaction();
         $this->course->update($courseData);
         $this->storeMaterials();
+        $this->storeMedia();
         $this->storeDiscount();
         if(isset($this->data['speakers']))
             $this->course->speakers()->sync($this->data['speakers']);
 //        $this->course->people()->attach($this->data['chairPersons']);
+        if(isset($this->data['specialities']))
         $this->course->specialities()->sync($this->data['specialities']);
         $this->storeSponsors();
         $this->storeSessions();
@@ -71,6 +73,16 @@ class UpdateEventService
                 'mime_type' => $material->getClientMimeType()
             ]);
         }
+    }
+
+    protected function storeMedia()
+    {
+        $mediaData = [];
+        if (isset($this->data['event_media']['top_side']) && $this->data['event_media']['top_side'])
+            $mediaData['top_side'] = $this->storeFile('courses', $this->data['event_media']['top_side'], $this->course);
+        if (isset($this->data['event_media']['left_side']) && $this->data['event_media']['left_side'])
+            $mediaData['left_side'] = $this->storeFile('courses', $this->data['event_media']['left_side'], $this->course);
+        $this->course->update($mediaData);
     }
 
     protected function storeDiscount()

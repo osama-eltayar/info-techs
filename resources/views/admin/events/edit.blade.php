@@ -67,6 +67,19 @@
     <script src="/admin/assets/js/vendor/datepicker.js"></script>
     <script src="/admin/assets/js/vendor/jquery-clockpicker.js"></script>
     <script>
+        // Upload file
+        $(document).ready(function() {
+            $(document).on('change', '.custom-file-input',function(event){
+                var files = event.target.files;
+                console.log(files);
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    $(this).next('.custom-file-label').addClass("selected").html(file.name);
+                }
+            });
+        });
+    </script>
+    <script>
        // $(function (){
        //     $('[data-toggle="datepicker"]').datepicker();
        //

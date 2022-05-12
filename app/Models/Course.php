@@ -49,7 +49,9 @@ class Course extends Model
             'country_id',
             'city_id',
             'badge',
-            'survey_id'
+            'survey_id',
+            'top_side',
+            'left_side'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to','published_at' ];
@@ -311,7 +313,9 @@ class Course extends Model
 
     public function onlineSessions()
     {
-        return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
+        return $this->sessions()->where(function ($q) {
+            $q->where('type', CourseSession::ONLINE)->orWhereNull('type');
+        });
     }
 
     public function survey()

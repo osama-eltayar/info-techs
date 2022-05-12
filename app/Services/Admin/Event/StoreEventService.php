@@ -49,6 +49,7 @@ class StoreEventService
         DB::beginTransaction();
         $this->course = Course::create($courseData);
         $this->storeMaterials();
+        $this->storeMedia();
         $this->storeDiscount();
         if(isset($this->data['speakers']))
             $this->course->speakers()->attach($this->data['speakers']);
@@ -72,6 +73,16 @@ class StoreEventService
                 'mime_type' => $material->getClientMimeType()
             ]);
         }
+    }
+
+    protected function storeMedia()
+    {
+        $mediaData = [];
+        if (isset($this->data['event_media']['top_side']) && $this->data['event_media']['top_side'])
+            $mediaData['top_side'] = $this->storeFile('courses', $this->data['event_media']['top_side'], $this->course);
+        if (isset($this->data['event_media']['left_side']) && $this->data['event_media']['left_side'])
+            $mediaData['left_side'] = $this->storeFile('courses', $this->data['event_media']['left_side'], $this->course);
+        $this->course->update($mediaData);
     }
 
     protected function storeDiscount()
