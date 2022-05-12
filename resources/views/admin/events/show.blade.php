@@ -79,9 +79,12 @@
                                                     {{-- (show on) --}}
                                                 </span>
                                             </li>
+
                                             <li>
                                                 <span class="left-side">Course Survey:</span>
+                                                @if($event->survey_id)
                                                 <a href="{{route('admin.events.surveys.export-answers',['event'=>$event->id,'survey' => $event->survey->id])}}" class="right-side">{{$event->survey->title}}</a>
+                                                @endif
                                             </li>
                                             <li>
                                                 <span class="left-side">Speciality:</span>

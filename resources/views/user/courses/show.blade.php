@@ -245,29 +245,30 @@
         </div>
     </div>
 @endforeach
-<div class="modal  survey-modal" id="surveyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg  modal-dialog-centered">
-        <div class="modal-content">
+@if($course->survey_id)
+    <div class="modal  survey-modal" id="surveyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg  modal-dialog-centered">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="top-icon"><i class="fa-solid fa-ballot-check"></i> Survey</h4>
-                <form action="{{route('courses.survey.answers.store',['course' => $course->id,'survey' =>  $course->survey->id])}}" id="survey-form" method="POST">
-                    <div class="row survey-info">
-                        <div class="col-md-9 col-12">
-                            <p>To print your certificate you must finish this survey</p>
-                        </div>
-                        <div class="col-md-3 col-12 text-right">
-                            <div class="num">
-                                Question <span id="current-question-number">1</span>/{{$course->survey->questions->count()}}
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="top-icon"><i class="fa-solid fa-ballot-check"></i> Survey</h4>
+                    <form action="{{route('courses.survey.answers.store',['course' => $course->id,'survey' =>  $course->survey->id])}}" id="survey-form" method="POST">
+                        <div class="row survey-info">
+                            <div class="col-md-9 col-12">
+                                <p>To print your certificate you must finish this survey</p>
+                            </div>
+                            <div class="col-md-3 col-12 text-right">
+                                <div class="num">
+                                    Question <span id="current-question-number">1</span>/{{$course->survey->questions->count()}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @foreach($course->survey->questions as $question)
-                        <div class="form-group {{!$loop->first ? 'hide': ''}} survey-question-container" data-question-idx="{{$loop->iteration}}">
-                            <label for="qus">{{$loop->iteration}}){{$question->title}}</label>
+                        @foreach($course->survey->questions as $question)
+                            <div class="form-group {{!$loop->first ? 'hide': ''}} survey-question-container" data-question-idx="{{$loop->iteration}}">
+                                <label for="qus">{{$loop->iteration}}){{$question->title}}</label>
                                 @foreach($question->answers as $answer)
 
                                     @if($question->type == \App\Models\SurveyQuestion::TEXT)
@@ -279,33 +280,35 @@
                                     @endif
                                     @if($question->type == \App\Models\SurveyQuestion::RADIO)
                                         {{$answer->title}}
-                                    @foreach($answer->labels as $answerLabel)
-                                        <div class="custom-control custom-radio">
+                                        @foreach($answer->labels as $answerLabel)
+                                            <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" id="answer-label{{$answerLabel->id}}" name="questions[{{$question->id}}][{{$answer->id}}]" value="{{$answerLabel->title}}" required>
                                                 <label class="custom-control-label" id="answer-label{{$answerLabel->id}}">{{$answerLabel->title}}</label>
-                                        </div>
-                                    @endforeach
+                                            </div>
+                                        @endforeach
                                     @endif
 
-                                        @if($question->type == \App\Models\SurveyQuestion::CHECKBOX)
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input type="checkbox"  class="form-check-input" id="answer-{{$answer->id}}" name="questions[{{$question->id}}][{{$answer->id}}]" value="{{$answer->title}}" required >
-                                                    <label class="form-check-label"  id="answer-{{$answer->id}}">{{$answer->title}}</label>
-                                                </div>
+                                    @if($question->type == \App\Models\SurveyQuestion::CHECKBOX)
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox"  class="form-check-input" id="answer-{{$answer->id}}" name="questions[{{$question->id}}][{{$answer->id}}]" value="{{$answer->title}}" required >
+                                                <label class="form-check-label"  id="answer-{{$answer->id}}">{{$answer->title}}</label>
                                             </div>
-                                        @endif
+                                        </div>
+                                    @endif
 
                                 @endforeach
-                        </div>
-                    @endforeach
-                    <button class="btn btn-default submit-question-btn" type="button">Submit</button>
-                    <h3 class="message text-center survey-success-msg hide"><i class="fa-solid fa-circle-check"></i> Congratulation you can now print your certificate</h3>
-                </form>
+                            </div>
+                        @endforeach
+                        <button class="btn btn-default submit-question-btn" type="button">Submit</button>
+                        <h3 class="message text-center survey-success-msg hide"><i class="fa-solid fa-circle-check"></i> Congratulation you can now print your certificate</h3>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+@endif
 @endsection
 
 
@@ -314,7 +317,9 @@
     <script>
      var courseId = "{{$course->id}}"
      let surveyQuestionIdx = 1;
+     @if($course->survey_id)
      let surveyQuestionCount = '{{$course->survey->questions->count()}}'
+     @endif
     </script>
 <script src="/js/courses/show.min.js"></script>
     <script>
