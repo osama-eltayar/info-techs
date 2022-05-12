@@ -224,8 +224,8 @@
 
                                     <button id="btn-close-iframe" class="hide" >close iframe</button>
 
-                                    <iframe src="" id="meeting-iframe" class="hide embed-responsive-item" width="100%" height="600px"
-                                            ></iframe>
+{{--                                    <iframe src="" id="meeting-iframe" class="hide embed-responsive-item" width="100%" height="600px"--}}
+{{--                                            ></iframe>--}}
             </div>
         </div>
     </div>

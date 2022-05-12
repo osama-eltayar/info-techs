@@ -9,8 +9,10 @@
 <body>
 <script src="{{asset('js/common.min.js')}}"></script>
 <script>
-    $('#btn-close-iframe', window.parent.document).click();
-    console.log($('#btn-close-iframe', window.parent.document))
+    // $('#btn-close-iframe', window.parent.document).click();
+    window.close();
+
+    // console.log($('#btn-close-iframe', window.parent.document))
 </script>
 </body>
 </html>

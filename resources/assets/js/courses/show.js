@@ -63,9 +63,10 @@ function getJoinMeetingUrl(url) {
 
 function joinMeeting(url) {
     $('video').hide()
-    $('#meeting-iframe').attr('src', url)
-    $('#meeting-iframe').removeClass('hide')
-    $('#video-modal').modal('show')
+    window.open(url, '_blank').focus();
+    // $('#meeting-iframe').attr('src', url)
+    // $('#meeting-iframe').removeClass('hide')
+    // $('#video-modal').modal('show')
 }
 
 function addToCart(courseId, url) {
