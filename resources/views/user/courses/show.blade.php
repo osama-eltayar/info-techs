@@ -115,7 +115,7 @@
                                     <img src="{{$speaker->image_url}}" alt="user">
                                 </div>
                                 <div class="right-side-box">
-                                    <p>{{$speaker->title}} {{$speaker->name}}</p>
+                                    <p>{{$speaker->title->name}} {{$speaker->name}}</p>
                                 </div>
                                 <div class="bio">
                                     <span>speaker bio</span>
@@ -239,7 +239,22 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h3>sponsor</h3>
+                    <div class="row">
+                        <div class="col-6">Name</div>
+                        <div class="col-6">{{ $sponsor->name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Description</div>
+                        <div class="col-6">{{ $sponsor->description }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fa-solid fa-files"></i> {{$sponsor->material->name}} . {{$sponsor->material->mime_type}} <small>1 MB</small></p>
+                        </div>
+                        <div class="col-6"><a href="{{$material->download_url}}" download>
+                            <i class="fa-solid fa-angles-down"></i> download</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
