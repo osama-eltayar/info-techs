@@ -347,46 +347,42 @@
                         <label  class="form-label">TOP SIDE</label>
                         <div class="upload-file">
                             <div class="custom-file">
-                                <input class="custom-file-input"  type="file"/>
+                                <input class="custom-file-input"  type="file" name="event_media[top_side]" @change="onSelectMedia"/>
                                 <label class="custom-file-label" ></label>
                             </div>
-                            <div class="action">
-                                <button type="button" class="btn btn-primary">Upload</button>
-                            </div>
+
                             <div class="message">
                                                             <span>Dimension: Width (1920px) - Height (400px)
                                                             </span>
                                 <span>Maximum size: 10 MB</span>
                             </div>
                         </div>
-                        <div class="result-file">
-                            <i class="fa-solid fa-photo-film"></i>
-                            <span>header.jpg  - 5 MB  ( Top side )</span>
-                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
+<!--                        <div class="result-file">-->
+<!--                            <i class="fa-solid fa-photo-film"></i>-->
+<!--                            <span>header.jpg  - 5 MB  ( Top side )</span>-->
+<!--                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>-->
+<!--                        </div>-->
                     </div>
 
                     <div class="mb-4">
                         <label  class="form-label">LEFT SIDE</label>
                         <div class="upload-file">
                             <div class="custom-file">
-                                <input class="custom-file-input"  type="file"/>
+                                <input class="custom-file-input"  type="file" name="event_media[left_side]" @change="onSelectMedia"/>
                                 <label class="custom-file-label" ></label>
                             </div>
-                            <div class="action">
-                                <button type="button" class="btn btn-primary">Upload</button>
-                            </div>
+
                             <div class="message">
                                                             <span>Dimension: Width (1920px) - Height (400px)
                                                             </span>
                                 <span>Maximum size: 10 MB</span>
                             </div>
                         </div>
-                        <div class="result-file">
-                            <i class="fa-solid fa-photo-film"></i>
-                            <span>header.jpg  - 5 MB  ( Top side )</span>
-                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
+<!--                        <div class="result-file">-->
+<!--                            <i class="fa-solid fa-photo-film"></i>-->
+<!--                            <span>header.jpg  - 5 MB  ( Top side )</span>-->
+<!--                            <button type="button" class="remove-file" ><i class="fa-solid fa-trash-can"></i></button>-->
+<!--                        </div>-->
                     </div>
 
                 </form>
@@ -509,7 +505,9 @@ export default {
             },
             cities:[],
             materials : [],
+            media : [],
             materialsFormData:null,
+            mediaFormData:null,
             courseTypeEnum : {
                 onlineEvent: 1,
                 onlineCourse: 2,
@@ -609,6 +607,7 @@ export default {
         onFormSubmit(){
             let formData = buildFormData(new FormData(),this.eventData,'');
             formData = this.appendMaterials(formData)
+            formData = this.appendMedia(formData)
             if (this.isEdit){
                 formData.append('_method','PUT')
                 if(this.eventData.sponsors.length == 1 &&  !this.eventData.sponsors[0].sponsor_type && !this.eventData.sponsors[0].sponsor_id){
@@ -648,6 +647,25 @@ export default {
                     formData.append('materials[]',file)
                 })
             return formData;
+        },
+        appendMedia(formData){
+            if (this.mediaFormData){
+                if(this.mediaFormData.get('event_media[top_side]'))
+                    formData.append('event_media[top_side]',this.mediaFormData.get('event_media[top_side]'))
+                if(this.mediaFormData.get('event_media[left_side]'))
+                    formData.append('event_media[left_side]',this.mediaFormData.get('event_media[left_side]'))
+            }
+            return formData;
+        },
+        onSelectMedia(){
+            if (!this.mediaFormData)
+                this.mediaFormData = new FormData();
+
+
+            Array.from(event.target.files).forEach(file=>{
+                this.mediaFormData.append(`${event.target.name}`,file)
+                this.media.push(file)
+            })
         },
         initCountrySelector(){
             $('#country').select2({

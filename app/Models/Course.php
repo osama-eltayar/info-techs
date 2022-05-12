@@ -49,7 +49,9 @@ class Course extends Model
             'country_id',
             'city_id',
             'badge',
-            'survey_id'
+            'survey_id',
+            'top_side',
+            'left_side'
         ];
 
     protected $dates = [ 'start_date', 'end_date', 'from', 'to','published_at' ];
