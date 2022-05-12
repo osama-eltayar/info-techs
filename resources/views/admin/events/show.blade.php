@@ -483,6 +483,11 @@
                                   </div>
                           </div>
                       </div>
+                      @include('admin.events.partials.event-show-tabs.event-details-tab')
+                      @include('admin.events.partials.event-show-tabs.certificate-tab')
+                      @include('admin.events.partials.event-show-tabs.zoom-link-tab')
+                      @include('admin.events.partials.event-show-tabs.event-status-tab')
+                  </div>
             </div>
         </div>
     </div>
