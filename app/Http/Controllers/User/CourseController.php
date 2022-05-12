@@ -33,6 +33,7 @@ class CourseController extends Controller
                             ->withExists('registeredAuthUser')
                             ->withExists('shoppingCartAuthUser')
                             ->withCount('views')
+                            ->whereDate('published_at', '<=', now())
                             ->get();
 
         if ( $request->ajax() )
