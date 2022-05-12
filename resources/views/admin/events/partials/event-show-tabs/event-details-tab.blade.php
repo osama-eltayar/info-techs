@@ -1,4 +1,4 @@
-<div class="tab-pane fade active show event-details-tab " id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+<div class="tab-pane fade active show event-details-tab" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
     <div class="row">
         <div class="col-lg-6 col-12">
             <div class="box-date">
@@ -38,9 +38,12 @@
                                                     {{-- (show on) --}}
                                                 </span>
                         </li>
+
                         <li>
                             <span class="left-side">Course Survey:</span>
-                            <span class="right-side"></span>
+                            @if($event->survey_id)
+                                <a href="{{route('admin.events.surveys.export-answers',['event'=>$event->id,'survey' => $event->survey->id])}}" class="right-side">{{$event->survey->title}}</a>
+                            @endif
                         </li>
                         <li>
                             <span class="left-side">Speciality:</span>
@@ -183,11 +186,11 @@
             <div class="box-date">
                 <h3><i class="fa-solid fa-info"></i>  Event Description</h3>
                 <div class="dis en-dis">
-                    {{$event->description_en}}
+                    {!!$event->description_en  !!}
                 </div>
 
                 <div class="dis ar-dis">
-                    {{$event->description_ar}}
+                    {!!$event->description_ar  !!}
                 </div>
             </div>
 

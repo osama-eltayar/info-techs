@@ -1,18 +1,18 @@
-<div class="tab-pane fade certificate-tab " id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+<div class="tab-pane fade " id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
     <div class="certificate-content">
         <h3>Event Certificate</h3>
         <div class="image-content">
             @if($event->certificate_image_url)
-            <img src="{{$event->certificate_image_url}}" class="img-fluid" alt="image" id="certificate-img">
+                <img src="{{$event->certificate_image_url}}" class="img-fluid" alt="image" id="certificate-img">
             @else
-            <img src="/admin/assets/img/certificate.png" class="img-fluid" alt="image" id="certificate-img">
+                <img src="/admin/assets/img/certificate.png" class="img-fluid" alt="image" id="certificate-img">
             @endif
         </div>
         <div class="image-info">
             {{--                                <span>my certificate.png  2 MB <button class="remove-btn"><i class="fa-solid fa-trash-can"></i></button></span>--}}
             <span>
-                                    Dimension: Width (1080px) - Height (715px) <br>
-                                    X:(550px) Y:(350px) <br>
+                                    Dimension: Width (793px) - Height (521px) <br>
+                                    Name X:(400px) Y:(340px) <br>
                                     Maximum size: 10 MB
                                 </span>
             <form action="{{route('admin.events.upload-certificate',$event->id)}}" method="POST" enctype="multipart/form-data" id="certificate-form">

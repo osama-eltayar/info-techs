@@ -19,7 +19,7 @@
                     @endif
                 </div>
             </div>
-            
+
             <div class="event-body">
                 <div class="boxes-section">
                     <h4>{{$user->name}} </h4>
@@ -30,7 +30,7 @@
                                 {{$trackers->avg('time_progress')?? 0}}%
                                 <small>No certificate</small>
                             </h5>
-                            
+
                             {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-lg-6 col-12 text-end">
                             <h3>
-                                Export report    
+                                Export report
                                 <a class="btn-file btn-pdf" href="#"><i class="fa-solid fa-file-pdf"></i></a>
                                 <a class="btn-file btn-excel" href="#"><i class="fa-solid fa-file-excel"></i></a>
                             </h3>
@@ -88,7 +88,7 @@
                             <th scope="col">Total</th>
                           </thead>
                           <tbody>
-                            @foreach ($trackers as $tracker)  
+                            @foreach ($trackers as $tracker)
                             <tr>
                               <td>{{$tracker->id}}</td>
                               <td>15/11/2015</td>
