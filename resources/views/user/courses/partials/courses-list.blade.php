@@ -23,7 +23,7 @@
                     @if($course->activeDiscount)
                         @if($course->activeDiscount->date)
                             <div class="icon price">
-                                <i class="fa-solid fa-dollar-sign"></i> <b>Price:</b> <span><small class="currency" style="color: black !important;">SAR</small>{{$course->activeDiscount->price}}</span> <small>Before {{$course->activeDiscount->date}}</small>
+                                <i class="fa-solid fa-dollar-sign"></i> <b>Price:</b> <span><small class="currency" style="color: black !important;">SAR</small>{{$course->activeDiscount->price}}</span> <small>Before {{$course->activeDiscount->formattedDate}}</small>
                             </div>
                         @else
                             <div class="icon price">
