@@ -12,7 +12,7 @@
                         <label for="" class="form-label"><strong>Date {{$loop->iteration}}:</strong> <span>{{$session->start_at->toDateString()}}      {{$session->start_at->toTimeString()}}   to {{$session->end_at->toTimeString()}}  </span></label>
                         <div class="d-flex">
                             <input type="text" class="form-control mx-1" id="" placeholder="Meeting Id" value="{{$session->zoom_meeting_id}}" name="sessions[{{$session->id}}][zoom_meeting_id]">
-                            <input type="text" class="form-control" id="" placeholder="Meeting Password" value="{{$session->zoom_meeting_password}}"  name="sessions[{{$session->id}}][zoom_meeting_password]">
+                            <input type="password" class="form-control" id="" placeholder="Meeting Password" value="{{$session->zoom_meeting_password}}"  name="sessions[{{$session->id}}][zoom_meeting_password]">
                         </div>
                         <span class="message">Add zoom details here</span>
                     </div>
