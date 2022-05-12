@@ -6,7 +6,7 @@
     @if($course->activeDiscount->date)
         <div class="icon price">
             <div class="scissors">
-                <i class="fa-solid fa-scissors"></i> this price is valid Before {{$course->activeDiscount->date}}
+                <i class="fa-solid fa-scissors"></i> this price is valid Before {{$course->activeDiscount->formattedDate}}
                 <strong>Price: <b>${{$course->activeDiscount->price}}</b></strong>
             </div>
         </div>
