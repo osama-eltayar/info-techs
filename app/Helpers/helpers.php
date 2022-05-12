@@ -66,3 +66,11 @@ if ( !function_exists('getSortDirection') ) {
         return $prevOrder['col'] == $col && $prevOrder['direction'] == 'asc' ? 'desc' : 'asc';
     }
 }
+
+if (!function_exists('dumpFullQuery')) {
+    function dumpFullQuery($builder)
+    {
+        $query = str_replace(array('?'), array('\'%s\''), $builder->toSql());
+        return vsprintf($query, $builder->getBindings());
+    }
+}

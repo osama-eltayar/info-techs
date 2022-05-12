@@ -311,7 +311,9 @@ class Course extends Model
 
     public function onlineSessions()
     {
-        return $this->sessions()->where('type',CourseSession::ONLINE)->orWhereNull('type');
+        return $this->sessions()->where(function ($q) {
+            $q->where('type', CourseSession::ONLINE)->orWhereNull('type');
+        });
     }
 
     public function survey()
