@@ -28,7 +28,8 @@ class CreateOwnerService
         $organization->update([
             'logo' => $this->storeFile('organizations',$data['organization_data']['logo'],$organization),
         ]);
-        $this->storeMaterials($organization,$data['organization_data']['materials']);
+        if (isset($data['organization_data']['materials']))
+            $this->storeMaterials($organization,$data['organization_data']['materials']);
         DB::commit();
         return compact('user','organization');
     }

@@ -38,9 +38,9 @@ class SponsorRequest extends FormRequest
             'name_en'    => [ 'required', 'string' ],
             'name_ar'    => [ 'required', 'string' ],
             'logo'       => [ Rule::requiredIf($this->isMethod('POST')), 'image', 'max:' . self::$maxLogoSize ],
-            'material'   => [ Rule::requiredIf($this->isMethod('POST')), 'file', 'mimes:pdf', 'max:' . self::$maxMaterialSize ],
+            'material'   => [ 'nullable', 'file', 'mimes:pdf', 'max:' . self::$maxMaterialSize ],
             'email'      => [ 'required', 'email', 'unique:sponsors,email,' . optional(optional($this->sponsor)->user)->id ],
-            'mobile'     => [ 'required', 'string', 'unique:sponsors,email,' . optional(optional($this->sponsor)->user)->id  ],
+            'mobile'     => [ 'required', 'string', 'unique:sponsors,mobile,' . optional(optional($this->sponsor)->user)->id  ],
             'country_id' => [ 'required', 'exists:countries,id' ],
             'city_id'    => [ 'required', 'exists:cities,id' ]
         ];
