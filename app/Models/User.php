@@ -110,7 +110,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function shoppingCart()
     {
         return $this->belongsToMany(Course::class, ShoppingCart::class)
-                    ->withPivot('paid_at', 'price')
+                    ->withPivot('id', 'paid_at', 'price')
                     ->withTimestamps();
     }
 
@@ -127,6 +127,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function organization()
     {
         return $this->hasOne(Organization::class);
+    }
+
+    public function discounts()
+    {
+        return $this->belongsToMany(Discount::class, 'discount_user');
     }
 
 }

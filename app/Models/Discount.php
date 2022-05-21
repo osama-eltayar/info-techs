@@ -26,6 +26,7 @@ class Discount extends Model
         'amount',
         'amount_type',
         'generation_number',
+        'valid_generation_number',
         'limit_usage',
         'course_id',
         'speciality_id',
@@ -99,5 +100,10 @@ class Discount extends Model
     public function specialities()
     {
         return $this->belongsToMany(Speciality::class)->using(DiscountSpeciality::class)->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'discount_user');
     }
 }

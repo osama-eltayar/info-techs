@@ -3,7 +3,7 @@
 
 namespace App\Services\User;
 
-
+use App\Models\DiscountUser;
 use App\Models\ShoppingCart;
 use App\Models\Transaction;
 use App\Utilities\Invoices\ShoppingCartDetails;
@@ -64,7 +64,15 @@ class ShoppingCartService
                                         ->get();
 
         $soppingCartItems->map(function ($item){
-            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price ;
+            $discountUser = DiscountUser::where('shopping_cart_id', $item->id)->whereDate('end_date', '>=', now())->first();
+            $discount = 0;
+
+            if ($discountUser)
+            {
+                $discount = $discountUser->amount;
+            }
+
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price - $discount;
         });
         return $soppingCartItems ;
     }
@@ -76,7 +84,15 @@ class ShoppingCartService
                     ->get();
 
         $items->each(function ($item){
-            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price ;
+            $discountUser = DiscountUser::where('shopping_cart_id', $item->id)->whereDate('end_date', '>=', now())->first();
+            $discount = 0;
+
+            if ($discountUser)
+            {
+                $discount = $discountUser->amount;
+            }
+
+            $item->price = optional($item->course->activeDiscount)->price ?? $item->course->price - $discount;
             $item->update();
         });
     }

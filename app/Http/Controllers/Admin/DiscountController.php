@@ -67,7 +67,9 @@ class DiscountController extends Controller
 
     public function store(DiscountRequest $request)
     {
-        $discount = Discount::create($request->validated());
+        $data = $request->validated();
+        $data['valid_generation_number'] = $request->input('generation_number');
+        $discount = Discount::create($data);
         $discount->specialities()->attach($request->specialities);
         return $this->successResponse([
             'redirect' => route('admin.discounts.index')

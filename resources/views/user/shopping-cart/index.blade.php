@@ -38,6 +38,7 @@
                                 </div>
                                 @foreach($items as $item)
                                     <div class="product-card">
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
                                         <div class="num">{{$loop->iteration}}-</div>
                                         <div class="img">
                                             <img src="{{asset('')}}media/images/prod.png" alt="product">

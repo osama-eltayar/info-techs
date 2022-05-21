@@ -7,6 +7,7 @@ use App\Http\Controllers\User\CourseVideoTrackerController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\InvoiceController;
 use App\Http\Controllers\User\CourseSessionController;
+use App\Http\Controllers\User\DiscountController;
 use App\Http\Controllers\User\ShoppingCartDetailsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ShoppingCartController;
@@ -40,6 +41,8 @@ Route::group([
 
         Route::resource('shopping-cart', ShoppingCartController::class)->only('index', 'store', 'destroy');
         Route::get('shopping-cart-details', ShoppingCartDetailsController::class)->name('shopping-cart.details');
+
+        Route::post('discount', [DiscountController::class, 'store'])->name('discount.store');
 
         Route::get('payment/callback',[ PaymentController::class, 'callback'])->name('payment.callback');
         Route::post('payment/checkout',[ PaymentController::class, 'checkout'])->name('payment.checkout');
