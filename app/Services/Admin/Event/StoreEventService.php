@@ -53,7 +53,8 @@ class StoreEventService
         $this->storeDiscount();
         if(isset($this->data['speakers']))
             $this->course->speakers()->attach($this->data['speakers']);
-//        $this->course->people()->attach($this->data['chairPersons']);
+        if(isset($this->data['chairPersons']))
+            $this->course->people()->attach($this->data['chairPersons']);
         if (isset($this->data['specialities']) && count($this->data['specialities']))
             $this->course->specialities()->attach($this->data['specialities']);
         $this->storeSponsors();

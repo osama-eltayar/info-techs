@@ -50,6 +50,8 @@ class UpdateEventService
         $this->storeDiscount();
         if(isset($this->data['speakers']))
             $this->course->speakers()->sync($this->data['speakers']);
+        if(isset($this->data['chairPersons']))
+            $this->course->people()->sync($this->data['chairPersons']);
 //        $this->course->people()->attach($this->data['chairPersons']);
         if(isset($this->data['specialities']))
         $this->course->specialities()->sync($this->data['specialities']);

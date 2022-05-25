@@ -227,7 +227,7 @@ class Course extends Model
 
     public function people()
     {
-        return $this->belongsToMany(Person::class,'course_people');
+        return $this->belongsToMany(Speaker::class,'course_people','course_id','person_id');
     }
 
     public function speakers()

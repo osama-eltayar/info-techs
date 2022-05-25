@@ -78,7 +78,11 @@ class EventRequest extends FormRequest
             'recordedSessions.*.is_free'    => ['required', 'boolean'],
             'recordedSessions.*.url'        => ['required', 'url'],
             'recordedSessions.*.title'      => ['required', 'string'],
-            'survey_id'                     => ['nullable', 'exists:surveys,id']
+            'survey_id'                     => ['nullable', 'exists:surveys,id'],
+            'speakers'                      => ['nullable', 'array', 'filled', 'distinct'],
+            'speakers.*'                    => ['required', 'exists:speakers,id'],
+            'chairPersons'                  => ['nullable', 'array', 'filled', 'distinct'],
+            'chairPersons.*'                => ['required', 'exists:speakers,id'],
         ];
     }
 }

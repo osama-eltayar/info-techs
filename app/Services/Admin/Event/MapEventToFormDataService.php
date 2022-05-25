@@ -56,7 +56,7 @@ class MapEventToFormDataService
                                                     ->toArray();
 
         $eventData['speakers']     = $event->speakers()->pluck('speakers.id')->toArray();
-        $eventData['chairPersons'] = $eventData['speakers'];
+        $eventData['chairPersons'] = $event->people()->pluck('speakers.id')->toArray();
         $eventData['discount']     = $event->discounts()->latest()->first() ?: [];
         $eventData['materials']    = $event->materials
                                     ->map(function ($material) use ($event) {
