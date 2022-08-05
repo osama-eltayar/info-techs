@@ -101,6 +101,11 @@
 
                             <div class="mb-4">
                                 <label  class="form-label">Speciality <span>*</span></label>
+                                (
+                                    Select All
+                                    <input type="checkbox" @change="selectedAllSpecialities"/>
+                                )
+                               
                                 <select class="form-select" aria-label="Default select example" multiple id="speciality-selector" >
                                     <option v-for="speciality in specialities" :selected="eventData.specialities.includes(+speciality.id)" :key="speciality.id" :value="speciality.id">{{speciality.name}}</option>
                                 </select>
@@ -466,7 +471,7 @@ export default {
             this.eventData.cityId = $('#city').val();
         })
         $('#speciality-selector').on('select2:select select2:unselect', ()=>{
-            this.eventData.specialities = $('#speciality-selector').val();
+                this.eventData.specialities = $('#speciality-selector').val();
         })
 
     },
@@ -745,6 +750,15 @@ export default {
             this.materials = this.materials.filter((material,index)=>{
                 return idx != index;
             })
+
+        },
+        selectedAllSpecialities(event){
+            if(event.target.checked)
+                $('#speciality-selector').val(_.map(this.specialities, 'id')).trigger('change')
+            else
+             $('#speciality-selector').val([]).trigger('change')
+
+              this.eventData.specialities = $('#speciality-selector').val();
 
         }
 
